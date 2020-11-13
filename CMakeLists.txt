@@ -16,8 +16,12 @@ endif()
 
 add_definitions(-DSDL_MAIN_HANDLED)
 add_library(NobleEngine
+  src/NobleEngine/EngineCore.h
   src/NobleEngine/Application.h
   src/NobleEngine/Application.cpp
+  src/NobleEngine/System.h
+  src/NobleEngine/Entity.h
+  src/NobleEngine/Component.h
 )
 target_link_libraries(NobleEngine glew32 opengl32 SDL2)
 
