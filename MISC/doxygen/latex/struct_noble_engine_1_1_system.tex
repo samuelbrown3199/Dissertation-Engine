@@ -1,0 +1,58 @@
+\hypertarget{struct_noble_engine_1_1_system}{}\doxysection{Noble\+Engine\+::System Struct Reference}
+\label{struct_noble_engine_1_1_system}\index{NobleEngine::System@{NobleEngine::System}}
+
+
+{\ttfamily \#include $<$System.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{struct_noble_engine_1_1_system_a49908316c2c62c11c0b68aa43edb3bc6}{Initialize}} ()
+\item 
+virtual void \mbox{\hyperlink{struct_noble_engine_1_1_system_aacd0e233649ba561d547dbf155ab0dbb}{Update}} ()
+\item 
+virtual void \mbox{\hyperlink{struct_noble_engine_1_1_system_a47e32248730804f99d8ee391d78417ec}{Render}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{struct_noble_engine_1_1_system_a95a9b65d952476f8c7a863c0dad6fe63}{target\+Tags}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{struct_noble_engine_1_1_system}{System}} struct that component systems can inherit from. Systems handle game functionality. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{struct_noble_engine_1_1_system_a49908316c2c62c11c0b68aa43edb3bc6}\label{struct_noble_engine_1_1_system_a49908316c2c62c11c0b68aa43edb3bc6}} 
+\index{NobleEngine::System@{NobleEngine::System}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!NobleEngine::System@{NobleEngine::System}}
+\doxysubsubsection{\texorpdfstring{Initialize()}{Initialize()}}
+{\footnotesize\ttfamily virtual void Noble\+Engine\+::\+System\+::\+Initialize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Setup for use in initializing components. \mbox{\Hypertarget{struct_noble_engine_1_1_system_a47e32248730804f99d8ee391d78417ec}\label{struct_noble_engine_1_1_system_a47e32248730804f99d8ee391d78417ec}} 
+\index{NobleEngine::System@{NobleEngine::System}!Render@{Render}}
+\index{Render@{Render}!NobleEngine::System@{NobleEngine::System}}
+\doxysubsubsection{\texorpdfstring{Render()}{Render()}}
+{\footnotesize\ttfamily virtual void Noble\+Engine\+::\+System\+::\+Render (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Render is called every frame. \mbox{\Hypertarget{struct_noble_engine_1_1_system_aacd0e233649ba561d547dbf155ab0dbb}\label{struct_noble_engine_1_1_system_aacd0e233649ba561d547dbf155ab0dbb}} 
+\index{NobleEngine::System@{NobleEngine::System}!Update@{Update}}
+\index{Update@{Update}!NobleEngine::System@{NobleEngine::System}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily virtual void Noble\+Engine\+::\+System\+::\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Update is called every frame. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{struct_noble_engine_1_1_system_a95a9b65d952476f8c7a863c0dad6fe63}\label{struct_noble_engine_1_1_system_a95a9b65d952476f8c7a863c0dad6fe63}} 
+\index{NobleEngine::System@{NobleEngine::System}!targetTags@{targetTags}}
+\index{targetTags@{targetTags}!NobleEngine::System@{NobleEngine::System}}
+\doxysubsubsection{\texorpdfstring{targetTags}{targetTags}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ Noble\+Engine\+::\+System\+::target\+Tags}
+
+Stores the tags that the system targets. Makes it possible to target specific entities with certain tags. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Noble\+Engine/System.\+h\end{DoxyCompactItemize}

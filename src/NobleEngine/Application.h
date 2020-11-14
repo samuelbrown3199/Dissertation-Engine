@@ -9,11 +9,21 @@
 
 namespace NobleEngine
 {
+	/**
+	*Application is the core of the engine. This will initialize and handle the main loop of the engine.
+	*/
 	class Application
 	{
 	public:
 
+		/**
+		*Initializes the systems within the engine.
+		*/
 		static std::shared_ptr<Application> InitializeEngine(std::string windowName);
+
+		/**
+		*Starts and manages the main engine loop.
+		*/
 		void MainLoop();
 
 	private:
@@ -21,5 +31,10 @@ namespace NobleEngine
 		std::weak_ptr<Application> self;
 		SDL_Window* window;
 		bool loop = true;
+
+		/**
+		*Stores systems for use within the game engine.
+		*/
+		//std::vector<std::shared_ptr<System>> systems;
 	};
 }
