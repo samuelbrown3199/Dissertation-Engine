@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['render_26',['Render',['../struct_noble_engine_1_1_system.html#a47e32248730804f99d8ee391d78417ec',1,'NobleEngine::System']]]
+  ['mainloop_29',['MainLoop',['../class_noble_engine_1_1_application.html#a10c9701dbe933e4da64227012fc8cb31',1,'NobleEngine::Application']]]
 ];

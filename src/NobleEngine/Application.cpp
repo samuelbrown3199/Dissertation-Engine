@@ -1,5 +1,8 @@
 #include "Application.h"
+
 #include "System.h"
+#include "Entity.h"
+#include "TransformSystem.h"
 
 namespace NobleEngine
 {
@@ -25,7 +28,13 @@ namespace NobleEngine
 
 	void Application::MainLoop()
 	{
+		BindCoreSystems();
+
 		SDL_Event e = { 0 };
+		glEnable(GL_CULL_FACE);
+		glEnable(GL_DEPTH_TEST);
+		
+		glClearColor(0.0f, 0.45f, 0.45f, 1.0f);
 
 		while (loop)
 		{
@@ -36,11 +45,38 @@ namespace NobleEngine
 					loop = false;
 				}
 			}
-
-			for (size_t sys = 0; sys < systems.size(); sys++)
+			for (size_t sys = 0; sys < systems.size(); sys++) //handles system updates
 			{
 				systems.at(sys)->Update();
 			}
+
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+			//render here
+
+			SDL_GL_SwapWindow(window);
 		}
+	}
+
+	std::shared_ptr<Entity> Application::CreateEntity()
+	{
+		std::shared_ptr<Entity> en = std::make_shared<Entity>();
+		entities.push_back(en);
+
+		return en;
+	}
+	std::shared_ptr<Entity> Application::CreateEntity(std::string tag)
+	{
+		std::shared_ptr<Entity> en = std::make_shared<Entity>();
+		en->tag = tag;
+		entities.push_back(en);
+
+		return en;
+	}
+
+	void Application::BindCoreSystems()
+	{
+		std::shared_ptr<TransformSystem> tr = std::make_shared<TransformSystem>();
+		BindSystem(tr);
 	}
 }

@@ -10,6 +10,7 @@
 namespace NobleEngine
 {
 	class System;
+	class Entity;
 
 	/**
 	*Application is the core of the engine. This will initialize and handle the main loop of the engine.
@@ -22,12 +23,18 @@ namespace NobleEngine
 		*Initializes the systems within the engine.
 		*/
 		static std::shared_ptr<Application> InitializeEngine(std::string windowName);
-
 		/**
 		*Starts and manages the main engine loop.
 		*/
 		void MainLoop();
-
+		/**
+		*Creates an entity with no tag.
+		*/
+		std::shared_ptr<Entity> CreateEntity();
+		/**
+		*Creates an entity with the passed in tag.
+		*/
+		std::shared_ptr<Entity> CreateEntity(std::string tag);
 		/**
 		*Binds the system to the engine core for use in game functionality;
 		*/
@@ -42,10 +49,18 @@ namespace NobleEngine
 		std::weak_ptr<Application> self;
 		SDL_Window* window;
 		bool loop = true;
-
 		/**
 		*Stores systems for use within the game engine.
 		*/
 		std::vector<std::shared_ptr<System>> systems;
+		/**
+		*Stores entities for use within the game engine.
+		*/
+		std::vector<std::shared_ptr<Entity>> entities;
+
+		/**
+		*Binds core systems so the engine user doesnt have to.
+		*/
+		void BindCoreSystems();
 	};
 }

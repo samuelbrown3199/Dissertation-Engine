@@ -24,5 +24,9 @@ namespace NobleEngine
 		*Contains the scale of the transform.
 		*/
 		glm::vec3 scale;
+		/**
+		*Contains the model matrix for use in rendering.
+		*/
+		glm::mat4 model;
 	};
 }

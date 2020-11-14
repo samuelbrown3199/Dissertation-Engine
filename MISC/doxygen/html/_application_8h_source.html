@@ -23,7 +23,7 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Noble Engine
    </div>
-   <div id="projectbrief">A data oriented game engine</div>
+   <div id="projectbrief">A data oriented game engine.</div>
   </td>
  </tr>
  </tbody>
@@ -81,27 +81,38 @@ $(function() {
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">namespace </span>NobleEngine</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="class_noble_engine_1_1_application.html">   15</a></span>&#160;    <span class="keyword">class </span><a class="code" href="class_noble_engine_1_1_application.html">Application</a></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    {</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keyword">static</span> std::shared_ptr&lt;Application&gt; <a class="code" href="class_noble_engine_1_1_application.html#a49dc87e8f3865f2ada40fa6e2a74d732">InitializeEngine</a>(std::string windowName);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_noble_engine_1_1_application.html#a10c9701dbe933e4da64227012fc8cb31">MainLoop</a>();</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        std::weak_ptr&lt;Application&gt; <span class="keyword">self</span>;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        SDL_Window* window;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordtype">bool</span> loop = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="comment">//std::vector&lt;std::shared_ptr&lt;System&gt;&gt; systems;</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    };</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;}</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keyword">class </span>System;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="class_noble_engine_1_1_application.html">   17</a></span>&#160;    <span class="keyword">class </span><a class="code" href="class_noble_engine_1_1_application.html">Application</a></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    {</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keyword">static</span> std::shared_ptr&lt;Application&gt; <a class="code" href="class_noble_engine_1_1_application.html#a49dc87e8f3865f2ada40fa6e2a74d732">InitializeEngine</a>(std::string windowName);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_noble_engine_1_1_application.html#a10c9701dbe933e4da64227012fc8cb31">MainLoop</a>();</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="class_noble_engine_1_1_application.html#a75787b6c73bfeeabac4a4d947044ec42">   34</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_noble_engine_1_1_application.html#a75787b6c73bfeeabac4a4d947044ec42">BindSystem</a>(std::shared_ptr&lt;T&gt; system)</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            systems.push_back(system);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        }</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        std::weak_ptr&lt;Application&gt; <span class="keyword">self</span>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        SDL_Window* window;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordtype">bool</span> loop = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        std::vector&lt;std::shared_ptr&lt;System&gt;&gt; systems;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        std::vector&lt;std::shared_ptr&lt;Entity&gt;&gt; entities;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordtype">void</span> BindCoreSystems();</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    };</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclass_noble_engine_1_1_application_html_a49dc87e8f3865f2ada40fa6e2a74d732"><div class="ttname"><a href="class_noble_engine_1_1_application.html#a49dc87e8f3865f2ada40fa6e2a74d732">NobleEngine::Application::InitializeEngine</a></div><div class="ttdeci">static std::shared_ptr&lt; Application &gt; InitializeEngine(std::string windowName)</div><div class="ttdef"><b>Definition:</b> Application.cpp:5</div></div>
-<div class="ttc" id="aclass_noble_engine_1_1_application_html_a10c9701dbe933e4da64227012fc8cb31"><div class="ttname"><a href="class_noble_engine_1_1_application.html#a10c9701dbe933e4da64227012fc8cb31">NobleEngine::Application::MainLoop</a></div><div class="ttdeci">void MainLoop()</div><div class="ttdef"><b>Definition:</b> Application.cpp:25</div></div>
-<div class="ttc" id="aclass_noble_engine_1_1_application_html"><div class="ttname"><a href="class_noble_engine_1_1_application.html">NobleEngine::Application</a></div><div class="ttdef"><b>Definition:</b> Application.h:16</div></div>
+<div class="ttc" id="aclass_noble_engine_1_1_application_html_a49dc87e8f3865f2ada40fa6e2a74d732"><div class="ttname"><a href="class_noble_engine_1_1_application.html#a49dc87e8f3865f2ada40fa6e2a74d732">NobleEngine::Application::InitializeEngine</a></div><div class="ttdeci">static std::shared_ptr&lt; Application &gt; InitializeEngine(std::string windowName)</div><div class="ttdef"><b>Definition:</b> Application.cpp:7</div></div>
+<div class="ttc" id="aclass_noble_engine_1_1_application_html_a10c9701dbe933e4da64227012fc8cb31"><div class="ttname"><a href="class_noble_engine_1_1_application.html#a10c9701dbe933e4da64227012fc8cb31">NobleEngine::Application::MainLoop</a></div><div class="ttdeci">void MainLoop()</div><div class="ttdef"><b>Definition:</b> Application.cpp:27</div></div>
+<div class="ttc" id="aclass_noble_engine_1_1_application_html"><div class="ttname"><a href="class_noble_engine_1_1_application.html">NobleEngine::Application</a></div><div class="ttdef"><b>Definition:</b> Application.h:18</div></div>
+<div class="ttc" id="aclass_noble_engine_1_1_application_html_a75787b6c73bfeeabac4a4d947044ec42"><div class="ttname"><a href="class_noble_engine_1_1_application.html#a75787b6c73bfeeabac4a4d947044ec42">NobleEngine::Application::BindSystem</a></div><div class="ttdeci">void BindSystem(std::shared_ptr&lt; T &gt; system)</div><div class="ttdef"><b>Definition:</b> Application.h:34</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
