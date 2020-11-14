@@ -1,6 +1,7 @@
 #include <memory>
 #include <vector>
 #include <string>
+#pragma once
 
 #include "Component.h"
 namespace NobleEngine
@@ -24,9 +25,9 @@ namespace NobleEngine
 		*Adds the component to the entity with the passed list type.
 		*/
 		template <typename T>
-		void AddComponent(std::vector <std::shared_ptr<T>> componentList)
+		void AddComponent(static std::vector <std::shared_ptr<T>> componentList)
 		{
-			std::shared_ptr<T> component = std::make_shared();
+			std::shared_ptr<T> component = std::make_shared<T>();
 			componentList.push_back(component);
 			entityComponents.push_back(component);
 		}

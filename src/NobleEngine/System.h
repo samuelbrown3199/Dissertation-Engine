@@ -1,3 +1,7 @@
+#pragma once
+#ifndef SYSTEM_H
+#define SYSTEM_H
+
 #include <memory>
 #include <vector>
 #include <string>
@@ -28,3 +32,4 @@ namespace NobleEngine
 		virtual void Render() {};
 	};
 }
+#endif

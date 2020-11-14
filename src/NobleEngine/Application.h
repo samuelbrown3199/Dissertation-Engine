@@ -9,6 +9,8 @@
 
 namespace NobleEngine
 {
+	class System;
+
 	/**
 	*Application is the core of the engine. This will initialize and handle the main loop of the engine.
 	*/
@@ -26,6 +28,15 @@ namespace NobleEngine
 		*/
 		void MainLoop();
 
+		/**
+		*Binds the system to the engine core for use in game functionality;
+		*/
+		template<typename T>
+		void BindSystem(std::shared_ptr<T> system)
+		{
+			systems.push_back(system);
+		}
+
 	private:
 
 		std::weak_ptr<Application> self;
@@ -35,6 +46,6 @@ namespace NobleEngine
 		/**
 		*Stores systems for use within the game engine.
 		*/
-		//std::vector<std::shared_ptr<System>> systems;
+		std::vector<std::shared_ptr<System>> systems;
 	};
 }

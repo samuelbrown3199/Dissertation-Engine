@@ -1,4 +1,5 @@
 #include "Application.h"
+#include "System.h"
 
 namespace NobleEngine
 {
@@ -34,6 +35,11 @@ namespace NobleEngine
 				{
 					loop = false;
 				}
+			}
+
+			for (size_t sys = 0; sys < systems.size(); sys++)
+			{
+				systems.at(sys)->Update();
 			}
 		}
 	}

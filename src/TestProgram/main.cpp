@@ -6,7 +6,11 @@ int main()
 {
 	std::cout << "Hello World!" << std::endl;
 	std::shared_ptr<Application> app = Application::InitializeEngine("Test Program");
-	app->MainLoop();
 
+	std::shared_ptr<TransformSystem> tr = std::make_shared<TransformSystem>();
+	app->BindSystem(tr);
+
+	app->MainLoop();
+	
 	return 0;
 }

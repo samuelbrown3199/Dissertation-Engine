@@ -1,9 +1,15 @@
+#include <memory>
+#include <vector>
+
 #include "glm/glm.hpp"
 
 #include "Component.h"
 
 namespace NobleEngine
 {
+	struct Transform;
+	static std::vector<std::shared_ptr<Transform>> transformComponents;
+
 	struct Transform : public Component
 	{
 		/**

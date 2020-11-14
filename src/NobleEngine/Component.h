@@ -1,3 +1,7 @@
+#pragma once
+#ifndef COMPONENT_H
+#define COMPONENT_H
+
 namespace NobleEngine
 {
 	struct Component
@@ -8,3 +12,5 @@ namespace NobleEngine
 		int entityID;
 	};
 }
+
+#endif
