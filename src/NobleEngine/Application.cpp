@@ -22,7 +22,7 @@ namespace NobleEngine
 			std::cout << "Application failed to initialize glew!" << std::endl;
 			throw std::exception();
 		}
-
+		
 		return app;
 	}
 

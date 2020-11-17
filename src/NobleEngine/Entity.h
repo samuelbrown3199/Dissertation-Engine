@@ -7,7 +7,7 @@
 namespace NobleEngine
 {
 	/**
-	*Entities will be containers for use in storing game data.
+	*Entities are containers for use in storing game data.
 	*/
 	struct Entity
 	{
@@ -20,16 +20,22 @@ namespace NobleEngine
 		*The entity's tag.
 		*/
 		std::string tag;
-
 		/**
 		*Adds the component to the entity with the passed list type.
 		*/
 		template <typename T>
-		void AddComponent(static std::vector <std::shared_ptr<T>> componentList)
+		std::shared_ptr<T> AddComponent()
 		{
 			std::shared_ptr<T> component = std::make_shared<T>();
-			componentList.push_back(component);
 			entityComponents.push_back(component);
+			T::componentList.push_back(component);
+
+			return component;
+		}
+
+		int GetEntityComponentSize()
+		{
+			return entityComponents.size();
 		}
 
 	private:
@@ -37,6 +43,6 @@ namespace NobleEngine
 		/**
 		*Stores the entity's components.
 		*/
-		std::vector<std::shared_ptr<Component>> entityComponents;
+		std::vector<std::shared_ptr<ComponentBase>> entityComponents;
 	};
 }

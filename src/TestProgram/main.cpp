@@ -7,13 +7,15 @@
 using namespace NobleEngine;
 int main()
 {
-	std::cout << "Hello World!" << std::endl;
 	std::shared_ptr<Application> app = Application::InitializeEngine("Test Program");
 
 	std::shared_ptr<Entity> testEntity = app->CreateEntity();
-	testEntity->AddComponent(transformComponents);
+	testEntity->AddComponent<Transform>();
 
 	app->MainLoop();
 	
 	return 0;
 }
+
+//std::vector<std::shared_ptr<Transform>> Transform::transformComponents;
+//REGISTER(Transform)

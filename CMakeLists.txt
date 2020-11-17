@@ -24,6 +24,7 @@ add_library(NobleEngine
   src/NobleEngine/Component.h
   src/NobleEngine/Transform.h
   src/NobleEngine/TransformSystem.h
+  src/NobleEngine/TransformSystem.cpp
 )
 target_link_libraries(NobleEngine glew32 opengl32 SDL2)
 

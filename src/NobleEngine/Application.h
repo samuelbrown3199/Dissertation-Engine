@@ -18,7 +18,6 @@ namespace NobleEngine
 	class Application
 	{
 	public:
-
 		/**
 		*Initializes the systems within the engine.
 		*/
@@ -43,6 +42,21 @@ namespace NobleEngine
 		{
 			systems.push_back(system);
 		}
+		/**
+		*Gets a bound system of the passed type.
+		*/
+		template<typename T>
+		std::shared_ptr<T> GetSystem()
+		{
+			std::shared_ptr sys;
+			for (size_t s = 0; s < systems.size(); s++)
+			{
+				sys = std::dynamic_pointer_cast<T>(systems.at(s));
+				if (!sys) continue;
+
+				return sys;
+			}
+		}
 
 	private:
 
@@ -57,7 +71,6 @@ namespace NobleEngine
 		*Stores entities for use within the game engine.
 		*/
 		std::vector<std::shared_ptr<Entity>> entities;
-
 		/**
 		*Binds core systems so the engine user doesnt have to.
 		*/
