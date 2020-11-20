@@ -37,6 +37,7 @@ namespace NobleEngine
 		glClearColor(0.0f, 0.45f, 0.45f, 1.0f);
 
 		std::cout << "Entity Id is " << entities.at(0)->entityID << std::endl;
+		std::cout << "Transform list has " << Transform::componentList.size() << std::endl;
 
 		while (loop)
 		{

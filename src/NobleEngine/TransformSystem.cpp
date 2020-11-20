@@ -2,7 +2,7 @@
 
 namespace NobleEngine
 {
-	std::vector<std::shared_ptr<Transform>> Component<Transform>::componentList;
+	SetupComponentList(Transform);
 
 	void TransformSystem::Initialize()
 	{

@@ -6,6 +6,8 @@
 #include <vector>
 #include <string>
 
+#define SetupComponentList(T) std::vector<std::shared_ptr<T>> Component<T>::componentList;
+
 namespace NobleEngine
 {
 	/**
