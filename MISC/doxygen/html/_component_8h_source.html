@@ -23,7 +23,7 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Noble Engine
    </div>
-   <div id="projectbrief">A data oriented game engine.</div>
+   <div id="projectbrief">A data oriented game engine</div>
   </td>
  </tr>
  </tbody>
@@ -74,18 +74,28 @@ $(function() {
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#ifndef COMPONENT_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#define COMPONENT_H</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">namespace </span>NobleEngine</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
-<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_component.html">    7</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="struct_noble_engine_1_1_component.html">Component</a></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    {</div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_component.html#a872a4b35b40ca742a057bd0faeffe7b8">   12</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="struct_noble_engine_1_1_component.html#a872a4b35b40ca742a057bd0faeffe7b8">entityID</a>;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    };</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;}</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">namespace </span>NobleEngine</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_component_base.html">   10</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="struct_noble_engine_1_1_component_base.html">ComponentBase</a></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    {</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_component_base.html#ad8dc1af8c1a4a646450ab465a2d50e92">   15</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="struct_noble_engine_1_1_component_base.html#ad8dc1af8c1a4a646450ab465a2d50e92">entityID</a>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    };</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_component.html">   19</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="struct_noble_engine_1_1_component.html">Component</a> : <span class="keyword">public</span> <a class="code" href="struct_noble_engine_1_1_component_base.html">ComponentBase</a></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keyword">static</span> std::vector&lt;std::shared_ptr&lt;T&gt;&gt; componentList;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    };</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;}</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="astruct_noble_engine_1_1_component_html"><div class="ttname"><a href="struct_noble_engine_1_1_component.html">NobleEngine::Component</a></div><div class="ttdef"><b>Definition:</b> Component.h:8</div></div>
-<div class="ttc" id="astruct_noble_engine_1_1_component_html_a872a4b35b40ca742a057bd0faeffe7b8"><div class="ttname"><a href="struct_noble_engine_1_1_component.html#a872a4b35b40ca742a057bd0faeffe7b8">NobleEngine::Component::entityID</a></div><div class="ttdeci">int entityID</div><div class="ttdef"><b>Definition:</b> Component.h:12</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_component_html"><div class="ttname"><a href="struct_noble_engine_1_1_component.html">NobleEngine::Component</a></div><div class="ttdef"><b>Definition:</b> Component.h:20</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_component_base_html_ad8dc1af8c1a4a646450ab465a2d50e92"><div class="ttname"><a href="struct_noble_engine_1_1_component_base.html#ad8dc1af8c1a4a646450ab465a2d50e92">NobleEngine::ComponentBase::entityID</a></div><div class="ttdeci">int entityID</div><div class="ttdef"><b>Definition:</b> Component.h:15</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_component_base_html"><div class="ttname"><a href="struct_noble_engine_1_1_component_base.html">NobleEngine::ComponentBase</a></div><div class="ttdef"><b>Definition:</b> Component.h:11</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20

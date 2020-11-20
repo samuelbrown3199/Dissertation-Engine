@@ -23,7 +23,7 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Noble Engine
    </div>
-   <div id="projectbrief">A data oriented game engine.</div>
+   <div id="projectbrief">A data oriented game engine</div>
   </td>
  </tr>
  </tbody>
@@ -72,27 +72,25 @@ $(function() {
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;System.h&quot;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;Transform.h&quot;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include&lt;glm/glm.hpp&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;glm/ext.hpp&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">namespace </span>NobleEngine</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_transform_system.html">    8</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="struct_noble_engine_1_1_transform_system.html">TransformSystem</a> : <span class="keyword">public</span> <a class="code" href="struct_noble_engine_1_1_system.html">System</a></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    {</div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_transform_system.html#aa1e16c34381734dcb98fa44610016f02">   10</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="struct_noble_engine_1_1_transform_system.html#aa1e16c34381734dcb98fa44610016f02">Initialize</a>()</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        {</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;            </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        }</div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_transform_system.html#af7baa49d477698e26a3c635d25976bfe">   14</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="struct_noble_engine_1_1_transform_system.html#af7baa49d477698e26a3c635d25976bfe">Update</a>()</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;Transform system update.&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        }</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    };</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;}</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;System.h&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;Transform.h&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">namespace </span>NobleEngine</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_transform_system.html">   11</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="struct_noble_engine_1_1_transform_system.html">TransformSystem</a> : <span class="keyword">public</span> <a class="code" href="struct_noble_engine_1_1_system.html">System</a></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    {</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="struct_noble_engine_1_1_transform_system.html#aa1e16c34381734dcb98fa44610016f02">Initialize</a>();</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="struct_noble_engine_1_1_transform_system.html#af7baa49d477698e26a3c635d25976bfe">Update</a>();</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keywordtype">void</span> GenerateModelMatrix(std::shared_ptr&lt;Transform&gt; tr);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    };</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="astruct_noble_engine_1_1_transform_system_html_af7baa49d477698e26a3c635d25976bfe"><div class="ttname"><a href="struct_noble_engine_1_1_transform_system.html#af7baa49d477698e26a3c635d25976bfe">NobleEngine::TransformSystem::Update</a></div><div class="ttdeci">void Update()</div><div class="ttdef"><b>Definition:</b> TransformSystem.h:14</div></div>
-<div class="ttc" id="astruct_noble_engine_1_1_transform_system_html_aa1e16c34381734dcb98fa44610016f02"><div class="ttname"><a href="struct_noble_engine_1_1_transform_system.html#aa1e16c34381734dcb98fa44610016f02">NobleEngine::TransformSystem::Initialize</a></div><div class="ttdeci">void Initialize()</div><div class="ttdef"><b>Definition:</b> TransformSystem.h:10</div></div>
-<div class="ttc" id="astruct_noble_engine_1_1_transform_system_html"><div class="ttname"><a href="struct_noble_engine_1_1_transform_system.html">NobleEngine::TransformSystem</a></div><div class="ttdef"><b>Definition:</b> TransformSystem.h:9</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_transform_system_html_af7baa49d477698e26a3c635d25976bfe"><div class="ttname"><a href="struct_noble_engine_1_1_transform_system.html#af7baa49d477698e26a3c635d25976bfe">NobleEngine::TransformSystem::Update</a></div><div class="ttdeci">void Update()</div><div class="ttdef"><b>Definition:</b> TransformSystem.cpp:11</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_transform_system_html_aa1e16c34381734dcb98fa44610016f02"><div class="ttname"><a href="struct_noble_engine_1_1_transform_system.html#aa1e16c34381734dcb98fa44610016f02">NobleEngine::TransformSystem::Initialize</a></div><div class="ttdeci">void Initialize()</div><div class="ttdef"><b>Definition:</b> TransformSystem.cpp:7</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_transform_system_html"><div class="ttname"><a href="struct_noble_engine_1_1_transform_system.html">NobleEngine::TransformSystem</a></div><div class="ttdef"><b>Definition:</b> TransformSystem.h:12</div></div>
 <div class="ttc" id="astruct_noble_engine_1_1_system_html"><div class="ttname"><a href="struct_noble_engine_1_1_system.html">NobleEngine::System</a></div><div class="ttdef"><b>Definition:</b> System.h:15</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

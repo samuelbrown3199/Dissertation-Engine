@@ -23,7 +23,7 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Noble Engine
    </div>
-   <div id="projectbrief">A data oriented game engine.</div>
+   <div id="projectbrief">A data oriented game engine</div>
   </td>
  </tr>
  </tbody>
@@ -70,31 +70,31 @@ $(function() {
 <div class="title">Transform.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;glm/glm.hpp&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;Component.h&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">namespace </span>NobleEngine</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">struct </span>Transform;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keyword">static</span> std::vector&lt;std::shared_ptr&lt;Transform&gt;&gt; transformComponents;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_transform.html">   13</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="struct_noble_engine_1_1_transform.html">Transform</a> : <span class="keyword">public</span> <a class="code" href="struct_noble_engine_1_1_component.html">Component</a></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    {</div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_transform.html#a9e579a9a1b788bd9f68693bde5c97ad4">   18</a></span>&#160;        glm::vec3 <a class="code" href="struct_noble_engine_1_1_transform.html#a9e579a9a1b788bd9f68693bde5c97ad4">position</a>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_transform.html#a598e1a9bce134c1dc1d6ebf99a4aec2d">   22</a></span>&#160;        glm::vec3 <a class="code" href="struct_noble_engine_1_1_transform.html#a598e1a9bce134c1dc1d6ebf99a4aec2d">rotation</a>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_transform.html#a343f86ac6276a149b44597787f1b8a92">   26</a></span>&#160;        glm::vec3 <a class="code" href="struct_noble_engine_1_1_transform.html#a343f86ac6276a149b44597787f1b8a92">scale</a>;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    };</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;glm/glm.hpp&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;Component.h&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">namespace </span>NobleEngine</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_transform.html">   11</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="struct_noble_engine_1_1_transform.html">Transform</a> : <span class="keyword">public</span> <a class="code" href="struct_noble_engine_1_1_component.html">Component</a>&lt;Transform&gt;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    {</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_transform.html#a9e579a9a1b788bd9f68693bde5c97ad4">   16</a></span>&#160;        glm::vec3 <a class="code" href="struct_noble_engine_1_1_transform.html#a9e579a9a1b788bd9f68693bde5c97ad4">position</a> = glm::vec3(0, 0, 0);</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_transform.html#a598e1a9bce134c1dc1d6ebf99a4aec2d">   20</a></span>&#160;        glm::vec3 <a class="code" href="struct_noble_engine_1_1_transform.html#a598e1a9bce134c1dc1d6ebf99a4aec2d">rotation</a> = glm::vec3(0, 0, 0);</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_transform.html#a343f86ac6276a149b44597787f1b8a92">   24</a></span>&#160;        glm::vec3 <a class="code" href="struct_noble_engine_1_1_transform.html#a343f86ac6276a149b44597787f1b8a92">scale</a> = glm::vec3(1,1,1);</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_transform.html#ab51adbbbc924154b852336829e40047f">   28</a></span>&#160;        glm::mat4 <a class="code" href="struct_noble_engine_1_1_transform.html#ab51adbbbc924154b852336829e40047f">model</a>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    };</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="astruct_noble_engine_1_1_transform_html_a598e1a9bce134c1dc1d6ebf99a4aec2d"><div class="ttname"><a href="struct_noble_engine_1_1_transform.html#a598e1a9bce134c1dc1d6ebf99a4aec2d">NobleEngine::Transform::rotation</a></div><div class="ttdeci">glm::vec3 rotation</div><div class="ttdef"><b>Definition:</b> Transform.h:22</div></div>
-<div class="ttc" id="astruct_noble_engine_1_1_component_html"><div class="ttname"><a href="struct_noble_engine_1_1_component.html">NobleEngine::Component</a></div><div class="ttdef"><b>Definition:</b> Component.h:8</div></div>
-<div class="ttc" id="astruct_noble_engine_1_1_transform_html"><div class="ttname"><a href="struct_noble_engine_1_1_transform.html">NobleEngine::Transform</a></div><div class="ttdef"><b>Definition:</b> Transform.h:14</div></div>
-<div class="ttc" id="astruct_noble_engine_1_1_transform_html_a343f86ac6276a149b44597787f1b8a92"><div class="ttname"><a href="struct_noble_engine_1_1_transform.html#a343f86ac6276a149b44597787f1b8a92">NobleEngine::Transform::scale</a></div><div class="ttdeci">glm::vec3 scale</div><div class="ttdef"><b>Definition:</b> Transform.h:26</div></div>
-<div class="ttc" id="astruct_noble_engine_1_1_transform_html_a9e579a9a1b788bd9f68693bde5c97ad4"><div class="ttname"><a href="struct_noble_engine_1_1_transform.html#a9e579a9a1b788bd9f68693bde5c97ad4">NobleEngine::Transform::position</a></div><div class="ttdeci">glm::vec3 position</div><div class="ttdef"><b>Definition:</b> Transform.h:18</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_transform_html_a598e1a9bce134c1dc1d6ebf99a4aec2d"><div class="ttname"><a href="struct_noble_engine_1_1_transform.html#a598e1a9bce134c1dc1d6ebf99a4aec2d">NobleEngine::Transform::rotation</a></div><div class="ttdeci">glm::vec3 rotation</div><div class="ttdef"><b>Definition:</b> Transform.h:20</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_component_html"><div class="ttname"><a href="struct_noble_engine_1_1_component.html">NobleEngine::Component</a></div><div class="ttdef"><b>Definition:</b> Component.h:20</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_transform_html"><div class="ttname"><a href="struct_noble_engine_1_1_transform.html">NobleEngine::Transform</a></div><div class="ttdef"><b>Definition:</b> Transform.h:12</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_transform_html_a343f86ac6276a149b44597787f1b8a92"><div class="ttname"><a href="struct_noble_engine_1_1_transform.html#a343f86ac6276a149b44597787f1b8a92">NobleEngine::Transform::scale</a></div><div class="ttdeci">glm::vec3 scale</div><div class="ttdef"><b>Definition:</b> Transform.h:24</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_transform_html_ab51adbbbc924154b852336829e40047f"><div class="ttname"><a href="struct_noble_engine_1_1_transform.html#ab51adbbbc924154b852336829e40047f">NobleEngine::Transform::model</a></div><div class="ttdeci">glm::mat4 model</div><div class="ttdef"><b>Definition:</b> Transform.h:28</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_transform_html_a9e579a9a1b788bd9f68693bde5c97ad4"><div class="ttname"><a href="struct_noble_engine_1_1_transform.html#a9e579a9a1b788bd9f68693bde5c97ad4">NobleEngine::Transform::position</a></div><div class="ttdeci">glm::vec3 position</div><div class="ttdef"><b>Definition:</b> Transform.h:16</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20

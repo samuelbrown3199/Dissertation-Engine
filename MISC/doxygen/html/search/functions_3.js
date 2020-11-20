@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mainloop_29',['MainLoop',['../class_noble_engine_1_1_application.html#a10c9701dbe933e4da64227012fc8cb31',1,'NobleEngine::Application']]]
+  ['getsystem_35',['GetSystem',['../class_noble_engine_1_1_application.html#a455f4b0096d478fc5cb850e84295a971',1,'NobleEngine::Application']]]
 ];

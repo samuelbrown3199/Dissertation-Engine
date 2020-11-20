@@ -7,7 +7,10 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{struct_noble_engine_1_1_entity_a331bb41bee6e8cfa06125b8e1558e360}{Add\+Component}} (static std\+::vector$<$ std\+::shared\+\_\+ptr$<$ T $>$$>$ component\+List)
+{\footnotesize template$<$typename T $>$ }\\std\+::shared\+\_\+ptr$<$ T $>$ \mbox{\hyperlink{struct_noble_engine_1_1_entity_af431595e63a075ab4f374e5714a669b5}{Add\+Component}} ()
+\item 
+\mbox{\Hypertarget{struct_noble_engine_1_1_entity_a84f33a0ce90f9c91471e2506b63e3263}\label{struct_noble_engine_1_1_entity_a84f33a0ce90f9c91471e2506b63e3263}} 
+int {\bfseries Get\+Entity\+Component\+Size} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -19,17 +22,17 @@ std\+::string \mbox{\hyperlink{struct_noble_engine_1_1_entity_a39acf4643084032f1
 
 
 \doxysubsection{Detailed Description}
-Entities will be containers for use in storing game data. 
+Entities are containers for use in storing game data. 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{struct_noble_engine_1_1_entity_a331bb41bee6e8cfa06125b8e1558e360}\label{struct_noble_engine_1_1_entity_a331bb41bee6e8cfa06125b8e1558e360}} 
+\mbox{\Hypertarget{struct_noble_engine_1_1_entity_af431595e63a075ab4f374e5714a669b5}\label{struct_noble_engine_1_1_entity_af431595e63a075ab4f374e5714a669b5}} 
 \index{NobleEngine::Entity@{NobleEngine::Entity}!AddComponent@{AddComponent}}
 \index{AddComponent@{AddComponent}!NobleEngine::Entity@{NobleEngine::Entity}}
 \doxysubsubsection{\texorpdfstring{AddComponent()}{AddComponent()}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
-void Noble\+Engine\+::\+Entity\+::\+Add\+Component (\begin{DoxyParamCaption}\item[{static std\+::vector$<$ std\+::shared\+\_\+ptr$<$ T $>$$>$}]{component\+List }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+std\+::shared\+\_\+ptr$<$T$>$ Noble\+Engine\+::\+Entity\+::\+Add\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Adds the component to the entity with the passed list type. 
+Adds the component to the entity with the passed template type and automatically adds it to the component type list. 
 
 \doxysubsection{Member Data Documentation}
 \mbox{\Hypertarget{struct_noble_engine_1_1_entity_a3ba6ba61c75db63bcc89d3249fd69b1f}\label{struct_noble_engine_1_1_entity_a3ba6ba61c75db63bcc89d3249fd69b1f}} 

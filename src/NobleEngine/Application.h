@@ -35,11 +35,21 @@ namespace NobleEngine
 		*/
 		std::shared_ptr<Entity> CreateEntity(std::string tag);
 		/**
-		*Binds the system to the engine core for use in game functionality;
+		*Returns an entity with the ID passed through the parameter;
+		*/
+		std::shared_ptr<Entity> GetEntity(int ID);
+		/**
+		*Binds the system to the engine core for use in game functionality. Only one of each system can be bound at a time.
 		*/
 		template<typename T>
 		void BindSystem(std::shared_ptr<T> system)
 		{
+			std::shared_ptr<T> temp;
+			for (size_t sys = 0; sys < systems.size(); sys++)
+			{
+				temp = std::dynamic_pointer_cast<T>(systems.at(sys));
+				if (temp) std::cout << "System is already bound!!" << std::endl; return;
+			}
 			systems.push_back(system);
 		}
 		/**
@@ -71,6 +81,9 @@ namespace NobleEngine
 		*Stores entities for use within the game engine.
 		*/
 		std::vector<std::shared_ptr<Entity>> entities;
+		/**
+		*/
+		std::vector<int> availableIDs;
 		/**
 		*Binds core systems so the engine user doesnt have to.
 		*/

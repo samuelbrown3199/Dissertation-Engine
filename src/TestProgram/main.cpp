@@ -2,7 +2,7 @@
 #include <thread>
 
 #include <NobleEngine/EngineCore.h>
-#include <NobleEngine/Transform.h>
+#include <NobleEngine/TransformSystem.h>
 
 using namespace NobleEngine;
 int main()
@@ -11,6 +11,9 @@ int main()
 
 	std::shared_ptr<Entity> testEntity = app->CreateEntity();
 	testEntity->AddComponent<Transform>();
+
+	std::shared_ptr<TransformSystem> tr = std::make_shared<TransformSystem>();
+	app->BindSystem(tr);
 
 	app->MainLoop();
 	

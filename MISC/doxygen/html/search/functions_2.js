@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['initialize_27',['Initialize',['../struct_noble_engine_1_1_system.html#a49908316c2c62c11c0b68aa43edb3bc6',1,'NobleEngine::System::Initialize()'],['../struct_noble_engine_1_1_transform_system.html#aa1e16c34381734dcb98fa44610016f02',1,'NobleEngine::TransformSystem::Initialize()']]],
-  ['initializeengine_28',['InitializeEngine',['../class_noble_engine_1_1_application.html#a49dc87e8f3865f2ada40fa6e2a74d732',1,'NobleEngine::Application']]]
+  ['createentity_34',['CreateEntity',['../class_noble_engine_1_1_application.html#abcf283583fdb8d4952147089386bb9bd',1,'NobleEngine::Application::CreateEntity()'],['../class_noble_engine_1_1_application.html#afaa8b6ae60ba4eb7f4667ffe7b559efa',1,'NobleEngine::Application::CreateEntity(std::string tag)']]]
 ];

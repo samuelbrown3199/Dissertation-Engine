@@ -10,13 +10,6 @@ namespace NobleEngine
 {
 	struct Transform : public Component<Transform>
 	{
-		//static std::vector<std::shared_ptr<Transform>> transformComponents;
-
-		Transform()
-		{
-			std::cout << "Created Transform" << std::endl;
-		}
-
 		/**
 		*Contains the position of the transform. Defaults to the origin.
 		*/

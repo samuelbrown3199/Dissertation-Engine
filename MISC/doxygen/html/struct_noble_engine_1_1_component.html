@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.20"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Noble Engine: NobleEngine::Component Struct Reference</title>
+<title>Noble Engine: NobleEngine::Component&lt; T &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,7 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Noble Engine
    </div>
-   <div id="projectbrief">A data oriented game engine.</div>
+   <div id="projectbrief">A data oriented game engine</div>
   </td>
  </tr>
  </tbody>
@@ -67,45 +67,37 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="struct_noble_engine_1_1_component-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">NobleEngine::Component Struct Reference</div>  </div>
+<div class="title">NobleEngine::Component&lt; T &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="dynheader">
-Inheritance diagram for NobleEngine::Component:</div>
+Inheritance diagram for NobleEngine::Component&lt; T &gt;:</div>
 <div class="dyncontent">
  <div class="center">
-  <img src="struct_noble_engine_1_1_component.png" usemap="#NobleEngine::Component_map" alt=""/>
-  <map id="NobleEngine::Component_map" name="NobleEngine::Component_map">
-<area href="struct_noble_engine_1_1_transform.html" alt="NobleEngine::Transform" shape="rect" coords="0,56,153,80"/>
+  <img src="struct_noble_engine_1_1_component.png" usemap="#NobleEngine::Component_3C_20T_20_3E_map" alt=""/>
+  <map id="NobleEngine::Component_3C_20T_20_3E_map" name="NobleEngine::Component_3C_20T_20_3E_map">
+<area href="struct_noble_engine_1_1_component_base.html" alt="NobleEngine::ComponentBase" shape="rect" coords="0,0,184,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:a872a4b35b40ca742a057bd0faeffe7b8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_component.html#a872a4b35b40ca742a057bd0faeffe7b8">entityID</a></td></tr>
-<tr class="separator:a872a4b35b40ca742a057bd0faeffe7b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:ab0d88b4579f982e6c723a9d88aefeb33"><td class="memItemLeft" align="right" valign="top"><a id="ab0d88b4579f982e6c723a9d88aefeb33"></a>
+static std::vector&lt; std::shared_ptr&lt; T &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>componentList</b></td></tr>
+<tr class="separator:ab0d88b4579f982e6c723a9d88aefeb33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_attribs_struct_noble_engine_1_1_component_base"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_struct_noble_engine_1_1_component_base')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="struct_noble_engine_1_1_component_base.html">NobleEngine::ComponentBase</a></td></tr>
+<tr class="memitem:ad8dc1af8c1a4a646450ab465a2d50e92 inherit pub_attribs_struct_noble_engine_1_1_component_base"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_component_base.html#ad8dc1af8c1a4a646450ab465a2d50e92">entityID</a></td></tr>
+<tr class="separator:ad8dc1af8c1a4a646450ab465a2d50e92 inherit pub_attribs_struct_noble_engine_1_1_component_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a id="a872a4b35b40ca742a057bd0faeffe7b8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a872a4b35b40ca742a057bd0faeffe7b8">&#9670;&nbsp;</a></span>entityID</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int NobleEngine::Component::entityID</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Contains the entity ID the component is linked to. </p>
-
-</div>
-</div>
-<hr/>The documentation for this struct was generated from the following file:<ul>
+<hr/>The documentation for this struct was generated from the following files:<ul>
 <li>src/NobleEngine/<a class="el" href="_component_8h_source.html">Component.h</a></li>
+<li>src/NobleEngine/TransformSystem.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

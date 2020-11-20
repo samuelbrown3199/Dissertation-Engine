@@ -7,6 +7,9 @@
 
 namespace NobleEngine
 {
+	/**
+	*The base class that components inherit from.
+	*/
 	struct ComponentBase
 	{
 		/**
@@ -15,6 +18,9 @@ namespace NobleEngine
 		int entityID;
 	};
 
+	/**
+	*The component struct that is used for user define components.
+	*/
 	template<typename T>
 	struct Component : public ComponentBase
 	{

@@ -36,6 +36,8 @@ namespace NobleEngine
 		
 		glClearColor(0.0f, 0.45f, 0.45f, 1.0f);
 
+		std::cout << "Entity Id is " << entities.at(0)->entityID << std::endl;
+
 		while (loop)
 		{
 			while (SDL_PollEvent(&e) != 0)
@@ -61,17 +63,48 @@ namespace NobleEngine
 	std::shared_ptr<Entity> Application::CreateEntity()
 	{
 		std::shared_ptr<Entity> en = std::make_shared<Entity>();
-		entities.push_back(en);
+		for (int i = 0; i < availableIDs.size(); i++)
+		{
+			std::vector<std::shared_ptr<Entity>>::iterator it = entities.begin() + availableIDs[i];
+			std::vector<int>::iterator intIt = availableIDs.begin() + i;
 
+			en->entityID = availableIDs[i];
+
+			availableIDs.erase(intIt);
+			entities.insert(it, en);
+
+			return en;
+		}
+		en->entityID = entities.size();
+		entities.push_back(en);
 		return en;
 	}
 	std::shared_ptr<Entity> Application::CreateEntity(std::string tag)
 	{
 		std::shared_ptr<Entity> en = std::make_shared<Entity>();
+		for (int i = 0; i < availableIDs.size(); i++)
+		{
+			std::vector<std::shared_ptr<Entity>>::iterator it = entities.begin() + availableIDs[i];
+			std::vector<int>::iterator intIt = availableIDs.begin() + i;
+
+			en->entityID = availableIDs[i];
+			en->tag = tag;
+
+			availableIDs.erase(intIt);
+			entities.insert(it, en);
+
+			return en;
+		}
+		en->entityID = entities.size();
 		en->tag = tag;
 		entities.push_back(en);
 
 		return en;
+	}
+
+	std::shared_ptr<Entity> Application::GetEntity(int ID)
+	{
+		return entities.at(ID);
 	}
 
 	void Application::BindCoreSystems()

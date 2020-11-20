@@ -23,7 +23,7 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Noble Engine
    </div>
-   <div id="projectbrief">A data oriented game engine.</div>
+   <div id="projectbrief">A data oriented game engine</div>
   </td>
  </tr>
  </tbody>
@@ -79,9 +79,12 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a331bb41bee6e8cfa06125b8e1558e360"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a331bb41bee6e8cfa06125b8e1558e360"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_entity.html#a331bb41bee6e8cfa06125b8e1558e360">AddComponent</a> (static std::vector&lt; std::shared_ptr&lt; T &gt;&gt; componentList)</td></tr>
-<tr class="separator:a331bb41bee6e8cfa06125b8e1558e360"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af431595e63a075ab4f374e5714a669b5"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:af431595e63a075ab4f374e5714a669b5"><td class="memTemplItemLeft" align="right" valign="top">std::shared_ptr&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_entity.html#af431595e63a075ab4f374e5714a669b5">AddComponent</a> ()</td></tr>
+<tr class="separator:af431595e63a075ab4f374e5714a669b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84f33a0ce90f9c91471e2506b63e3263"><td class="memItemLeft" align="right" valign="top"><a id="a84f33a0ce90f9c91471e2506b63e3263"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>GetEntityComponentSize</b> ()</td></tr>
+<tr class="separator:a84f33a0ce90f9c91471e2506b63e3263"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -91,10 +94,10 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a39acf4643084032f19b37ebdf354f400"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Entities will be containers for use in storing game data. </p>
+<div class="textblock"><p>Entities are containers for use in storing game data. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a331bb41bee6e8cfa06125b8e1558e360"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a331bb41bee6e8cfa06125b8e1558e360">&#9670;&nbsp;</a></span>AddComponent()</h2>
+<a id="af431595e63a075ab4f374e5714a669b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af431595e63a075ab4f374e5714a669b5">&#9670;&nbsp;</a></span>AddComponent()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -105,10 +108,9 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void NobleEngine::Entity::AddComponent </td>
+          <td class="memname">std::shared_ptr&lt;T&gt; NobleEngine::Entity::AddComponent </td>
           <td>(</td>
-          <td class="paramtype">static std::vector&lt; std::shared_ptr&lt; T &gt;&gt;&#160;</td>
-          <td class="paramname"><em>componentList</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -118,7 +120,7 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Adds the component to the entity with the passed list type. </p>
+<p>Adds the component to the entity with the passed template type and automatically adds it to the component type list. </p>
 
 </div>
 </div>
