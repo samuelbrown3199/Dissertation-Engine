@@ -19,7 +19,6 @@ namespace NobleEngine
 		*Stores the tags that the system targets. Makes it possible to target specific entities with certain tags.
 		*/
 		std::vector<std::string> targetTags;
-
 		/**
 		*Setup for use in initializing components.
 		*/

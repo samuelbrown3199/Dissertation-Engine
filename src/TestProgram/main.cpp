@@ -16,9 +16,6 @@ int main()
 	app->BindSystem(tr);
 
 	app->MainLoop();
-	
+
 	return 0;
 }
-
-//std::vector<std::shared_ptr<Transform>> Transform::transformComponents;
-//REGISTER(Transform)

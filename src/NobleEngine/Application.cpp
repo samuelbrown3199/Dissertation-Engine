@@ -36,7 +36,7 @@ namespace NobleEngine
 		
 		glClearColor(0.0f, 0.45f, 0.45f, 1.0f);
 
-		std::cout << "Entity Id is " << entities.at(0)->entityID << std::endl;
+		std::cout << "Entity Id is " << GetEntity(100)->entityID << std::endl;
 		std::cout << "Transform list has " << Transform::componentList.size() << std::endl;
 
 		while (loop)
@@ -64,17 +64,15 @@ namespace NobleEngine
 	std::shared_ptr<Entity> Application::CreateEntity()
 	{
 		std::shared_ptr<Entity> en = std::make_shared<Entity>();
-		for (int i = 0; i < availableIDs.size(); i++)
+		for (size_t e = 0; e < entities.size(); e++)
 		{
-			std::vector<std::shared_ptr<Entity>>::iterator it = entities.begin() + availableIDs[i];
-			std::vector<int>::iterator intIt = availableIDs.begin() + i;
+			if (!entities.at(e))
+			{
+				en->entityID = e;
+				entities.at(e) = en;
 
-			en->entityID = availableIDs[i];
-
-			availableIDs.erase(intIt);
-			entities.insert(it, en);
-
-			return en;
+				return en;
+			}
 		}
 		en->entityID = entities.size();
 		entities.push_back(en);
@@ -83,18 +81,16 @@ namespace NobleEngine
 	std::shared_ptr<Entity> Application::CreateEntity(std::string tag)
 	{
 		std::shared_ptr<Entity> en = std::make_shared<Entity>();
-		for (int i = 0; i < availableIDs.size(); i++)
+		for (size_t e = 0; e < entities.size(); e++)
 		{
-			std::vector<std::shared_ptr<Entity>>::iterator it = entities.begin() + availableIDs[i];
-			std::vector<int>::iterator intIt = availableIDs.begin() + i;
+			if (!entities.at(e))
+			{
+				en->entityID = e;
+				en->tag = tag;
+				entities.at(e) = en;
 
-			en->entityID = availableIDs[i];
-			en->tag = tag;
-
-			availableIDs.erase(intIt);
-			entities.insert(it, en);
-
-			return en;
+				return en;
+			}
 		}
 		en->entityID = entities.size();
 		en->tag = tag;
@@ -105,7 +101,16 @@ namespace NobleEngine
 
 	std::shared_ptr<Entity> Application::GetEntity(int ID)
 	{
-		return entities.at(ID);
+		for (size_t en = 0; en < entities.size(); en++)
+		{
+			if (entities.at(en)->entityID == ID)
+			{
+				return entities.at(en);
+			}
+		}
+
+		std::cout << "Entity could not be found with ID: " << ID << std::endl;
+		throw std::exception();
 	}
 
 	void Application::BindCoreSystems()

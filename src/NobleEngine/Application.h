@@ -82,9 +82,6 @@ namespace NobleEngine
 		*/
 		std::vector<std::shared_ptr<Entity>> entities;
 		/**
-		*/
-		std::vector<int> availableIDs;
-		/**
 		*Binds core systems so the engine user doesnt have to.
 		*/
 		void BindCoreSystems();
