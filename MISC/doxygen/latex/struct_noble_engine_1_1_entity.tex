@@ -9,8 +9,7 @@
 \item 
 {\footnotesize template$<$typename T $>$ }\\std\+::shared\+\_\+ptr$<$ T $>$ \mbox{\hyperlink{struct_noble_engine_1_1_entity_af431595e63a075ab4f374e5714a669b5}{Add\+Component}} ()
 \item 
-\mbox{\Hypertarget{struct_noble_engine_1_1_entity_a84f33a0ce90f9c91471e2506b63e3263}\label{struct_noble_engine_1_1_entity_a84f33a0ce90f9c91471e2506b63e3263}} 
-int {\bfseries Get\+Entity\+Component\+Size} ()
+int \mbox{\hyperlink{struct_noble_engine_1_1_entity_a84f33a0ce90f9c91471e2506b63e3263}{Get\+Entity\+Component\+Size}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -32,7 +31,13 @@ Entities are containers for use in storing game data.
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 std\+::shared\+\_\+ptr$<$T$>$ Noble\+Engine\+::\+Entity\+::\+Add\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Adds the component to the entity with the passed template type and automatically adds it to the component type list. 
+Adds the component to the entity with the passed template type and automatically adds it to the component type list. This also returns a shared pointer of the component. \mbox{\Hypertarget{struct_noble_engine_1_1_entity_a84f33a0ce90f9c91471e2506b63e3263}\label{struct_noble_engine_1_1_entity_a84f33a0ce90f9c91471e2506b63e3263}} 
+\index{NobleEngine::Entity@{NobleEngine::Entity}!GetEntityComponentSize@{GetEntityComponentSize}}
+\index{GetEntityComponentSize@{GetEntityComponentSize}!NobleEngine::Entity@{NobleEngine::Entity}}
+\doxysubsubsection{\texorpdfstring{GetEntityComponentSize()}{GetEntityComponentSize()}}
+{\footnotesize\ttfamily int Noble\+Engine\+::\+Entity\+::\+Get\+Entity\+Component\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns a shared pointer of the component of the passed type if it exists. Returns the size of the entity component list. 
 
 \doxysubsection{Member Data Documentation}
 \mbox{\Hypertarget{struct_noble_engine_1_1_entity_a3ba6ba61c75db63bcc89d3249fd69b1f}\label{struct_noble_engine_1_1_entity_a3ba6ba61c75db63bcc89d3249fd69b1f}} 

@@ -23,7 +23,7 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Noble Engine
    </div>
-   <div id="projectbrief">A data oriented game engine</div>
+   <div id="projectbrief">A data oriented game engine. Designed for use in c++.</div>
   </td>
  </tr>
  </tbody>
@@ -85,6 +85,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:abcf283583fdb8d4952147089386bb9bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afaa8b6ae60ba4eb7f4667ffe7b559efa"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="struct_noble_engine_1_1_entity.html">Entity</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_noble_engine_1_1_application.html#afaa8b6ae60ba4eb7f4667ffe7b559efa">CreateEntity</a> (std::string tag)</td></tr>
 <tr class="separator:afaa8b6ae60ba4eb7f4667ffe7b559efa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0fa17da95d0ad81344ce11d8fa7fc9a"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="struct_noble_engine_1_1_entity.html">Entity</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_noble_engine_1_1_application.html#ac0fa17da95d0ad81344ce11d8fa7fc9a">GetEntity</a> (int ID)</td></tr>
+<tr class="separator:ac0fa17da95d0ad81344ce11d8fa7fc9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a75787b6c73bfeeabac4a4d947044ec42"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a75787b6c73bfeeabac4a4d947044ec42"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_noble_engine_1_1_application.html#a75787b6c73bfeeabac4a4d947044ec42">BindSystem</a> (std::shared_ptr&lt; T &gt; system)</td></tr>
 <tr class="separator:a75787b6c73bfeeabac4a4d947044ec42"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -125,7 +127,7 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Binds the system to the engine core for use in game functionality; </p>
+<p>Binds the system to the engine core for use in game functionality. Only one of each system can be bound at a time. </p>
 
 </div>
 </div>
@@ -163,6 +165,25 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 <p>Creates an entity with the passed in tag. </p>
+
+</div>
+</div>
+<a id="ac0fa17da95d0ad81344ce11d8fa7fc9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0fa17da95d0ad81344ce11d8fa7fc9a">&#9670;&nbsp;</a></span>GetEntity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="struct_noble_engine_1_1_entity.html">Entity</a> &gt; NobleEngine::Application::GetEntity </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ID</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns an entity with the ID passed through the parameter; </p>
 
 </div>
 </div>

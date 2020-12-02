@@ -33,11 +33,52 @@ namespace NobleEngine
 
 			return component;
 		}
+
+		/**
+		*Removes a component of the passed type.
+		*/
+		template<typename T>
+		void RemoveComponent()
+		{
+			std::shared_ptr<T> comp;
+			for (size_t i = 0; i < entityComponents.size(); i++)
+			{
+				comp = std::dynamic_pointer_cast<T>(entityComponents.at(i));
+				if(comp)
+				{
+					//delete component data
+					for (int i = 0; i < T::componentList.size(); i++)
+					{
+						if (T::componentList[i] == comp)
+						{
+							T::componentList.erase(T::componentList.begin() + i);
+						}
+					}
+					entityComponents.erase(entityComponents.begin() + i);
+				}
+				else
+				{
+					std::cout << "Entity of ID: " << entityID << " does not contain component to remove." << std::endl;
+				}
+			}
+		}
+
+		/**
+		*Removes all components from an entity.
+		*/
+		void RemoveAllComponents()
+		{
+			std::vector<std::shared_ptr<ComponentBase>>::iterator itr;
+			for (itr = entityComponents.begin(); itr != entityComponents.end(); itr++)
+			{
+			}
+		}
+
 		/**
 		*Returns a shared pointer of the component of the passed type if it exists.
 		*/
-		/*template<typename T>
-		std::shared_ptr<T> GetComponent()
+		template<typename T>
+		std::shared_ptr<T> GetComponent() //currently bugged when trying to use.
 		{
 			std::shared_ptr<T> comp;
 			for (size_t i = 0; i < entityComponents.size(); i++)
@@ -50,7 +91,7 @@ namespace NobleEngine
 
 			std::cout << "Could not find component on entity " << entityID << std::endl;
 			throw std::exception();
-		}*/
+		}
 		/**
 		*Returns the size of the entity component list.
 		*/
@@ -59,11 +100,21 @@ namespace NobleEngine
 			return entityComponents.size();
 		}
 
+		void SetForDeletion()
+		{
+			deletion = true;
+		}
+		bool GetDeletion()
+		{
+			return deletion;
+		}
+
 	private:
 
 		/**
 		*Stores the entity's components.
 		*/
 		std::vector<std::shared_ptr<ComponentBase>> entityComponents;
+		bool deletion = false;
 	};
 }

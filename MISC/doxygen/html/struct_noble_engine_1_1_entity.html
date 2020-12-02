@@ -23,7 +23,7 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Noble Engine
    </div>
-   <div id="projectbrief">A data oriented game engine</div>
+   <div id="projectbrief">A data oriented game engine. Designed for use in c++.</div>
   </td>
  </tr>
  </tbody>
@@ -82,8 +82,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af431595e63a075ab4f374e5714a669b5"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:af431595e63a075ab4f374e5714a669b5"><td class="memTemplItemLeft" align="right" valign="top">std::shared_ptr&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_entity.html#af431595e63a075ab4f374e5714a669b5">AddComponent</a> ()</td></tr>
 <tr class="separator:af431595e63a075ab4f374e5714a669b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84f33a0ce90f9c91471e2506b63e3263"><td class="memItemLeft" align="right" valign="top"><a id="a84f33a0ce90f9c91471e2506b63e3263"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>GetEntityComponentSize</b> ()</td></tr>
+<tr class="memitem:a84f33a0ce90f9c91471e2506b63e3263"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_entity.html#a84f33a0ce90f9c91471e2506b63e3263">GetEntityComponentSize</a> ()</td></tr>
 <tr class="separator:a84f33a0ce90f9c91471e2506b63e3263"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -120,7 +119,33 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Adds the component to the entity with the passed template type and automatically adds it to the component type list. </p>
+<p>Adds the component to the entity with the passed template type and automatically adds it to the component type list. This also returns a shared pointer of the component. </p>
+
+</div>
+</div>
+<a id="a84f33a0ce90f9c91471e2506b63e3263"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84f33a0ce90f9c91471e2506b63e3263">&#9670;&nbsp;</a></span>GetEntityComponentSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int NobleEngine::Entity::GetEntityComponentSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns a shared pointer of the component of the passed type if it exists. Returns the size of the entity component list. </p>
 
 </div>
 </div>

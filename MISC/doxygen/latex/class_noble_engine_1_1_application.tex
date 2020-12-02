@@ -13,6 +13,8 @@ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{struct_noble_engine_1_1_entity}{Entit
 \item 
 std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{struct_noble_engine_1_1_entity}{Entity}} $>$ \mbox{\hyperlink{class_noble_engine_1_1_application_afaa8b6ae60ba4eb7f4667ffe7b559efa}{Create\+Entity}} (std\+::string tag)
 \item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{struct_noble_engine_1_1_entity}{Entity}} $>$ \mbox{\hyperlink{class_noble_engine_1_1_application_ac0fa17da95d0ad81344ce11d8fa7fc9a}{Get\+Entity}} (int ID)
+\item 
 {\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{class_noble_engine_1_1_application_a75787b6c73bfeeabac4a4d947044ec42}{Bind\+System}} (std\+::shared\+\_\+ptr$<$ T $>$ system)
 \item 
 {\footnotesize template$<$typename T $>$ }\\std\+::shared\+\_\+ptr$<$ T $>$ \mbox{\hyperlink{class_noble_engine_1_1_application_a455f4b0096d478fc5cb850e84295a971}{Get\+System}} ()
@@ -35,7 +37,7 @@ static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_noble_engine_1_1_applica
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 void Noble\+Engine\+::\+Application\+::\+Bind\+System (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ T $>$}]{system }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Binds the system to the engine core for use in game functionality; \mbox{\Hypertarget{class_noble_engine_1_1_application_abcf283583fdb8d4952147089386bb9bd}\label{class_noble_engine_1_1_application_abcf283583fdb8d4952147089386bb9bd}} 
+Binds the system to the engine core for use in game functionality. Only one of each system can be bound at a time. \mbox{\Hypertarget{class_noble_engine_1_1_application_abcf283583fdb8d4952147089386bb9bd}\label{class_noble_engine_1_1_application_abcf283583fdb8d4952147089386bb9bd}} 
 \index{NobleEngine::Application@{NobleEngine::Application}!CreateEntity@{CreateEntity}}
 \index{CreateEntity@{CreateEntity}!NobleEngine::Application@{NobleEngine::Application}}
 \doxysubsubsection{\texorpdfstring{CreateEntity()}{CreateEntity()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
@@ -47,7 +49,13 @@ Creates an entity with no tag. \mbox{\Hypertarget{class_noble_engine_1_1_applica
 \doxysubsubsection{\texorpdfstring{CreateEntity()}{CreateEntity()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{struct_noble_engine_1_1_entity}{Entity}} $>$ Noble\+Engine\+::\+Application\+::\+Create\+Entity (\begin{DoxyParamCaption}\item[{std\+::string}]{tag }\end{DoxyParamCaption})}
 
-Creates an entity with the passed in tag. \mbox{\Hypertarget{class_noble_engine_1_1_application_a455f4b0096d478fc5cb850e84295a971}\label{class_noble_engine_1_1_application_a455f4b0096d478fc5cb850e84295a971}} 
+Creates an entity with the passed in tag. \mbox{\Hypertarget{class_noble_engine_1_1_application_ac0fa17da95d0ad81344ce11d8fa7fc9a}\label{class_noble_engine_1_1_application_ac0fa17da95d0ad81344ce11d8fa7fc9a}} 
+\index{NobleEngine::Application@{NobleEngine::Application}!GetEntity@{GetEntity}}
+\index{GetEntity@{GetEntity}!NobleEngine::Application@{NobleEngine::Application}}
+\doxysubsubsection{\texorpdfstring{GetEntity()}{GetEntity()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{struct_noble_engine_1_1_entity}{Entity}} $>$ Noble\+Engine\+::\+Application\+::\+Get\+Entity (\begin{DoxyParamCaption}\item[{int}]{ID }\end{DoxyParamCaption})}
+
+Returns an entity with the ID passed through the parameter; \mbox{\Hypertarget{class_noble_engine_1_1_application_a455f4b0096d478fc5cb850e84295a971}\label{class_noble_engine_1_1_application_a455f4b0096d478fc5cb850e84295a971}} 
 \index{NobleEngine::Application@{NobleEngine::Application}!GetSystem@{GetSystem}}
 \index{GetSystem@{GetSystem}!NobleEngine::Application@{NobleEngine::Application}}
 \doxysubsubsection{\texorpdfstring{GetSystem()}{GetSystem()}}

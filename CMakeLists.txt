@@ -25,6 +25,9 @@ add_library(NobleEngine
   src/NobleEngine/Transform.h
   src/NobleEngine/TransformSystem.h
   src/NobleEngine/TransformSystem.cpp
+  src/NobleEngine/MeshRenderer.h
+  src/NobleEngine/MeshRendererSystem.h
+  src/NobleEngine/MeshRendererSystem.cpp
 )
 target_link_libraries(NobleEngine glew32 opengl32 SDL2)
 

@@ -12,6 +12,10 @@ namespace NobleEngine
 	{
 		void Initialize();
 		void Update();
+
+		/**
+		*Creates the model matrix of the passed in transform.
+		*/
 		void GenerateModelMatrix(std::shared_ptr<Transform> tr);
 	};
 }

@@ -23,7 +23,7 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Noble Engine
    </div>
-   <div id="projectbrief">A data oriented game engine</div>
+   <div id="projectbrief">A data oriented game engine. Designed for use in c++.</div>
   </td>
  </tr>
  </tbody>
@@ -78,24 +78,25 @@ $(function() {
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">namespace </span>NobleEngine</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_system.html">   14</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="struct_noble_engine_1_1_system.html">System</a></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    {</div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_system.html#a95a9b65d952476f8c7a863c0dad6fe63">   19</a></span>&#160;        std::vector&lt;std::string&gt; <a class="code" href="struct_noble_engine_1_1_system.html#a95a9b65d952476f8c7a863c0dad6fe63">targetTags</a>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_system.html#a49908316c2c62c11c0b68aa43edb3bc6">   24</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="struct_noble_engine_1_1_system.html#a49908316c2c62c11c0b68aa43edb3bc6">Initialize</a>() {};</div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_system.html#aacd0e233649ba561d547dbf155ab0dbb">   28</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="struct_noble_engine_1_1_system.html#aacd0e233649ba561d547dbf155ab0dbb">Update</a>() {};</div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_system.html#a47e32248730804f99d8ee391d78417ec">   32</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="struct_noble_engine_1_1_system.html#a47e32248730804f99d8ee391d78417ec">Render</a>() {};</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    };</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;}</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define SetupComponentList(T) std::vector&lt;std::shared_ptr&lt;T&gt;&gt; Component&lt;T&gt;::componentList;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">namespace </span>NobleEngine</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_system.html">   16</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="struct_noble_engine_1_1_system.html">System</a></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    {</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_system.html#a95a9b65d952476f8c7a863c0dad6fe63">   21</a></span>&#160;        std::vector&lt;std::string&gt; <a class="code" href="struct_noble_engine_1_1_system.html#a95a9b65d952476f8c7a863c0dad6fe63">targetTags</a>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_system.html#a49908316c2c62c11c0b68aa43edb3bc6">   25</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="struct_noble_engine_1_1_system.html#a49908316c2c62c11c0b68aa43edb3bc6">Initialize</a>() {};</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_system.html#aacd0e233649ba561d547dbf155ab0dbb">   29</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="struct_noble_engine_1_1_system.html#aacd0e233649ba561d547dbf155ab0dbb">Update</a>() {};</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_system.html#a47e32248730804f99d8ee391d78417ec">   33</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="struct_noble_engine_1_1_system.html#a47e32248730804f99d8ee391d78417ec">Render</a>() {};</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    };</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="astruct_noble_engine_1_1_system_html_a47e32248730804f99d8ee391d78417ec"><div class="ttname"><a href="struct_noble_engine_1_1_system.html#a47e32248730804f99d8ee391d78417ec">NobleEngine::System::Render</a></div><div class="ttdeci">virtual void Render()</div><div class="ttdef"><b>Definition:</b> System.h:32</div></div>
-<div class="ttc" id="astruct_noble_engine_1_1_system_html_a49908316c2c62c11c0b68aa43edb3bc6"><div class="ttname"><a href="struct_noble_engine_1_1_system.html#a49908316c2c62c11c0b68aa43edb3bc6">NobleEngine::System::Initialize</a></div><div class="ttdeci">virtual void Initialize()</div><div class="ttdef"><b>Definition:</b> System.h:24</div></div>
-<div class="ttc" id="astruct_noble_engine_1_1_system_html"><div class="ttname"><a href="struct_noble_engine_1_1_system.html">NobleEngine::System</a></div><div class="ttdef"><b>Definition:</b> System.h:15</div></div>
-<div class="ttc" id="astruct_noble_engine_1_1_system_html_aacd0e233649ba561d547dbf155ab0dbb"><div class="ttname"><a href="struct_noble_engine_1_1_system.html#aacd0e233649ba561d547dbf155ab0dbb">NobleEngine::System::Update</a></div><div class="ttdeci">virtual void Update()</div><div class="ttdef"><b>Definition:</b> System.h:28</div></div>
-<div class="ttc" id="astruct_noble_engine_1_1_system_html_a95a9b65d952476f8c7a863c0dad6fe63"><div class="ttname"><a href="struct_noble_engine_1_1_system.html#a95a9b65d952476f8c7a863c0dad6fe63">NobleEngine::System::targetTags</a></div><div class="ttdeci">std::vector&lt; std::string &gt; targetTags</div><div class="ttdef"><b>Definition:</b> System.h:19</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_system_html_a47e32248730804f99d8ee391d78417ec"><div class="ttname"><a href="struct_noble_engine_1_1_system.html#a47e32248730804f99d8ee391d78417ec">NobleEngine::System::Render</a></div><div class="ttdeci">virtual void Render()</div><div class="ttdef"><b>Definition:</b> System.h:33</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_system_html_a49908316c2c62c11c0b68aa43edb3bc6"><div class="ttname"><a href="struct_noble_engine_1_1_system.html#a49908316c2c62c11c0b68aa43edb3bc6">NobleEngine::System::Initialize</a></div><div class="ttdeci">virtual void Initialize()</div><div class="ttdef"><b>Definition:</b> System.h:25</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_system_html"><div class="ttname"><a href="struct_noble_engine_1_1_system.html">NobleEngine::System</a></div><div class="ttdef"><b>Definition:</b> System.h:17</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_system_html_aacd0e233649ba561d547dbf155ab0dbb"><div class="ttname"><a href="struct_noble_engine_1_1_system.html#aacd0e233649ba561d547dbf155ab0dbb">NobleEngine::System::Update</a></div><div class="ttdeci">virtual void Update()</div><div class="ttdef"><b>Definition:</b> System.h:29</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_system_html_a95a9b65d952476f8c7a863c0dad6fe63"><div class="ttname"><a href="struct_noble_engine_1_1_system.html#a95a9b65d952476f8c7a863c0dad6fe63">NobleEngine::System::targetTags</a></div><div class="ttdeci">std::vector&lt; std::string &gt; targetTags</div><div class="ttdef"><b>Definition:</b> System.h:21</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20

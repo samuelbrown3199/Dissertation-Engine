@@ -36,9 +36,6 @@ namespace NobleEngine
 		
 		glClearColor(0.0f, 0.45f, 0.45f, 1.0f);
 
-		std::cout << "Entity Id is " << GetEntity(100)->entityID << std::endl;
-		std::cout << "Transform list has " << Transform::componentList.size() << std::endl;
-
 		while (loop)
 		{
 			while (SDL_PollEvent(&e) != 0)
@@ -58,21 +55,29 @@ namespace NobleEngine
 			//render here
 
 			SDL_GL_SwapWindow(window);
+
+			for (size_t en = 0; en < entities.size(); en++)
+			{
+				std::shared_ptr<Entity> entity = entities.at(en);
+				if (entity->GetDeletion())
+				{
+					RemoveEntity(entity->entityID);
+				}
+			}
 		}
 	}
 
 	std::shared_ptr<Entity> Application::CreateEntity()
 	{
 		std::shared_ptr<Entity> en = std::make_shared<Entity>();
-		for (size_t e = 0; e < entities.size(); e++)
+		if (availableIDs.size() > 0)
 		{
-			if (!entities.at(e))
-			{
-				en->entityID = e;
-				entities.at(e) = en;
+			int id = availableIDs.at(0);
+			std::vector<int>::iterator it = availableIDs.begin();
+			availableIDs.erase(it);
 
-				return en;
-			}
+			en->entityID = id;
+			entities.at(id) = en;
 		}
 		en->entityID = entities.size();
 		entities.push_back(en);
@@ -81,16 +86,15 @@ namespace NobleEngine
 	std::shared_ptr<Entity> Application::CreateEntity(std::string tag)
 	{
 		std::shared_ptr<Entity> en = std::make_shared<Entity>();
-		for (size_t e = 0; e < entities.size(); e++)
+		if (availableIDs.size() > 0)
 		{
-			if (!entities.at(e))
-			{
-				en->entityID = e;
-				en->tag = tag;
-				entities.at(e) = en;
+			int id = availableIDs.at(0);
+			std::vector<int>::iterator it = availableIDs.begin();
+			availableIDs.erase(it);
 
-				return en;
-			}
+			en->entityID = id;
+			en->tag = tag;
+			entities.at(id) = en;
 		}
 		en->entityID = entities.size();
 		en->tag = tag;
@@ -117,5 +121,10 @@ namespace NobleEngine
 	{
 		std::shared_ptr<TransformSystem> tr = std::make_shared<TransformSystem>();
 		BindSystem(tr);
+	}
+
+	void Application::RemoveEntity(int ID)
+	{
+		entities.erase(entities.begin() + ID);
 	}
 }
