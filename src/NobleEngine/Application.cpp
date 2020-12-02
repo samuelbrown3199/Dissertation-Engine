@@ -125,6 +125,7 @@ namespace NobleEngine
 
 	void Application::RemoveEntity(int ID)
 	{
+		entities.at(ID)->RemoveAllComponents();
 		entities.erase(entities.begin() + ID);
 	}
 }
