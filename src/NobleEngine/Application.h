@@ -18,6 +18,12 @@ namespace NobleEngine
 	class Application
 	{
 	public:
+
+		/**
+		*Stores a list of entities marked for deletion.
+		*/
+		static std::vector<std::shared_ptr<Entity>> deletionEntities;
+
 		/**
 		*Initializes the systems within the engine.
 		*/

@@ -21,6 +21,10 @@ namespace NobleEngine
 		*/
 		std::string tag;
 		/**
+		*A weak pointer to this entity. Used for passing this into other functions.
+		*/
+		std::weak_ptr<Entity> self;
+		/**
 		*Adds the component to the entity with the passed template type and automatically adds it to the component type list. This also returns a shared pointer of the component.
 		*/
 		template <typename T>
@@ -73,7 +77,6 @@ namespace NobleEngine
 			{
 			}
 		}
-
 		/**
 		*Returns a shared pointer of the component of the passed type if it exists.
 		*/
@@ -95,26 +98,16 @@ namespace NobleEngine
 		/**
 		*Returns the size of the entity component list.
 		*/
-		int GetEntityComponentSize()
-		{
-			return entityComponents.size();
-		}
-
-		void SetForDeletion()
-		{
-			deletion = true;
-		}
-		bool GetDeletion()
-		{
-			return deletion;
-		}
+		int GetEntityComponentSize();
+		/**
+		*Tells the engine to destroy this entity at the end of the current frame.
+		*/
+		void Destroy();
 
 	private:
-
 		/**
 		*Stores the entity's components.
 		*/
 		std::vector<std::shared_ptr<ComponentBase>> entityComponents;
-		bool deletion = false;
 	};
 }

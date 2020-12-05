@@ -6,6 +6,8 @@
 
 namespace NobleEngine
 {
+	std::vector<std::shared_ptr<Entity>> Application::deletionEntities;
+
 	std::shared_ptr<Application> Application::InitializeEngine(std::string windowName)
 	{
 		std::shared_ptr<Application> app(new Application());
@@ -52,17 +54,19 @@ namespace NobleEngine
 
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-			//render here
+			for (size_t sys = 0; sys < systems.size(); sys++) //handles system rendering
+			{
+				systems.at(sys)->Render();
+			}
 
 			SDL_GL_SwapWindow(window);
 
-			for (size_t en = 0; en < entities.size(); en++)
+			std::vector<std::shared_ptr<Entity>>::iterator deleter;
+			for (deleter = deletionEntities.end(); deleter != deletionEntities.begin(); deleter--)
 			{
-				std::shared_ptr<Entity> entity = entities.at(en);
-				if (entity->GetDeletion())
-				{
-					RemoveEntity(entity->entityID);
-				}
+				std::shared_ptr<Entity> entity = *deleter;
+				deletionEntities.pop_back();
+				RemoveEntity(entity->entityID);
 			}
 		}
 	}
@@ -77,9 +81,12 @@ namespace NobleEngine
 			availableIDs.erase(it);
 
 			en->entityID = id;
+			en->self = en;
 			entities.at(id) = en;
+			return en;
 		}
 		en->entityID = entities.size();
+		en->self = en;
 		entities.push_back(en);
 		return en;
 	}
@@ -94,10 +101,13 @@ namespace NobleEngine
 
 			en->entityID = id;
 			en->tag = tag;
+			en->self = en;
 			entities.at(id) = en;
+			return en;
 		}
 		en->entityID = entities.size();
 		en->tag = tag;
+		en->self = en;
 		entities.push_back(en);
 
 		return en;
@@ -107,9 +117,12 @@ namespace NobleEngine
 	{
 		for (size_t en = 0; en < entities.size(); en++)
 		{
-			if (entities.at(en)->entityID == ID)
+			if (entities.at(en))
 			{
-				return entities.at(en);
+				if (entities.at(en)->entityID == ID)
+				{
+					return entities.at(en);
+				}
 			}
 		}
 
@@ -126,6 +139,7 @@ namespace NobleEngine
 	void Application::RemoveEntity(int ID)
 	{
 		entities.at(ID)->RemoveAllComponents();
-		entities.erase(entities.begin() + ID);
+		entities.at(ID).reset();
+		availableIDs.push_back(ID);
 	}
 }

@@ -21,6 +21,7 @@ add_library(NobleEngine
   src/NobleEngine/Application.cpp
   src/NobleEngine/System.h
   src/NobleEngine/Entity.h
+  src/NobleEngine/Entity.cpp
   src/NobleEngine/Component.h
   src/NobleEngine/Transform.h
   src/NobleEngine/TransformSystem.h
