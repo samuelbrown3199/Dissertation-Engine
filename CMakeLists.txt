@@ -19,6 +19,12 @@ add_library(NobleEngine
   src/NobleEngine/EngineCore.h
   src/NobleEngine/Application.h
   src/NobleEngine/Application.cpp
+  src/NobleEngine/ResourceManager.h
+  src/NobleEngine/ResourceManager.cpp
+  src/NobleEngine/Resource.h
+  src/NobleEngine/Texture.h
+  src/NobleEngine/Model.h
+  src/NobleEngine/Shader.h
   src/NobleEngine/System.h
   src/NobleEngine/Entity.h
   src/NobleEngine/Entity.cpp

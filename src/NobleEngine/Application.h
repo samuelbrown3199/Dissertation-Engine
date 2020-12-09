@@ -9,7 +9,8 @@
 
 namespace NobleEngine
 {
-	class System;
+	class ResourceManager;
+	class SystemBase;
 	class Entity;
 
 	/**
@@ -45,6 +46,10 @@ namespace NobleEngine
 		*/
 		std::shared_ptr<Entity> GetEntity(int ID);
 		/**
+		*Returns the resource manager.
+		*/
+		std::shared_ptr<ResourceManager> GetResourceManager();
+		/**
 		*Binds the system to the engine core for use in game functionality. Only one of each system can be bound at a time.
 		*/
 		template<typename T>
@@ -56,6 +61,7 @@ namespace NobleEngine
 				temp = std::dynamic_pointer_cast<T>(systems.at(sys));
 				if (temp) std::cout << "System is already bound!!" << std::endl; return;
 			}
+			system->application = self;
 			systems.push_back(system);
 		}
 		/**
@@ -82,12 +88,19 @@ namespace NobleEngine
 		/**
 		*Stores systems for use within the game engine.
 		*/
-		std::vector<std::shared_ptr<System>> systems;
+		std::vector<std::shared_ptr<SystemBase>> systems;
 		/**
 		*Stores entities for use within the game engine.
 		*/
 		std::vector<std::shared_ptr<Entity>> entities;
+		/**
+		*Stores a list of available entity IDS.
+		*/
 		std::vector<int> availableIDs;
+		/**
+		*Stores the resource manager.
+		*/
+		std::shared_ptr<ResourceManager> resourceManager;
 		/**
 		*Binds core systems so the engine user doesnt have to.
 		*/

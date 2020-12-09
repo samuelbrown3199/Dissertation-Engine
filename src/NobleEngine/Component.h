@@ -16,6 +16,10 @@ namespace NobleEngine
 		*Contains the entity ID the component is linked to.
 		*/
 		int entityID;
+		/**
+		*Used to determine whether the component is marked for deletion.
+		*/
+		bool markedForDeletion = false;
 
 		virtual ~ComponentBase() {}
 	};

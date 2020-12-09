@@ -72,9 +72,9 @@ namespace NobleEngine
 		*/
 		void RemoveAllComponents()
 		{
-			std::vector<std::shared_ptr<ComponentBase>>::iterator itr;
-			for (itr = entityComponents.begin(); itr != entityComponents.end(); itr++)
+			for (int co = 0; co < entityComponents.size(); co++)
 			{
+				entityComponents.at(co)->markedForDeletion = true;
 			}
 		}
 		/**

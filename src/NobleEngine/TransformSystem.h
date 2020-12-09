@@ -8,9 +8,8 @@
 
 namespace NobleEngine
 {
-	struct TransformSystem : public System
+	struct TransformSystem : public System<Transform>
 	{
-		void Initialize();
 		void Update();
 
 		/**

@@ -4,10 +4,6 @@ namespace NobleEngine
 {
 	SetupComponentList(Transform);
 
-	void TransformSystem::Initialize()
-	{
-
-	}
 	void TransformSystem::Update()
 	{
 		for (size_t tr = 0; tr < Transform::componentList.size(); tr++)

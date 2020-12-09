@@ -1,8 +1,10 @@
 #include "Application.h"
 
+#include "ResourceManager.h"
 #include "System.h"
 #include "Entity.h"
 #include "TransformSystem.h"
+#include "MeshRendererSystem.h"
 
 namespace NobleEngine
 {
@@ -24,7 +26,8 @@ namespace NobleEngine
 			std::cout << "Application failed to initialize glew!" << std::endl;
 			throw std::exception();
 		}
-		
+		app->resourceManager = std::make_shared<ResourceManager>();
+
 		return app;
 	}
 
@@ -68,6 +71,11 @@ namespace NobleEngine
 				deletionEntities.pop_back();
 				RemoveEntity(entity->entityID);
 			}
+			for (size_t sys = 0; sys < systems.size(); sys++) //handles system cleanup
+			{
+				systems.at(sys)->ClearUnneededComponents();
+			}
+			resourceManager->UnloadUnusedResources();
 		}
 	}
 
@@ -130,10 +138,18 @@ namespace NobleEngine
 		throw std::exception();
 	}
 
+	std::shared_ptr<ResourceManager> Application::GetResourceManager()
+	{
+		return resourceManager;
+	}
+
 	void Application::BindCoreSystems()
 	{
 		std::shared_ptr<TransformSystem> tr = std::make_shared<TransformSystem>();
 		BindSystem(tr);
+
+		std::shared_ptr<MeshRendererSystem> mr = std::make_shared<MeshRendererSystem>();
+		BindSystem(mr);
 	}
 
 	void Application::RemoveEntity(int ID)
