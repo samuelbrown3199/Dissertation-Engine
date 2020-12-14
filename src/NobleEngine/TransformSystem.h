@@ -11,7 +11,6 @@ namespace NobleEngine
 	struct TransformSystem : public System<Transform>
 	{
 		void Update();
-
 		/**
 		*Creates the model matrix of the passed in transform.
 		*/

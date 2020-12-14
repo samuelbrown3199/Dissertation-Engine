@@ -25,7 +25,9 @@ namespace NobleEngine
 				{
 					std::shared_ptr<T> resource = std::dynamic_pointer_cast<T>(resources.at(re));
 					if (resource)
+					{
 						return resource;
+					}
 				}
 			}
 

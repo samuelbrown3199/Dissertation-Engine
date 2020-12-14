@@ -50,7 +50,7 @@ namespace NobleEngine
 		*/
 		std::shared_ptr<ResourceManager> GetResourceManager();
 		/**
-		*Binds the system to the engine core for use in game functionality. Only one of each system can be bound at a time.
+		*Binds the system to the engine core for use in game functionality. Only one of each system type can be bound at a time.
 		*/
 		template<typename T>
 		void BindSystem(std::shared_ptr<T> system)
@@ -59,10 +59,14 @@ namespace NobleEngine
 			for (size_t sys = 0; sys < systems.size(); sys++)
 			{
 				temp = std::dynamic_pointer_cast<T>(systems.at(sys));
-				if (temp) std::cout << "System is already bound!!" << std::endl; return;
+				if (temp)
+				{
+					std::cout << "System is already bound!!" << std::endl; 
+					return;
+				}
 			}
 			system->application = self;
-			systems.push_back(system);
+			self.lock()->systems.push_back(system);
 		}
 		/**
 		*Gets a bound system of the passed type.

@@ -12,7 +12,7 @@ int main()
 	std::shared_ptr<Entity> testEntity = app->CreateEntity();
 	testEntity->AddComponent<Transform>();
 
-	std::shared_ptr<Shader> shader = app->GetResourceManager()->LoadResource<Shader>("Resources\standard.vs");
+	//std::shared_ptr<Shader> shader = app->GetResourceManager()->LoadResource<Shader>("standard.vs");
 
 	app->MainLoop();
 
