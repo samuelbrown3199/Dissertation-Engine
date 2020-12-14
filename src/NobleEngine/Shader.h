@@ -4,6 +4,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <memory>
 #include <exception>
 
 #include <GL/glew.h>
@@ -12,7 +13,7 @@ namespace NobleEngine
 {
 	struct Shader : public Resource
 	{
-		const GLchar* shaderSource;
+		std::shared_ptr<std::string> shaderCode;
 
 		void OnLoad()
 		{
@@ -28,10 +29,7 @@ namespace NobleEngine
 			shaderStream << shaderFile.rdbuf();
 			shaderFile.close();
 
-			std::string shaderCode = shaderStream.str();
-			shaderSource = shaderCode.c_str();
-
-			std::cout << shaderSource << std::endl;
+			shaderCode = std::make_shared<std::string>(shaderStream.str());
 		}
 	};
 }

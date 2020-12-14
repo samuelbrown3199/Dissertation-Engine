@@ -28,6 +28,7 @@ add_library(NobleEngine
   src/NobleEngine/Material.h
   src/NobleEngine/Shader.h
   src/NobleEngine/ShaderProgram.h
+  src/NobleEngine/ShaderProgram.cpp
   src/NobleEngine/System.h
   src/NobleEngine/Entity.h
   src/NobleEngine/Entity.cpp

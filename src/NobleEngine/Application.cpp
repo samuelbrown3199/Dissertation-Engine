@@ -6,6 +6,8 @@
 #include "TransformSystem.h"
 #include "MeshRendererSystem.h"
 
+#include "ShaderProgram.h"
+
 namespace NobleEngine
 {
 	std::vector<std::shared_ptr<Entity>> Application::deletionEntities;
@@ -27,6 +29,14 @@ namespace NobleEngine
 			throw std::exception();
 		}
 		app->resourceManager = std::make_shared<ResourceManager>();
+
+		std::shared_ptr<Shader> vertexShader = app->GetResourceManager()->LoadResource<Shader>("Resources\\Shaders\\standard.vs");
+		std::shared_ptr<Shader> fragmentShader = app->GetResourceManager()->LoadResource<Shader>("Resources\\Shaders\\standard.fs");
+
+		app->standardShader = std::make_shared<ShaderProgram>(app);
+		app->standardShader->BindShader(vertexShader, GL_VERTEX_SHADER);
+		app->standardShader->BindShader(fragmentShader, GL_FRAGMENT_SHADER);
+		app->standardShader->LinkShaderProgram();
 
 		return app;
 	}

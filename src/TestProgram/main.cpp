@@ -3,6 +3,8 @@
 
 #include <NobleEngine/EngineCore.h>
 #include <NobleEngine/TransformSystem.h>
+#include <NobleEngine/MeshRendererSystem.h>
+#include <NobleEngine/Model.h>
 
 using namespace NobleEngine;
 int main()
@@ -11,8 +13,7 @@ int main()
 
 	std::shared_ptr<Entity> testEntity = app->CreateEntity();
 	testEntity->AddComponent<Transform>();
-
-	//std::shared_ptr<Shader> shader = app->GetResourceManager()->LoadResource<Shader>("standard.vs");
+	testEntity->AddComponent<MeshRenderer>()->model = app->GetResourceManager()->LoadResource<Model>("Resources\\Models\\cube.obj");
 
 	app->MainLoop();
 

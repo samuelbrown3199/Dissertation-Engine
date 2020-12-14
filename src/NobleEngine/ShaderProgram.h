@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include <memory>
 
 #include <GL/glew.h>
 
@@ -7,18 +8,16 @@
 
 namespace NobleEngine
 {
+	class Application;
+
 	struct ShaderProgram
 	{
+		std::weak_ptr<Application> application;
 		GLuint programID;
 
-		ShaderProgram()
-		{
-			programID = glCreateProgram();
-		}
-
-		void BindShader(std::string shaderDirectory, GLenum shaderType)
-		{
-			std::shared_ptr<Shader> shader =
-		}
+		ShaderProgram(std::weak_ptr<Application> app);
+		void BindShader(std::string shaderDirectory, GLenum shaderType);
+		void BindShader(std::shared_ptr<Shader> shader, GLenum shaderType);
+		void LinkShaderProgram();
 	};
 }

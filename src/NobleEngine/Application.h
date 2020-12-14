@@ -9,9 +9,10 @@
 
 namespace NobleEngine
 {
-	class ResourceManager;
-	class SystemBase;
-	class Entity;
+	struct ResourceManager;
+	struct SystemBase;
+	struct Entity;
+	struct ShaderProgram;
 
 	/**
 	*Application is the core of the engine. This will initialize and handle the main loop of the engine.
@@ -24,7 +25,10 @@ namespace NobleEngine
 		*Stores a list of entities marked for deletion.
 		*/
 		static std::vector<std::shared_ptr<Entity>> deletionEntities;
-
+		/**
+		*Stores the standard shader program built into the engine.
+		*/
+		std::shared_ptr<ShaderProgram> standardShader;
 		/**
 		*Initializes the systems within the engine.
 		*/
