@@ -2,6 +2,7 @@
 
 #include "Model.h"
 #include "Material.h"
+#include "ShaderProgram.h"
 
 namespace NobleEngine
 {
@@ -9,5 +10,6 @@ namespace NobleEngine
 	{
 		std::shared_ptr<Model> model;
 		std::shared_ptr<Material> material;
+		std::shared_ptr<ShaderProgram> shader;
 	};
 }

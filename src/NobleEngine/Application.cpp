@@ -1,23 +1,27 @@
 #include "Application.h"
 
+#include "Screen.h"
+#include "Camera.h"
 #include "ResourceManager.h"
 #include "System.h"
 #include "Entity.h"
+#include "ShaderProgram.h"
+
 #include "TransformSystem.h"
 #include "MeshRendererSystem.h"
-
-#include "ShaderProgram.h"
+#include "CameraSystem.h"
 
 namespace NobleEngine
 {
 	std::vector<std::shared_ptr<Entity>> Application::deletionEntities;
 
-	std::shared_ptr<Application> Application::InitializeEngine(std::string windowName)
+	std::shared_ptr<Application> Application::InitializeEngine(std::string windowName, int windowWidth, int windowHeight)
 	{
 		std::shared_ptr<Application> app(new Application());
 		app->self = app;
+		app->screen = std::make_shared<Screen>(windowWidth, windowHeight);
 
-		app->window = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 900, 900, SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
+		app->window = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
 		if (!SDL_GL_CreateContext(app->window))
 		{
 			std::cout << "Application failed to create window!" << std::endl;
@@ -160,6 +164,9 @@ namespace NobleEngine
 
 		std::shared_ptr<MeshRendererSystem> mr = std::make_shared<MeshRendererSystem>();
 		BindSystem(mr);
+
+		std::shared_ptr<CameraSystem> cr = std::make_shared<CameraSystem>();
+		BindSystem(cr);
 	}
 
 	void Application::RemoveEntity(int ID)

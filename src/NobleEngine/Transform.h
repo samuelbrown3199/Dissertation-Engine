@@ -8,6 +8,9 @@
 
 namespace NobleEngine
 {
+	/**
+	*Stores a transform component data.
+	*/
 	struct Transform : public Component<Transform>
 	{
 		/**
@@ -19,9 +22,9 @@ namespace NobleEngine
 		*/
 		glm::vec3 rotation = glm::vec3(0, 0, 0);
 		/**
-		*Contains the scale of the transform. Defaults to a scale of 1 on each
+		*Contains the scale of the transform. Defaults to a scale of 1 on each axis.
 		*/
-		glm::vec3 scale = glm::vec3(1,1,1);
+		glm::vec3 scale = glm::vec3(1, 1, 1);
 		/**
 		*Contains the model matrix for use in rendering.
 		*/

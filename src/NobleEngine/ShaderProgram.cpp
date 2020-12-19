@@ -71,6 +71,12 @@ namespace NobleEngine
 		glAttachShader(programID, shaderID);
 	}
 
+	void ShaderProgram::BindMat4(std::string location, glm::mat4 matrix)
+	{
+		GLint matrixLocation = glGetUniformLocation(programID, location.c_str());
+		glUniformMatrix4fv(matrixLocation, 1, GL_FALSE, glm::value_ptr(matrix));
+	}
+
 	void ShaderProgram::LinkShaderProgram()
 	{
 		GLint success = 0;
@@ -93,5 +99,10 @@ namespace NobleEngine
 			glDeleteProgram(programID);
 			throw std::exception();
 		}
+	}
+
+	void ShaderProgram::UseProgram()
+	{
+		glUseProgram(programID);
 	}
 }

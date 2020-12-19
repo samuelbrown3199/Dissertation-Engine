@@ -19,8 +19,12 @@ add_library(NobleEngine
   src/NobleEngine/EngineCore.h
   src/NobleEngine/Application.h
   src/NobleEngine/Application.cpp
+  src/NobleEngine/Screen.h
+  src/NobleEngine/Screen.cpp
   src/NobleEngine/ResourceManager.h
   src/NobleEngine/ResourceManager.cpp
+  src/NobleEngine/InputManager.h
+  src/NobleEngine/InputManager.cpp
   src/NobleEngine/Resource.h
   src/NobleEngine/Texture.h
   src/NobleEngine/Texture.cpp
@@ -39,6 +43,9 @@ add_library(NobleEngine
   src/NobleEngine/MeshRenderer.h
   src/NobleEngine/MeshRendererSystem.h
   src/NobleEngine/MeshRendererSystem.cpp
+  src/NobleEngine/Camera.h
+  src/NobleEngine/CameraSystem.h
+  src/NobleEngine/CameraSystem.cpp
 )
 target_link_libraries(NobleEngine glew32 opengl32 SDL2)
 

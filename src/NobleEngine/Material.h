@@ -6,7 +6,6 @@ namespace NobleEngine
 {
 	struct Material
 	{
-		//std::shared_ptr<ShaderProgram> shaderProgram;
 		std::shared_ptr<Texture> diffuseTexture, specularTexture;
 	};
 

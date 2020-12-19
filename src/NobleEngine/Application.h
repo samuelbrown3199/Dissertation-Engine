@@ -9,10 +9,13 @@
 
 namespace NobleEngine
 {
+	struct Screen;
 	struct ResourceManager;
 	struct SystemBase;
 	struct Entity;
 	struct ShaderProgram;
+
+	struct Camera;
 
 	/**
 	*Application is the core of the engine. This will initialize and handle the main loop of the engine.
@@ -21,6 +24,12 @@ namespace NobleEngine
 	{
 	public:
 
+		std::shared_ptr<Camera> activeCam;
+
+		/**
+		*Stores screen data.
+		*/
+		std::shared_ptr<Screen> screen;
 		/**
 		*Stores a list of entities marked for deletion.
 		*/
@@ -32,7 +41,7 @@ namespace NobleEngine
 		/**
 		*Initializes the systems within the engine.
 		*/
-		static std::shared_ptr<Application> InitializeEngine(std::string windowName);
+		static std::shared_ptr<Application> InitializeEngine(std::string windowName, int windowWidth, int windowHeight);
 		/**
 		*Starts and manages the main engine loop.
 		*/
@@ -113,6 +122,9 @@ namespace NobleEngine
 		*Binds core systems so the engine user doesnt have to.
 		*/
 		void BindCoreSystems();
+		/**
+		*Removes an entity with the passed ID parameter.
+		*/
 		void RemoveEntity(int ID);
 	};
 }
