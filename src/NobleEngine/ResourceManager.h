@@ -16,6 +16,7 @@ namespace NobleEngine
 		*Stores all loaded resources.
 		*/
 		std::vector<std::shared_ptr<Resource>> resources;
+		std::vector<std::shared_ptr<Material>> materials;
 
 		/**
 		*Loads a resource of the passed type with the file directory.

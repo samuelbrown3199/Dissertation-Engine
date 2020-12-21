@@ -8,8 +8,15 @@ namespace NobleEngine
 
 	std::shared_ptr<Material> ResourceManager::LoadMaterial(std::string diffusePath, std::string specularPath)
 	{
-		std::shared_ptr<Material> mat = std::make_shared<Material>();
+		for (size_t ma = 0; ma < materials.size(); ma++)
+		{
+			if (materials.at(ma)->diffuseTexture->resourcePath == diffusePath && materials.at(ma)->specularTexture->resourcePath == specularPath)
+			{
+				return materials.at(ma);
+			}
+		}
 
+		std::shared_ptr<Material> mat = std::make_shared<Material>();
 		if (diffusePath != "")
 		{
 			mat->diffuseTexture = LoadResource<Texture>(diffusePath);
@@ -18,7 +25,7 @@ namespace NobleEngine
 		{
 			mat->specularTexture = LoadResource<Texture>(specularPath);
 		}
-
+		materials.push_back(mat);
 		return mat;
 	}
 
@@ -29,6 +36,14 @@ namespace NobleEngine
 			if (resources.at(re).use_count() == 1)
 			{
 				resources.erase(resources.begin() + re);
+			}
+		}
+
+		for (size_t ma = 0; ma < materials.size(); ma++)
+		{
+			if (materials.at(ma).use_count() == 1)
+			{
+				materials.erase(materials.begin() + ma);
 			}
 		}
 	}
