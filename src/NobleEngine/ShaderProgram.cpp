@@ -71,6 +71,12 @@ namespace NobleEngine
 		glAttachShader(programID, shaderID);
 	}
 
+	void ShaderProgram::BindInt(std::string location, int value)
+	{
+			GLint intLocation = glGetUniformLocation(programID, location.c_str());
+			glUniform1i(intLocation, value);
+	}
+
 	void ShaderProgram::BindMat4(std::string location, glm::mat4 matrix)
 	{
 		GLint matrixLocation = glGetUniformLocation(programID, location.c_str());

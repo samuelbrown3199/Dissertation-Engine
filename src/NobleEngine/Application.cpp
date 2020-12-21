@@ -33,6 +33,7 @@ namespace NobleEngine
 			throw std::exception();
 		}
 		app->resourceManager = std::make_shared<ResourceManager>();
+		ResourceManager::instance = app->resourceManager;
 
 		std::shared_ptr<Shader> vertexShader = app->GetResourceManager()->LoadResource<Shader>("Resources\\Shaders\\standard.vs");
 		std::shared_ptr<Shader> fragmentShader = app->GetResourceManager()->LoadResource<Shader>("Resources\\Shaders\\standard.fs");

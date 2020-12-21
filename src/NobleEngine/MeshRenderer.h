@@ -1,5 +1,7 @@
 #include "Component.h"
 
+#include<string>
+
 #include "Model.h"
 #include "Material.h"
 #include "ShaderProgram.h"

@@ -8,5 +8,4 @@ namespace NobleEngine
 	{
 		std::shared_ptr<Texture> diffuseTexture, specularTexture;
 	};
-
 }

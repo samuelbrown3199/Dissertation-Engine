@@ -17,6 +17,7 @@ int main()
 
 	std::shared_ptr<MeshRenderer> mr = testEntity->AddComponent<MeshRenderer>();
 	mr->model = app->GetResourceManager()->LoadResource<NobleEngine::Model>("Resources\\Models\\cube.obj");
+	mr->material = app->GetResourceManager()->LoadMaterial("Resources\\Textures\\test.png", "");
 
 	std::shared_ptr<Entity> camera = app->CreateEntity();
 	camera->AddComponent<Transform>()->position;

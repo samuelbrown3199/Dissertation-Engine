@@ -28,6 +28,9 @@ namespace NobleEngine
 			GetApplication()->standardShader->BindMat4("u_Model", tr->model);
 			GetApplication()->standardShader->BindMat4("u_Projection", GetApplication()->screen->GenerateProjectionMatrix());
 			GetApplication()->standardShader->BindMat4("u_View", GetApplication()->activeCam->viewMatrix);
+
+			GetApplication()->standardShader->BindInt("material.diffuseTexture", 0);
+			GetApplication()->standardShader->BindInt("material.specularTexture", 1);
 		}
 		else
 		{
@@ -38,6 +41,18 @@ namespace NobleEngine
 		}
 
 		glBindVertexArray(mesh->model->vaoID);
+
+		if (mesh->material->diffuseTexture)
+		{
+			glActiveTexture(GL_TEXTURE0);
+			glBindTexture(GL_TEXTURE_2D, mesh->material->diffuseTexture->textureID);
+		}
+		if (mesh->material->specularTexture)
+		{
+			glActiveTexture(GL_TEXTURE1);
+			glBindTexture(GL_TEXTURE_2D, mesh->material->specularTexture->textureID);
+		}
+
 		glDrawArrays(GL_TRIANGLES, 0, mesh->model->drawCount);
 		glBindVertexArray(0);
 		glUseProgram(0);
