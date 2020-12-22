@@ -58,7 +58,6 @@ namespace NobleEngine
 		*Render is called every frame.
 		*/
 		virtual void Render() {};
-		
 		/**
 		*Clears the list of component data that is marked for deletion. Handles the passed type through the template.
 		*/

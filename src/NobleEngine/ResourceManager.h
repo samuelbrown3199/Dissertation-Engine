@@ -10,8 +10,6 @@ namespace NobleEngine
 
 	struct ResourceManager
 	{
-		static std::shared_ptr<ResourceManager> instance;
-
 		/**
 		*Stores all loaded resources.
 		*/

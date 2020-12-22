@@ -4,12 +4,11 @@
 
 namespace NobleEngine
 {
-	std::shared_ptr<ResourceManager> ResourceManager::instance;
-
 	std::shared_ptr<Material> ResourceManager::LoadMaterial(std::string diffusePath, std::string specularPath)
 	{
 		for (size_t ma = 0; ma < materials.size(); ma++)
 		{
+			//will need to add checking other variables of materials match later on.
 			if (materials.at(ma)->diffuseTexture->resourcePath == diffusePath && materials.at(ma)->specularTexture->resourcePath == specularPath)
 			{
 				return materials.at(ma);

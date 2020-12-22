@@ -22,9 +22,8 @@ namespace NobleEngine
 	void CameraSystem::UpdateCameraView(std::shared_ptr<Camera> cam)
 	{
 		std::shared_ptr<Transform> camTransform = GetApplication()->GetEntity(cam->entityID)->GetComponent<Transform>();
-		glm::vec3 forward = glm::vec3(0.0f, 0.0f, -1.0f);
 		glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
 
-		cam->viewMatrix = glm::lookAt(camTransform->position, camTransform->position + forward, up);
+		cam->viewMatrix = glm::lookAt(camTransform->position, camTransform->position + cam->forward, up);
 	}
 }

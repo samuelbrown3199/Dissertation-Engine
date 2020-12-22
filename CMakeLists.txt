@@ -51,6 +51,9 @@ target_link_libraries(NobleEngine glew32 opengl32 SDL2)
 
 add_executable(TestProgram
   src/TestProgram/main.cpp
+  src/TestProgram/FlyingCam.h
+  src/TestProgram/FlyingCamSystem.h
+  src/TestProgram/FlyingCamSystem.cpp
 )
 target_link_libraries(TestProgram NobleEngine)
 
