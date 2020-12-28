@@ -32,6 +32,26 @@ namespace NobleEngine
 			std::cout << "Application failed to initialize glew!" << std::endl;
 			throw std::exception();
 		}
+		app->audioDevice = alcOpenDevice(NULL);
+		if (!app->audioDevice)
+		{
+			std::cout << "Application failed to initialize audio device!" << std::endl;
+			throw std::exception();
+		}
+		app->audioContext = alcCreateContext(app->audioDevice, NULL);
+		if (!app->audioContext)
+		{
+			std::cout << "Application failed to initialize audio context!" << std::endl;
+			alcCloseDevice(app->audioDevice);
+			throw std::exception();
+		}
+		if (!alcMakeContextCurrent(app->audioContext))
+		{
+			std::cout << "Application failed to assign audio context!" << std::endl;
+			alcDestroyContext(app->audioContext);
+			alcCloseDevice(app->audioDevice);
+			throw std::exception();
+		}
 		app->resourceManager = std::make_shared<ResourceManager>();
 
 		std::shared_ptr<Shader> vertexShader = app->GetResourceManager()->LoadResource<Shader>("Resources\\Shaders\\standard.vs");

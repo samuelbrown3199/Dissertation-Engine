@@ -39,9 +39,10 @@ namespace NobleEngine
 			mesh->shader->BindMat4("u_Projection", GetApplication()->screen->GenerateProjectionMatrix());
 			mesh->shader->BindMat4("u_View", GetApplication()->activeCam->viewMatrix);
 		}
-
-		glBindVertexArray(mesh->model->vaoID);
-
+		if (mesh->model)
+		{
+			glBindVertexArray(mesh->model->vaoID);
+		}
 		if (mesh->material->diffuseTexture)
 		{
 			glActiveTexture(GL_TEXTURE0);

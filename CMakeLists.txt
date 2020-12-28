@@ -47,7 +47,7 @@ add_library(NobleEngine
   src/NobleEngine/CameraSystem.h
   src/NobleEngine/CameraSystem.cpp
 )
-target_link_libraries(NobleEngine glew32 opengl32 SDL2)
+target_link_libraries(NobleEngine glew32 opengl32 SDL2 openal32)
 
 add_executable(TestProgram
   src/TestProgram/main.cpp

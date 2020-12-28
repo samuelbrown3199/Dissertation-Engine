@@ -6,6 +6,8 @@
 
 #include <SDL.h>
 #include <GL/glew.h>
+#include <AL/al.h>
+#include <AL/alc.h>
 
 namespace NobleEngine
 {
@@ -25,7 +27,6 @@ namespace NobleEngine
 	public:
 
 		std::shared_ptr<Camera> activeCam;
-
 		/**
 		*Stores screen data.
 		*/
@@ -98,9 +99,25 @@ namespace NobleEngine
 		}
 
 	private:
-
+		/**
+		*Stores a weak pointer to itself.
+		*/
 		std::weak_ptr<Application> self;
+		/**
+		*Stores a pointer to the application window.
+		*/
 		SDL_Window* window;
+		/**
+		*Stores a pointer to the current audio device.
+		*/
+		ALCdevice* audioDevice;
+		/**
+		*Stores a pointer to the current audio context.
+		*/
+		ALCcontext* audioContext;
+		/**
+		*Determines whether the main engine loop should run.
+		*/
 		bool loop = true;
 		/**
 		*Stores systems for use within the game engine.
