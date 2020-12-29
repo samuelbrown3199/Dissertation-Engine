@@ -28,6 +28,8 @@ add_library(NobleEngine
   src/NobleEngine/Resource.h
   src/NobleEngine/Texture.h
   src/NobleEngine/Texture.cpp
+  src/NobleEngine/AudioClip.h
+  src/NobleEngine/AudioClip.cpp
   src/NobleEngine/Model.h
   src/NobleEngine/Material.h
   src/NobleEngine/Shader.h
