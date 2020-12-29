@@ -7,7 +7,7 @@
 
 namespace NobleEngine
 {
-	class AudioClip : public Resource
+	struct AudioClip : public Resource
 	{
 		ALuint audioClipID;
 

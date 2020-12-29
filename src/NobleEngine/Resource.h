@@ -3,6 +3,7 @@
 #define RESOURCE_H
 
 #include <string>
+#include <exception>
 
 namespace NobleEngine
 {

@@ -5,6 +5,7 @@
 #include <NobleEngine/TransformSystem.h>
 #include <NobleEngine/MeshRendererSystem.h>
 #include <NobleEngine/CameraSystem.h>
+#include <NobleEngine/AudioClip.h>
 
 #include "FlyingCamSystem.h"
 
@@ -16,15 +17,18 @@ int main()
 	std::string modelLoc = "Resources\\Models\\cube.obj";
 	std::string texLoc = "Resources\\Textures\\test.png";
 	std::string texLoc1 = "";
+	std::string testAudio = "Resources\\Sound\\testsound.ogg";
+
+	//std::shared_ptr<AudioClip> ac = app->GetResourceManager()->LoadResource<AudioClip>(testAudio);
 
 	for (int i = 0; i < 100; i++) //debug code for many entities.
 	{
 		std::shared_ptr<Entity> megaEntity = app->CreateEntity();
 		std::shared_ptr<MeshRenderer> mr = megaEntity->AddComponent<MeshRenderer>();
-		mr->model = app->GetResourceManager()->LoadResource<NobleEngine::Model>(modelLoc); //causes an issue with xstring, probably something to do with comparing file names in the resource manager.
+		mr->model = app->GetResourceManager()->LoadResource<NobleEngine::Model>(modelLoc);
 		mr->material = app->GetResourceManager()->LoadMaterial(texLoc, texLoc1);
 
-		megaEntity->AddComponent<Transform>()->position = glm::vec3(10, 0, -20 - (10 * i)); //an issue is caused when adding multiple components in this loop.
+		megaEntity->AddComponent<Transform>()->position = glm::vec3(10, 0, -20 - (2.5 * i));
 	}
 
 	std::shared_ptr<Entity> testEntity = app->CreateEntity();
