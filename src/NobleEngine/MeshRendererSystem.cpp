@@ -11,12 +11,9 @@ namespace NobleEngine
 {
 	SetupComponentList(MeshRenderer);
 
-	void MeshRendererSystem::Render()
+	void MeshRendererSystem::OnRender(std::shared_ptr<MeshRenderer> comp)
 	{
-		for (size_t mr = 0; mr < MeshRenderer::componentList.size(); mr++)
-		{
-			RenderMesh(MeshRenderer::componentList.at(mr));
-		}
+		RenderMesh(comp);
 	}
 
 	void MeshRendererSystem::RenderMesh(std::shared_ptr<MeshRenderer> mesh)

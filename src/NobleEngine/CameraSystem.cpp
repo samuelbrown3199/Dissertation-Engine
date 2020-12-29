@@ -11,12 +11,9 @@ namespace NobleEngine
 {
 	SetupComponentList(Camera);
 
-	void CameraSystem::Update()
+	void CameraSystem::OnUpdate(std::shared_ptr<Camera> comp)
 	{
-		for (size_t ca = 0; ca < Camera::componentList.size(); ca++)
-		{
-			UpdateCameraView(Camera::componentList.at(ca));
-		}
+		UpdateCameraView(comp);
 	}
 
 	void CameraSystem::UpdateCameraView(std::shared_ptr<Camera> cam)

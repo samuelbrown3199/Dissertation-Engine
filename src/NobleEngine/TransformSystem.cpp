@@ -4,12 +4,9 @@ namespace NobleEngine
 {
 	SetupComponentList(Transform);
 
-	void TransformSystem::Update()
+	void TransformSystem::OnUpdate(std::shared_ptr<Transform> comp)
 	{
-		for (size_t tr = 0; tr < Transform::componentList.size(); tr++)
-		{
-			GenerateModelMatrix(Transform::componentList.at(tr));
-		}
+		GenerateModelMatrix(comp);
 	}
 
 	void TransformSystem::GenerateModelMatrix(std::shared_ptr<Transform> tr)

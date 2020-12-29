@@ -8,13 +8,10 @@
 
 SetupComponentList(FlyingCam);
 
-void FlyingCamSystem::Update()
+void FlyingCamSystem::OnUpdate(std::shared_ptr<FlyingCam> comp)
 {
-	for (size_t ca = 0; ca < FlyingCam::componentList.size(); ca++)
-	{
-		UpdateControls(FlyingCam::componentList.at(ca));
-		UpdateCameraRotation(FlyingCam::componentList.at(ca));
-	}
+	UpdateControls(comp);
+	UpdateCameraRotation(comp);
 }
 
 void FlyingCamSystem::UpdateControls(std::shared_ptr<FlyingCam> cam)

@@ -9,7 +9,7 @@
 using namespace NobleEngine;
 struct FlyingCamSystem : public System<FlyingCam>
 {
-	void Update();
+	void OnUpdate(std::shared_ptr<FlyingCam> comp);
 	void UpdateControls(std::shared_ptr<FlyingCam> cam);
 	void UpdateCameraRotation(std::shared_ptr<FlyingCam> cam);
 };
