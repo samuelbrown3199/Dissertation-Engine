@@ -82,8 +82,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af431595e63a075ab4f374e5714a669b5"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:af431595e63a075ab4f374e5714a669b5"><td class="memTemplItemLeft" align="right" valign="top">std::shared_ptr&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_entity.html#af431595e63a075ab4f374e5714a669b5">AddComponent</a> ()</td></tr>
 <tr class="separator:af431595e63a075ab4f374e5714a669b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0080fc9ebb5f92c0a19a4a6c5da4ad01"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a0080fc9ebb5f92c0a19a4a6c5da4ad01"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_entity.html#a0080fc9ebb5f92c0a19a4a6c5da4ad01">RemoveComponent</a> ()</td></tr>
+<tr class="separator:a0080fc9ebb5f92c0a19a4a6c5da4ad01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1dce1ce8fe3364b51528a9e9a6081dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_entity.html#ad1dce1ce8fe3364b51528a9e9a6081dc">RemoveAllComponents</a> ()</td></tr>
+<tr class="separator:ad1dce1ce8fe3364b51528a9e9a6081dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab501445a4462b8174bb9fd52176abb43"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ab501445a4462b8174bb9fd52176abb43"><td class="memTemplItemLeft" align="right" valign="top">std::shared_ptr&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_entity.html#ab501445a4462b8174bb9fd52176abb43">GetComponent</a> ()</td></tr>
+<tr class="separator:ab501445a4462b8174bb9fd52176abb43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a84f33a0ce90f9c91471e2506b63e3263"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_entity.html#a84f33a0ce90f9c91471e2506b63e3263">GetEntityComponentSize</a> ()</td></tr>
 <tr class="separator:a84f33a0ce90f9c91471e2506b63e3263"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a395f6d7564a49f37ef2324c72d6d9808"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_entity.html#a395f6d7564a49f37ef2324c72d6d9808">Destroy</a> ()</td></tr>
+<tr class="separator:a395f6d7564a49f37ef2324c72d6d9808"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -91,6 +101,8 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a3ba6ba61c75db63bcc89d3249fd69b1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39acf4643084032f19b37ebdf354f400"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_entity.html#a39acf4643084032f19b37ebdf354f400">tag</a></td></tr>
 <tr class="separator:a39acf4643084032f19b37ebdf354f400"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00f2c99873f8c45faffe7e0186a4037f"><td class="memItemLeft" align="right" valign="top">std::weak_ptr&lt; <a class="el" href="struct_noble_engine_1_1_entity.html">Entity</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_entity.html#a00f2c99873f8c45faffe7e0186a4037f">self</a></td></tr>
+<tr class="separator:a00f2c99873f8c45faffe7e0186a4037f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Entities are containers for use in storing game data. </p>
@@ -123,17 +135,37 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a84f33a0ce90f9c91471e2506b63e3263"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a84f33a0ce90f9c91471e2506b63e3263">&#9670;&nbsp;</a></span>GetEntityComponentSize()</h2>
+<a id="a395f6d7564a49f37ef2324c72d6d9808"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a395f6d7564a49f37ef2324c72d6d9808">&#9670;&nbsp;</a></span>Destroy()</h2>
 
 <div class="memitem">
 <div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NobleEngine::Entity::Destroy </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Tells the engine to destroy this entity at the end of the current frame. </p>
+
+</div>
+</div>
+<a id="ab501445a4462b8174bb9fd52176abb43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab501445a4462b8174bb9fd52176abb43">&#9670;&nbsp;</a></span>GetComponent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int NobleEngine::Entity::GetEntityComponentSize </td>
+          <td class="memname">std::shared_ptr&lt;T&gt; NobleEngine::Entity::GetComponent </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -145,7 +177,79 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Returns a shared pointer of the component of the passed type if it exists. Returns the size of the entity component list. </p>
+<p>Returns a shared pointer of the component of the passed type if it exists. </p>
+
+</div>
+</div>
+<a id="a84f33a0ce90f9c91471e2506b63e3263"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84f33a0ce90f9c91471e2506b63e3263">&#9670;&nbsp;</a></span>GetEntityComponentSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int NobleEngine::Entity::GetEntityComponentSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns the size of the entity component list. </p>
+
+</div>
+</div>
+<a id="ad1dce1ce8fe3364b51528a9e9a6081dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1dce1ce8fe3364b51528a9e9a6081dc">&#9670;&nbsp;</a></span>RemoveAllComponents()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NobleEngine::Entity::RemoveAllComponents </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Removes all components from an entity. </p>
+
+</div>
+</div>
+<a id="a0080fc9ebb5f92c0a19a4a6c5da4ad01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0080fc9ebb5f92c0a19a4a6c5da4ad01">&#9670;&nbsp;</a></span>RemoveComponent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NobleEngine::Entity::RemoveComponent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Removes a component of the passed type. </p>
 
 </div>
 </div>
@@ -165,6 +269,21 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
+<a id="a00f2c99873f8c45faffe7e0186a4037f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00f2c99873f8c45faffe7e0186a4037f">&#9670;&nbsp;</a></span>self</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::weak_ptr&lt;<a class="el" href="struct_noble_engine_1_1_entity.html">Entity</a>&gt; NobleEngine::Entity::self</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A weak pointer to this entity. Used for passing this into other functions. </p>
+
+</div>
+</div>
 <a id="a39acf4643084032f19b37ebdf354f400"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a39acf4643084032f19b37ebdf354f400">&#9670;&nbsp;</a></span>tag</h2>
 
@@ -180,8 +299,9 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<hr/>The documentation for this struct was generated from the following file:<ul>
+<hr/>The documentation for this struct was generated from the following files:<ul>
 <li>src/NobleEngine/<a class="el" href="_entity_8h_source.html">Entity.h</a></li>
+<li>src/NobleEngine/Entity.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

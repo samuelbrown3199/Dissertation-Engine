@@ -1,10 +1,10 @@
-\hypertarget{struct_noble_engine_1_1_system}{}\doxysection{Noble\+Engine\+::System Struct Reference}
-\label{struct_noble_engine_1_1_system}\index{NobleEngine::System@{NobleEngine::System}}
+\hypertarget{struct_noble_engine_1_1_system}{}\doxysection{Noble\+Engine\+::System$<$ T $>$ Struct Template Reference}
+\label{struct_noble_engine_1_1_system}\index{NobleEngine::System$<$ T $>$@{NobleEngine::System$<$ T $>$}}
 
 
 {\ttfamily \#include $<$System.\+h$>$}
 
-Inheritance diagram for Noble\+Engine\+::System\+:\begin{figure}[H]
+Inheritance diagram for Noble\+Engine\+::System$<$ T $>$\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=2.000000cm]{struct_noble_engine_1_1_system}
@@ -13,59 +13,56 @@ Inheritance diagram for Noble\+Engine\+::System\+:\begin{figure}[H]
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-virtual void \mbox{\hyperlink{struct_noble_engine_1_1_system_a49908316c2c62c11c0b68aa43edb3bc6}{Initialize}} ()
+virtual void \mbox{\hyperlink{struct_noble_engine_1_1_system_a28a7aa2aafe72a96a1dcf6b0dba8a266}{On\+Update}} (std\+::shared\+\_\+ptr$<$ T $>$ comp)
 \item 
-virtual void \mbox{\hyperlink{struct_noble_engine_1_1_system_aacd0e233649ba561d547dbf155ab0dbb}{Update}} ()
+virtual void \mbox{\hyperlink{struct_noble_engine_1_1_system_a08449a2b175345685d2fb14c84f42a26}{On\+Render}} (std\+::shared\+\_\+ptr$<$ T $>$ comp)
 \item 
-virtual void \mbox{\hyperlink{struct_noble_engine_1_1_system_a47e32248730804f99d8ee391d78417ec}{Render}} ()
+void \mbox{\hyperlink{struct_noble_engine_1_1_system_a7715dca7072754caaa9c395d534e7584}{Clear\+Unneeded\+Components}} ()
 \end{DoxyCompactItemize}
-\doxysubsection*{Public Attributes}
-\begin{DoxyCompactItemize}
-\item 
-std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{struct_noble_engine_1_1_system_a95a9b65d952476f8c7a863c0dad6fe63}{target\+Tags}}
-\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
 
 
 \doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+struct Noble\+Engine\+::\+System$<$ T $>$}
+
 \mbox{\hyperlink{struct_noble_engine_1_1_system}{System}} struct that component systems can inherit from. Systems handle game functionality. 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{struct_noble_engine_1_1_system_a49908316c2c62c11c0b68aa43edb3bc6}\label{struct_noble_engine_1_1_system_a49908316c2c62c11c0b68aa43edb3bc6}} 
-\index{NobleEngine::System@{NobleEngine::System}!Initialize@{Initialize}}
-\index{Initialize@{Initialize}!NobleEngine::System@{NobleEngine::System}}
-\doxysubsubsection{\texorpdfstring{Initialize()}{Initialize()}}
-{\footnotesize\ttfamily virtual void Noble\+Engine\+::\+System\+::\+Initialize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+\mbox{\Hypertarget{struct_noble_engine_1_1_system_a7715dca7072754caaa9c395d534e7584}\label{struct_noble_engine_1_1_system_a7715dca7072754caaa9c395d534e7584}} 
+\index{NobleEngine::System$<$ T $>$@{NobleEngine::System$<$ T $>$}!ClearUnneededComponents@{ClearUnneededComponents}}
+\index{ClearUnneededComponents@{ClearUnneededComponents}!NobleEngine::System$<$ T $>$@{NobleEngine::System$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{ClearUnneededComponents()}{ClearUnneededComponents()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \mbox{\hyperlink{struct_noble_engine_1_1_system}{Noble\+Engine\+::\+System}}$<$ T $>$\+::Clear\+Unneeded\+Components (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
-Setup for use in initializing components. 
+Clears the list of component data that is marked for deletion. Handles the passed type through the template. 
 
-Reimplemented in \mbox{\hyperlink{struct_noble_engine_1_1_transform_system_aa1e16c34381734dcb98fa44610016f02}{Noble\+Engine\+::\+Transform\+System}}.
+Reimplemented from \mbox{\hyperlink{struct_noble_engine_1_1_system_base_a9104bf792f2989f6bed7d210651a8e86}{Noble\+Engine\+::\+System\+Base}}.
 
-\mbox{\Hypertarget{struct_noble_engine_1_1_system_a47e32248730804f99d8ee391d78417ec}\label{struct_noble_engine_1_1_system_a47e32248730804f99d8ee391d78417ec}} 
-\index{NobleEngine::System@{NobleEngine::System}!Render@{Render}}
-\index{Render@{Render}!NobleEngine::System@{NobleEngine::System}}
-\doxysubsubsection{\texorpdfstring{Render()}{Render()}}
-{\footnotesize\ttfamily virtual void Noble\+Engine\+::\+System\+::\+Render (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+\mbox{\Hypertarget{struct_noble_engine_1_1_system_a08449a2b175345685d2fb14c84f42a26}\label{struct_noble_engine_1_1_system_a08449a2b175345685d2fb14c84f42a26}} 
+\index{NobleEngine::System$<$ T $>$@{NobleEngine::System$<$ T $>$}!OnRender@{OnRender}}
+\index{OnRender@{OnRender}!NobleEngine::System$<$ T $>$@{NobleEngine::System$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{OnRender()}{OnRender()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+virtual void \mbox{\hyperlink{struct_noble_engine_1_1_system}{Noble\+Engine\+::\+System}}$<$ T $>$\+::On\+Render (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ T $>$}]{comp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
-Render is called every frame. \mbox{\Hypertarget{struct_noble_engine_1_1_system_aacd0e233649ba561d547dbf155ab0dbb}\label{struct_noble_engine_1_1_system_aacd0e233649ba561d547dbf155ab0dbb}} 
-\index{NobleEngine::System@{NobleEngine::System}!Update@{Update}}
-\index{Update@{Update}!NobleEngine::System@{NobleEngine::System}}
-\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
-{\footnotesize\ttfamily virtual void Noble\+Engine\+::\+System\+::\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+Inherited classes can implement this function with a parameter taking in a shared pointer of the type. Functionality can then be called on that pointer. 
 
-Update is called every frame. 
+Reimplemented in \mbox{\hyperlink{struct_noble_engine_1_1_mesh_renderer_system_a2dcb116136a8b81e371ef1f4573f4add}{Noble\+Engine\+::\+Mesh\+Renderer\+System}}.
 
-Reimplemented in \mbox{\hyperlink{struct_noble_engine_1_1_transform_system_af7baa49d477698e26a3c635d25976bfe}{Noble\+Engine\+::\+Transform\+System}}.
+\mbox{\Hypertarget{struct_noble_engine_1_1_system_a28a7aa2aafe72a96a1dcf6b0dba8a266}\label{struct_noble_engine_1_1_system_a28a7aa2aafe72a96a1dcf6b0dba8a266}} 
+\index{NobleEngine::System$<$ T $>$@{NobleEngine::System$<$ T $>$}!OnUpdate@{OnUpdate}}
+\index{OnUpdate@{OnUpdate}!NobleEngine::System$<$ T $>$@{NobleEngine::System$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{OnUpdate()}{OnUpdate()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+virtual void \mbox{\hyperlink{struct_noble_engine_1_1_system}{Noble\+Engine\+::\+System}}$<$ T $>$\+::On\+Update (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ T $>$}]{comp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Inherited classes can implement this function with a parameter taking in a shared pointer of the type. Functionality can then be called on that pointer. 
+
+Reimplemented in \mbox{\hyperlink{struct_noble_engine_1_1_transform_system_a5e33d5d39fa4ef85fd1e5264b877c4fb}{Noble\+Engine\+::\+Transform\+System}}, and \mbox{\hyperlink{struct_noble_engine_1_1_camera_system_a30dbe449a44b1c4694536b15c0cc0493}{Noble\+Engine\+::\+Camera\+System}}.
 
 
-
-\doxysubsection{Member Data Documentation}
-\mbox{\Hypertarget{struct_noble_engine_1_1_system_a95a9b65d952476f8c7a863c0dad6fe63}\label{struct_noble_engine_1_1_system_a95a9b65d952476f8c7a863c0dad6fe63}} 
-\index{NobleEngine::System@{NobleEngine::System}!targetTags@{targetTags}}
-\index{targetTags@{targetTags}!NobleEngine::System@{NobleEngine::System}}
-\doxysubsubsection{\texorpdfstring{targetTags}{targetTags}}
-{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ Noble\+Engine\+::\+System\+::target\+Tags}
-
-Stores the tags that the system targets. Makes it possible to target specific entities with certain tags. 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

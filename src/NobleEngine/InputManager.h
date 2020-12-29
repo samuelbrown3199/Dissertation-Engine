@@ -4,19 +4,21 @@
 
 #include <SDL.h>
 
-class InputManager
+namespace NobleEngine
 {
-public:
+	class InputManager
+	{
+	public:
 
-	static int mouseX, mouseY;
+		static int mouseX, mouseY;
 
-	InputManager();
-	~InputManager();
+		InputManager();
+		~InputManager();
 
-	static bool IfKeyDown(SDL_Scancode key);
-	static bool IfMouseButtonDown(int button);
-	static void GetMousePosition();
-};
-
+		static bool IfKeyDown(SDL_Scancode key);
+		static bool IfMouseButtonDown(int button);
+		static void GetMousePosition();
+	};
+}
 #endif
 

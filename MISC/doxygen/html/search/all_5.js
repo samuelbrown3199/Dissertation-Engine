@@ -1,5 +1,10 @@
 var searchData=
 [
-  ['initialize_12',['Initialize',['../struct_noble_engine_1_1_system.html#a49908316c2c62c11c0b68aa43edb3bc6',1,'NobleEngine::System::Initialize()'],['../struct_noble_engine_1_1_transform_system.html#aa1e16c34381734dcb98fa44610016f02',1,'NobleEngine::TransformSystem::Initialize()']]],
-  ['initializeengine_13',['InitializeEngine',['../class_noble_engine_1_1_application.html#a49dc87e8f3865f2ada40fa6e2a74d732',1,'NobleEngine::Application']]]
+  ['generatemodelmatrix_21',['GenerateModelMatrix',['../struct_noble_engine_1_1_transform_system.html#a0e21e3b45454aa09d9f879b516908613',1,'NobleEngine::TransformSystem']]],
+  ['getapplication_22',['GetApplication',['../struct_noble_engine_1_1_system_base.html#ac7c5eff575ead6e6f815ab668f054529',1,'NobleEngine::SystemBase']]],
+  ['getcomponent_23',['GetComponent',['../struct_noble_engine_1_1_entity.html#ab501445a4462b8174bb9fd52176abb43',1,'NobleEngine::Entity']]],
+  ['getentity_24',['GetEntity',['../class_noble_engine_1_1_application.html#ac0fa17da95d0ad81344ce11d8fa7fc9a',1,'NobleEngine::Application']]],
+  ['getentitycomponentsize_25',['GetEntityComponentSize',['../struct_noble_engine_1_1_entity.html#a84f33a0ce90f9c91471e2506b63e3263',1,'NobleEngine::Entity']]],
+  ['getresourcemanager_26',['GetResourceManager',['../class_noble_engine_1_1_application.html#a519fe496c59ac79b42c462b9c222baa6',1,'NobleEngine::Application']]],
+  ['getsystem_27',['GetSystem',['../class_noble_engine_1_1_application.html#a455f4b0096d478fc5cb850e84295a971',1,'NobleEngine::Application']]]
 ];

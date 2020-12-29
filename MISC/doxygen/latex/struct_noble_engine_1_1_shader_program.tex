@@ -1,0 +1,66 @@
+\hypertarget{struct_noble_engine_1_1_shader_program}{}\doxysection{Noble\+Engine\+::Shader\+Program Struct Reference}
+\label{struct_noble_engine_1_1_shader_program}\index{NobleEngine::ShaderProgram@{NobleEngine::ShaderProgram}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_noble_engine_1_1_shader_program_a02be52b5e69b05fc89619a9498922b63}\label{struct_noble_engine_1_1_shader_program_a02be52b5e69b05fc89619a9498922b63}} 
+{\bfseries Shader\+Program} (std\+::weak\+\_\+ptr$<$ \mbox{\hyperlink{class_noble_engine_1_1_application}{Application}} $>$ app)
+\item 
+void \mbox{\hyperlink{struct_noble_engine_1_1_shader_program_a6638d3a4169d00cda03d1826341a4d14}{Bind\+Shader}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{struct_noble_engine_1_1_shader}{Shader}} $>$ shader, G\+Lenum shader\+Type)
+\item 
+void \mbox{\hyperlink{struct_noble_engine_1_1_shader_program_a315a02afda985a6fe440c83332c19b3c}{Bind\+Int}} (std\+::string location, int value)
+\item 
+void \mbox{\hyperlink{struct_noble_engine_1_1_shader_program_adaf8adff5d13ebb528d70a7096d8721d}{Bind\+Mat4}} (std\+::string location, glm\+::mat4 matrix)
+\item 
+void \mbox{\hyperlink{struct_noble_engine_1_1_shader_program_aac772d58119a46ea4071b5ceee523b25}{Link\+Shader\+Program}} ()
+\item 
+void \mbox{\hyperlink{struct_noble_engine_1_1_shader_program_a936be24bd87090177eeb876e7012a6dc}{Use\+Program}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_noble_engine_1_1_shader_program_a2be18896d3e18d1de09794784558e62d}\label{struct_noble_engine_1_1_shader_program_a2be18896d3e18d1de09794784558e62d}} 
+std\+::weak\+\_\+ptr$<$ \mbox{\hyperlink{class_noble_engine_1_1_application}{Application}} $>$ {\bfseries application}
+\item 
+\mbox{\Hypertarget{struct_noble_engine_1_1_shader_program_a734d91b1bab8ea8df7329ece5fc49eda}\label{struct_noble_engine_1_1_shader_program_a734d91b1bab8ea8df7329ece5fc49eda}} 
+G\+Luint {\bfseries program\+ID}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{struct_noble_engine_1_1_shader_program_a315a02afda985a6fe440c83332c19b3c}\label{struct_noble_engine_1_1_shader_program_a315a02afda985a6fe440c83332c19b3c}} 
+\index{NobleEngine::ShaderProgram@{NobleEngine::ShaderProgram}!BindInt@{BindInt}}
+\index{BindInt@{BindInt}!NobleEngine::ShaderProgram@{NobleEngine::ShaderProgram}}
+\doxysubsubsection{\texorpdfstring{BindInt()}{BindInt()}}
+{\footnotesize\ttfamily void Noble\+Engine\+::\+Shader\+Program\+::\+Bind\+Int (\begin{DoxyParamCaption}\item[{std\+::string}]{location,  }\item[{int}]{value }\end{DoxyParamCaption})}
+
+This function binds an integer to a uniform int in the shader. \mbox{\Hypertarget{struct_noble_engine_1_1_shader_program_adaf8adff5d13ebb528d70a7096d8721d}\label{struct_noble_engine_1_1_shader_program_adaf8adff5d13ebb528d70a7096d8721d}} 
+\index{NobleEngine::ShaderProgram@{NobleEngine::ShaderProgram}!BindMat4@{BindMat4}}
+\index{BindMat4@{BindMat4}!NobleEngine::ShaderProgram@{NobleEngine::ShaderProgram}}
+\doxysubsubsection{\texorpdfstring{BindMat4()}{BindMat4()}}
+{\footnotesize\ttfamily void Noble\+Engine\+::\+Shader\+Program\+::\+Bind\+Mat4 (\begin{DoxyParamCaption}\item[{std\+::string}]{location,  }\item[{glm\+::mat4}]{matrix }\end{DoxyParamCaption})}
+
+This function binds an matrix4 to a uniform matrix4 in the shader. \mbox{\Hypertarget{struct_noble_engine_1_1_shader_program_a6638d3a4169d00cda03d1826341a4d14}\label{struct_noble_engine_1_1_shader_program_a6638d3a4169d00cda03d1826341a4d14}} 
+\index{NobleEngine::ShaderProgram@{NobleEngine::ShaderProgram}!BindShader@{BindShader}}
+\index{BindShader@{BindShader}!NobleEngine::ShaderProgram@{NobleEngine::ShaderProgram}}
+\doxysubsubsection{\texorpdfstring{BindShader()}{BindShader()}}
+{\footnotesize\ttfamily void Noble\+Engine\+::\+Shader\+Program\+::\+Bind\+Shader (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{struct_noble_engine_1_1_shader}{Shader}} $>$}]{shader,  }\item[{G\+Lenum}]{shader\+Type }\end{DoxyParamCaption})}
+
+Binds a shader resource to the shader program. \mbox{\Hypertarget{struct_noble_engine_1_1_shader_program_aac772d58119a46ea4071b5ceee523b25}\label{struct_noble_engine_1_1_shader_program_aac772d58119a46ea4071b5ceee523b25}} 
+\index{NobleEngine::ShaderProgram@{NobleEngine::ShaderProgram}!LinkShaderProgram@{LinkShaderProgram}}
+\index{LinkShaderProgram@{LinkShaderProgram}!NobleEngine::ShaderProgram@{NobleEngine::ShaderProgram}}
+\doxysubsubsection{\texorpdfstring{LinkShaderProgram()}{LinkShaderProgram()}}
+{\footnotesize\ttfamily void Noble\+Engine\+::\+Shader\+Program\+::\+Link\+Shader\+Program (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Links the program for use in the engine. \mbox{\Hypertarget{struct_noble_engine_1_1_shader_program_a936be24bd87090177eeb876e7012a6dc}\label{struct_noble_engine_1_1_shader_program_a936be24bd87090177eeb876e7012a6dc}} 
+\index{NobleEngine::ShaderProgram@{NobleEngine::ShaderProgram}!UseProgram@{UseProgram}}
+\index{UseProgram@{UseProgram}!NobleEngine::ShaderProgram@{NobleEngine::ShaderProgram}}
+\doxysubsubsection{\texorpdfstring{UseProgram()}{UseProgram()}}
+{\footnotesize\ttfamily void Noble\+Engine\+::\+Shader\+Program\+::\+Use\+Program (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Sets the currently used shader program to this. 
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Noble\+Engine/Shader\+Program.\+h\item 
+src/\+Noble\+Engine/Shader\+Program.\+cpp\end{DoxyCompactItemize}

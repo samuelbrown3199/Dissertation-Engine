@@ -15,6 +15,8 @@ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{struct_noble_engine_1_1_entity}{Entit
 \item 
 std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{struct_noble_engine_1_1_entity}{Entity}} $>$ \mbox{\hyperlink{class_noble_engine_1_1_application_ac0fa17da95d0ad81344ce11d8fa7fc9a}{Get\+Entity}} (int ID)
 \item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{struct_noble_engine_1_1_resource_manager}{Resource\+Manager}} $>$ \mbox{\hyperlink{class_noble_engine_1_1_application_a519fe496c59ac79b42c462b9c222baa6}{Get\+Resource\+Manager}} ()
+\item 
 {\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{class_noble_engine_1_1_application_a75787b6c73bfeeabac4a4d947044ec42}{Bind\+System}} (std\+::shared\+\_\+ptr$<$ T $>$ system)
 \item 
 {\footnotesize template$<$typename T $>$ }\\std\+::shared\+\_\+ptr$<$ T $>$ \mbox{\hyperlink{class_noble_engine_1_1_application_a455f4b0096d478fc5cb850e84295a971}{Get\+System}} ()
@@ -22,7 +24,22 @@ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{struct_noble_engine_1_1_entity}{Entit
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_noble_engine_1_1_application}{Application}} $>$ \mbox{\hyperlink{class_noble_engine_1_1_application_a49dc87e8f3865f2ada40fa6e2a74d732}{Initialize\+Engine}} (std\+::string window\+Name)
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_noble_engine_1_1_application}{Application}} $>$ \mbox{\hyperlink{class_noble_engine_1_1_application_ac4e5fc8d9269e3bb888309cb25d18230}{Initialize\+Engine}} (std\+::string window\+Name, int window\+Width, int window\+Height)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_noble_engine_1_1_application_a029c26f888b5d61a4a2cd9dacd89680e}\label{class_noble_engine_1_1_application_a029c26f888b5d61a4a2cd9dacd89680e}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{struct_noble_engine_1_1_camera}{Camera}} $>$ {\bfseries active\+Cam}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{struct_noble_engine_1_1_screen}{Screen}} $>$ \mbox{\hyperlink{class_noble_engine_1_1_application_af14f94614df980104ffed56fef85bbc3}{screen}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{struct_noble_engine_1_1_shader_program}{Shader\+Program}} $>$ \mbox{\hyperlink{class_noble_engine_1_1_application_aed79a680544793088307a73b0c13a295}{standard\+Shader}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{struct_noble_engine_1_1_entity}{Entity}} $>$ $>$ \mbox{\hyperlink{class_noble_engine_1_1_application_a7edb2655cbcb9b4adc9f333f5f78d277}{deletion\+Entities}}
 \end{DoxyCompactItemize}
 
 
@@ -37,7 +54,7 @@ static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_noble_engine_1_1_applica
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 void Noble\+Engine\+::\+Application\+::\+Bind\+System (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ T $>$}]{system }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Binds the system to the engine core for use in game functionality. Only one of each system can be bound at a time. \mbox{\Hypertarget{class_noble_engine_1_1_application_abcf283583fdb8d4952147089386bb9bd}\label{class_noble_engine_1_1_application_abcf283583fdb8d4952147089386bb9bd}} 
+Binds the system to the engine core for use in game functionality. Only one of each system type can be bound at a time. \mbox{\Hypertarget{class_noble_engine_1_1_application_abcf283583fdb8d4952147089386bb9bd}\label{class_noble_engine_1_1_application_abcf283583fdb8d4952147089386bb9bd}} 
 \index{NobleEngine::Application@{NobleEngine::Application}!CreateEntity@{CreateEntity}}
 \index{CreateEntity@{CreateEntity}!NobleEngine::Application@{NobleEngine::Application}}
 \doxysubsubsection{\texorpdfstring{CreateEntity()}{CreateEntity()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
@@ -55,18 +72,24 @@ Creates an entity with the passed in tag. \mbox{\Hypertarget{class_noble_engine_
 \doxysubsubsection{\texorpdfstring{GetEntity()}{GetEntity()}}
 {\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{struct_noble_engine_1_1_entity}{Entity}} $>$ Noble\+Engine\+::\+Application\+::\+Get\+Entity (\begin{DoxyParamCaption}\item[{int}]{ID }\end{DoxyParamCaption})}
 
-Returns an entity with the ID passed through the parameter; \mbox{\Hypertarget{class_noble_engine_1_1_application_a455f4b0096d478fc5cb850e84295a971}\label{class_noble_engine_1_1_application_a455f4b0096d478fc5cb850e84295a971}} 
+Returns an entity with the ID passed through the parameter; \mbox{\Hypertarget{class_noble_engine_1_1_application_a519fe496c59ac79b42c462b9c222baa6}\label{class_noble_engine_1_1_application_a519fe496c59ac79b42c462b9c222baa6}} 
+\index{NobleEngine::Application@{NobleEngine::Application}!GetResourceManager@{GetResourceManager}}
+\index{GetResourceManager@{GetResourceManager}!NobleEngine::Application@{NobleEngine::Application}}
+\doxysubsubsection{\texorpdfstring{GetResourceManager()}{GetResourceManager()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{struct_noble_engine_1_1_resource_manager}{Resource\+Manager}} $>$ Noble\+Engine\+::\+Application\+::\+Get\+Resource\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Returns the resource manager. \mbox{\Hypertarget{class_noble_engine_1_1_application_a455f4b0096d478fc5cb850e84295a971}\label{class_noble_engine_1_1_application_a455f4b0096d478fc5cb850e84295a971}} 
 \index{NobleEngine::Application@{NobleEngine::Application}!GetSystem@{GetSystem}}
 \index{GetSystem@{GetSystem}!NobleEngine::Application@{NobleEngine::Application}}
 \doxysubsubsection{\texorpdfstring{GetSystem()}{GetSystem()}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 std\+::shared\+\_\+ptr$<$T$>$ Noble\+Engine\+::\+Application\+::\+Get\+System (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Gets a bound system of the passed type. \mbox{\Hypertarget{class_noble_engine_1_1_application_a49dc87e8f3865f2ada40fa6e2a74d732}\label{class_noble_engine_1_1_application_a49dc87e8f3865f2ada40fa6e2a74d732}} 
+Gets a bound system of the passed type. \mbox{\Hypertarget{class_noble_engine_1_1_application_ac4e5fc8d9269e3bb888309cb25d18230}\label{class_noble_engine_1_1_application_ac4e5fc8d9269e3bb888309cb25d18230}} 
 \index{NobleEngine::Application@{NobleEngine::Application}!InitializeEngine@{InitializeEngine}}
 \index{InitializeEngine@{InitializeEngine}!NobleEngine::Application@{NobleEngine::Application}}
 \doxysubsubsection{\texorpdfstring{InitializeEngine()}{InitializeEngine()}}
-{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_noble_engine_1_1_application}{Application}} $>$ Noble\+Engine\+::\+Application\+::\+Initialize\+Engine (\begin{DoxyParamCaption}\item[{std\+::string}]{window\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_noble_engine_1_1_application}{Application}} $>$ Noble\+Engine\+::\+Application\+::\+Initialize\+Engine (\begin{DoxyParamCaption}\item[{std\+::string}]{window\+Name,  }\item[{int}]{window\+Width,  }\item[{int}]{window\+Height }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 Initializes the systems within the engine. \mbox{\Hypertarget{class_noble_engine_1_1_application_a10c9701dbe933e4da64227012fc8cb31}\label{class_noble_engine_1_1_application_a10c9701dbe933e4da64227012fc8cb31}} 
 \index{NobleEngine::Application@{NobleEngine::Application}!MainLoop@{MainLoop}}
@@ -75,6 +98,27 @@ Initializes the systems within the engine. \mbox{\Hypertarget{class_noble_engine
 {\footnotesize\ttfamily void Noble\+Engine\+::\+Application\+::\+Main\+Loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 Starts and manages the main engine loop. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_noble_engine_1_1_application_a7edb2655cbcb9b4adc9f333f5f78d277}\label{class_noble_engine_1_1_application_a7edb2655cbcb9b4adc9f333f5f78d277}} 
+\index{NobleEngine::Application@{NobleEngine::Application}!deletionEntities@{deletionEntities}}
+\index{deletionEntities@{deletionEntities}!NobleEngine::Application@{NobleEngine::Application}}
+\doxysubsubsection{\texorpdfstring{deletionEntities}{deletionEntities}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{struct_noble_engine_1_1_entity}{Entity}} $>$ $>$ Noble\+Engine\+::\+Application\+::deletion\+Entities\hspace{0.3cm}{\ttfamily [static]}}
+
+Stores a list of entities marked for deletion. \mbox{\Hypertarget{class_noble_engine_1_1_application_af14f94614df980104ffed56fef85bbc3}\label{class_noble_engine_1_1_application_af14f94614df980104ffed56fef85bbc3}} 
+\index{NobleEngine::Application@{NobleEngine::Application}!screen@{screen}}
+\index{screen@{screen}!NobleEngine::Application@{NobleEngine::Application}}
+\doxysubsubsection{\texorpdfstring{screen}{screen}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{struct_noble_engine_1_1_screen}{Screen}}$>$ Noble\+Engine\+::\+Application\+::screen}
+
+Stores screen data. \mbox{\Hypertarget{class_noble_engine_1_1_application_aed79a680544793088307a73b0c13a295}\label{class_noble_engine_1_1_application_aed79a680544793088307a73b0c13a295}} 
+\index{NobleEngine::Application@{NobleEngine::Application}!standardShader@{standardShader}}
+\index{standardShader@{standardShader}!NobleEngine::Application@{NobleEngine::Application}}
+\doxysubsubsection{\texorpdfstring{standardShader}{standardShader}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{struct_noble_engine_1_1_shader_program}{Shader\+Program}}$>$ Noble\+Engine\+::\+Application\+::standard\+Shader}
+
+Stores the standard shader program built into the engine. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

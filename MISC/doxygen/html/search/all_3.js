@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['entity_7',['Entity',['../struct_noble_engine_1_1_entity.html',1,'NobleEngine']]],
-  ['entityid_8',['entityID',['../struct_noble_engine_1_1_component_base.html#ad8dc1af8c1a4a646450ab465a2d50e92',1,'NobleEngine::ComponentBase::entityID()'],['../struct_noble_engine_1_1_entity.html#a3ba6ba61c75db63bcc89d3249fd69b1f',1,'NobleEngine::Entity::entityID()']]]
+  ['deletionentities_17',['deletionEntities',['../class_noble_engine_1_1_application.html#a7edb2655cbcb9b4adc9f333f5f78d277',1,'NobleEngine::Application']]],
+  ['destroy_18',['Destroy',['../struct_noble_engine_1_1_entity.html#a395f6d7564a49f37ef2324c72d6d9808',1,'NobleEngine::Entity']]]
 ];

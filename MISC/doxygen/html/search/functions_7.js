@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['update_44',['Update',['../struct_noble_engine_1_1_system.html#aacd0e233649ba561d547dbf155ab0dbb',1,'NobleEngine::System::Update()'],['../struct_noble_engine_1_1_transform_system.html#af7baa49d477698e26a3c635d25976bfe',1,'NobleEngine::TransformSystem::Update()']]]
+  ['mainloop_117',['MainLoop',['../class_noble_engine_1_1_application.html#a10c9701dbe933e4da64227012fc8cb31',1,'NobleEngine::Application']]]
 ];

@@ -81,9 +81,13 @@ Inheritance diagram for NobleEngine::ComponentBase:</div>
  <div class="center">
   <img src="struct_noble_engine_1_1_component_base.png" usemap="#NobleEngine::ComponentBase_map" alt=""/>
   <map id="NobleEngine::ComponentBase_map" name="NobleEngine::ComponentBase_map">
-<area href="struct_noble_engine_1_1_component.html" alt="NobleEngine::Component&lt; Transform &gt;" shape="rect" coords="0,56,234,80"/>
-<area href="struct_noble_engine_1_1_component.html" alt="NobleEngine::Component&lt; T &gt;" shape="rect" coords="244,56,478,80"/>
-<area href="struct_noble_engine_1_1_transform.html" alt="NobleEngine::Transform" shape="rect" coords="0,112,234,136"/>
+<area href="struct_noble_engine_1_1_component.html" alt="NobleEngine::Component&lt; Camera &gt;" shape="rect" coords="0,56,261,80"/>
+<area href="struct_noble_engine_1_1_component.html" alt="NobleEngine::Component&lt; MeshRenderer &gt;" shape="rect" coords="271,56,532,80"/>
+<area href="struct_noble_engine_1_1_component.html" alt="NobleEngine::Component&lt; Transform &gt;" shape="rect" coords="542,56,803,80"/>
+<area href="struct_noble_engine_1_1_component.html" alt="NobleEngine::Component&lt; T &gt;" shape="rect" coords="813,56,1074,80"/>
+<area href="struct_noble_engine_1_1_camera.html" alt="NobleEngine::Camera" shape="rect" coords="0,112,261,136"/>
+<area href="struct_noble_engine_1_1_mesh_renderer.html" alt="NobleEngine::MeshRenderer" shape="rect" coords="271,112,532,136"/>
+<area href="struct_noble_engine_1_1_transform.html" alt="NobleEngine::Transform" shape="rect" coords="542,112,803,136"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -91,6 +95,8 @@ Inheritance diagram for NobleEngine::ComponentBase:</div>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ad8dc1af8c1a4a646450ab465a2d50e92"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_component_base.html#ad8dc1af8c1a4a646450ab465a2d50e92">entityID</a></td></tr>
 <tr class="separator:ad8dc1af8c1a4a646450ab465a2d50e92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a611c3b7a5ce232309ec7ded92cfb7ed8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_component_base.html#a611c3b7a5ce232309ec7ded92cfb7ed8">markedForDeletion</a> = false</td></tr>
+<tr class="separator:a611c3b7a5ce232309ec7ded92cfb7ed8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The base class that components inherit from. </p>
@@ -107,6 +113,21 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Contains the entity ID the component is linked to. </p>
+
+</div>
+</div>
+<a id="a611c3b7a5ce232309ec7ded92cfb7ed8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a611c3b7a5ce232309ec7ded92cfb7ed8">&#9670;&nbsp;</a></span>markedForDeletion</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool NobleEngine::ComponentBase::markedForDeletion = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Used to determine whether the component is marked for deletion. </p>
 
 </div>
 </div>

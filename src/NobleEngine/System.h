@@ -14,7 +14,6 @@ namespace NobleEngine
 {
 	class Application;
 
-
 	struct SystemBase
 	{
 	private:

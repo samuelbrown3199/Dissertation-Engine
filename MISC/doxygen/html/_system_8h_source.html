@@ -77,26 +77,83 @@ $(function() {
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define SetupComponentList(T) std::vector&lt;std::shared_ptr&lt;T&gt;&gt; Component&lt;T&gt;::componentList;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;thread&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;mutex&gt;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">namespace </span>NobleEngine</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_system.html">   16</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="struct_noble_engine_1_1_system.html">System</a></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    {</div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_system.html#a95a9b65d952476f8c7a863c0dad6fe63">   21</a></span>&#160;        std::vector&lt;std::string&gt; <a class="code" href="struct_noble_engine_1_1_system.html#a95a9b65d952476f8c7a863c0dad6fe63">targetTags</a>;</div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_system.html#a49908316c2c62c11c0b68aa43edb3bc6">   25</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="struct_noble_engine_1_1_system.html#a49908316c2c62c11c0b68aa43edb3bc6">Initialize</a>() {};</div>
-<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_system.html#aacd0e233649ba561d547dbf155ab0dbb">   29</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="struct_noble_engine_1_1_system.html#aacd0e233649ba561d547dbf155ab0dbb">Update</a>() {};</div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_system.html#a47e32248730804f99d8ee391d78417ec">   33</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="struct_noble_engine_1_1_system.html#a47e32248730804f99d8ee391d78417ec">Render</a>() {};</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    };</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#define SetupComponentList(T) std::vector&lt;std::shared_ptr&lt;T&gt;&gt; Component&lt;T&gt;::componentList;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">namespace </span>NobleEngine</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">class </span>Application;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_system_base.html">   18</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="struct_noble_engine_1_1_system_base.html">SystemBase</a></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        std::thread systemThread;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_system_base.html#af1d3cd801e5f575989b37f9395865a17">   26</a></span>&#160;        std::vector&lt;std::string&gt; <a class="code" href="struct_noble_engine_1_1_system_base.html#af1d3cd801e5f575989b37f9395865a17">targetTags</a>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_system_base.html#a3c4d46dab377657c340fa2aa59892fe1">   30</a></span>&#160;        std::weak_ptr&lt;Application&gt; <a class="code" href="struct_noble_engine_1_1_system_base.html#a3c4d46dab377657c340fa2aa59892fe1">application</a>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_system_base.html#a5d55aa2c54c70b3505f82041c995e280">   34</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="struct_noble_engine_1_1_system_base.html#a5d55aa2c54c70b3505f82041c995e280">useThreading</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_system_base.html#ac7c5eff575ead6e6f815ab668f054529">   38</a></span>&#160;        std::shared_ptr&lt;Application&gt; <a class="code" href="struct_noble_engine_1_1_system_base.html#ac7c5eff575ead6e6f815ab668f054529">GetApplication</a>()</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="struct_noble_engine_1_1_system_base.html#a3c4d46dab377657c340fa2aa59892fe1">application</a>.lock();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        }</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_system_base.html#a04ebf962f2fab6a5516cf12a91c51838">   45</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="struct_noble_engine_1_1_system_base.html#a04ebf962f2fab6a5516cf12a91c51838">Update</a>() {};</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_system_base.html#a8e0d4767f4d39bd43be757c4c3b0d124">   49</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="struct_noble_engine_1_1_system_base.html#a8e0d4767f4d39bd43be757c4c3b0d124">Render</a>() {};</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_system_base.html#a9104bf792f2989f6bed7d210651a8e86">   54</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="struct_noble_engine_1_1_system_base.html#a9104bf792f2989f6bed7d210651a8e86">ClearUnneededComponents</a>() {};</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    };</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_system.html">   61</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="struct_noble_engine_1_1_system.html">System</a> : <span class="keyword">public</span> <a class="code" href="struct_noble_engine_1_1_system_base.html">SystemBase</a></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordtype">void</span> Update()</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> co = 0; co &lt; T::componentList.size(); co++)</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                <a class="code" href="struct_noble_engine_1_1_system.html#a28a7aa2aafe72a96a1dcf6b0dba8a266">OnUpdate</a>(T::componentList.at(co));</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        }</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordtype">void</span> Render()</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        {</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> co = 0; co &lt; T::componentList.size(); co++)</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                <a class="code" href="struct_noble_engine_1_1_system.html#a08449a2b175345685d2fb14c84f42a26">OnRender</a>(T::componentList.at(co));</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        }</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_system.html#a28a7aa2aafe72a96a1dcf6b0dba8a266">   88</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="struct_noble_engine_1_1_system.html#a28a7aa2aafe72a96a1dcf6b0dba8a266">OnUpdate</a>(std::shared_ptr&lt;T&gt; comp) {};</div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_system.html#a08449a2b175345685d2fb14c84f42a26">   92</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="struct_noble_engine_1_1_system.html#a08449a2b175345685d2fb14c84f42a26">OnRender</a>(std::shared_ptr&lt;T&gt; comp) {};</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_system.html#a7715dca7072754caaa9c395d534e7584">   97</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="struct_noble_engine_1_1_system.html#a7715dca7072754caaa9c395d534e7584">ClearUnneededComponents</a>()</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        {</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> co = 0; co &lt; T::componentList.size(); co++)</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            {</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                <span class="keywordflow">if</span> (T::componentList.at(co)-&gt;markedForDeletion)</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                {</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                    T::componentList.erase(T::componentList.begin() + co);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                }</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            }</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        }</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    };</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;}</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="astruct_noble_engine_1_1_system_html_a47e32248730804f99d8ee391d78417ec"><div class="ttname"><a href="struct_noble_engine_1_1_system.html#a47e32248730804f99d8ee391d78417ec">NobleEngine::System::Render</a></div><div class="ttdeci">virtual void Render()</div><div class="ttdef"><b>Definition:</b> System.h:33</div></div>
-<div class="ttc" id="astruct_noble_engine_1_1_system_html_a49908316c2c62c11c0b68aa43edb3bc6"><div class="ttname"><a href="struct_noble_engine_1_1_system.html#a49908316c2c62c11c0b68aa43edb3bc6">NobleEngine::System::Initialize</a></div><div class="ttdeci">virtual void Initialize()</div><div class="ttdef"><b>Definition:</b> System.h:25</div></div>
-<div class="ttc" id="astruct_noble_engine_1_1_system_html"><div class="ttname"><a href="struct_noble_engine_1_1_system.html">NobleEngine::System</a></div><div class="ttdef"><b>Definition:</b> System.h:17</div></div>
-<div class="ttc" id="astruct_noble_engine_1_1_system_html_aacd0e233649ba561d547dbf155ab0dbb"><div class="ttname"><a href="struct_noble_engine_1_1_system.html#aacd0e233649ba561d547dbf155ab0dbb">NobleEngine::System::Update</a></div><div class="ttdeci">virtual void Update()</div><div class="ttdef"><b>Definition:</b> System.h:29</div></div>
-<div class="ttc" id="astruct_noble_engine_1_1_system_html_a95a9b65d952476f8c7a863c0dad6fe63"><div class="ttname"><a href="struct_noble_engine_1_1_system.html#a95a9b65d952476f8c7a863c0dad6fe63">NobleEngine::System::targetTags</a></div><div class="ttdeci">std::vector&lt; std::string &gt; targetTags</div><div class="ttdef"><b>Definition:</b> System.h:21</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_system_base_html"><div class="ttname"><a href="struct_noble_engine_1_1_system_base.html">NobleEngine::SystemBase</a></div><div class="ttdef"><b>Definition:</b> System.h:19</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_system_base_html_a8e0d4767f4d39bd43be757c4c3b0d124"><div class="ttname"><a href="struct_noble_engine_1_1_system_base.html#a8e0d4767f4d39bd43be757c4c3b0d124">NobleEngine::SystemBase::Render</a></div><div class="ttdeci">virtual void Render()</div><div class="ttdef"><b>Definition:</b> System.h:49</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_system_html"><div class="ttname"><a href="struct_noble_engine_1_1_system.html">NobleEngine::System</a></div><div class="ttdef"><b>Definition:</b> System.h:62</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_system_base_html_af1d3cd801e5f575989b37f9395865a17"><div class="ttname"><a href="struct_noble_engine_1_1_system_base.html#af1d3cd801e5f575989b37f9395865a17">NobleEngine::SystemBase::targetTags</a></div><div class="ttdeci">std::vector&lt; std::string &gt; targetTags</div><div class="ttdef"><b>Definition:</b> System.h:26</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_system_html_a28a7aa2aafe72a96a1dcf6b0dba8a266"><div class="ttname"><a href="struct_noble_engine_1_1_system.html#a28a7aa2aafe72a96a1dcf6b0dba8a266">NobleEngine::System::OnUpdate</a></div><div class="ttdeci">virtual void OnUpdate(std::shared_ptr&lt; T &gt; comp)</div><div class="ttdef"><b>Definition:</b> System.h:88</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_system_html_a08449a2b175345685d2fb14c84f42a26"><div class="ttname"><a href="struct_noble_engine_1_1_system.html#a08449a2b175345685d2fb14c84f42a26">NobleEngine::System::OnRender</a></div><div class="ttdeci">virtual void OnRender(std::shared_ptr&lt; T &gt; comp)</div><div class="ttdef"><b>Definition:</b> System.h:92</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_system_base_html_a04ebf962f2fab6a5516cf12a91c51838"><div class="ttname"><a href="struct_noble_engine_1_1_system_base.html#a04ebf962f2fab6a5516cf12a91c51838">NobleEngine::SystemBase::Update</a></div><div class="ttdeci">virtual void Update()</div><div class="ttdef"><b>Definition:</b> System.h:45</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_system_base_html_a3c4d46dab377657c340fa2aa59892fe1"><div class="ttname"><a href="struct_noble_engine_1_1_system_base.html#a3c4d46dab377657c340fa2aa59892fe1">NobleEngine::SystemBase::application</a></div><div class="ttdeci">std::weak_ptr&lt; Application &gt; application</div><div class="ttdef"><b>Definition:</b> System.h:30</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_system_html_a7715dca7072754caaa9c395d534e7584"><div class="ttname"><a href="struct_noble_engine_1_1_system.html#a7715dca7072754caaa9c395d534e7584">NobleEngine::System::ClearUnneededComponents</a></div><div class="ttdeci">void ClearUnneededComponents()</div><div class="ttdef"><b>Definition:</b> System.h:97</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_system_base_html_a5d55aa2c54c70b3505f82041c995e280"><div class="ttname"><a href="struct_noble_engine_1_1_system_base.html#a5d55aa2c54c70b3505f82041c995e280">NobleEngine::SystemBase::useThreading</a></div><div class="ttdeci">bool useThreading</div><div class="ttdef"><b>Definition:</b> System.h:34</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_system_base_html_a9104bf792f2989f6bed7d210651a8e86"><div class="ttname"><a href="struct_noble_engine_1_1_system_base.html#a9104bf792f2989f6bed7d210651a8e86">NobleEngine::SystemBase::ClearUnneededComponents</a></div><div class="ttdeci">virtual void ClearUnneededComponents()</div><div class="ttdef"><b>Definition:</b> System.h:54</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_system_base_html_ac7c5eff575ead6e6f815ab668f054529"><div class="ttname"><a href="struct_noble_engine_1_1_system_base.html#ac7c5eff575ead6e6f815ab668f054529">NobleEngine::SystemBase::GetApplication</a></div><div class="ttdeci">std::shared_ptr&lt; Application &gt; GetApplication()</div><div class="ttdef"><b>Definition:</b> System.h:38</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20

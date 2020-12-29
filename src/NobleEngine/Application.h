@@ -20,7 +20,7 @@ namespace NobleEngine
 	struct Camera;
 
 	/**
-	*Application is the core of the engine. This will initialize and handle the main loop of the engine.
+	*Application is the core of the engine. This will initialize and handle the main loop of the engine. This also stores a list of entities and systems. These will be used to create functionality of the engine.
 	*/
 	class Application
 	{

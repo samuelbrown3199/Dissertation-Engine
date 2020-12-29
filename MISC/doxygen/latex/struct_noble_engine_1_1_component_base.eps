@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 123.966942
+%%BoundingBox: 0 0 500 55.762081
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,13 +19,13 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 4.033333 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 8.966666 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
 /yspacing 0 def
 /rows 3 def
-/cols 2 def
+/cols 4 def
 /scalefactor 0 def
 /boxfont /Times-Roman findfont fontheight scalefont def
 
@@ -174,8 +174,12 @@
 boxfont setfont
 1 boundaspect scale
 (NobleEngine::ComponentBase) cw
+(NobleEngine::Component< Camera >) cw
+(NobleEngine::Component< MeshRenderer >) cw
 (NobleEngine::Component< Transform >) cw
 (NobleEngine::Component< T >) cw
+(NobleEngine::Camera) cw
+(NobleEngine::MeshRenderer) cw
 (NobleEngine::Transform) cw
 /boxwidth boxwidth marginwidth 2 mul add def
 /xspacing boxwidth distx add def
@@ -188,17 +192,21 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
- (NobleEngine::ComponentBase) 0.500000 2.000000 box
- (NobleEngine::Component< Transform >) 0.000000 1.000000 box
- (NobleEngine::Component< T >) 1.000000 1.000000 box
- (NobleEngine::Transform) 0.000000 0.000000 box
+ (NobleEngine::ComponentBase) 1.500000 2.000000 box
+ (NobleEngine::Component< Camera >) 0.000000 1.000000 box
+ (NobleEngine::Component< MeshRenderer >) 1.000000 1.000000 box
+ (NobleEngine::Component< Transform >) 2.000000 1.000000 box
+ (NobleEngine::Component< T >) 3.000000 1.000000 box
+ (NobleEngine::Camera) 0.000000 0.000000 box
+ (NobleEngine::MeshRenderer) 1.000000 0.000000 box
+ (NobleEngine::Transform) 2.000000 0.000000 box
 
 % ----- relations -----
 
 solid
-1 0.500000 1.250000 out
+1 1.500000 1.250000 out
 solid
-0.000000 1.000000 2.000000 conn
+0.000000 3.000000 2.000000 conn
 solid
 0 0.000000 1.750000 in
 solid
@@ -206,4 +214,16 @@ solid
 solid
 0 1.000000 1.750000 in
 solid
+1 1.000000 0.250000 out
+solid
+0 2.000000 1.750000 in
+solid
+1 2.000000 0.250000 out
+solid
+0 3.000000 1.750000 in
+solid
 0 0.000000 0.750000 in
+solid
+0 1.000000 0.750000 in
+solid
+0 2.000000 0.750000 in

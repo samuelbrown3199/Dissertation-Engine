@@ -7,13 +7,15 @@
 Inheritance diagram for Noble\+Engine\+::Component\+Base\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=3.000000cm]{struct_noble_engine_1_1_component_base}
+\includegraphics[height=1.561338cm]{struct_noble_engine_1_1_component_base}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 int \mbox{\hyperlink{struct_noble_engine_1_1_component_base_ad8dc1af8c1a4a646450ab465a2d50e92}{entity\+ID}}
+\item 
+bool \mbox{\hyperlink{struct_noble_engine_1_1_component_base_a611c3b7a5ce232309ec7ded92cfb7ed8}{marked\+For\+Deletion}} = false
 \end{DoxyCompactItemize}
 
 
@@ -27,7 +29,13 @@ The base class that components inherit from.
 \doxysubsubsection{\texorpdfstring{entityID}{entityID}}
 {\footnotesize\ttfamily int Noble\+Engine\+::\+Component\+Base\+::entity\+ID}
 
-Contains the entity ID the component is linked to. 
+Contains the entity ID the component is linked to. \mbox{\Hypertarget{struct_noble_engine_1_1_component_base_a611c3b7a5ce232309ec7ded92cfb7ed8}\label{struct_noble_engine_1_1_component_base_a611c3b7a5ce232309ec7ded92cfb7ed8}} 
+\index{NobleEngine::ComponentBase@{NobleEngine::ComponentBase}!markedForDeletion@{markedForDeletion}}
+\index{markedForDeletion@{markedForDeletion}!NobleEngine::ComponentBase@{NobleEngine::ComponentBase}}
+\doxysubsubsection{\texorpdfstring{markedForDeletion}{markedForDeletion}}
+{\footnotesize\ttfamily bool Noble\+Engine\+::\+Component\+Base\+::marked\+For\+Deletion = false}
+
+Used to determine whether the component is marked for deletion. 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

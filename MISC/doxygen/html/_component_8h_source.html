@@ -82,20 +82,27 @@ $(function() {
 <div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_component_base.html">   13</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="struct_noble_engine_1_1_component_base.html">ComponentBase</a></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    {</div>
 <div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_component_base.html#ad8dc1af8c1a4a646450ab465a2d50e92">   18</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="struct_noble_engine_1_1_component_base.html#ad8dc1af8c1a4a646450ab465a2d50e92">entityID</a>;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    };</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_component.html">   25</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="struct_noble_engine_1_1_component.html">Component</a> : <span class="keyword">public</span> <a class="code" href="struct_noble_engine_1_1_component_base.html">ComponentBase</a></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    {</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keyword">static</span> std::vector&lt;std::shared_ptr&lt;T&gt;&gt; componentList;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    };</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;}</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_component_base.html#a611c3b7a5ce232309ec7ded92cfb7ed8">   22</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="struct_noble_engine_1_1_component_base.html#a611c3b7a5ce232309ec7ded92cfb7ed8">markedForDeletion</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keyword">virtual</span> ~<a class="code" href="struct_noble_engine_1_1_component_base.html">ComponentBase</a>() {}</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    };</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_component.html">   31</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="struct_noble_engine_1_1_component.html">Component</a> : <span class="keyword">public</span> <a class="code" href="struct_noble_engine_1_1_component_base.html">ComponentBase</a></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    {</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_component.html#af9f9b2c1bd6eb7f247993aee855c5b3f">   36</a></span>&#160;        <span class="keyword">static</span> std::vector&lt;std::shared_ptr&lt;T&gt;&gt; <a class="code" href="struct_noble_engine_1_1_component.html#af9f9b2c1bd6eb7f247993aee855c5b3f">componentList</a>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keyword">virtual</span> ~<a class="code" href="struct_noble_engine_1_1_component.html">Component</a>() {}</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    };</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;}</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="astruct_noble_engine_1_1_component_html"><div class="ttname"><a href="struct_noble_engine_1_1_component.html">NobleEngine::Component</a></div><div class="ttdef"><b>Definition:</b> Component.h:26</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_component_html"><div class="ttname"><a href="struct_noble_engine_1_1_component.html">NobleEngine::Component</a></div><div class="ttdef"><b>Definition:</b> Component.h:32</div></div>
 <div class="ttc" id="astruct_noble_engine_1_1_component_base_html_ad8dc1af8c1a4a646450ab465a2d50e92"><div class="ttname"><a href="struct_noble_engine_1_1_component_base.html#ad8dc1af8c1a4a646450ab465a2d50e92">NobleEngine::ComponentBase::entityID</a></div><div class="ttdeci">int entityID</div><div class="ttdef"><b>Definition:</b> Component.h:18</div></div>
 <div class="ttc" id="astruct_noble_engine_1_1_component_base_html"><div class="ttname"><a href="struct_noble_engine_1_1_component_base.html">NobleEngine::ComponentBase</a></div><div class="ttdef"><b>Definition:</b> Component.h:14</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_component_base_html_a611c3b7a5ce232309ec7ded92cfb7ed8"><div class="ttname"><a href="struct_noble_engine_1_1_component_base.html#a611c3b7a5ce232309ec7ded92cfb7ed8">NobleEngine::ComponentBase::markedForDeletion</a></div><div class="ttdeci">bool markedForDeletion</div><div class="ttdef"><b>Definition:</b> Component.h:22</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_component_html_af9f9b2c1bd6eb7f247993aee855c5b3f"><div class="ttname"><a href="struct_noble_engine_1_1_component.html#af9f9b2c1bd6eb7f247993aee855c5b3f">NobleEngine::Component::componentList</a></div><div class="ttdeci">static std::vector&lt; std::shared_ptr&lt; T &gt; &gt; componentList</div><div class="ttdef"><b>Definition:</b> Component.h:36</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
