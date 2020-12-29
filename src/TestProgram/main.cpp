@@ -17,6 +17,16 @@ int main()
 	std::string texLoc = "Resources\\Textures\\test.png";
 	std::string texLoc1 = "";
 
+	for (int i = 0; i < 100; i++) //debug code for many entities.
+	{
+		std::shared_ptr<Entity> megaEntity = app->CreateEntity();
+		std::shared_ptr<MeshRenderer> mr = megaEntity->AddComponent<MeshRenderer>();
+		mr->model = app->GetResourceManager()->LoadResource<NobleEngine::Model>(modelLoc); //causes an issue with xstring, probably something to do with comparing file names in the resource manager.
+		mr->material = app->GetResourceManager()->LoadMaterial(texLoc, texLoc1);
+
+		megaEntity->AddComponent<Transform>()->position = glm::vec3(10, 0, -20 - (10 * i)); //an issue is caused when adding multiple components in this loop.
+	}
+
 	std::shared_ptr<Entity> testEntity = app->CreateEntity();
 	std::shared_ptr<Transform> tr = testEntity->AddComponent<Transform>();
 	tr->position = glm::vec3(0, 0, -10);

@@ -9,7 +9,37 @@ namespace NobleEngine
 		for (size_t ma = 0; ma < materials.size(); ma++)
 		{
 			//will need to add checking other variables of materials match later on.
-			if (materials.at(ma)->diffuseTexture->resourcePath == diffusePath && materials.at(ma)->specularTexture->resourcePath == specularPath)
+			bool diffuseMatch = false, specularMatch = false;
+			if (diffusePath != "")
+			{
+				if (materials.at(ma)->diffuseTexture)
+				{
+					if (materials.at(ma)->diffuseTexture->resourcePath == diffusePath)
+					{
+						diffuseMatch = true;
+					}
+				}
+			}
+			else
+			{
+				diffuseMatch = true;
+			}
+			if (specularPath != "")
+			{
+				if (materials.at(ma)->specularTexture)
+				{
+					if (materials.at(ma)->specularTexture->resourcePath == specularPath)
+					{
+						specularMatch = true;
+					}
+				}
+			}
+			else
+			{
+				specularMatch = true;
+			}
+
+			if (diffuseMatch && specularMatch)
 			{
 				return materials.at(ma);
 			}
