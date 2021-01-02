@@ -32,6 +32,14 @@ namespace NobleEngine
 		*/
 		bool useThreading = false;
 		/**
+		*Tells the system whether or not it should use a update or not.
+		*/
+		bool useUpdate = true;
+		/**
+		*Tells the system whether or not it should use a render or not.
+		*/
+		bool useRender = true;
+		/**
 		*Returns the application as a shared pointer.
 		*/
 		std::shared_ptr<Application> GetApplication()
@@ -65,9 +73,12 @@ namespace NobleEngine
 		*/
 		void Update()
 		{
-			for (size_t co = 0; co < T::componentList.size(); co++)
+			if (useUpdate)
 			{
-				OnUpdate(T::componentList.at(co));
+				for (size_t co = 0; co < T::componentList.size(); co++)
+				{
+					OnUpdate(T::componentList.at(co));
+				}
 			}
 		}
 		/**
@@ -75,9 +86,12 @@ namespace NobleEngine
 		*/
 		void Render()
 		{
-			for (size_t co = 0; co < T::componentList.size(); co++)
+			if (useRender)
 			{
-				OnRender(T::componentList.at(co));
+				for (size_t co = 0; co < T::componentList.size(); co++)
+				{
+					OnRender(T::componentList.at(co));
+				}
 			}
 		}
 	public:
@@ -89,7 +103,15 @@ namespace NobleEngine
 		*Inherited classes can implement this function with a parameter taking in a shared pointer of the type. Functionality can then be called on that pointer.
 		*/
 		virtual void OnRender(std::shared_ptr<T> comp) {};
-
+		/**
+		*Sets the system to use each feature, such as threading, update & rendering.
+		*/
+		void SetSystemUse(bool threading, bool update, bool render)
+		{
+			useThreading = false;
+			useUpdate = update;
+			useRender = render;
+		}
 		/**
 		*Clears the list of component data that is marked for deletion. Handles the passed type through the template.
 		*/

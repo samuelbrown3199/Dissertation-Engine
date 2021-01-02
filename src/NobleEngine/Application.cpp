@@ -177,12 +177,15 @@ namespace NobleEngine
 	void Application::BindCoreSystems()
 	{
 		std::shared_ptr<TransformSystem> tr = std::make_shared<TransformSystem>();
+		tr->SetSystemUse(true, true, false);
 		BindSystem(tr);
 
 		std::shared_ptr<CameraSystem> cr = std::make_shared<CameraSystem>();
+		cr->SetSystemUse(false, true, false);
 		BindSystem(cr);
 
 		std::shared_ptr<MeshRendererSystem> mr = std::make_shared<MeshRendererSystem>();
+		mr->SetSystemUse(true, false, true);
 		BindSystem(mr);
 	}
 

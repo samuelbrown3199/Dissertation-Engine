@@ -45,6 +45,7 @@ int main()
 	camera->AddComponent<FlyingCam>();
 
 	std::shared_ptr<FlyingCamSystem> fc = std::make_shared<FlyingCamSystem>();
+	fc->SetSystemUse(false, true, false);
 	app->BindSystem(fc);
 
 	app->activeCam = cr;
