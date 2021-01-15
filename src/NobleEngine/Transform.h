@@ -1,3 +1,7 @@
+#pragma once
+#ifndef TRANSFORM_H_
+#define TRANSFORM_H_
+
 #include <iostream>
 #include <memory>
 #include <vector>
@@ -8,11 +12,18 @@
 
 namespace NobleEngine
 {
+	struct PhysicsBody;
+
 	/**
 	*Stores a transform component data.
 	*/
 	struct Transform : public Component<Transform>
 	{
+		/**
+		*Stores a physics body. If a physics body is attached to the same entity then its transform data is used instead.
+		*/
+		std::shared_ptr<PhysicsBody> pBody;
+		bool check = false;
 		/**
 		*Contains the position of the transform. Defaults to the origin.
 		*/
@@ -31,3 +42,5 @@ namespace NobleEngine
 		glm::mat4 model;
 	};
 }
+
+#endif

@@ -21,10 +21,6 @@ namespace NobleEngine
 		std::vector<std::thread> systemThreads;
 	public:
 		/**
-		*Stores the tags that the system targets. Makes it possible to target specific entities with certain tags.
-		*/
-		std::vector<std::string> targetTags;
-		/**
 		*Stores a weak pointer back to the application core.
 		*/
 		std::weak_ptr<Application> application;
@@ -52,6 +48,10 @@ namespace NobleEngine
 			return application.lock();
 		}
 		/**
+		*Called when binding the system.
+		*/
+		virtual void InitializeSystem() {};
+		/**
 		*Update is called every frame.
 		*/
 		virtual void Update() {};
@@ -59,7 +59,6 @@ namespace NobleEngine
 		*Render is called every frame.
 		*/
 		virtual void Render() {};
-
 		/**
 		*Used in the inherited System struct.
 		*/
@@ -92,7 +91,8 @@ namespace NobleEngine
 					int amountOfThreads = ceil(T::componentList.size() / maxComponentsPerThread);
 					for (int i = 0; i < amountOfThreads; i++)
 					{
-						//systemThreads.push_back(std::thread(&System::ThreadUpdate, /*maxComponentsPerThread, maxComponentsPerThread * i, */this));
+						int buffer = maxComponentsPerThread * i;
+						//systemThreads.push_back(std::thread(&System::ThreadUpdate, maxComponentsPerThread, buffer, this));
 					}
 
 					for (int i = systemThreads.size(); i > 0; i--)
@@ -135,7 +135,8 @@ namespace NobleEngine
 					int amountOfThreads = ceil(T::componentList.size() / maxComponentsPerThread);
 					for (int i = 0; i < amountOfThreads; i++)
 					{
-						//systemThreads.push_back(std::thread(&System::ThreadRender, maxComponentsPerThread, maxComponentsPerThread * i));
+						int buffer = maxComponentsPerThread * i;
+						//systemThreads.push_back(std::thread(&System::ThreadRender, maxComponentsPerThread, buffer, this));
 					}
 
 					for (int i = systemThreads.size(); i > 0; i--)
@@ -160,6 +161,7 @@ namespace NobleEngine
 			}
 		}
 	public:
+		virtual void OnInitialize(std::shared_ptr<T> comp) {};
 		/**
 		*Inherited classes can implement this function with a parameter taking in a shared pointer of the type. Functionality can then be called on that pointer.
 		*/

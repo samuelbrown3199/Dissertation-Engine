@@ -37,7 +37,20 @@ namespace NobleEngine
 
 			return component;
 		}
+		/**
+		*Adds the component to the entity with the passed template type and automatically adds it to the component type list. This also returns a shared pointer of the component.
+		*/
+		template <typename T, typename ... Args>
+		std::shared_ptr<T> AddComponent(Args&&... args)
+		{
+			std::shared_ptr<T> component = std::make_shared<T>();
+			component->entityID = entityID;
+			component->OnInitialize(std::forward<Args>(args)...);
+			entityComponents.push_back(component);
+			T::componentList.push_back(component);
 
+			return component;
+		}
 		/**
 		*Removes a component of the passed type.
 		*/
@@ -93,7 +106,7 @@ namespace NobleEngine
 			}
 
 			std::cout << "Could not find component on entity " << entityID << std::endl;
-			throw std::exception();
+			return nullptr;
 		}
 		/**
 		*Returns the size of the entity component list.

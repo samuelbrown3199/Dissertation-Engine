@@ -1,3 +1,7 @@
+#pragma once
+#ifndef APPLICATION_H_
+#define APPLICATION_H_
+
 #include <iostream>
 #include <memory>
 #include <vector>
@@ -13,6 +17,7 @@ namespace NobleEngine
 {
 	struct Screen;
 	struct ResourceManager;
+	struct PhysicsWorld;
 	struct SystemBase;
 	struct Entity;
 	struct ShaderProgram;
@@ -58,11 +63,15 @@ namespace NobleEngine
 		/**
 		*Returns an entity with the ID passed through the parameter;
 		*/
-		std::shared_ptr<Entity> GetEntity(int ID);
+		static std::shared_ptr<Entity> GetEntity(int ID);
 		/**
 		*Returns the resource manager.
 		*/
 		std::shared_ptr<ResourceManager> GetResourceManager();
+		/**
+		*Returns the physics world simulation.
+		*/
+		static std::shared_ptr<PhysicsWorld> GetPhysicsWorld();
 		/**
 		*Binds the system to the engine core for use in game functionality. Only one of each system type can be bound at a time.
 		*/
@@ -112,6 +121,10 @@ namespace NobleEngine
 		*/
 		ALCcontext* audioContext;
 		/**
+		*Stores the physics simulation world.
+		*/
+		static std::shared_ptr<PhysicsWorld> physicsWorld;
+		/**
 		*Determines whether the main engine loop should run.
 		*/
 		bool loop = true;
@@ -122,7 +135,7 @@ namespace NobleEngine
 		/**
 		*Stores entities for use within the game engine.
 		*/
-		std::vector<std::shared_ptr<Entity>> entities;
+		static std::vector<std::shared_ptr<Entity>> entities;
 		/**
 		*Stores a list of available entity IDS.
 		*/
@@ -141,3 +154,5 @@ namespace NobleEngine
 		void RemoveEntity(int ID);
 	};
 }
+
+#endif

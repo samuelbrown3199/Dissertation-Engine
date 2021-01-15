@@ -5,8 +5,12 @@
 #include <vector>
 #include <memory>
 
+#include "Application.h"
+
 namespace NobleEngine
 {
+	struct Entity;
+
 	/**
 	*The base class that components inherit from.
 	*/
@@ -20,7 +24,13 @@ namespace NobleEngine
 		*Used to determine whether the component is marked for deletion.
 		*/
 		bool markedForDeletion = false;
-
+		/**
+		*Returns the components entity.
+		*/
+		std::shared_ptr<Entity> GetEntity()
+		{
+			return Application::GetEntity(entityID);
+		}
 		virtual ~ComponentBase() {}
 	};
 
@@ -36,6 +46,7 @@ namespace NobleEngine
 		static std::vector<std::shared_ptr<T>> componentList;
 
 		virtual ~Component() {}
+		virtual void OnInitialize() {};
 	};
 }
 

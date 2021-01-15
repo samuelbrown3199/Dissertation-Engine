@@ -5,6 +5,7 @@
 #include <NobleEngine/EngineCore.h>
 #include <NobleEngine/TransformSystem.h>
 #include <NobleEngine/MeshRendererSystem.h>
+#include <NobleEngine/PhysicsBodySystem.h>
 #include <NobleEngine/CameraSystem.h>
 #include <NobleEngine/AudioClip.h>
 
@@ -25,6 +26,8 @@ int main()
 	std::shared_ptr<AudioClip> ac = app->GetResourceManager()->LoadResource<AudioClip>(testAudio);
 
 	int amount = 10;
+	std::cout << "Enter the amount of boxes cubed you want. E.G 10 = 1000 boxes.	";
+	std::cin >> amount;
 	for (int x = 0; x < amount; x++)
 	{
 		for (int z = 0; z < amount; z++)
@@ -39,8 +42,7 @@ int main()
 				std::shared_ptr<MeshRenderer> pc = physicsTest->AddComponent<MeshRenderer>();
 				pc->model = app->GetResourceManager()->LoadResource<NobleEngine::Model>(modelLoc);
 				pc->material = app->GetResourceManager()->LoadMaterial(texLoc, texLoc1);
-				/*physicsTest->AddComponent<Collider>(Collider::ColliderShape::box);
-				physicsTest->AddComponent<PhysicsBody>(20);*/
+				physicsTest->AddComponent<PhysicsBody>(PhysicsBody::ColliderShape::box, 20);
 			}
 		}
 	}
@@ -49,13 +51,14 @@ int main()
 	std::shared_ptr<Transform> tr = testEntity->AddComponent<Transform>();
 	tr->position = glm::vec3(0, 0, 0);
 	tr->scale = glm::vec3(100, 1, 100);
+	testEntity->AddComponent<PhysicsBody>(PhysicsBody::ColliderShape::box, 0);
 
 	std::shared_ptr<MeshRenderer> mr = testEntity->AddComponent<MeshRenderer>();
 	mr->model = app->GetResourceManager()->LoadResource<NobleEngine::Model>(modelLoc);
 	mr->material = app->GetResourceManager()->LoadMaterial(texLoc, texLoc1);
 
 	std::shared_ptr<Entity> camera = app->CreateEntity();
-	camera->AddComponent<Transform>()->position;
+	camera->AddComponent<Transform>()->position = glm::vec3(0,5,0);
 	std::shared_ptr<Camera> cr = camera->AddComponent<Camera>();
 	camera->AddComponent<FlyingCam>();
 

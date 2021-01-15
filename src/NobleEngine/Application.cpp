@@ -3,6 +3,7 @@
 #include "Screen.h"
 #include "Camera.h"
 #include "ResourceManager.h"
+#include "PhysicsWorld.h"
 #include "System.h"
 #include "Entity.h"
 #include "ShaderProgram.h"
@@ -11,10 +12,13 @@
 #include "TransformSystem.h"
 #include "MeshRendererSystem.h"
 #include "CameraSystem.h"
+#include "PhysicsBodySystem.h"
 
 namespace NobleEngine
 {
 	std::vector<std::shared_ptr<Entity>> Application::deletionEntities;
+	std::vector<std::shared_ptr<Entity>> Application::entities;
+	std::shared_ptr<PhysicsWorld> Application::physicsWorld;
 
 	std::shared_ptr<Application> Application::InitializeEngine(std::string windowName, int windowWidth, int windowHeight)
 	{
@@ -45,6 +49,7 @@ namespace NobleEngine
 			alcCloseDevice(app->audioDevice);
 		}
 		app->resourceManager = std::make_shared<ResourceManager>();
+		app->physicsWorld = PhysicsWorld::CreatePhysicsWorld();
 
 		std::shared_ptr<Shader> vertexShader = app->GetResourceManager()->LoadResource<Shader>("Resources\\Shaders\\standard.vs");
 		std::shared_ptr<Shader> fragmentShader = app->GetResourceManager()->LoadResource<Shader>("Resources\\Shaders\\standard.fs");
@@ -113,9 +118,12 @@ namespace NobleEngine
 			double frameTime = SDL_GetTicks() - frameStart;
 			double fps = 1000.0f / frameTime;
 			double deltaT = 1.0f / fps;
+			physicsWorld->StepSimulation(deltaT);
 
 			std::cout << "FPS: " << fps  << "	delta t: " << deltaT << "	frametime: " << frameTime << std::endl;
 		}
+
+		physicsWorld->CleanupPhysicsWorld();
 	}
 
 	std::shared_ptr<Entity> Application::CreateEntity()
@@ -182,11 +190,20 @@ namespace NobleEngine
 		return resourceManager;
 	}
 
+	std::shared_ptr<PhysicsWorld> Application::GetPhysicsWorld()
+	{
+		return physicsWorld;
+	}
+
 	void Application::BindCoreSystems()
 	{
 		std::shared_ptr<TransformSystem> tr = std::make_shared<TransformSystem>();
 		tr->SetSystemUse(true, true, false);
 		BindSystem(tr);
+
+		std::shared_ptr<PhysicsBodySystem> ps = std::make_shared<PhysicsBodySystem>();
+		tr->SetSystemUse(true, true, false);
+		BindSystem(ps);
 
 		std::shared_ptr<CameraSystem> cr = std::make_shared<CameraSystem>();
 		cr->SetSystemUse(false, true, false);

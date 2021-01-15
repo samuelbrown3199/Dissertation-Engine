@@ -29,6 +29,8 @@ add_library(NobleEngine
   src/NobleEngine/ResourceManager.cpp
   src/NobleEngine/InputManager.h
   src/NobleEngine/InputManager.cpp
+  src/NobleEngine/PhysicsWorld.h
+  src/NobleEngine/PhysicsWorld.cpp
   src/NobleEngine/Resource.h
   src/NobleEngine/Texture.h
   src/NobleEngine/Texture.cpp
@@ -52,6 +54,9 @@ add_library(NobleEngine
   src/NobleEngine/Camera.h
   src/NobleEngine/CameraSystem.h
   src/NobleEngine/CameraSystem.cpp
+  src/NobleEngine/PhysicsBody.h
+  src/NobleEngine/PhysicsBodySystem.h
+  src/NobleEngine/PhysicsBodySystem.cpp
 )
 target_link_libraries(NobleEngine SDL2 SDL2_ttf glew32 opengl32 openal32 Bullet3Collision Bullet3Common Bullet3Dynamics Bullet3Geometry BulletCollision BulletDynamics LinearMath)
 
