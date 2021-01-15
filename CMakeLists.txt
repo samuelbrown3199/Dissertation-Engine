@@ -6,6 +6,10 @@ include_directories(
 )
 
 if(MSVC)
+
+	set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
+	set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MT")
+
 	include_directories(
 		contrib/msvc-windows-x86_64/include
 	)
@@ -49,7 +53,7 @@ add_library(NobleEngine
   src/NobleEngine/CameraSystem.h
   src/NobleEngine/CameraSystem.cpp
 )
-target_link_libraries(NobleEngine glew32 opengl32 SDL2 openal32)
+target_link_libraries(NobleEngine SDL2 SDL2_ttf glew32 opengl32 openal32 Bullet3Collision Bullet3Common Bullet3Dynamics Bullet3Geometry BulletCollision BulletDynamics LinearMath)
 
 add_executable(TestProgram
   src/TestProgram/main.cpp

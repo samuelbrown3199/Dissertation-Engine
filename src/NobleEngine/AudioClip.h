@@ -12,6 +12,6 @@ namespace NobleEngine
 		ALuint audioClipID;
 
 		void OnLoad();
-		void LoadOgg(std::string& fileDirectory, std::vector<char>& buffer, ALenum& format, ALsizei& freq);
+		void LoadOgg(const std::string& fileDirectory, std::vector<char>& buffer, ALenum& format, ALsizei& freq);
 	};
 }
