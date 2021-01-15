@@ -19,14 +19,8 @@ namespace NobleEngine
 	{
 		std::shared_ptr<Application> app(new Application());
 		app->self = app;
-		app->screen = std::make_shared<Screen>(windowWidth, windowHeight);
+		app->screen = std::make_shared<Screen>(windowWidth, windowHeight, 0.1, 1000, windowName);
 
-		app->window = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
-		if (!SDL_GL_CreateContext(app->window))
-		{
-			std::cout << "Application failed to create window!" << std::endl;
-			throw std::exception();
-		}
 		if (glewInit() != GLEW_OK)
 		{
 			std::cout << "Application failed to initialize glew!" << std::endl;
@@ -81,6 +75,7 @@ namespace NobleEngine
 					loop = false;
 				}
 			}
+			screen->UpdateScreenSize();
 			for (size_t sys = 0; sys < systems.size(); sys++) //handles system updates
 			{
 				systems.at(sys)->Update();
@@ -93,7 +88,7 @@ namespace NobleEngine
 				systems.at(sys)->Render();
 			}
 
-			SDL_GL_SwapWindow(window);
+			SDL_GL_SwapWindow(screen->GetWindow());
 
 			std::vector<std::shared_ptr<Entity>>::iterator deleter;
 			for (deleter = deletionEntities.end(); deleter != deletionEntities.begin(); deleter--)

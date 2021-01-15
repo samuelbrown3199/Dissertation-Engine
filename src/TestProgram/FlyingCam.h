@@ -13,7 +13,7 @@ struct FlyingCam : public Component<FlyingCam>
 	bool firstMouse = true;
 	float pitch = 0.0f, yaw = -90.0f;
 
-	const float movementSpeed = 0.1f;
+	const float movementSpeed = 0.5f;
 	glm::vec2 oldMousePos, newMousePos;
 };
 

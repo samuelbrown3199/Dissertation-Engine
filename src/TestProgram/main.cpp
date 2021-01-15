@@ -33,7 +33,8 @@ int main()
 
 	std::shared_ptr<Entity> testEntity = app->CreateEntity();
 	std::shared_ptr<Transform> tr = testEntity->AddComponent<Transform>();
-	tr->position = glm::vec3(0, 0, -10);
+	tr->position = glm::vec3(0, -10, 0);
+	tr->scale = glm::vec3(100, 1, 100);
 
 	std::shared_ptr<MeshRenderer> mr = testEntity->AddComponent<MeshRenderer>();
 	mr->model = app->GetResourceManager()->LoadResource<NobleEngine::Model>(modelLoc);

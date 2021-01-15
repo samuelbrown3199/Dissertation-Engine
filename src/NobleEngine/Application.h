@@ -104,10 +104,6 @@ namespace NobleEngine
 		*/
 		std::weak_ptr<Application> self;
 		/**
-		*Stores a pointer to the application window.
-		*/
-		SDL_Window* window;
-		/**
 		*Stores a pointer to the current audio device.
 		*/
 		ALCdevice* audioDevice;
