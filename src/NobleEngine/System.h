@@ -5,6 +5,7 @@
 #include <memory>
 #include <vector>
 #include <string>
+#include <math.h>
 #include <thread>
 #include <mutex>
 
@@ -16,8 +17,8 @@ namespace NobleEngine
 
 	struct SystemBase
 	{
-	private:
-		std::thread systemThread;
+	protected:
+		std::vector<std::thread> systemThreads;
 	public:
 		/**
 		*Stores the tags that the system targets. Makes it possible to target specific entities with certain tags.
@@ -39,6 +40,10 @@ namespace NobleEngine
 		*Tells the system whether or not it should use a render or not.
 		*/
 		bool useRender = true;
+		/**
+		*Determines how many components a thread should handle.
+		*/
+		int maxComponentsPerThread = 1024;
 		/**
 		*Returns the application as a shared pointer.
 		*/
@@ -75,7 +80,37 @@ namespace NobleEngine
 		{
 			if (useUpdate)
 			{
-				for (size_t co = 0; co < T::componentList.size(); co++)
+				if (!useThreading)
+				{
+					for (size_t co = 0; co < T::componentList.size(); co++)
+					{
+						OnUpdate(T::componentList.at(co));
+					}
+				}
+				else
+				{
+					int amountOfThreads = ceil(T::componentList.size() / maxComponentsPerThread);
+					for (int i = 0; i < amountOfThreads; i++)
+					{
+						//systemThreads.push_back(std::thread(&System::ThreadUpdate, /*maxComponentsPerThread, maxComponentsPerThread * i, */this));
+					}
+
+					for (int i = systemThreads.size(); i > 0; i--)
+					{
+						systemThreads.at(i).join();
+						systemThreads.pop_back();
+					}
+				}
+			}
+		}
+		/**
+		*Used to generate the functionality of a worker update thread.
+		*/
+		void ThreadUpdate(int amount, int buffer)
+		{
+			for (size_t co = buffer; co < buffer+amount; co++)
+			{
+				if (T::componentList.at(co))
 				{
 					OnUpdate(T::componentList.at(co));
 				}
@@ -88,7 +123,37 @@ namespace NobleEngine
 		{
 			if (useRender)
 			{
-				for (size_t co = 0; co < T::componentList.size(); co++)
+				if (!useThreading)
+				{
+					for (size_t co = 0; co < T::componentList.size(); co++)
+					{
+						OnRender(T::componentList.at(co));
+					}
+				}
+				else
+				{
+					int amountOfThreads = ceil(T::componentList.size() / maxComponentsPerThread);
+					for (int i = 0; i < amountOfThreads; i++)
+					{
+						//systemThreads.push_back(std::thread(&System::ThreadRender, maxComponentsPerThread, maxComponentsPerThread * i));
+					}
+
+					for (int i = systemThreads.size(); i > 0; i--)
+					{
+						systemThreads.at(i).join();
+						systemThreads.pop_back();
+					}
+				}
+			}
+		}
+		/**
+		*Used to generate the functionality of a worker render thread.
+		*/
+		void ThreadRender(int amount, int buffer)
+		{
+			for (size_t co = buffer; co < buffer + amount; co++)
+			{
+				if (T::componentList.at(co))
 				{
 					OnRender(T::componentList.at(co));
 				}
@@ -108,7 +173,8 @@ namespace NobleEngine
 		*/
 		void SetSystemUse(bool threading, bool update, bool render)
 		{
-			useThreading = false;
+			useThreading = threading;
+			useThreading = false; //temp
 			useUpdate = update;
 			useRender = render;
 		}
