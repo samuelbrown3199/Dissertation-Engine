@@ -6,6 +6,7 @@
 #include "System.h"
 #include "Entity.h"
 #include "ShaderProgram.h"
+#include "InputManager.h"
 
 #include "TransformSystem.h"
 #include "MeshRendererSystem.h"
@@ -66,8 +67,12 @@ namespace NobleEngine
 		
 		glClearColor(0.0f, 0.45f, 0.45f, 1.0f);
 
+		Uint32 frameStart;
+
 		while (loop)
 		{
+			frameStart = SDL_GetTicks();
+
 			while (SDL_PollEvent(&e) != 0)
 			{
 				if (e.type == SDL_QUIT)
@@ -76,6 +81,8 @@ namespace NobleEngine
 				}
 			}
 			screen->UpdateScreenSize();
+			InputManager::GetMousePosition();
+
 			for (size_t sys = 0; sys < systems.size(); sys++) //handles system updates
 			{
 				systems.at(sys)->Update();
@@ -102,6 +109,11 @@ namespace NobleEngine
 				systems.at(sys)->ClearUnneededComponents();
 			}
 			resourceManager->UnloadUnusedResources();
+
+			double frameTime = SDL_GetTicks() - frameStart;
+			double fps = 1000.0f / frameTime;
+
+			std::cout << "FPS: " << fps << std::endl;
 		}
 	}
 

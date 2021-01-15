@@ -18,11 +18,14 @@ namespace NobleEngine
 
 	void MeshRendererSystem::RenderMesh(std::shared_ptr<MeshRenderer> mesh)
 	{
-		std::shared_ptr<Transform> tr = GetApplication()->GetEntity(mesh->entityID)->GetComponent<Transform>();
+		if (!mesh->transform)
+		{
+			mesh->transform = GetApplication()->GetEntity(mesh->entityID)->GetComponent<Transform>();
+		}
 		if (!mesh->shader)
 		{
 			GetApplication()->standardShader->UseProgram();
-			GetApplication()->standardShader->BindMat4("u_Model", tr->model);
+			GetApplication()->standardShader->BindMat4("u_Model", mesh->transform->model);
 			GetApplication()->standardShader->BindMat4("u_Projection", GetApplication()->screen->GenerateProjectionMatrix());
 			GetApplication()->standardShader->BindMat4("u_View", GetApplication()->activeCam->viewMatrix);
 
@@ -32,7 +35,7 @@ namespace NobleEngine
 		else
 		{
 			mesh->shader->UseProgram();
-			mesh->shader->BindMat4("u_Model", tr->model);
+			mesh->shader->BindMat4("u_Model", mesh->transform->model);
 			mesh->shader->BindMat4("u_Projection", GetApplication()->screen->GenerateProjectionMatrix());
 			mesh->shader->BindMat4("u_View", GetApplication()->activeCam->viewMatrix);
 		}

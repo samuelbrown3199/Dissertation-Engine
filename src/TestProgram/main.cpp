@@ -1,5 +1,6 @@
 #include <iostream>
 #include <thread>
+#include <chrono>
 
 #include <NobleEngine/EngineCore.h>
 #include <NobleEngine/TransformSystem.h>
@@ -12,6 +13,8 @@
 using namespace NobleEngine;
 int main()
 {
+	srand(time(NULL));
+
 	std::shared_ptr<Application> app = Application::InitializeEngine("Test Program", 900, 900);
 
 	std::string modelLoc = "Resources\\Models\\cube.obj";
@@ -19,21 +22,32 @@ int main()
 	std::string texLoc1 = "";
 	std::string testAudio = "Resources\\Sound\\testsound.ogg";
 
-	//std::shared_ptr<AudioClip> ac = app->GetResourceManager()->LoadResource<AudioClip>(testAudio);
+	std::shared_ptr<AudioClip> ac = app->GetResourceManager()->LoadResource<AudioClip>(testAudio);
 
-	for (int i = 0; i < 100; i++) //debug code for many entities.
+	int amount = 10;
+	for (int x = 0; x < amount; x++)
 	{
-		std::shared_ptr<Entity> megaEntity = app->CreateEntity();
-		std::shared_ptr<MeshRenderer> mr = megaEntity->AddComponent<MeshRenderer>();
-		mr->model = app->GetResourceManager()->LoadResource<NobleEngine::Model>(modelLoc);
-		mr->material = app->GetResourceManager()->LoadMaterial(texLoc, texLoc1);
+		for (int z = 0; z < amount; z++)
+		{
+			for (int y = 0; y < amount; y++)
+			{
+				std::shared_ptr<Entity> physicsTest = app->CreateEntity();
+				std::shared_ptr<Transform> tr = physicsTest->AddComponent<Transform>();
 
-		megaEntity->AddComponent<Transform>()->position = glm::vec3(10, 0, -20 - (2.5 * i));
+				tr->position = glm::vec3(25 + (-5 * x) + rand() % 5, 50 + (5 * y) + rand() % 5, -30 + (-5 * z) + rand() % 5);
+				tr->rotation = glm::vec3(rand() % 360, rand() % 360, rand() % 360);
+				std::shared_ptr<MeshRenderer> pc = physicsTest->AddComponent<MeshRenderer>();
+				pc->model = app->GetResourceManager()->LoadResource<NobleEngine::Model>(modelLoc);
+				pc->material = app->GetResourceManager()->LoadMaterial(texLoc, texLoc1);
+				/*physicsTest->AddComponent<Collider>(Collider::ColliderShape::box);
+				physicsTest->AddComponent<PhysicsBody>(20);*/
+			}
+		}
 	}
 
 	std::shared_ptr<Entity> testEntity = app->CreateEntity();
 	std::shared_ptr<Transform> tr = testEntity->AddComponent<Transform>();
-	tr->position = glm::vec3(0, -10, 0);
+	tr->position = glm::vec3(0, 0, 0);
 	tr->scale = glm::vec3(100, 1, 100);
 
 	std::shared_ptr<MeshRenderer> mr = testEntity->AddComponent<MeshRenderer>();
