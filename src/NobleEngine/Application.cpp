@@ -112,8 +112,9 @@ namespace NobleEngine
 
 			double frameTime = SDL_GetTicks() - frameStart;
 			double fps = 1000.0f / frameTime;
+			double deltaT = 1.0f / fps;
 
-			std::cout << "FPS: " << fps << std::endl;
+			std::cout << "FPS: " << fps  << "	delta t: " << deltaT << "	frametime: " << frameTime << std::endl;
 		}
 	}
 
