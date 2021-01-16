@@ -4,6 +4,9 @@
 
 namespace NobleEngine
 {
+	std::vector<std::shared_ptr<Resource>> ResourceManager::resources;
+	std::vector<std::shared_ptr<Material>> ResourceManager::materials;
+
 	std::shared_ptr<Material> ResourceManager::LoadMaterial(std::string diffusePath, std::string specularPath)
 	{
 		for (size_t ma = 0; ma < materials.size(); ma++)

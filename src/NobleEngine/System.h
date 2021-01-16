@@ -88,7 +88,7 @@ namespace NobleEngine
 				}
 				else
 				{
-					int amountOfThreads = ceil(T::componentList.size() / maxComponentsPerThread);
+					int amountOfThreads = ceil(T::componentList.size() / maxComponentsPerThread)+1;
 					for (int i = 0; i < amountOfThreads; i++)
 					{
 						int buffer = maxComponentsPerThread * i;
@@ -132,11 +132,11 @@ namespace NobleEngine
 				}
 				else
 				{
-					int amountOfThreads = ceil(T::componentList.size() / maxComponentsPerThread);
+					int amountOfThreads = ceil(T::componentList.size() / maxComponentsPerThread)+1;
 					for (int i = 0; i < amountOfThreads; i++)
 					{
 						int buffer = maxComponentsPerThread * i;
-						//systemThreads.push_back(std::thread(&System::ThreadRender, maxComponentsPerThread, buffer, this));
+						//systemThreads.push_back(std::thread(&System<T>::ThreadRender, maxComponentsPerThread, buffer, this));
 					}
 
 					for (int i = systemThreads.size(); i > 0; i--)

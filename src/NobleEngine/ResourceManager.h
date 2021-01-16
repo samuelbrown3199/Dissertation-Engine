@@ -1,3 +1,7 @@
+#pragma once
+#ifndef RESOURCEMANAGER_H_
+#define RESOURCEMANAGER_H_
+
 #include <vector>
 #include <memory>
 #include <string>
@@ -8,19 +12,22 @@ namespace NobleEngine
 {
 	struct Material;
 
+	/**
+	*Handles resource management. Stores, loads and unloads resources.
+	*/
 	struct ResourceManager
 	{
 		/**
 		*Stores all loaded resources.
 		*/
-		std::vector<std::shared_ptr<Resource>> resources;
-		std::vector<std::shared_ptr<Material>> materials;
+		static std::vector<std::shared_ptr<Resource>> resources;
+		static std::vector<std::shared_ptr<Material>> materials;
 
 		/**
 		*Loads a resource of the passed type with the file directory.
 		*/
 		template<typename T>
-		std::shared_ptr<T> LoadResource(std::string fileDirectory)
+		static std::shared_ptr<T> LoadResource(std::string fileDirectory)
 		{
 			for (size_t re = 0; re < resources.size(); re++)
 			{
@@ -40,12 +47,16 @@ namespace NobleEngine
 			resources.push_back(newResource);
 			return newResource;
 		}
-
-		std::shared_ptr<Material> LoadMaterial(std::string diffusePath, std::string specularPath);
+		/**
+		*Creates a material using a diffuse texture and a specular texture.
+		*/
+		static std::shared_ptr<Material> LoadMaterial(std::string diffusePath, std::string specularPath);
 
 		/**
 		*Unloads resources whose use count is currently 1. This means that un-used resources are no longer kept in memory.
 		*/
-		void UnloadUnusedResources();
+		static void UnloadUnusedResources();
 	};
 }
+
+#endif

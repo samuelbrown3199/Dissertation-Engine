@@ -94,72 +94,83 @@ $(function() {
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <span class="keywordflow">return</span> component;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        }</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_entity.html#a0080fc9ebb5f92c0a19a4a6c5da4ad01">   45</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="struct_noble_engine_1_1_entity.html#a0080fc9ebb5f92c0a19a4a6c5da4ad01">RemoveComponent</a>()</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            std::shared_ptr&lt;T&gt; comp;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; entityComponents.size(); i++)</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            {</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                comp = std::dynamic_pointer_cast&lt;T&gt;(entityComponents.at(i));</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                <span class="keywordflow">if</span>(comp)</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                {</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                    <span class="comment">//delete component data</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; T::componentList.size(); i++)</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                    {</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                        <span class="keywordflow">if</span> (T::componentList[i] == comp)</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                        {</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                            T::componentList.erase(T::componentList.begin() + i);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                        }</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                    }</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                    entityComponents.erase(entityComponents.begin() + i);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                }</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                {</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                    std::cout &lt;&lt; <span class="stringliteral">&quot;Entity of ID: &quot;</span> &lt;&lt; <a class="code" href="struct_noble_engine_1_1_entity.html#a3ba6ba61c75db63bcc89d3249fd69b1f">entityID</a> &lt;&lt; <span class="stringliteral">&quot; does not contain component to remove.&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                }</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            }</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        }</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_entity.html#ad1dce1ce8fe3364b51528a9e9a6081dc">   73</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="struct_noble_engine_1_1_entity.html#ad1dce1ce8fe3364b51528a9e9a6081dc">RemoveAllComponents</a>()</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> co = 0; co &lt; entityComponents.size(); co++)</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            {</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                entityComponents.at(co)-&gt;markedForDeletion = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            }</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        }</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_entity.html#ab501445a4462b8174bb9fd52176abb43">   84</a></span>&#160;        std::shared_ptr&lt;T&gt; <a class="code" href="struct_noble_engine_1_1_entity.html#ab501445a4462b8174bb9fd52176abb43">GetComponent</a>() <span class="comment">//currently bugged when trying to use.</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        {</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            std::shared_ptr&lt;T&gt; comp;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; entityComponents.size(); i++)</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            {</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                comp = std::dynamic_pointer_cast&lt;T&gt;(entityComponents.at(i));</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                <span class="keywordflow">if</span> (!comp) <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                <span class="keywordflow">return</span> comp;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            }</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;Could not find component on entity &quot;</span> &lt;&lt; <a class="code" href="struct_noble_engine_1_1_entity.html#a3ba6ba61c75db63bcc89d3249fd69b1f">entityID</a> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            <span class="keywordflow">throw</span> std::exception();</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        }</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="struct_noble_engine_1_1_entity.html#a84f33a0ce90f9c91471e2506b63e3263">GetEntityComponentSize</a>();</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="struct_noble_engine_1_1_entity.html#a395f6d7564a49f37ef2324c72d6d9808">Destroy</a>();</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        std::vector&lt;std::shared_ptr&lt;ComponentBase&gt;&gt; entityComponents;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    };</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;}</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> ... Args&gt;</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_entity.html#a49fd9fc315d45a891a887eca56d0f7df">   44</a></span>&#160;        std::shared_ptr&lt;T&gt; <a class="code" href="struct_noble_engine_1_1_entity.html#a49fd9fc315d45a891a887eca56d0f7df">AddComponent</a>(Args&amp;&amp;... args)</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            std::shared_ptr&lt;T&gt; component = std::make_shared&lt;T&gt;();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            component-&gt;entityID = <a class="code" href="struct_noble_engine_1_1_entity.html#a3ba6ba61c75db63bcc89d3249fd69b1f">entityID</a>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            component-&gt;OnInitialize(std::forward&lt;Args&gt;(args)...);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            entityComponents.push_back(component);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            T::componentList.push_back(component);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <span class="keywordflow">return</span> component;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_entity.html#a0080fc9ebb5f92c0a19a4a6c5da4ad01">   58</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="struct_noble_engine_1_1_entity.html#a0080fc9ebb5f92c0a19a4a6c5da4ad01">RemoveComponent</a>()</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            std::shared_ptr&lt;T&gt; comp;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; entityComponents.size(); i++)</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                comp = std::dynamic_pointer_cast&lt;T&gt;(entityComponents.at(i));</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                <span class="keywordflow">if</span>(comp)</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                    <span class="comment">//delete component data</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; T::componentList.size(); i++)</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                    {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                        <span class="keywordflow">if</span> (T::componentList[i] == comp)</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                        {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                            T::componentList.erase(T::componentList.begin() + i);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                        }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                    }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                    entityComponents.erase(entityComponents.begin() + i);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                    std::cout &lt;&lt; <span class="stringliteral">&quot;Entity of ID: &quot;</span> &lt;&lt; <a class="code" href="struct_noble_engine_1_1_entity.html#a3ba6ba61c75db63bcc89d3249fd69b1f">entityID</a> &lt;&lt; <span class="stringliteral">&quot; does not contain component to remove.&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_entity.html#ad1dce1ce8fe3364b51528a9e9a6081dc">   86</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="struct_noble_engine_1_1_entity.html#ad1dce1ce8fe3364b51528a9e9a6081dc">RemoveAllComponents</a>()</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        {</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> co = 0; co &lt; entityComponents.size(); co++)</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                entityComponents.at(co)-&gt;markedForDeletion = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        }</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_entity.html#ab501445a4462b8174bb9fd52176abb43">   97</a></span>&#160;        std::shared_ptr&lt;T&gt; <a class="code" href="struct_noble_engine_1_1_entity.html#ab501445a4462b8174bb9fd52176abb43">GetComponent</a>() <span class="comment">//currently bugged when trying to use.</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        {</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            std::shared_ptr&lt;T&gt; comp;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; entityComponents.size(); i++)</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            {</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                comp = std::dynamic_pointer_cast&lt;T&gt;(entityComponents.at(i));</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                <span class="keywordflow">if</span> (!comp) <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                <span class="keywordflow">return</span> comp;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            }</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;Could not find component on entity &quot;</span> &lt;&lt; <a class="code" href="struct_noble_engine_1_1_entity.html#a3ba6ba61c75db63bcc89d3249fd69b1f">entityID</a> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        }</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="struct_noble_engine_1_1_entity.html#a84f33a0ce90f9c91471e2506b63e3263">GetEntityComponentSize</a>();</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="struct_noble_engine_1_1_entity.html#a395f6d7564a49f37ef2324c72d6d9808">Destroy</a>();</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        std::vector&lt;std::shared_ptr&lt;ComponentBase&gt;&gt; entityComponents;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    };</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="astruct_noble_engine_1_1_entity_html_af431595e63a075ab4f374e5714a669b5"><div class="ttname"><a href="struct_noble_engine_1_1_entity.html#af431595e63a075ab4f374e5714a669b5">NobleEngine::Entity::AddComponent</a></div><div class="ttdeci">std::shared_ptr&lt; T &gt; AddComponent()</div><div class="ttdef"><b>Definition:</b> Entity.h:31</div></div>
 <div class="ttc" id="astruct_noble_engine_1_1_entity_html_a395f6d7564a49f37ef2324c72d6d9808"><div class="ttname"><a href="struct_noble_engine_1_1_entity.html#a395f6d7564a49f37ef2324c72d6d9808">NobleEngine::Entity::Destroy</a></div><div class="ttdeci">void Destroy()</div><div class="ttdef"><b>Definition:</b> Entity.cpp:12</div></div>
-<div class="ttc" id="astruct_noble_engine_1_1_entity_html_ad1dce1ce8fe3364b51528a9e9a6081dc"><div class="ttname"><a href="struct_noble_engine_1_1_entity.html#ad1dce1ce8fe3364b51528a9e9a6081dc">NobleEngine::Entity::RemoveAllComponents</a></div><div class="ttdeci">void RemoveAllComponents()</div><div class="ttdef"><b>Definition:</b> Entity.h:73</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_entity_html_ad1dce1ce8fe3364b51528a9e9a6081dc"><div class="ttname"><a href="struct_noble_engine_1_1_entity.html#ad1dce1ce8fe3364b51528a9e9a6081dc">NobleEngine::Entity::RemoveAllComponents</a></div><div class="ttdeci">void RemoveAllComponents()</div><div class="ttdef"><b>Definition:</b> Entity.h:86</div></div>
 <div class="ttc" id="astruct_noble_engine_1_1_entity_html_a39acf4643084032f19b37ebdf354f400"><div class="ttname"><a href="struct_noble_engine_1_1_entity.html#a39acf4643084032f19b37ebdf354f400">NobleEngine::Entity::tag</a></div><div class="ttdeci">std::string tag</div><div class="ttdef"><b>Definition:</b> Entity.h:22</div></div>
 <div class="ttc" id="astruct_noble_engine_1_1_entity_html_a84f33a0ce90f9c91471e2506b63e3263"><div class="ttname"><a href="struct_noble_engine_1_1_entity.html#a84f33a0ce90f9c91471e2506b63e3263">NobleEngine::Entity::GetEntityComponentSize</a></div><div class="ttdeci">int GetEntityComponentSize()</div><div class="ttdef"><b>Definition:</b> Entity.cpp:7</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_entity_html_a49fd9fc315d45a891a887eca56d0f7df"><div class="ttname"><a href="struct_noble_engine_1_1_entity.html#a49fd9fc315d45a891a887eca56d0f7df">NobleEngine::Entity::AddComponent</a></div><div class="ttdeci">std::shared_ptr&lt; T &gt; AddComponent(Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition:</b> Entity.h:44</div></div>
 <div class="ttc" id="astruct_noble_engine_1_1_entity_html_a3ba6ba61c75db63bcc89d3249fd69b1f"><div class="ttname"><a href="struct_noble_engine_1_1_entity.html#a3ba6ba61c75db63bcc89d3249fd69b1f">NobleEngine::Entity::entityID</a></div><div class="ttdeci">int entityID</div><div class="ttdef"><b>Definition:</b> Entity.h:18</div></div>
-<div class="ttc" id="astruct_noble_engine_1_1_entity_html_a0080fc9ebb5f92c0a19a4a6c5da4ad01"><div class="ttname"><a href="struct_noble_engine_1_1_entity.html#a0080fc9ebb5f92c0a19a4a6c5da4ad01">NobleEngine::Entity::RemoveComponent</a></div><div class="ttdeci">void RemoveComponent()</div><div class="ttdef"><b>Definition:</b> Entity.h:45</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_entity_html_a0080fc9ebb5f92c0a19a4a6c5da4ad01"><div class="ttname"><a href="struct_noble_engine_1_1_entity.html#a0080fc9ebb5f92c0a19a4a6c5da4ad01">NobleEngine::Entity::RemoveComponent</a></div><div class="ttdeci">void RemoveComponent()</div><div class="ttdef"><b>Definition:</b> Entity.h:58</div></div>
 <div class="ttc" id="astruct_noble_engine_1_1_entity_html"><div class="ttname"><a href="struct_noble_engine_1_1_entity.html">NobleEngine::Entity</a></div><div class="ttdef"><b>Definition:</b> Entity.h:13</div></div>
-<div class="ttc" id="astruct_noble_engine_1_1_entity_html_ab501445a4462b8174bb9fd52176abb43"><div class="ttname"><a href="struct_noble_engine_1_1_entity.html#ab501445a4462b8174bb9fd52176abb43">NobleEngine::Entity::GetComponent</a></div><div class="ttdeci">std::shared_ptr&lt; T &gt; GetComponent()</div><div class="ttdef"><b>Definition:</b> Entity.h:84</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_entity_html_ab501445a4462b8174bb9fd52176abb43"><div class="ttname"><a href="struct_noble_engine_1_1_entity.html#ab501445a4462b8174bb9fd52176abb43">NobleEngine::Entity::GetComponent</a></div><div class="ttdeci">std::shared_ptr&lt; T &gt; GetComponent()</div><div class="ttdef"><b>Definition:</b> Entity.h:97</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20

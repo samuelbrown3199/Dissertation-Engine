@@ -40,6 +40,13 @@ namespace NobleEngine
 		*Contains the model matrix for use in rendering.
 		*/
 		glm::mat4 model;
+
+		void OnInitialize(glm::vec3 pos, glm::vec3 rot, glm::vec3 sca)
+		{
+			position = pos;
+			rotation = rot;
+			scale = sca;
+		}
 	};
 }
 

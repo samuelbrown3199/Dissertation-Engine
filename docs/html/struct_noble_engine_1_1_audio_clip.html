@@ -74,6 +74,8 @@ $(function() {
 <div class="title">NobleEngine::AudioClip Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_audio_clip_8h_source.html">AudioClip.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for NobleEngine::AudioClip:</div>
 <div class="dyncontent">
@@ -88,8 +90,7 @@ Inheritance diagram for NobleEngine::AudioClip:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aafe829ee21a00e38c51dc49dce0af2c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_audio_clip.html#aafe829ee21a00e38c51dc49dce0af2c7">OnLoad</a> ()</td></tr>
 <tr class="separator:aafe829ee21a00e38c51dc49dce0af2c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54943cca6759f48b6b7ff224c1b38a10"><td class="memItemLeft" align="right" valign="top"><a id="a54943cca6759f48b6b7ff224c1b38a10"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>LoadOgg</b> (const std::string &amp;fileDirectory, std::vector&lt; char &gt; &amp;buffer, ALenum &amp;format, ALsizei &amp;freq)</td></tr>
+<tr class="memitem:a54943cca6759f48b6b7ff224c1b38a10"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_audio_clip.html#a54943cca6759f48b6b7ff224c1b38a10">LoadOgg</a> (const std::string &amp;fileDirectory, std::vector&lt; char &gt; &amp;buffer, ALenum &amp;format, ALsizei &amp;freq)</td></tr>
 <tr class="separator:a54943cca6759f48b6b7ff224c1b38a10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -101,7 +102,50 @@ ALuint&#160;</td><td class="memItemRight" valign="bottom"><b>audioClipID</b></td
 <tr class="memitem:abea4557e439532caf6ea37068df0589a inherit pub_attribs_struct_noble_engine_1_1_resource"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_resource.html#abea4557e439532caf6ea37068df0589a">resourcePath</a></td></tr>
 <tr class="separator:abea4557e439532caf6ea37068df0589a inherit pub_attribs_struct_noble_engine_1_1_resource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Stores an audio file for use in OpenAL. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a54943cca6759f48b6b7ff224c1b38a10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54943cca6759f48b6b7ff224c1b38a10">&#9670;&nbsp;</a></span>LoadOgg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NobleEngine::AudioClip::LoadOgg </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>fileDirectory</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; char &gt; &amp;&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ALenum &amp;&#160;</td>
+          <td class="paramname"><em>format</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ALsizei &amp;&#160;</td>
+          <td class="paramname"><em>freq</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Loads an OGG file. </p>
+
+</div>
+</div>
 <a id="aafe829ee21a00e38c51dc49dce0af2c7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aafe829ee21a00e38c51dc49dce0af2c7">&#9670;&nbsp;</a></span>OnLoad()</h2>
 
@@ -124,7 +168,7 @@ ALuint&#160;</td><td class="memItemRight" valign="bottom"><b>audioClipID</b></td
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Loads the resource. </p>
+<p>Loads a sound file and buffers it. </p>
 
 <p>Reimplemented from <a class="el" href="struct_noble_engine_1_1_resource.html#a4548d73e1934242522f386475b81b0aa">NobleEngine::Resource</a>.</p>
 

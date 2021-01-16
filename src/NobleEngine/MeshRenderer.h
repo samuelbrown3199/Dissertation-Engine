@@ -2,9 +2,11 @@
 
 #include<string>
 
+#include "Application.h"
 #include "Model.h"
 #include "Material.h"
 #include "ShaderProgram.h"
+#include "ResourceManager.h"
 
 namespace NobleEngine
 {
@@ -30,5 +32,18 @@ namespace NobleEngine
 		*The meshes transform. Automatically found in the mesh renderer system.
 		*/
 		std::shared_ptr<Transform> transform;
+
+		void OnInitialize(std::string modelDir, std::shared_ptr<Material> mat)
+		{
+			model = ResourceManager::LoadResource<Model>(modelDir);
+			material = mat;
+			shader = Application::standardShader;
+		}
+		void OnInitialize(std::string modelDir, std::shared_ptr<Material> mat, std::shared_ptr<ShaderProgram> sha)
+		{
+			model = ResourceManager::LoadResource<Model>(modelDir);
+			material = mat;
+			shader = sha;
+		}
 	};
 }

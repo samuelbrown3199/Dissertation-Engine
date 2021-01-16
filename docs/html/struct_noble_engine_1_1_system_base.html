@@ -69,6 +69,7 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="struct_noble_engine_1_1_system_base-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">NobleEngine::SystemBase Struct Reference</div>  </div>
@@ -83,10 +84,12 @@ Inheritance diagram for NobleEngine::SystemBase:</div>
 <area href="struct_noble_engine_1_1_system.html" alt="NobleEngine::System&lt; T &gt;" shape="rect" coords="0,56,238,80"/>
 <area href="struct_noble_engine_1_1_system.html" alt="NobleEngine::System&lt; Camera &gt;" shape="rect" coords="248,56,486,80"/>
 <area href="struct_noble_engine_1_1_system.html" alt="NobleEngine::System&lt; MeshRenderer &gt;" shape="rect" coords="496,56,734,80"/>
-<area href="struct_noble_engine_1_1_system.html" alt="NobleEngine::System&lt; Transform &gt;" shape="rect" coords="744,56,982,80"/>
+<area href="struct_noble_engine_1_1_system.html" alt="NobleEngine::System&lt; PhysicsBody &gt;" shape="rect" coords="744,56,982,80"/>
+<area href="struct_noble_engine_1_1_system.html" alt="NobleEngine::System&lt; Transform &gt;" shape="rect" coords="992,56,1230,80"/>
 <area href="struct_noble_engine_1_1_camera_system.html" alt="NobleEngine::CameraSystem" shape="rect" coords="248,112,486,136"/>
 <area href="struct_noble_engine_1_1_mesh_renderer_system.html" alt="NobleEngine::MeshRendererSystem" shape="rect" coords="496,112,734,136"/>
-<area href="struct_noble_engine_1_1_transform_system.html" alt="NobleEngine::TransformSystem" shape="rect" coords="744,112,982,136"/>
+<area href="struct_noble_engine_1_1_physics_body_system.html" alt="NobleEngine::PhysicsBodySystem" shape="rect" coords="744,112,982,136"/>
+<area href="struct_noble_engine_1_1_transform_system.html" alt="NobleEngine::TransformSystem" shape="rect" coords="992,112,1230,136"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -94,6 +97,8 @@ Inheritance diagram for NobleEngine::SystemBase:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ac7c5eff575ead6e6f815ab668f054529"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="class_noble_engine_1_1_application.html">Application</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_system_base.html#ac7c5eff575ead6e6f815ab668f054529">GetApplication</a> ()</td></tr>
 <tr class="separator:ac7c5eff575ead6e6f815ab668f054529"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28fd81024642db472eefa17ebb4e98c9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_system_base.html#a28fd81024642db472eefa17ebb4e98c9">InitializeSystem</a> ()</td></tr>
+<tr class="separator:a28fd81024642db472eefa17ebb4e98c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04ebf962f2fab6a5516cf12a91c51838"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_system_base.html#a04ebf962f2fab6a5516cf12a91c51838">Update</a> ()</td></tr>
 <tr class="separator:a04ebf962f2fab6a5516cf12a91c51838"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e0d4767f4d39bd43be757c4c3b0d124"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_system_base.html#a8e0d4767f4d39bd43be757c4c3b0d124">Render</a> ()</td></tr>
@@ -103,8 +108,6 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:af1d3cd801e5f575989b37f9395865a17"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_system_base.html#af1d3cd801e5f575989b37f9395865a17">targetTags</a></td></tr>
-<tr class="separator:af1d3cd801e5f575989b37f9395865a17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c4d46dab377657c340fa2aa59892fe1"><td class="memItemLeft" align="right" valign="top">std::weak_ptr&lt; <a class="el" href="class_noble_engine_1_1_application.html">Application</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_system_base.html#a3c4d46dab377657c340fa2aa59892fe1">application</a></td></tr>
 <tr class="separator:a3c4d46dab377657c340fa2aa59892fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d55aa2c54c70b3505f82041c995e280"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_system_base.html#a5d55aa2c54c70b3505f82041c995e280">useThreading</a> = false</td></tr>
@@ -113,6 +116,14 @@ Public Attributes</h2></td></tr>
 <tr class="separator:ad00c1f279db03b449a8ff431761d32cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad506cb4eef8cbaab35cd29ff9bf86f98"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_system_base.html#ad506cb4eef8cbaab35cd29ff9bf86f98">useRender</a> = true</td></tr>
 <tr class="separator:ad506cb4eef8cbaab35cd29ff9bf86f98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a414413f871cec1f7510cbf25c7e36704"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_system_base.html#a414413f871cec1f7510cbf25c7e36704">maxComponentsPerThread</a> = 1024</td></tr>
+<tr class="separator:a414413f871cec1f7510cbf25c7e36704"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:ac9d8e8bbe00874b4ef8207460e101cb8"><td class="memItemLeft" align="right" valign="top"><a id="ac9d8e8bbe00874b4ef8207460e101cb8"></a>
+std::vector&lt; std::thread &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>systemThreads</b></td></tr>
+<tr class="separator:ac9d8e8bbe00874b4ef8207460e101cb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a9104bf792f2989f6bed7d210651a8e86"></a>
@@ -139,7 +150,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Used in the inherited <a class="el" href="struct_noble_engine_1_1_system.html">System</a> struct. </p>
 
-<p>Reimplemented in <a class="el" href="struct_noble_engine_1_1_system.html#a7715dca7072754caaa9c395d534e7584">NobleEngine::System&lt; T &gt;</a>, <a class="el" href="struct_noble_engine_1_1_system.html#a7715dca7072754caaa9c395d534e7584">NobleEngine::System&lt; MeshRenderer &gt;</a>, <a class="el" href="struct_noble_engine_1_1_system.html#a7715dca7072754caaa9c395d534e7584">NobleEngine::System&lt; Camera &gt;</a>, and <a class="el" href="struct_noble_engine_1_1_system.html#a7715dca7072754caaa9c395d534e7584">NobleEngine::System&lt; Transform &gt;</a>.</p>
+<p>Reimplemented in <a class="el" href="struct_noble_engine_1_1_system.html#a7715dca7072754caaa9c395d534e7584">NobleEngine::System&lt; T &gt;</a>, <a class="el" href="struct_noble_engine_1_1_system.html#a7715dca7072754caaa9c395d534e7584">NobleEngine::System&lt; MeshRenderer &gt;</a>, <a class="el" href="struct_noble_engine_1_1_system.html#a7715dca7072754caaa9c395d534e7584">NobleEngine::System&lt; PhysicsBody &gt;</a>, <a class="el" href="struct_noble_engine_1_1_system.html#a7715dca7072754caaa9c395d534e7584">NobleEngine::System&lt; Camera &gt;</a>, and <a class="el" href="struct_noble_engine_1_1_system.html#a7715dca7072754caaa9c395d534e7584">NobleEngine::System&lt; Transform &gt;</a>.</p>
 
 </div>
 </div>
@@ -166,6 +177,32 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Returns the application as a shared pointer. </p>
+
+</div>
+</div>
+<a id="a28fd81024642db472eefa17ebb4e98c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28fd81024642db472eefa17ebb4e98c9">&#9670;&nbsp;</a></span>InitializeSystem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void NobleEngine::SystemBase::InitializeSystem </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Called when binding the system. </p>
 
 </div>
 </div>
@@ -237,18 +274,18 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="af1d3cd801e5f575989b37f9395865a17"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af1d3cd801e5f575989b37f9395865a17">&#9670;&nbsp;</a></span>targetTags</h2>
+<a id="a414413f871cec1f7510cbf25c7e36704"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a414413f871cec1f7510cbf25c7e36704">&#9670;&nbsp;</a></span>maxComponentsPerThread</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;std::string&gt; NobleEngine::SystemBase::targetTags</td>
+          <td class="memname">int NobleEngine::SystemBase::maxComponentsPerThread = 1024</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Stores the tags that the system targets. Makes it possible to target specific entities with certain tags. </p>
+<p>Determines how many components a thread should handle. </p>
 
 </div>
 </div>

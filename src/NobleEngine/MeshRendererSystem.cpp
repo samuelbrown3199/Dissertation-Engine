@@ -24,6 +24,7 @@ namespace NobleEngine
 		}
 		if (!mesh->shader)
 		{
+			mesh->shader = Application::standardShader;
 			GetApplication()->standardShader->UseProgram();
 			GetApplication()->standardShader->BindMat4("u_Model", mesh->transform->model);
 			GetApplication()->standardShader->BindMat4("u_Projection", GetApplication()->screen->GenerateProjectionMatrix());
@@ -38,6 +39,8 @@ namespace NobleEngine
 			mesh->shader->BindMat4("u_Model", mesh->transform->model);
 			mesh->shader->BindMat4("u_Projection", GetApplication()->screen->GenerateProjectionMatrix());
 			mesh->shader->BindMat4("u_View", GetApplication()->activeCam->viewMatrix);
+			mesh->shader->BindInt("material.diffuseTexture", 0);
+			mesh->shader->BindInt("material.specularTexture", 1);
 		}
 		if (mesh->model)
 		{

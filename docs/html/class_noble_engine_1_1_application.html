@@ -87,8 +87,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:abcf283583fdb8d4952147089386bb9bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afaa8b6ae60ba4eb7f4667ffe7b559efa"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="struct_noble_engine_1_1_entity.html">Entity</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_noble_engine_1_1_application.html#afaa8b6ae60ba4eb7f4667ffe7b559efa">CreateEntity</a> (std::string tag)</td></tr>
 <tr class="separator:afaa8b6ae60ba4eb7f4667ffe7b559efa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0fa17da95d0ad81344ce11d8fa7fc9a"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="struct_noble_engine_1_1_entity.html">Entity</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_noble_engine_1_1_application.html#ac0fa17da95d0ad81344ce11d8fa7fc9a">GetEntity</a> (int ID)</td></tr>
-<tr class="separator:ac0fa17da95d0ad81344ce11d8fa7fc9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a519fe496c59ac79b42c462b9c222baa6"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="struct_noble_engine_1_1_resource_manager.html">ResourceManager</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_noble_engine_1_1_application.html#a519fe496c59ac79b42c462b9c222baa6">GetResourceManager</a> ()</td></tr>
 <tr class="separator:a519fe496c59ac79b42c462b9c222baa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a75787b6c73bfeeabac4a4d947044ec42"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
@@ -102,6 +100,10 @@ Public Member Functions</h2></td></tr>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ac4e5fc8d9269e3bb888309cb25d18230"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_noble_engine_1_1_application.html">Application</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_noble_engine_1_1_application.html#ac4e5fc8d9269e3bb888309cb25d18230">InitializeEngine</a> (std::string windowName, int windowWidth, int windowHeight)</td></tr>
 <tr class="separator:ac4e5fc8d9269e3bb888309cb25d18230"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0fa17da95d0ad81344ce11d8fa7fc9a"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="struct_noble_engine_1_1_entity.html">Entity</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_noble_engine_1_1_application.html#ac0fa17da95d0ad81344ce11d8fa7fc9a">GetEntity</a> (int ID)</td></tr>
+<tr class="separator:ac0fa17da95d0ad81344ce11d8fa7fc9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec6f5b56e0c298f1e14972fdcf5e5b12"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="struct_noble_engine_1_1_physics_world.html">PhysicsWorld</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_noble_engine_1_1_application.html#aec6f5b56e0c298f1e14972fdcf5e5b12">GetPhysicsWorld</a> ()</td></tr>
+<tr class="separator:aec6f5b56e0c298f1e14972fdcf5e5b12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -192,6 +194,9 @@ template&lt;typename T &gt; </div>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">std::shared_ptr&lt; <a class="el" href="struct_noble_engine_1_1_entity.html">Entity</a> &gt; NobleEngine::Application::GetEntity </td>
@@ -201,8 +206,39 @@ template&lt;typename T &gt; </div>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <p>Returns an entity with the ID passed through the parameter; </p>
+
+</div>
+</div>
+<a id="aec6f5b56e0c298f1e14972fdcf5e5b12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec6f5b56e0c298f1e14972fdcf5e5b12">&#9670;&nbsp;</a></span>GetPhysicsWorld()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="struct_noble_engine_1_1_physics_world.html">PhysicsWorld</a> &gt; NobleEngine::Application::GetPhysicsWorld </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns the physics world simulation. </p>
 
 </div>
 </div>

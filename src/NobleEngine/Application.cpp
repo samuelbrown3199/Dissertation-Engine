@@ -16,14 +16,24 @@
 
 namespace NobleEngine
 {
+	std::weak_ptr<Application> Application::self;
+
+	std::shared_ptr<ResourceManager> Application::resourceManager;
+	std::vector<std::shared_ptr<SystemBase>> Application::systems;
+
 	std::vector<std::shared_ptr<Entity>> Application::deletionEntities;
 	std::vector<std::shared_ptr<Entity>> Application::entities;
+	std::vector<int> Application::availableIDs;
 	std::shared_ptr<PhysicsWorld> Application::physicsWorld;
+
+	std::shared_ptr<ShaderProgram> Application::standardShader;
+	std::shared_ptr<Camera> Application::activeCam;
+	std::shared_ptr<Screen> Application::screen;
 
 	std::shared_ptr<Application> Application::InitializeEngine(std::string windowName, int windowWidth, int windowHeight)
 	{
 		std::shared_ptr<Application> app(new Application());
-		app->self = app;
+		Application::self = app;
 		app->screen = std::make_shared<Screen>(windowWidth, windowHeight, 0.1, 1000, windowName);
 
 		if (glewInit() != GLEW_OK)
@@ -113,7 +123,7 @@ namespace NobleEngine
 			{
 				systems.at(sys)->ClearUnneededComponents();
 			}
-			resourceManager->UnloadUnusedResources();
+			ResourceManager::UnloadUnusedResources();
 
 			double frameTime = SDL_GetTicks() - frameStart;
 			double fps = 1000.0f / frameTime;

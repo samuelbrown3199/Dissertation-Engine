@@ -35,13 +35,8 @@ int main()
 			for (int y = 0; y < amount; y++)
 			{
 				std::shared_ptr<Entity> physicsTest = app->CreateEntity();
-				std::shared_ptr<Transform> tr = physicsTest->AddComponent<Transform>();
-
-				tr->position = glm::vec3(25 + (-5 * x) + rand() % 5, 50 + (5 * y) + rand() % 5, -30 + (-5 * z) + rand() % 5);
-				tr->rotation = glm::vec3(rand() % 360, rand() % 360, rand() % 360);
-				std::shared_ptr<MeshRenderer> pc = physicsTest->AddComponent<MeshRenderer>();
-				pc->model = app->GetResourceManager()->LoadResource<NobleEngine::Model>(modelLoc);
-				pc->material = app->GetResourceManager()->LoadMaterial(texLoc, texLoc1);
+				std::shared_ptr<Transform> tr = physicsTest->AddComponent<Transform>(glm::vec3(25 + (-5 * x) + rand() % 5, 50 + (5 * y) + rand() % 5, -30 + (-5 * z) + rand() % 5), glm::vec3(rand() % 360, rand() % 360, rand() % 360), glm::vec3(1,1,1));
+				std::shared_ptr<MeshRenderer> pc = physicsTest->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));
 				physicsTest->AddComponent<PhysicsBody>(PhysicsBody::ColliderShape::box, 20);
 			}
 		}

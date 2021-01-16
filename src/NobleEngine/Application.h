@@ -31,11 +31,11 @@ namespace NobleEngine
 	{
 	public:
 
-		std::shared_ptr<Camera> activeCam;
+		static std::shared_ptr<Camera> activeCam;
 		/**
 		*Stores screen data.
 		*/
-		std::shared_ptr<Screen> screen;
+		static std::shared_ptr<Screen> screen;
 		/**
 		*Stores a list of entities marked for deletion.
 		*/
@@ -43,7 +43,7 @@ namespace NobleEngine
 		/**
 		*Stores the standard shader program built into the engine.
 		*/
-		std::shared_ptr<ShaderProgram> standardShader;
+		static std::shared_ptr<ShaderProgram> standardShader;
 		/**
 		*Initializes the systems within the engine.
 		*/
@@ -55,11 +55,11 @@ namespace NobleEngine
 		/**
 		*Creates an entity with no tag.
 		*/
-		std::shared_ptr<Entity> CreateEntity();
+		static std::shared_ptr<Entity> CreateEntity();
 		/**
 		*Creates an entity with the passed in tag.
 		*/
-		std::shared_ptr<Entity> CreateEntity(std::string tag);
+		static std::shared_ptr<Entity> CreateEntity(std::string tag);
 		/**
 		*Returns an entity with the ID passed through the parameter;
 		*/
@@ -67,7 +67,7 @@ namespace NobleEngine
 		/**
 		*Returns the resource manager.
 		*/
-		std::shared_ptr<ResourceManager> GetResourceManager();
+		static std::shared_ptr<ResourceManager> GetResourceManager();
 		/**
 		*Returns the physics world simulation.
 		*/
@@ -76,7 +76,7 @@ namespace NobleEngine
 		*Binds the system to the engine core for use in game functionality. Only one of each system type can be bound at a time.
 		*/
 		template<typename T>
-		void BindSystem(std::shared_ptr<T> system)
+		static void BindSystem(std::shared_ptr<T> system)
 		{
 			std::shared_ptr<T> temp;
 			for (size_t sys = 0; sys < systems.size(); sys++)
@@ -95,7 +95,7 @@ namespace NobleEngine
 		*Gets a bound system of the passed type.
 		*/
 		template<typename T>
-		std::shared_ptr<T> GetSystem()
+		static std::shared_ptr<T> GetSystem()
 		{
 			std::shared_ptr sys;
 			for (size_t s = 0; s < systems.size(); s++)
@@ -111,7 +111,7 @@ namespace NobleEngine
 		/**
 		*Stores a weak pointer to itself.
 		*/
-		std::weak_ptr<Application> self;
+		static std::weak_ptr<Application> self;
 		/**
 		*Stores a pointer to the current audio device.
 		*/
@@ -131,7 +131,7 @@ namespace NobleEngine
 		/**
 		*Stores systems for use within the game engine.
 		*/
-		std::vector<std::shared_ptr<SystemBase>> systems;
+		static std::vector<std::shared_ptr<SystemBase>> systems;
 		/**
 		*Stores entities for use within the game engine.
 		*/
@@ -139,11 +139,11 @@ namespace NobleEngine
 		/**
 		*Stores a list of available entity IDS.
 		*/
-		std::vector<int> availableIDs;
+		static std::vector<int> availableIDs;
 		/**
 		*Stores the resource manager.
 		*/
-		std::shared_ptr<ResourceManager> resourceManager;
+		static std::shared_ptr<ResourceManager> resourceManager;
 		/**
 		*Binds core systems so the engine user doesnt have to.
 		*/
