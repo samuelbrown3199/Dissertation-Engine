@@ -19,6 +19,14 @@ namespace NobleEngine
 	private:
 		std::shared_ptr<Transform> transform;
 	public:
+
+		~PhysicsBody()
+		{
+			Application::GetPhysicsWorld()->RemoveRigidbody(rigidBody);
+			delete rigidBody;
+			delete shape;
+		}
+
 		enum ColliderShape
 		{
 			box,

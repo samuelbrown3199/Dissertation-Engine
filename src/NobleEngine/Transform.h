@@ -41,6 +41,9 @@ namespace NobleEngine
 		*/
 		glm::mat4 model;
 
+		/**
+		*Initializes the Tranform component with the passed paramaters.
+		*/
 		void OnInitialize(glm::vec3 pos, glm::vec3 rot, glm::vec3 sca)
 		{
 			position = pos;

@@ -33,7 +33,10 @@ namespace NobleEngine
 	{
 		dynamicWorld->addRigidBody(body);
 	}
-
+	void PhysicsWorld::RemoveRigidbody(btRigidBody* body)
+	{
+		dynamicWorld->removeRigidBody(body);
+	}
 	void PhysicsWorld::StepSimulation(double amount)
 	{
 		dynamicWorld->stepSimulation(amount);

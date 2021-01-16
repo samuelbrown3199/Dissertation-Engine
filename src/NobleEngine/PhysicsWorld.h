@@ -40,6 +40,10 @@ namespace NobleEngine
 		*/
 		void AddRigidbody(btRigidBody* body);
 		/**
+		*Removes a rigidbody from the physics world.
+		*/
+		void RemoveRigidbody(btRigidBody* body);
+		/**
 		*Steps the physics simulation by the amount.
 		*/
 		void StepSimulation(double amount);
