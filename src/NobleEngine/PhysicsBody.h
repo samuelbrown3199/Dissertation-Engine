@@ -29,7 +29,9 @@ namespace NobleEngine
 			delete rigidBody;
 			delete shape;
 		}
-
+		/**
+		*The shape options for the collider.
+		*/
 		enum ColliderShape
 		{
 			box,
@@ -60,6 +62,13 @@ namespace NobleEngine
 		void OnInitialize(ColliderShape _shape, btScalar _mass)
 		{
 			transform = GetEntity()->GetComponent<Transform>();
+			if (!transform)
+			{
+				std::cout << "Could not find transform on entity " << entityID << ". Make sure transform is attached before physics body component!" << std::endl;
+				GetEntity()->RemoveComponent<PhysicsBody>();
+				return;
+			}
+			transform->checkForPhysicsBody = false;
 			colliderShape = _shape;
 
 			switch (colliderShape)

@@ -57,6 +57,12 @@ add_library(NobleEngine
   src/NobleEngine/PhysicsBody.h
   src/NobleEngine/PhysicsBodySystem.h
   src/NobleEngine/PhysicsBodySystem.cpp
+  src/NobleEngine/AudioSource.h
+  src/NobleEngine/AudioSourceSystem.h
+  src/NobleEngine/AudioSourceSystem.cpp
+  src/NobleEngine/AudioListener.h
+  src/NobleEngine/AudioListenerSystem.h
+  src/NobleEngine/AudioListenerSystem.cpp
 )
 target_link_libraries(NobleEngine SDL2 SDL2_ttf glew32 opengl32 openal32 Bullet3Collision Bullet3Common Bullet3Dynamics Bullet3Geometry BulletCollision BulletDynamics LinearMath)
 

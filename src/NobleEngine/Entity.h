@@ -32,6 +32,7 @@ namespace NobleEngine
 		{
 			std::shared_ptr<T> component = std::make_shared<T>();
 			component->entityID = entityID;
+			component->OnInitialize();
 			entityComponents.push_back(component);
 			T::componentList.push_back(component);
 

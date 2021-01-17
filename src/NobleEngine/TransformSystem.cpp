@@ -9,16 +9,16 @@ namespace NobleEngine
 
 	void TransformSystem::OnUpdate(std::shared_ptr<Transform> comp)
 	{
+		if (!comp->checkForPhysicsBody)
+		{
+			comp->pBody = GetApplication()->GetEntity(comp->entityID)->GetComponent<PhysicsBody>();
+			comp->checkForPhysicsBody = true;
+		}
 		GenerateModelMatrix(comp);
 	}
 
 	void TransformSystem::GenerateModelMatrix(std::shared_ptr<Transform> tr)
 	{
-		if (!tr->check)
-		{
-			tr->pBody = GetApplication()->GetEntity(tr->entityID)->GetComponent<PhysicsBody>();
-			tr->check = true;
-		}
 		if (!tr->pBody)
 		{
 			tr->model = glm::mat4(1.0f);

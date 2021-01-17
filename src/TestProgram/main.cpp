@@ -35,25 +35,20 @@ int main()
 			for (int y = 0; y < amount; y++)
 			{
 				std::shared_ptr<Entity> physicsTest = app->CreateEntity();
-				std::shared_ptr<Transform> tr = physicsTest->AddComponent<Transform>(glm::vec3(25 + (-5 * x) + rand() % 5, 50 + (5 * y) + rand() % 5, -30 + (-5 * z) + rand() % 5), glm::vec3(rand() % 360, rand() % 360, rand() % 360), glm::vec3(1,1,1));
+				std::shared_ptr<Transform> tr = physicsTest->AddComponent<Transform>(glm::vec3(25 + (-5 * x) + rand() % 5, 50 + (5 * y) + rand() % 5, -30 + (-5 * z) + rand() % 5), glm::vec3(rand() % 360, rand() % 360, rand() % 360));
 				std::shared_ptr<MeshRenderer> pc = physicsTest->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));
 				physicsTest->AddComponent<PhysicsBody>(PhysicsBody::ColliderShape::box, 20);
 			}
 		}
 	}
 
-	std::shared_ptr<Entity> testEntity = app->CreateEntity();
-	std::shared_ptr<Transform> tr = testEntity->AddComponent<Transform>();
-	tr->position = glm::vec3(0, 0, 0);
-	tr->scale = glm::vec3(100, 1, 100);
-	testEntity->AddComponent<PhysicsBody>(PhysicsBody::ColliderShape::box, 0);
-
-	std::shared_ptr<MeshRenderer> mr = testEntity->AddComponent<MeshRenderer>();
-	mr->model = app->GetResourceManager()->LoadResource<NobleEngine::Model>(modelLoc);
-	mr->material = app->GetResourceManager()->LoadMaterial(texLoc, texLoc1);
+	std::shared_ptr<Entity> floorEntity = app->CreateEntity();
+	std::shared_ptr<Transform> tr = floorEntity->AddComponent<Transform>(glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(100, 1, 100));
+	floorEntity->AddComponent<PhysicsBody>(PhysicsBody::ColliderShape::box, 0);
+	std::shared_ptr<MeshRenderer> mr = floorEntity->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));
 
 	std::shared_ptr<Entity> camera = app->CreateEntity();
-	camera->AddComponent<Transform>()->position = glm::vec3(0,5,0);
+	camera->AddComponent<Transform>(glm::vec3(0, 5, 0));
 	std::shared_ptr<Camera> cr = camera->AddComponent<Camera>();
 	camera->AddComponent<FlyingCam>();
 

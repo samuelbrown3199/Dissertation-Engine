@@ -13,7 +13,7 @@ namespace NobleEngine
 	struct Resource
 	{
 		/**
-		*Stores the path of the resource. This is used to check if the resource is already loaded.
+		*Stores the path of the resource. This is used to checkForPhysicsBody if the resource is already loaded.
 		*/
 		std::string resourcePath;
 

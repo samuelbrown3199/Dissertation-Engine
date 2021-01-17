@@ -13,6 +13,8 @@
 #include "MeshRendererSystem.h"
 #include "CameraSystem.h"
 #include "PhysicsBodySystem.h"
+#include "AudioSourceSystem.h"
+#include "AudioListenerSystem.h"
 
 namespace NobleEngine
 {
@@ -218,6 +220,14 @@ namespace NobleEngine
 		std::shared_ptr<CameraSystem> cr = std::make_shared<CameraSystem>();
 		cr->SetSystemUse(false, true, false);
 		BindSystem(cr);
+
+		std::shared_ptr<AudioListenerSystem> al = std::make_shared<AudioListenerSystem>();
+		al->SetSystemUse(false, true, false);
+		BindSystem(al);
+
+		std::shared_ptr<AudioSourceSystem> as = std::make_shared<AudioSourceSystem>();
+		cr->SetSystemUse(false, true, false);
+		BindSystem(as);
 
 		std::shared_ptr<MeshRendererSystem> mr = std::make_shared<MeshRendererSystem>();
 		mr->SetSystemUse(true, false, true);

@@ -14,7 +14,7 @@ namespace NobleEngine
 	{
 	}
 
-	bool InputManager::IfKeyDown(SDL_Scancode key)
+	bool InputManager::IfKeyDown(SDL_Keycode key)
 	{
 		const Uint8* state = SDL_GetKeyboardState(NULL);
 		if (state[key])
