@@ -14,6 +14,9 @@
 
 namespace NobleEngine
 {
+	/**
+	*This component stores the physics properties of an entity.
+	*/
 	struct PhysicsBody : public Component<PhysicsBody> 
 	{
 	private:

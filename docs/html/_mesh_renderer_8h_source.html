@@ -20,8 +20,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="dogge.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Noble Engine
+   &#160;<span id="projectnumber">Alpha 1.0</span>
    </div>
    <div id="projectbrief">A data oriented game engine. Designed for use in c++.</div>
   </td>
@@ -90,26 +92,28 @@ $(function() {
 <div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_mesh_renderer.html#a043ed39b974acac13af017bc8079fd7b">   30</a></span>&#160;        std::shared_ptr&lt;ShaderProgram&gt; <a class="code" href="struct_noble_engine_1_1_mesh_renderer.html#a043ed39b974acac13af017bc8079fd7b">shader</a>;</div>
 <div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_mesh_renderer.html#ad3d8cb673cd254e3f8d08a7837fb43bf">   34</a></span>&#160;        std::shared_ptr&lt;Transform&gt; <a class="code" href="struct_noble_engine_1_1_mesh_renderer.html#ad3d8cb673cd254e3f8d08a7837fb43bf">transform</a>;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordtype">void</span> OnInitialize(std::string modelDir, std::shared_ptr&lt;Material&gt; mat)</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        {</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <a class="code" href="struct_noble_engine_1_1_mesh_renderer.html#a3a1ad6b7ff4f00feb58df78cb1dbe52c">model</a> = ResourceManager::LoadResource&lt;Model&gt;(modelDir);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            <a class="code" href="struct_noble_engine_1_1_mesh_renderer.html#ac56f32f082d7e59088e75787146a331c">material</a> = mat;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <a class="code" href="struct_noble_engine_1_1_mesh_renderer.html#a043ed39b974acac13af017bc8079fd7b">shader</a> = <a class="code" href="class_noble_engine_1_1_application.html#af43ddc3c89786cdfe95de7ebe3aed5e0">Application::standardShader</a>;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        }</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordtype">void</span> OnInitialize(std::string modelDir, std::shared_ptr&lt;Material&gt; mat, std::shared_ptr&lt;ShaderProgram&gt; sha)</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        {</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            <a class="code" href="struct_noble_engine_1_1_mesh_renderer.html#a3a1ad6b7ff4f00feb58df78cb1dbe52c">model</a> = ResourceManager::LoadResource&lt;Model&gt;(modelDir);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <a class="code" href="struct_noble_engine_1_1_mesh_renderer.html#ac56f32f082d7e59088e75787146a331c">material</a> = mat;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            <a class="code" href="struct_noble_engine_1_1_mesh_renderer.html#a043ed39b974acac13af017bc8079fd7b">shader</a> = sha;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        }</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    };</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;}</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_mesh_renderer.html#ad116fdd830f4f6c38d4619d9c5b3ecd5">   39</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="struct_noble_engine_1_1_mesh_renderer.html#ad116fdd830f4f6c38d4619d9c5b3ecd5">OnInitialize</a>(std::string modelDir, std::shared_ptr&lt;Material&gt; mat)</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <a class="code" href="struct_noble_engine_1_1_mesh_renderer.html#a3a1ad6b7ff4f00feb58df78cb1dbe52c">model</a> = ResourceManager::LoadResource&lt;Model&gt;(modelDir);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            <a class="code" href="struct_noble_engine_1_1_mesh_renderer.html#ac56f32f082d7e59088e75787146a331c">material</a> = mat;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <a class="code" href="struct_noble_engine_1_1_mesh_renderer.html#a043ed39b974acac13af017bc8079fd7b">shader</a> = <a class="code" href="class_noble_engine_1_1_application.html#af43ddc3c89786cdfe95de7ebe3aed5e0">Application::standardShader</a>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        }</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_mesh_renderer.html#a2e6585db65744792d502948a8a09c872">   48</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="struct_noble_engine_1_1_mesh_renderer.html#a2e6585db65744792d502948a8a09c872">OnInitialize</a>(std::string modelDir, std::shared_ptr&lt;Material&gt; mat, std::shared_ptr&lt;ShaderProgram&gt; sha)</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <a class="code" href="struct_noble_engine_1_1_mesh_renderer.html#a3a1ad6b7ff4f00feb58df78cb1dbe52c">model</a> = ResourceManager::LoadResource&lt;Model&gt;(modelDir);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <a class="code" href="struct_noble_engine_1_1_mesh_renderer.html#ac56f32f082d7e59088e75787146a331c">material</a> = mat;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <a class="code" href="struct_noble_engine_1_1_mesh_renderer.html#a043ed39b974acac13af017bc8079fd7b">shader</a> = sha;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    };</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="astruct_noble_engine_1_1_component_html"><div class="ttname"><a href="struct_noble_engine_1_1_component.html">NobleEngine::Component</a></div><div class="ttdef"><b>Definition:</b> Component.h:42</div></div>
 <div class="ttc" id="astruct_noble_engine_1_1_mesh_renderer_html_ad3d8cb673cd254e3f8d08a7837fb43bf"><div class="ttname"><a href="struct_noble_engine_1_1_mesh_renderer.html#ad3d8cb673cd254e3f8d08a7837fb43bf">NobleEngine::MeshRenderer::transform</a></div><div class="ttdeci">std::shared_ptr&lt; Transform &gt; transform</div><div class="ttdef"><b>Definition:</b> MeshRenderer.h:34</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_mesh_renderer_html_ad116fdd830f4f6c38d4619d9c5b3ecd5"><div class="ttname"><a href="struct_noble_engine_1_1_mesh_renderer.html#ad116fdd830f4f6c38d4619d9c5b3ecd5">NobleEngine::MeshRenderer::OnInitialize</a></div><div class="ttdeci">void OnInitialize(std::string modelDir, std::shared_ptr&lt; Material &gt; mat)</div><div class="ttdef"><b>Definition:</b> MeshRenderer.h:39</div></div>
 <div class="ttc" id="astruct_noble_engine_1_1_mesh_renderer_html_a3a1ad6b7ff4f00feb58df78cb1dbe52c"><div class="ttname"><a href="struct_noble_engine_1_1_mesh_renderer.html#a3a1ad6b7ff4f00feb58df78cb1dbe52c">NobleEngine::MeshRenderer::model</a></div><div class="ttdeci">std::shared_ptr&lt; Model &gt; model</div><div class="ttdef"><b>Definition:</b> MeshRenderer.h:22</div></div>
 <div class="ttc" id="astruct_noble_engine_1_1_mesh_renderer_html_a043ed39b974acac13af017bc8079fd7b"><div class="ttname"><a href="struct_noble_engine_1_1_mesh_renderer.html#a043ed39b974acac13af017bc8079fd7b">NobleEngine::MeshRenderer::shader</a></div><div class="ttdeci">std::shared_ptr&lt; ShaderProgram &gt; shader</div><div class="ttdef"><b>Definition:</b> MeshRenderer.h:30</div></div>
 <div class="ttc" id="aclass_noble_engine_1_1_application_html_af43ddc3c89786cdfe95de7ebe3aed5e0"><div class="ttname"><a href="class_noble_engine_1_1_application.html#af43ddc3c89786cdfe95de7ebe3aed5e0">NobleEngine::Application::standardShader</a></div><div class="ttdeci">static std::shared_ptr&lt; ShaderProgram &gt; standardShader</div><div class="ttdef"><b>Definition:</b> Application.h:46</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_mesh_renderer_html_a2e6585db65744792d502948a8a09c872"><div class="ttname"><a href="struct_noble_engine_1_1_mesh_renderer.html#a2e6585db65744792d502948a8a09c872">NobleEngine::MeshRenderer::OnInitialize</a></div><div class="ttdeci">void OnInitialize(std::string modelDir, std::shared_ptr&lt; Material &gt; mat, std::shared_ptr&lt; ShaderProgram &gt; sha)</div><div class="ttdef"><b>Definition:</b> MeshRenderer.h:48</div></div>
 <div class="ttc" id="astruct_noble_engine_1_1_mesh_renderer_html"><div class="ttname"><a href="struct_noble_engine_1_1_mesh_renderer.html">NobleEngine::MeshRenderer</a></div><div class="ttdef"><b>Definition:</b> MeshRenderer.h:18</div></div>
 <div class="ttc" id="astruct_noble_engine_1_1_mesh_renderer_html_ac56f32f082d7e59088e75787146a331c"><div class="ttname"><a href="struct_noble_engine_1_1_mesh_renderer.html#ac56f32f082d7e59088e75787146a331c">NobleEngine::MeshRenderer::material</a></div><div class="ttdeci">std::shared_ptr&lt; Material &gt; material</div><div class="ttdef"><b>Definition:</b> MeshRenderer.h:26</div></div>
 <!-- start footer part -->

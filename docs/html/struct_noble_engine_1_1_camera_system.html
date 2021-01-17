@@ -20,8 +20,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="dogge.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Noble Engine
+   &#160;<span id="projectnumber">Alpha 1.0</span>
    </div>
    <div id="projectbrief">A data oriented game engine. Designed for use in c++.</div>
   </td>
@@ -73,6 +75,8 @@ $(function() {
 <div class="title">NobleEngine::CameraSystem Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_camera_system_8h_source.html">CameraSystem.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for NobleEngine::CameraSystem:</div>
 <div class="dyncontent">
@@ -88,8 +92,7 @@ Inheritance diagram for NobleEngine::CameraSystem:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a30dbe449a44b1c4694536b15c0cc0493"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_camera_system.html#a30dbe449a44b1c4694536b15c0cc0493">OnUpdate</a> (std::shared_ptr&lt; <a class="el" href="struct_noble_engine_1_1_camera.html">Camera</a> &gt; comp)</td></tr>
 <tr class="separator:a30dbe449a44b1c4694536b15c0cc0493"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f202c9beee53281e72049b8877b95c8"><td class="memItemLeft" align="right" valign="top"><a id="a9f202c9beee53281e72049b8877b95c8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateCameraView</b> (std::shared_ptr&lt; <a class="el" href="struct_noble_engine_1_1_camera.html">Camera</a> &gt; cam)</td></tr>
+<tr class="memitem:a9f202c9beee53281e72049b8877b95c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_camera_system.html#a9f202c9beee53281e72049b8877b95c8">UpdateCameraView</a> (std::shared_ptr&lt; <a class="el" href="struct_noble_engine_1_1_camera.html">Camera</a> &gt; cam)</td></tr>
 <tr class="separator:a9f202c9beee53281e72049b8877b95c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_struct_noble_engine_1_1_system"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_struct_noble_engine_1_1_system')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="struct_noble_engine_1_1_system.html">NobleEngine::System&lt; Camera &gt;</a></td></tr>
 <tr class="memitem:acdc53199d233f29c580f3b839485facb inherit pub_methods_struct_noble_engine_1_1_system"><td class="memItemLeft" align="right" valign="top"><a id="acdc53199d233f29c580f3b839485facb"></a>
@@ -125,7 +128,9 @@ Additional Inherited Members</h2></td></tr>
 std::vector&lt; std::thread &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>systemThreads</b></td></tr>
 <tr class="separator:ac9d8e8bbe00874b4ef8207460e101cb8 inherit pro_attribs_struct_noble_engine_1_1_system_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Handles the generation of view matrices for the cameras in the engine. Automatically bound to the engine on startup. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a30dbe449a44b1c4694536b15c0cc0493"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a30dbe449a44b1c4694536b15c0cc0493">&#9670;&nbsp;</a></span>OnUpdate()</h2>
 
@@ -152,6 +157,25 @@ std::vector&lt; std::thread &gt;&#160;</td><td class="memItemRight" valign="bott
 <p>Inherited classes can implement this function with a parameter taking in a shared pointer of the type. Functionality can then be called on that pointer. </p>
 
 <p>Reimplemented from <a class="el" href="struct_noble_engine_1_1_system.html#a28a7aa2aafe72a96a1dcf6b0dba8a266">NobleEngine::System&lt; Camera &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a9f202c9beee53281e72049b8877b95c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f202c9beee53281e72049b8877b95c8">&#9670;&nbsp;</a></span>UpdateCameraView()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NobleEngine::CameraSystem::UpdateCameraView </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="struct_noble_engine_1_1_camera.html">Camera</a> &gt;&#160;</td>
+          <td class="paramname"><em>cam</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Updates the camera view matrix. </p>
 
 </div>
 </div>

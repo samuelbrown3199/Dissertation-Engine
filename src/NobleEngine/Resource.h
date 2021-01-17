@@ -7,6 +7,9 @@
 
 namespace NobleEngine
 {
+	/**
+	*A struct that other types of resources inherit from, e.g textures and models.
+	*/
 	struct Resource
 	{
 		/**

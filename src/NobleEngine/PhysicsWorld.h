@@ -9,7 +9,7 @@
 namespace NobleEngine
 {
 	/**
-	*Stores various options regarding the bullet physics.
+	*Stores various options regarding the bullet physics. Created by the engine on startup.
 	*/
 	struct PhysicsWorld
 	{

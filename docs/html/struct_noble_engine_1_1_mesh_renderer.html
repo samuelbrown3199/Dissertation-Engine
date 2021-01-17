@@ -20,8 +20,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="dogge.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Noble Engine
+   &#160;<span id="projectnumber">Alpha 1.0</span>
    </div>
    <div id="projectbrief">A data oriented game engine. Designed for use in c++.</div>
   </td>
@@ -89,11 +91,9 @@ Inheritance diagram for NobleEngine::MeshRenderer:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad116fdd830f4f6c38d4619d9c5b3ecd5"><td class="memItemLeft" align="right" valign="top"><a id="ad116fdd830f4f6c38d4619d9c5b3ecd5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>OnInitialize</b> (std::string modelDir, std::shared_ptr&lt; <a class="el" href="struct_noble_engine_1_1_material.html">Material</a> &gt; mat)</td></tr>
+<tr class="memitem:ad116fdd830f4f6c38d4619d9c5b3ecd5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_mesh_renderer.html#ad116fdd830f4f6c38d4619d9c5b3ecd5">OnInitialize</a> (std::string modelDir, std::shared_ptr&lt; <a class="el" href="struct_noble_engine_1_1_material.html">Material</a> &gt; mat)</td></tr>
 <tr class="separator:ad116fdd830f4f6c38d4619d9c5b3ecd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e6585db65744792d502948a8a09c872"><td class="memItemLeft" align="right" valign="top"><a id="a2e6585db65744792d502948a8a09c872"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>OnInitialize</b> (std::string modelDir, std::shared_ptr&lt; <a class="el" href="struct_noble_engine_1_1_material.html">Material</a> &gt; mat, std::shared_ptr&lt; <a class="el" href="struct_noble_engine_1_1_shader_program.html">ShaderProgram</a> &gt; sha)</td></tr>
+<tr class="memitem:a2e6585db65744792d502948a8a09c872"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_noble_engine_1_1_mesh_renderer.html#a2e6585db65744792d502948a8a09c872">OnInitialize</a> (std::string modelDir, std::shared_ptr&lt; <a class="el" href="struct_noble_engine_1_1_material.html">Material</a> &gt; mat, std::shared_ptr&lt; <a class="el" href="struct_noble_engine_1_1_shader_program.html">ShaderProgram</a> &gt; sha)</td></tr>
 <tr class="separator:a2e6585db65744792d502948a8a09c872"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_struct_noble_engine_1_1_component"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_struct_noble_engine_1_1_component')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="struct_noble_engine_1_1_component.html">NobleEngine::Component&lt; MeshRenderer &gt;</a></td></tr>
 <tr class="memitem:a04d58705c2cb891e6d415b349efb91db inherit pub_methods_struct_noble_engine_1_1_component"><td class="memItemLeft" align="right" valign="top"><a id="a04d58705c2cb891e6d415b349efb91db"></a>
@@ -126,8 +126,89 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:af9f9b2c1bd6eb7f247993aee855c5b3f inherit pub_static_attribs_struct_noble_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Stores information to render a mesh. Takes a model, material, shader and a transform. </p>
-</div><h2 class="groupheader">Member Data Documentation</h2>
+<div class="textblock"><p>Stores information to render a mesh. Takes a model, material, shader and a transform. Automatically bound to the engine on startup. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ad116fdd830f4f6c38d4619d9c5b3ecd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad116fdd830f4f6c38d4619d9c5b3ecd5">&#9670;&nbsp;</a></span>OnInitialize() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NobleEngine::MeshRenderer::OnInitialize </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>modelDir</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="struct_noble_engine_1_1_material.html">Material</a> &gt;&#160;</td>
+          <td class="paramname"><em>mat</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Initializes the mesh renderer with a model and a material. <a class="el" href="struct_noble_engine_1_1_shader.html">Shader</a> will default to the standard shader. </p>
+
+</div>
+</div>
+<a id="a2e6585db65744792d502948a8a09c872"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e6585db65744792d502948a8a09c872">&#9670;&nbsp;</a></span>OnInitialize() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NobleEngine::MeshRenderer::OnInitialize </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>modelDir</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="struct_noble_engine_1_1_material.html">Material</a> &gt;&#160;</td>
+          <td class="paramname"><em>mat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="struct_noble_engine_1_1_shader_program.html">ShaderProgram</a> &gt;&#160;</td>
+          <td class="paramname"><em>sha</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Initializes the mesh renderer with a model, material and a shader. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
 <a id="ac56f32f082d7e59088e75787146a331c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac56f32f082d7e59088e75787146a331c">&#9670;&nbsp;</a></span>material</h2>
 

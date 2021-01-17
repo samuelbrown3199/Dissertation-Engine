@@ -12,7 +12,7 @@ namespace NobleEngine
 {
 	struct Transform;
 	/**
-	*Stores information to render a mesh. Takes a model, material, shader and a transform.
+	*Stores information to render a mesh. Takes a model, material, shader and a transform. Automatically bound to the engine on startup.
 	*/
 	struct MeshRenderer : public Component<MeshRenderer>
 	{

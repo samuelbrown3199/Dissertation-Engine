@@ -20,8 +20,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="dogge.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Noble Engine
+   &#160;<span id="projectnumber">Alpha 1.0</span>
    </div>
    <div id="projectbrief">A data oriented game engine. Designed for use in c++.</div>
   </td>
@@ -95,21 +97,22 @@ $(function() {
 <div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_transform.html#a343f86ac6276a149b44597787f1b8a92">   38</a></span>&#160;        glm::vec3 <a class="code" href="struct_noble_engine_1_1_transform.html#a343f86ac6276a149b44597787f1b8a92">scale</a> = glm::vec3(1, 1, 1);</div>
 <div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_transform.html#ab51adbbbc924154b852336829e40047f">   42</a></span>&#160;        glm::mat4 <a class="code" href="struct_noble_engine_1_1_transform.html#ab51adbbbc924154b852336829e40047f">model</a>;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordtype">void</span> OnInitialize(glm::vec3 pos, glm::vec3 rot, glm::vec3 sca)</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        {</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            <a class="code" href="struct_noble_engine_1_1_transform.html#a9e579a9a1b788bd9f68693bde5c97ad4">position</a> = pos;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <a class="code" href="struct_noble_engine_1_1_transform.html#a598e1a9bce134c1dc1d6ebf99a4aec2d">rotation</a> = rot;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            <a class="code" href="struct_noble_engine_1_1_transform.html#a343f86ac6276a149b44597787f1b8a92">scale</a> = sca;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        }</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    };</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="struct_noble_engine_1_1_transform.html#a3eb36c5583a9ebe64659b1d5c7468e55">   47</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="struct_noble_engine_1_1_transform.html#a3eb36c5583a9ebe64659b1d5c7468e55">OnInitialize</a>(glm::vec3 pos, glm::vec3 rot, glm::vec3 sca)</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <a class="code" href="struct_noble_engine_1_1_transform.html#a9e579a9a1b788bd9f68693bde5c97ad4">position</a> = pos;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <a class="code" href="struct_noble_engine_1_1_transform.html#a598e1a9bce134c1dc1d6ebf99a4aec2d">rotation</a> = rot;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <a class="code" href="struct_noble_engine_1_1_transform.html#a343f86ac6276a149b44597787f1b8a92">scale</a> = sca;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        }</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    };</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="astruct_noble_engine_1_1_transform_html_a598e1a9bce134c1dc1d6ebf99a4aec2d"><div class="ttname"><a href="struct_noble_engine_1_1_transform.html#a598e1a9bce134c1dc1d6ebf99a4aec2d">NobleEngine::Transform::rotation</a></div><div class="ttdeci">glm::vec3 rotation</div><div class="ttdef"><b>Definition:</b> Transform.h:34</div></div>
 <div class="ttc" id="astruct_noble_engine_1_1_component_html"><div class="ttname"><a href="struct_noble_engine_1_1_component.html">NobleEngine::Component</a></div><div class="ttdef"><b>Definition:</b> Component.h:42</div></div>
 <div class="ttc" id="astruct_noble_engine_1_1_transform_html_aaef20633447545d4e1dd515d7d75b632"><div class="ttname"><a href="struct_noble_engine_1_1_transform.html#aaef20633447545d4e1dd515d7d75b632">NobleEngine::Transform::pBody</a></div><div class="ttdeci">std::shared_ptr&lt; PhysicsBody &gt; pBody</div><div class="ttdef"><b>Definition:</b> Transform.h:25</div></div>
 <div class="ttc" id="astruct_noble_engine_1_1_transform_html"><div class="ttname"><a href="struct_noble_engine_1_1_transform.html">NobleEngine::Transform</a></div><div class="ttdef"><b>Definition:</b> Transform.h:21</div></div>
+<div class="ttc" id="astruct_noble_engine_1_1_transform_html_a3eb36c5583a9ebe64659b1d5c7468e55"><div class="ttname"><a href="struct_noble_engine_1_1_transform.html#a3eb36c5583a9ebe64659b1d5c7468e55">NobleEngine::Transform::OnInitialize</a></div><div class="ttdeci">void OnInitialize(glm::vec3 pos, glm::vec3 rot, glm::vec3 sca)</div><div class="ttdef"><b>Definition:</b> Transform.h:47</div></div>
 <div class="ttc" id="astruct_noble_engine_1_1_transform_html_a343f86ac6276a149b44597787f1b8a92"><div class="ttname"><a href="struct_noble_engine_1_1_transform.html#a343f86ac6276a149b44597787f1b8a92">NobleEngine::Transform::scale</a></div><div class="ttdeci">glm::vec3 scale</div><div class="ttdef"><b>Definition:</b> Transform.h:38</div></div>
 <div class="ttc" id="astruct_noble_engine_1_1_transform_html_ab51adbbbc924154b852336829e40047f"><div class="ttname"><a href="struct_noble_engine_1_1_transform.html#ab51adbbbc924154b852336829e40047f">NobleEngine::Transform::model</a></div><div class="ttdeci">glm::mat4 model</div><div class="ttdef"><b>Definition:</b> Transform.h:42</div></div>
 <div class="ttc" id="astruct_noble_engine_1_1_transform_html_a9e579a9a1b788bd9f68693bde5c97ad4"><div class="ttname"><a href="struct_noble_engine_1_1_transform.html#a9e579a9a1b788bd9f68693bde5c97ad4">NobleEngine::Transform::position</a></div><div class="ttdeci">glm::vec3 position</div><div class="ttdef"><b>Definition:</b> Transform.h:30</div></div>

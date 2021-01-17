@@ -15,6 +15,9 @@
 
 namespace NobleEngine
 {
+	/**
+	*Stores a shader source code file.
+	*/
 	struct Shader : public Resource
 	{
 		std::shared_ptr<std::string> shaderCode;

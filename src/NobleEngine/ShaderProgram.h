@@ -16,6 +16,9 @@ namespace NobleEngine
 {
 	class Application;
 
+	/**
+	*Made up of several shader resources, these are used in rendering graphics within the engine.
+	*/
 	struct ShaderProgram
 	{
 		std::weak_ptr<Application> application;

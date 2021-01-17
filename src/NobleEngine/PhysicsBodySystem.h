@@ -4,7 +4,7 @@
 namespace NobleEngine
 {
 	/**
-	*Responsible for updating physics body objects.
+	*Responsible for updating physics body objects. Automatically bound to the engine on startup.
 	*/
 	struct PhysicsBodySystem : public System<PhysicsBody>
 	{
