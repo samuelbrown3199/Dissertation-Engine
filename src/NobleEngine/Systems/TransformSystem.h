@@ -3,8 +3,8 @@
 #include<glm/glm.hpp>
 #include <glm/ext.hpp>
 
-#include "System.h"
-#include "Transform.h"
+#include "../EngineCore/System.h"
+#include "../Components/Transform.h"
 
 namespace NobleEngine
 {

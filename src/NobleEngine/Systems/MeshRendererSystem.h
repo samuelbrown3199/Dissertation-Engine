@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "System.h"
-#include "MeshRenderer.h"
+#include "../EngineCore/System.h"
+#include "../Components/MeshRenderer.h"
 
 namespace NobleEngine
 {

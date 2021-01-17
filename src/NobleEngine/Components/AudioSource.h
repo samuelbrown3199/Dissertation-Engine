@@ -2,10 +2,10 @@
 #ifndef AUDIOSOURCE_H_
 #define AUDIOSOURCE_H_
 
-#include "Component.h"
-#include "AudioClip.h"
+#include "../EngineCore/Component.h"
+#include "../ResourceManagement/AudioClip.h"
 #include "Transform.h"
-#include "ResourceManager.h"
+#include "../EngineCore/ResourceManager.h"
 
 #include <AL/al.h>
 

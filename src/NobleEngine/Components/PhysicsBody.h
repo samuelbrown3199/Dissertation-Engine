@@ -2,15 +2,15 @@
 #ifndef PHYSICSBODY_H_
 #define PHYSICSBODY_H_
 
-#include "Component.h"
+#include "../EngineCore/Component.h"
 
 #include <iostream>
 
 #include <Bullet/btBulletDynamicsCommon.h>
 
 #include "Transform.h"
-#include "Entity.h"
-#include "PhysicsWorld.h"
+#include "../EngineCore/Entity.h"
+#include "../EngineCore/PhysicsWorld.h"
 
 namespace NobleEngine
 {

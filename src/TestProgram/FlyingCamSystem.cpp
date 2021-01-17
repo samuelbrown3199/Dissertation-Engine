@@ -1,10 +1,10 @@
 #include "FlyingCamSystem.h"
 
-#include <NobleEngine/InputManager.h>
-#include <NobleEngine/Transform.h>
-#include <NobleEngine/Application.h>
-#include <NobleEngine/Entity.h>
-#include <NobleEngine/Camera.h>
+#include <NobleEngine/EngineCore/InputManager.h>
+#include <NobleEngine/Components/Transform.h>
+#include <NobleEngine/EngineCore/Application.h>
+#include <NobleEngine/EngineCore/Entity.h>
+#include <NobleEngine/Components/Camera.h>
 
 SetupComponentList(FlyingCam);
 

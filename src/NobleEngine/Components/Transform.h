@@ -8,7 +8,7 @@
 
 #include "glm/glm.hpp"
 
-#include "Component.h"
+#include "../EngineCore/Component.h"
 
 namespace NobleEngine
 {

@@ -1,5 +1,5 @@
 #include "TransformSystem.h"
-#include "PhysicsBody.h"
+#include "../Components/PhysicsBody.h"
 
 #include <Bullet/btBulletDynamicsCommon.h>
 

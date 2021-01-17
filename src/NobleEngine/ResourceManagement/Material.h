@@ -1,3 +1,7 @@
+#pragma once
+#ifndef MATERIAL_H_
+#define MATERIAL_H_
+
 #include <GL/glew.h>
 
 #include "Texture.h"
@@ -14,3 +18,5 @@ namespace NobleEngine
 		std::shared_ptr<Texture> diffuseTexture, specularTexture;
 	};
 }
+
+#endif

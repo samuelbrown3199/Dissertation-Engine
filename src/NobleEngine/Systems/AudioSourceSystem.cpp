@@ -1,7 +1,7 @@
 #include "AudioSourceSystem.h"
 
-#include "Transform.h"
-#include "Entity.h"
+#include "../Components/Transform.h"
+#include "../EngineCore/Entity.h"
 
 namespace NobleEngine
 {

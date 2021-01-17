@@ -2,7 +2,7 @@
 #ifndef MODEL_H_
 #define MODEL_H_
 
-#include "Resource.h"
+#include "../EngineCore/Resource.h"
 
 #include "bugl.h"
 

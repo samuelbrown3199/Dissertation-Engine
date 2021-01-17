@@ -1,6 +1,6 @@
 
-#include "System.h"
-#include "AudioSource.h"
+#include "../EngineCore/System.h"
+#include "../Components/AudioSource.h"
 
 namespace NobleEngine
 {

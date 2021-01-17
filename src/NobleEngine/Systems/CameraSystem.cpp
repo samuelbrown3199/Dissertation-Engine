@@ -1,8 +1,8 @@
 #include "CameraSystem.h"
 
-#include "Application.h"
-#include "Entity.h"
-#include "Transform.h"
+#include "../EngineCore/Application.h"
+#include "../EngineCore/Entity.h"
+#include "../Components/Transform.h"
 
 #include<glm/glm.hpp>
 #include<glm/ext.hpp>

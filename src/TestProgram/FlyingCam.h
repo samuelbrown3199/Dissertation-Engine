@@ -3,7 +3,7 @@
 #define FLYINGCAM_H_
 
 
-#include <NobleEngine/Component.h>
+#include <NobleEngine/EngineCore/Component.h>
 
 #include <glm/glm.hpp>
 

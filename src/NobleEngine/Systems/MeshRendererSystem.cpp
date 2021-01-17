@@ -1,11 +1,11 @@
 #include "MeshRendererSystem.h"
 
-#include "Application.h"
-#include "Screen.h"
-#include "Entity.h"
-#include "Transform.h"
-#include "ShaderProgram.h"
-#include "Camera.h"
+#include "../EngineCore/Application.h"
+#include "../EngineCore/Screen.h"
+#include "../EngineCore/Entity.h"
+#include "../Components/Transform.h"
+#include "../ResourceManagement/ShaderProgram.h"
+#include "../Components/Camera.h"
 
 namespace NobleEngine
 {

@@ -1,5 +1,5 @@
-#include "System.h"
-#include "PhysicsBody.h"
+#include "../EngineCore/System.h"
+#include "../Components/PhysicsBody.h"
 
 namespace NobleEngine
 {

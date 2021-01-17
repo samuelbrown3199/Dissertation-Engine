@@ -1,20 +1,20 @@
 #include "Application.h"
 
 #include "Screen.h"
-#include "Camera.h"
+#include "../Components/Camera.h"
 #include "ResourceManager.h"
 #include "PhysicsWorld.h"
 #include "System.h"
 #include "Entity.h"
-#include "ShaderProgram.h"
+#include "../ResourceManagement/ShaderProgram.h"
 #include "InputManager.h"
 
-#include "TransformSystem.h"
-#include "MeshRendererSystem.h"
-#include "CameraSystem.h"
-#include "PhysicsBodySystem.h"
-#include "AudioSourceSystem.h"
-#include "AudioListenerSystem.h"
+#include "../Systems/TransformSystem.h"
+#include "../Systems/MeshRendererSystem.h"
+#include "../Systems/CameraSystem.h"
+#include "../Systems/PhysicsBodySystem.h"
+#include "../Systems/AudioSourceSystem.h"
+#include "../Systems/AudioListenerSystem.h"
 
 namespace NobleEngine
 {

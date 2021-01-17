@@ -2,7 +2,7 @@
 #ifndef CAMERA_H_
 #define CAMERA_H_
 
-#include "Component.h"
+#include "../EngineCore/Component.h"
 
 #include "glm/glm.hpp"
 

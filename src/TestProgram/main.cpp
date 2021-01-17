@@ -3,12 +3,6 @@
 #include <chrono>
 
 #include <NobleEngine/EngineCore.h>
-#include <NobleEngine/TransformSystem.h>
-#include <NobleEngine/MeshRendererSystem.h>
-#include <NobleEngine/PhysicsBodySystem.h>
-#include <NobleEngine/CameraSystem.h>
-#include <NobleEngine/AudioClip.h>
-
 #include "FlyingCamSystem.h"
 
 using namespace NobleEngine;

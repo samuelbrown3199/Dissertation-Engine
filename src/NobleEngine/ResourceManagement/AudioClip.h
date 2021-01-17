@@ -7,7 +7,7 @@
 
 #include <AL/al.h>
 
-#include "Resource.h"
+#include "../EngineCore/Resource.h"
 
 namespace NobleEngine
 {

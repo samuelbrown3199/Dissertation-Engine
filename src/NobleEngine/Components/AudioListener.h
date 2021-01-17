@@ -2,12 +2,15 @@
 #ifndef AUDIOLISTENER_H_
 #define AUDIOLISTENER_H_
 
-#include "Component.h"
+#include "../EngineCore/Component.h"
 #include "Transform.h"
-#include "Entity.h"
+#include "../EngineCore/Entity.h"
 
 namespace NobleEngine
 {
+	/**
+	*Stores information on an audio listener component.
+	*/
 	struct AudioListener : public Component<AudioListener>
 	{
 		std::shared_ptr<Transform> listenerTransform;

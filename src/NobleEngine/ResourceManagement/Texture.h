@@ -4,7 +4,7 @@
 
 #include<GL/glew.h>
 
-#include "Resource.h"
+#include "../EngineCore/Resource.h"
 
 namespace NobleEngine
 {

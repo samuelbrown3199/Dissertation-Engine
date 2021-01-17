@@ -1,9 +1,12 @@
+#pragma once
+#ifndef ENTITY_H_
+#define ENTITY_H_
+
 #include <memory>
 #include <vector>
 #include <string>
-#pragma once
 
-#include "Component.h"
+#include "../EngineCore/Component.h"
 namespace NobleEngine
 {
 	/**
@@ -125,3 +128,5 @@ namespace NobleEngine
 		std::vector<std::shared_ptr<ComponentBase>> entityComponents;
 	};
 }
+
+#endif

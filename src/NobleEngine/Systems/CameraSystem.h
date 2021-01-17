@@ -1,6 +1,5 @@
-#include "System.h"
-
-#include "Camera.h"
+#include "../EngineCore/System.h"
+#include "../Components/Camera.h"
 
 namespace NobleEngine
 {

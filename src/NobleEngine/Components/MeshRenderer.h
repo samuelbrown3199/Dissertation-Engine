@@ -1,12 +1,12 @@
-#include "Component.h"
+#include "../EngineCore/Component.h"
 
 #include<string>
 
-#include "Application.h"
-#include "Model.h"
-#include "Material.h"
-#include "ShaderProgram.h"
-#include "ResourceManager.h"
+#include "../EngineCore/Application.h"
+#include "../ResourceManagement/Model.h"
+#include "../ResourceManagement/Material.h"
+#include "../ResourceManagement/ShaderProgram.h"
+#include "../EngineCore/ResourceManager.h"
 
 namespace NobleEngine
 {

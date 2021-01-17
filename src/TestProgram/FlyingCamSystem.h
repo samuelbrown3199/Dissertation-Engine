@@ -2,8 +2,7 @@
 #ifndef FLYINGCAMSYSTEM_H_
 #define FLYINGCAMSYSTEM_H_
 
-#include <NobleEngine/System.h>
-
+#include <NobleEngine/EngineCore/System.h>
 #include "FlyingCam.h"
 
 using namespace NobleEngine;
