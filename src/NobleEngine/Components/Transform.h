@@ -25,6 +25,10 @@ namespace NobleEngine
 		std::shared_ptr<PhysicsBody> pBody;
 		bool checkForPhysicsBody = false;
 		/**
+		*Stores the parent transform of the object.
+		*/
+		std::shared_ptr<Transform> parent;
+		/**
 		*Contains the position of the transform. Defaults to the origin.
 		*/
 		glm::vec3 position;

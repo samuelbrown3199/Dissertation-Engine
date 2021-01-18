@@ -28,6 +28,11 @@ namespace NobleEngine
 			tr->model = glm::rotate(tr->model, glm::radians(tr->rotation.y), glm::vec3(0, 1, 0));
 			tr->model = glm::rotate(tr->model, glm::radians(tr->rotation.z), glm::vec3(0, 0, 1));
 			tr->model = glm::scale(tr->model, tr->scale);
+
+			if (tr->parent)
+			{
+				tr->model = tr->model * tr->parent->model;
+			}
 		}
 		else
 		{
@@ -37,6 +42,11 @@ namespace NobleEngine
 
 			tr->model = glm::make_mat4(matrix);
 			tr->model = glm::scale(tr->model, tr->scale);
+
+			if (tr->parent)
+			{
+				tr->model *= tr->parent->model;
+			}
 		}
 	}
 }

@@ -41,6 +41,17 @@ int main()
 	floorEntity->AddComponent<PhysicsBody>(PhysicsBody::ColliderShape::box, 0);
 	std::shared_ptr<MeshRenderer> mr = floorEntity->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));
 
+	//TRANSFORM PARENT TESTING
+	/*std::shared_ptr<Entity> physicsTest = app->CreateEntity();
+	tr = physicsTest->AddComponent<Transform>(glm::vec3(0, 50, -30), glm::vec3(rand() % 360, rand() % 360, rand() % 360));
+	std::shared_ptr<MeshRenderer> pc = physicsTest->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));
+	physicsTest->AddComponent<PhysicsBody>(PhysicsBody::ColliderShape::box, 20);
+
+	std::shared_ptr<Entity> parentTest = Application::CreateEntity();
+	std::shared_ptr<Transform> tr2 = parentTest->AddComponent<Transform>(glm::vec3(1, 1, 1));
+	tr2->parent = tr;
+	pc = parentTest->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));*/
+
 	std::shared_ptr<Entity> camera = app->CreateEntity();
 	camera->AddComponent<Transform>(glm::vec3(0, 5, 0));
 	std::shared_ptr<Camera> cr = camera->AddComponent<Camera>();
