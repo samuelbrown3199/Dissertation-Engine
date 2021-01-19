@@ -97,7 +97,7 @@ namespace NobleEngine
 		template<typename T>
 		static std::shared_ptr<T> GetSystem()
 		{
-			std::shared_ptr sys;
+			std::shared_ptr<T> sys;
 			for (size_t s = 0; s < systems.size(); s++)
 			{
 				sys = std::dynamic_pointer_cast<T>(systems.at(s));

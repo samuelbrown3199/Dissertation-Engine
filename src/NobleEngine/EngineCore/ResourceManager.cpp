@@ -1,6 +1,6 @@
 #include "ResourceManager.h"
 
-#include "Material.h"
+#include "../ResourceManagement/Material.h"
 
 namespace NobleEngine
 {

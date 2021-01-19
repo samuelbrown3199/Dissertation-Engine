@@ -23,6 +23,7 @@ add_library(NobleEngine
   src/NobleEngine/EngineCore.h
   src/NobleEngine/EngineCore/Application.h
   src/NobleEngine/EngineCore/Application.cpp
+  src/NobleEngine/EngineCore/System.h
   src/NobleEngine/EngineCore/Screen.h
   src/NobleEngine/EngineCore/Screen.cpp
   src/NobleEngine/EngineCore/ResourceManager.h
@@ -41,14 +42,35 @@ add_library(NobleEngine
   src/NobleEngine/ResourceManagement/Shader.h
   src/NobleEngine/ResourceManagement/ShaderProgram.h
   src/NobleEngine/ResourceManagement/ShaderProgram.cpp
+  src/NobleEngine/EngineCore/Entity.h
+  src/NobleEngine/EngineCore/Entity.cpp
+  src/NobleEngine/EngineCore/Component.h
+  src/NobleEngine/Components/Transform.h
+  src/NobleEngine/Systems/TransformSystem.h
+  src/NobleEngine/Systems/TransformSystem.cpp
+  src/NobleEngine/Components/MeshRenderer.h
+  src/NobleEngine/Systems/MeshRendererSystem.h
+  src/NobleEngine/Systems/MeshRendererSystem.cpp
+  src/NobleEngine/Components/Camera.h
+  src/NobleEngine/Systems/CameraSystem.h
+  src/NobleEngine/Systems/CameraSystem.cpp
+  src/NobleEngine/Components/PhysicsBody.h
+  src/NobleEngine/Systems/PhysicsBodySystem.h
+  src/NobleEngine/Systems/PhysicsBodySystem.cpp
+  src/NobleEngine/Components/AudioSource.h
+  src/NobleEngine/Systems/AudioSourceSystem.h
+  src/NobleEngine/Systems/AudioSourceSystem.cpp
+  src/NobleEngine/Components/AudioListener.h
+  src/NobleEngine/Systems/AudioListenerSystem.h
+  src/NobleEngine/Systems/AudioListenerSystem.cpp
 )
 target_link_libraries(NobleEngine SDL2 SDL2_ttf glew32 opengl32 openal32 Bullet3Collision Bullet3Common Bullet3Dynamics Bullet3Geometry BulletCollision BulletDynamics LinearMath)
 
 add_executable(TestProgram
   src/TestProgram/main.cpp
-  #src/TestProgram/FlyingCam.h
-  #src/TestProgram/FlyingCamSystem.h
-  #src/TestProgram/FlyingCamSystem.cpp
+  src/TestProgram/FlyingCam.h
+  src/TestProgram/FlyingCamSystem.h
+  src/TestProgram/FlyingCamSystem.cpp
 )
 target_link_libraries(TestProgram NobleEngine)
 
