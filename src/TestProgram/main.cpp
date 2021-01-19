@@ -3,7 +3,7 @@
 #include <chrono>
 
 #include <NobleEngine/EngineCore.h>
-#include "FlyingCamSystem.h"
+//#include "FlyingCamSystem.h"
 
 using namespace NobleEngine;
 int main()
@@ -19,7 +19,7 @@ int main()
 
 	std::shared_ptr<AudioClip> ac = app->GetResourceManager()->LoadResource<AudioClip>(testAudio);
 
-	int amount = 10;
+	/*int amount = 10;
 	std::cout << "Enter the amount of boxes cubed you want. E.G 10 = 1000 boxes.	";
 	std::cin >> amount;
 	for (int x = 0; x < amount; x++)
@@ -52,7 +52,7 @@ int main()
 	tr2->parent = tr;
 	pc = parentTest->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));*/
 
-	std::shared_ptr<Entity> camera = app->CreateEntity();
+	/*std::shared_ptr<Entity> camera = app->CreateEntity();
 	camera->AddComponent<Transform>(glm::vec3(0, 5, 0));
 	std::shared_ptr<Camera> cr = camera->AddComponent<Camera>();
 	camera->AddComponent<FlyingCam>();
@@ -61,7 +61,7 @@ int main()
 	fc->SetSystemUse(false, true, false);
 	app->BindSystem(fc);
 
-	app->activeCam = cr;
+	app->activeCam = cr;*/
 
 	app->MainLoop();
 

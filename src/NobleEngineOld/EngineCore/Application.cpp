@@ -1,11 +1,20 @@
 #include "Application.h"
 
 #include "Screen.h"
-//#include "../Components/Camera.h"
+#include "../Components/Camera.h"
 #include "ResourceManager.h"
 #include "PhysicsWorld.h"
+#include "System.h"
+#include "Entity.h"
 #include "../ResourceManagement/ShaderProgram.h"
 #include "InputManager.h"
+
+#include "../Systems/TransformSystem.h"
+#include "../Systems/MeshRendererSystem.h"
+#include "../Systems/CameraSystem.h"
+#include "../Systems/PhysicsBodySystem.h"
+#include "../Systems/AudioSourceSystem.h"
+#include "../Systems/AudioListenerSystem.h"
 
 namespace NobleEngine
 {
@@ -67,7 +76,7 @@ namespace NobleEngine
 
 	void Application::MainLoop()
 	{
-		//BindCoreSystems();
+		BindCoreSystems();
 
 		SDL_Event e = { 0 };
 		glEnable(GL_CULL_FACE);
@@ -93,14 +102,14 @@ namespace NobleEngine
 
 			for (size_t sys = 0; sys < systems.size(); sys++) //handles system updates
 			{
-				//systems.at(sys)->Update();
+				systems.at(sys)->Update();
 			}
 
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 			for (size_t sys = 0; sys < systems.size(); sys++) //handles system rendering
 			{
-				//systems.at(sys)->Render();
+				systems.at(sys)->Render();
 			}
 
 			SDL_GL_SwapWindow(screen->GetWindow());
@@ -110,11 +119,11 @@ namespace NobleEngine
 			{
 				std::shared_ptr<Entity> entity = *deleter;
 				deletionEntities.pop_back();
-				//RemoveEntity(entity->entityID);
+				RemoveEntity(entity->entityID);
 			}
 			for (size_t sys = 0; sys < systems.size(); sys++) //handles system cleanup
 			{
-				//systems.at(sys)->ClearUnneededComponents();
+				systems.at(sys)->ClearUnneededComponents();
 			}
 			ResourceManager::UnloadUnusedResources();
 
@@ -129,7 +138,7 @@ namespace NobleEngine
 		physicsWorld->CleanupPhysicsWorld();
 	}
 
-	/*std::shared_ptr<Entity> Application::CreateEntity()
+	std::shared_ptr<Entity> Application::CreateEntity()
 	{
 		std::shared_ptr<Entity> en = std::make_shared<Entity>();
 		if (availableIDs.size() > 0)
@@ -169,9 +178,9 @@ namespace NobleEngine
 		entities.push_back(en);
 
 		return en;
-	}*/
+	}
 
-	/*std::shared_ptr<Entity> Application::GetEntity(int ID)
+	std::shared_ptr<Entity> Application::GetEntity(int ID)
 	{
 		for (size_t en = 0; en < entities.size(); en++)
 		{
@@ -186,7 +195,7 @@ namespace NobleEngine
 
 		std::cout << "Entity could not be found with ID: " << ID << std::endl;
 		throw std::exception();
-	}*/
+	}
 
 	std::shared_ptr<ResourceManager> Application::GetResourceManager()
 	{
@@ -198,7 +207,7 @@ namespace NobleEngine
 		return physicsWorld;
 	}
 
-	/*void Application::BindCoreSystems()
+	void Application::BindCoreSystems()
 	{
 		std::shared_ptr<TransformSystem> tr = std::make_shared<TransformSystem>();
 		tr->SetSystemUse(true, true, false);
@@ -230,5 +239,5 @@ namespace NobleEngine
 		entities.at(ID)->RemoveAllComponents();
 		entities.at(ID).reset();
 		availableIDs.push_back(ID);
-	}*/
+	}
 }
