@@ -11,6 +11,7 @@
 #include "Components/AudioListener.h"
 #include "Components/AudioSource.h"
 #include "Components/Camera.h"
+#include "Components/Light.h"
 #include "Components/MeshRenderer.h"
 #include "Components/PhysicsBody.h"
 #include "Components/Transform.h"

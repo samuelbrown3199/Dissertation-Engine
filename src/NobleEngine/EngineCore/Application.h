@@ -76,7 +76,7 @@ namespace NobleEngine
 		*Binds the system to the engine core for use in game functionality. Only one of each system type can be bound at a time.
 		*/
 		template<typename T>
-		static void BindSystem(std::shared_ptr<T> system)
+		static void BindSystem(bool thread, bool update, bool render)
 		{
 			std::shared_ptr<T> temp;
 			for (size_t sys = 0; sys < systems.size(); sys++)
@@ -88,6 +88,9 @@ namespace NobleEngine
 					return;
 				}
 			}
+
+			std::shared_ptr<T> system = std::make_shared<T>();
+			system->SetSystemUse(thread, update, render);
 			system->application = self;
 			self.lock()->systems.push_back(system);
 		}

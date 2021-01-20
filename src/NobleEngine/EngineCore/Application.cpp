@@ -15,6 +15,7 @@
 #include "../Systems/PhysicsBodySystem.h"
 #include "../Systems/AudioSourceSystem.h"
 #include "../Systems/AudioListenerSystem.h"
+#include "../Systems/LightSystem.h"
 
 namespace NobleEngine
 {
@@ -209,29 +210,13 @@ namespace NobleEngine
 
 	void Application::BindCoreSystems()
 	{
-		std::shared_ptr<TransformSystem> tr = std::make_shared<TransformSystem>();
-		tr->SetSystemUse(true, true, false);
-		BindSystem(tr);
-
-		std::shared_ptr<PhysicsBodySystem> ps = std::make_shared<PhysicsBodySystem>();
-		tr->SetSystemUse(true, true, false);
-		BindSystem(ps);
-
-		std::shared_ptr<CameraSystem> cr = std::make_shared<CameraSystem>();
-		cr->SetSystemUse(false, true, false);
-		BindSystem(cr);
-
-		std::shared_ptr<AudioListenerSystem> al = std::make_shared<AudioListenerSystem>();
-		al->SetSystemUse(false, true, false);
-		BindSystem(al);
-
-		std::shared_ptr<AudioSourceSystem> as = std::make_shared<AudioSourceSystem>();
-		cr->SetSystemUse(false, true, false);
-		BindSystem(as);
-
-		std::shared_ptr<MeshRendererSystem> mr = std::make_shared<MeshRendererSystem>();
-		mr->SetSystemUse(true, false, true);
-		BindSystem(mr);
+		BindSystem<TransformSystem>(true, true, false);
+		BindSystem<PhysicsBodySystem>(true, true, false);
+		BindSystem<CameraSystem>(false, true, false);
+		BindSystem<AudioListenerSystem>(false, true, false);
+		BindSystem<AudioSourceSystem>(false, true, false);
+		BindSystem<LightSystem>(false, false, true);
+		BindSystem<MeshRendererSystem>(true, false, true);
 	}
 
 	void Application::RemoveEntity(int ID)
