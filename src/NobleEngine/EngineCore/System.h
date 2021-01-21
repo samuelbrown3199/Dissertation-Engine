@@ -85,14 +85,13 @@ namespace NobleEngine
 				else
 				{
 					int amountOfThreads = ceil(T::componentList.size() / maxComponentsPerThread)+1;
-					std::cout << "Amount required for " << T::componentList.size() << " components is " << amountOfThreads << " thread(s) with each thread handling " << maxComponentsPerThread << " components." << std::endl;
 					for (int i = 0; i < amountOfThreads; i++)
 					{
 						int buffer = maxComponentsPerThread * i;						
 						workerThreads.emplace_back(std::thread(&System<T>::ThreadUpdate, this, maxComponentsPerThread, buffer));
 					}
 
-					for (int i = workerThreads.size(); i > 0; i--)
+					for (int i = workerThreads.size()-1; i >= 0; i--)
 					{
 						workerThreads.at(i).join();
 						workerThreads.pop_back();
@@ -108,6 +107,8 @@ namespace NobleEngine
 			int maxCap = buffer + amount;
 			for (size_t co = buffer; co < maxCap; co++)
 			{
+				if (co >= T::componentList.size())
+					continue;
 				if (T::componentList.at(co))
 				{
 					OnUpdate(T::componentList.at(co));
@@ -138,7 +139,7 @@ namespace NobleEngine
 						workerThreads.emplace_back(std::thread(&System<T>::ThreadRender, this, maxComponentsPerThread, buffer));
 					}
 
-					for (int i = workerThreads.size(); i > 0; i--)
+					for (size_t i = workerThreads.size(); i > 0; i--)
 					{
 						workerThreads.at(i).join();
 						workerThreads.pop_back();
@@ -151,11 +152,11 @@ namespace NobleEngine
 		*/
 		void ThreadRender(int amount, int buffer)
 		{
-			std::cout << "Render Thread" << std::endl;
-
 			int maxCap = buffer + amount;
 			for (size_t co = buffer; co < maxCap; co++)
 			{
+				if (co >= T::componentList.size())
+					continue;
 				if (T::componentList.at(co))
 				{
 					OnRender(T::componentList.at(co));
@@ -177,7 +178,7 @@ namespace NobleEngine
 		void SetSystemUse(bool threading, bool update, bool render)
 		{
 			useThreading = threading;
-			useThreading = false; //temp
+			//useThreading = false; //temp
 			useUpdate = update;
 			useRender = render;
 		}

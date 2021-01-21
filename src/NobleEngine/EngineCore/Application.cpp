@@ -1,5 +1,7 @@
 #include "Application.h"
 
+#include <thread>
+
 #include "Screen.h"
 #include "../Components/Camera.h"
 #include "ResourceManager.h"
@@ -72,6 +74,13 @@ namespace NobleEngine
 		app->standardShader->BindShader(fragmentShader, GL_FRAGMENT_SHADER);
 		app->standardShader->LinkShaderProgram();
 
+		app->standardShader->UseProgram();
+		app->standardShader->BindInt("material.diffuseTexture", 0);
+		app->standardShader->BindInt("material.specularTexture", 1);
+		glUseProgram(0);
+
+		std::cout << std::thread::hardware_concurrency() << std::endl;
+
 		return app;
 	}
 
@@ -85,7 +94,10 @@ namespace NobleEngine
 		
 		glClearColor(0.0f, 0.45f, 0.45f, 1.0f);
 
-		Uint32 frameStart, renderStart, updateStart, deleteStart;
+		Uint32 frameStart, renderStart, updateStart, physicsStart;
+		double frameTime = 0;
+		double fps = 0;
+		double deltaT = 0;
 
 		while (loop)
 		{
@@ -128,21 +140,21 @@ namespace NobleEngine
 				deletionEntities.pop_back();
 				RemoveEntity(entity->entityID);
 			}
-			double deleteTime;
 			for (size_t sys = 0; sys < systems.size(); sys++) //handles system cleanup
 			{
-				deleteStart = SDL_GetTicks();
 				systems.at(sys)->ClearUnneededComponents();
-				deleteTime = SDL_GetTicks() - deleteStart;
 			}
 			ResourceManager::UnloadUnusedResources();
 
-			double frameTime = SDL_GetTicks() - frameStart;
-			double fps = 1000.0f / frameTime;
-			double deltaT = 1.0f / fps;
-			physicsWorld->StepSimulation(deltaT);
+			physicsStart = SDL_GetTicks();
+			physicsWorld->StepSimulation(frameTime);
+			double physicsTime = SDL_GetTicks() - physicsStart;
 
-			//std::cout << "FPS: " << fps << "		Frame Time: " << frameTime << "	Update Time: " << updateTime << "	Render Time: " << renderTime << "	Delete Time: " << deleteTime << std::endl;
+			frameTime = SDL_GetTicks() - frameStart;
+			fps = 1000.0f / frameTime;
+			deltaT = 1.0f / fps;
+
+			std::cout << "FPS: " << fps << "	Frame Time: " << frameTime << "	Update Time: " << updateTime << "	Render Time: " << renderTime << "	Physics Time: " << physicsTime << std::endl;
 		}
 
 		physicsWorld->CleanupPhysicsWorld();
@@ -225,7 +237,7 @@ namespace NobleEngine
 		BindSystem<AudioListenerSystem>(false, true, false);
 		BindSystem<AudioSourceSystem>(false, true, false);
 		BindSystem<LightSystem>(false, false, true);
-		BindSystem<MeshRendererSystem>(true, false, true);
+		BindSystem<MeshRendererSystem>(false, false, true);
 	}
 
 	void Application::RemoveEntity(int ID)

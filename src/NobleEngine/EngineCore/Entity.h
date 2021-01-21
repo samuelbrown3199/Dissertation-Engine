@@ -109,7 +109,6 @@ namespace NobleEngine
 				return comp;
 			}
 
-			std::cout << "Could not find component on entity " << entityID << std::endl;
 			return nullptr;
 		}
 		/**

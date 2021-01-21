@@ -13,46 +13,41 @@ namespace NobleEngine
 
 	void MeshRendererSystem::OnRender(std::shared_ptr<MeshRenderer> comp)
 	{
-		RenderMesh(comp);
-	}
-
-	void MeshRendererSystem::RenderMesh(std::shared_ptr<MeshRenderer> mesh)
-	{
-		if (!mesh->transform)
+		if (!comp->transform)
 		{
-			mesh->transform = GetApplication()->GetEntity(mesh->entityID)->GetComponent<Transform>();
+			comp->transform = GetApplication()->GetEntity(comp->entityID)->GetComponent<Transform>();
 		}
-		if (!mesh->shader)
+		if (!comp->shader)
 		{
-			mesh->shader = Application::standardShader;
+			comp->shader = Application::standardShader;
 			GetApplication()->standardShader->UseProgram();
-			GetApplication()->standardShader->BindModelMat(mesh->transform->model);
+			GetApplication()->standardShader->BindModelMat(comp->transform->model);
 			GetApplication()->standardShader->BindProjectionMat(GetApplication()->screen->GenerateProjectionMatrix());
 			GetApplication()->standardShader->BindViewMat(GetApplication()->activeCam->viewMatrix);
 		}
 		else
 		{
-			mesh->shader->UseProgram();
-			mesh->shader->BindModelMat(mesh->transform->model);
-			mesh->shader->BindProjectionMat(GetApplication()->screen->GenerateProjectionMatrix());
-			mesh->shader->BindViewMat(GetApplication()->activeCam->viewMatrix);
+			comp->shader->UseProgram();
+			comp->shader->BindModelMat(comp->transform->model);
+			comp->shader->BindProjectionMat(GetApplication()->screen->GenerateProjectionMatrix());
+			comp->shader->BindViewMat(GetApplication()->activeCam->viewMatrix);
 		}
-		if (mesh->model)
+		if (comp->model)
 		{
-			glBindVertexArray(mesh->model->vaoID);
+			glBindVertexArray(comp->model->vaoID);
 		}
-		if (mesh->material->diffuseTexture)
+		if (comp->material->diffuseTexture)
 		{
 			glActiveTexture(GL_TEXTURE0);
-			glBindTexture(GL_TEXTURE_2D, mesh->material->diffuseTexture->textureID);
+			glBindTexture(GL_TEXTURE_2D, comp->material->diffuseTexture->textureID);
 		}
-		if (mesh->material->specularTexture)
+		if (comp->material->specularTexture)
 		{
 			glActiveTexture(GL_TEXTURE1);
-			glBindTexture(GL_TEXTURE_2D, mesh->material->specularTexture->textureID);
+			glBindTexture(GL_TEXTURE_2D, comp->material->specularTexture->textureID);
 		}
 
-		glDrawArrays(GL_TRIANGLES, 0, mesh->model->drawCount);
+		glDrawArrays(GL_TRIANGLES, 0, comp->model->drawCount);
 		glBindVertexArray(0);
 		glUseProgram(0);
 	}

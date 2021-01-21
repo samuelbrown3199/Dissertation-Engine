@@ -10,6 +10,21 @@ namespace NobleEngine
 		programID = glCreateProgram();
 	}
 
+	GLint ShaderProgram::GetLocation(std::string location)
+	{
+		for (size_t i = 0; i < shaderLocations.size(); i++)
+		{
+			if (shaderLocations.at(i)->locationName == location)
+			{
+				return shaderLocations.at(i)->locationID;
+			}
+		}
+
+		std::shared_ptr<ShaderLocation> rtn = ShaderLocation::CreateLocation(programID, location);
+		shaderLocations.push_back(rtn);
+		return rtn->locationID;
+	}
+
 	void ShaderProgram::BindShader(std::shared_ptr<Shader> shader, GLenum shaderType)
 	{
 		const GLchar* shaderSource = shader->shaderCode->c_str();
@@ -43,13 +58,13 @@ namespace NobleEngine
 
 	void ShaderProgram::BindInt(std::string location, int value)
 	{
-			GLint intLocation = glGetUniformLocation(programID, location.c_str());
-			glUniform1i(intLocation, value);
+		GLint intLocation = GetLocation(location);
+		glUniform1i(intLocation, value);
 	}
 
 	void ShaderProgram::BindMat4(std::string location, glm::mat4 matrix)
 	{
-		GLint matrixLocation = glGetUniformLocation(programID, location.c_str());
+		GLint matrixLocation = GetLocation(location);
 		glUniformMatrix4fv(matrixLocation, 1, GL_FALSE, glm::value_ptr(matrix));
 	}
 
@@ -90,12 +105,10 @@ namespace NobleEngine
 		}
 
 		glUseProgram(programID);
+
 		modelMatrixLoc = glGetUniformLocation(programID, "u_Model");
 		projectionMatrixLoc = glGetUniformLocation(programID, "u_Projection");
 		viewMatrixLoc = glGetUniformLocation(programID, "u_View");
-
-		BindInt("material.diffuseTexture", 0);
-		BindInt("material.specularTexture", 1);
 
 		glUseProgram(0);
 	}

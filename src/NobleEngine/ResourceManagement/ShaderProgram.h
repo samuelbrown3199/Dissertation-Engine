@@ -4,6 +4,7 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
 #include <memory>
 
 #include <GL/glew.h>
@@ -17,6 +18,23 @@ namespace NobleEngine
 	class Application;
 
 	/**
+	*Stores a shader location GLint. It is more optimal to store these rather than to find them every frame.
+	*/
+	struct ShaderLocation
+	{
+		std::string locationName;
+		GLint locationID;
+
+		static std::shared_ptr<ShaderLocation> CreateLocation(GLuint shaderProgram, std::string location)
+		{
+			std::shared_ptr<ShaderLocation> rtn = std::make_shared<ShaderLocation>();
+			rtn->locationName = location;
+			rtn->locationID = glGetUniformLocation(shaderProgram, location.c_str());
+
+			return rtn;
+		}
+	};
+	/**
 	*Made up of several shader resources, these are used in rendering graphics within the engine.
 	*/
 	struct ShaderProgram
@@ -26,8 +44,14 @@ namespace NobleEngine
 
 		GLint modelMatrixLoc, projectionMatrixLoc, viewMatrixLoc;
 
+		std::vector<std::shared_ptr<ShaderLocation>> shaderLocations;
+
 	public:
 		ShaderProgram(std::weak_ptr<Application> app);
+		/**
+		*Gets a location from the list, or if it does not contain it creates and adds it to list.
+		*/
+		GLint GetLocation(std::string location);
 		/**
 		*Binds a shader resource to the shader program.
 		*/
