@@ -24,6 +24,8 @@ namespace NobleEngine
 		std::weak_ptr<Application> application;
 		GLuint programID;
 
+		GLint modelMatrixLoc, projectionMatrixLoc, viewMatrixLoc;
+
 	public:
 		ShaderProgram(std::weak_ptr<Application> app);
 		/**
@@ -38,6 +40,9 @@ namespace NobleEngine
 		*This function binds an matrix4 to a uniform matrix4 in the shader.
 		*/
 		void BindMat4(std::string location, glm::mat4 matrix);
+		void BindModelMat(glm::mat4 matrix);
+		void BindProjectionMat(glm::mat4 matrix);
+		void BindViewMat(glm::mat4 matrix);
 		/**
 		*Links the program for use in the engine.
 		*/

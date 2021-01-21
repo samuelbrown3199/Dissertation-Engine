@@ -85,7 +85,7 @@ namespace NobleEngine
 		
 		glClearColor(0.0f, 0.45f, 0.45f, 1.0f);
 
-		Uint32 frameStart;
+		Uint32 frameStart, renderStart, updateStart, deleteStart;
 
 		while (loop)
 		{
@@ -101,16 +101,22 @@ namespace NobleEngine
 			screen->UpdateScreenSize();
 			InputManager::GetMousePosition();
 
+			double updateTime;
 			for (size_t sys = 0; sys < systems.size(); sys++) //handles system updates
 			{
+				updateStart = SDL_GetTicks();
 				systems.at(sys)->Update();
+				updateTime = SDL_GetTicks() - updateStart;
 			}
 
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+			double renderTime;
 			for (size_t sys = 0; sys < systems.size(); sys++) //handles system rendering
 			{
+				renderStart = SDL_GetTicks();
 				systems.at(sys)->Render();
+				renderTime = SDL_GetTicks() - renderStart;
 			}
 
 			SDL_GL_SwapWindow(screen->GetWindow());
@@ -122,9 +128,12 @@ namespace NobleEngine
 				deletionEntities.pop_back();
 				RemoveEntity(entity->entityID);
 			}
+			double deleteTime;
 			for (size_t sys = 0; sys < systems.size(); sys++) //handles system cleanup
 			{
+				deleteStart = SDL_GetTicks();
 				systems.at(sys)->ClearUnneededComponents();
+				deleteTime = SDL_GetTicks() - deleteStart;
 			}
 			ResourceManager::UnloadUnusedResources();
 
@@ -133,7 +142,7 @@ namespace NobleEngine
 			double deltaT = 1.0f / fps;
 			physicsWorld->StepSimulation(deltaT);
 
-			std::cout << "FPS: " << fps  << "	delta t: " << deltaT << "	frametime: " << frameTime << std::endl;
+			//std::cout << "FPS: " << fps << "		Frame Time: " << frameTime << "	Update Time: " << updateTime << "	Render Time: " << renderTime << "	Delete Time: " << deleteTime << std::endl;
 		}
 
 		physicsWorld->CleanupPhysicsWorld();

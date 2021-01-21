@@ -53,6 +53,19 @@ namespace NobleEngine
 		glUniformMatrix4fv(matrixLocation, 1, GL_FALSE, glm::value_ptr(matrix));
 	}
 
+	void ShaderProgram::BindModelMat(glm::mat4 matrix)
+	{
+		glUniformMatrix4fv(modelMatrixLoc, 1, GL_FALSE, glm::value_ptr(matrix));
+	}
+	void ShaderProgram::BindProjectionMat(glm::mat4 matrix)
+	{
+		glUniformMatrix4fv(projectionMatrixLoc, 1, GL_FALSE, glm::value_ptr(matrix));
+	}
+	void ShaderProgram::BindViewMat(glm::mat4 matrix)
+	{
+		glUniformMatrix4fv(viewMatrixLoc, 1, GL_FALSE, glm::value_ptr(matrix));
+	}
+
 	void ShaderProgram::LinkShaderProgram()
 	{
 		GLint success = 0;
@@ -75,6 +88,16 @@ namespace NobleEngine
 			glDeleteProgram(programID);
 			throw std::exception();
 		}
+
+		glUseProgram(programID);
+		modelMatrixLoc = glGetUniformLocation(programID, "u_Model");
+		projectionMatrixLoc = glGetUniformLocation(programID, "u_Projection");
+		viewMatrixLoc = glGetUniformLocation(programID, "u_View");
+
+		BindInt("material.diffuseTexture", 0);
+		BindInt("material.specularTexture", 1);
+
+		glUseProgram(0);
 	}
 
 	void ShaderProgram::UseProgram()
