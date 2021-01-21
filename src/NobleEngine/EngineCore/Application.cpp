@@ -99,6 +99,11 @@ namespace NobleEngine
 		double fps = 0;
 		double deltaT = 0;
 
+		const int avgFrameRateCount = 10;
+		std::vector<int> framerateList;
+		int currentFrameCount = 0;
+		double avgFPS = 0;
+
 		while (loop)
 		{
 			frameStart = SDL_GetTicks();
@@ -120,6 +125,10 @@ namespace NobleEngine
 				systems.at(sys)->Update();
 				updateTime = SDL_GetTicks() - updateStart;
 			}
+
+			physicsStart = SDL_GetTicks();
+			physicsWorld->StepSimulation(frameTime); //Update the physics world simulation.
+			double physicsTime = SDL_GetTicks() - physicsStart;
 
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -146,15 +155,25 @@ namespace NobleEngine
 			}
 			ResourceManager::UnloadUnusedResources();
 
-			physicsStart = SDL_GetTicks();
-			physicsWorld->StepSimulation(frameTime);
-			double physicsTime = SDL_GetTicks() - physicsStart;
-
 			frameTime = SDL_GetTicks() - frameStart;
 			fps = 1000.0f / frameTime;
 			deltaT = 1.0f / fps;
+			framerateList.push_back(fps);
+			currentFrameCount++;
 
-			std::cout << "FPS: " << fps << "	Frame Time: " << frameTime << "	Update Time: " << updateTime << "	Render Time: " << renderTime << "	Physics Time: " << physicsTime << std::endl;
+			if (avgFrameRateCount == currentFrameCount)
+			{
+				avgFPS = 0;
+				for (int i = 0; i < framerateList.size(); i++)
+				{
+					avgFPS += framerateList.at(i);
+				}
+				framerateList.clear();
+				avgFPS /= avgFrameRateCount;
+				currentFrameCount = 0;
+			}
+
+			std::cout << "AVG FPS: " << avgFPS << "	Frame Time: " << frameTime << "	Update Time: " << updateTime << "	Render Time: " << renderTime << "	Physics Time: " << physicsTime << std::endl;
 		}
 
 		physicsWorld->CleanupPhysicsWorld();

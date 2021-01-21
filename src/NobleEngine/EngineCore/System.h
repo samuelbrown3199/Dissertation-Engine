@@ -15,9 +15,20 @@ namespace NobleEngine
 {
 	class Application;
 
+	/**
+	*Stores performance information for systems.
+	*/
+	struct SystemPerformanceStats
+	{
+		double updateTime, renderTime;
+		int componentListSize;
+	};
+
 	struct SystemBase
 	{
 	protected:
+
+		SystemPerformanceStats performanceStats;
 		std::vector<std::thread> workerThreads;
 	public:
 		/**
@@ -59,6 +70,13 @@ namespace NobleEngine
 		*Used in the inherited System struct.
 		*/
 		virtual void ClearUnneededComponents() {};
+		/**
+		*Returns performance information from the system.
+		*/
+		SystemPerformanceStats GetPerformanceStats()
+		{
+			return performanceStats;
+		}
 	};
 
 	/**
@@ -73,8 +91,12 @@ namespace NobleEngine
 		*/
 		void Update()
 		{
+			performanceStats.componentListSize = T::componentList.size();
+
 			if (useUpdate)
 			{
+				Uint32 updateStart = SDL_GetTicks();
+
 				if (!useThreading)
 				{
 					for (size_t co = 0; co < T::componentList.size(); co++)
@@ -97,6 +119,8 @@ namespace NobleEngine
 						workerThreads.pop_back();
 					}
 				}
+
+				performanceStats.updateTime = SDL_GetTicks() - updateStart;
 			}
 		}
 		/**
@@ -122,6 +146,8 @@ namespace NobleEngine
 		{
 			if (useRender)
 			{
+				Uint32 renderStart = SDL_GetTicks();
+
 				if (!useThreading)
 				{
 					for (size_t co = 0; co < T::componentList.size(); co++)
@@ -145,6 +171,8 @@ namespace NobleEngine
 						workerThreads.pop_back();
 					}
 				}
+
+				performanceStats.renderTime = SDL_GetTicks() - renderStart;
 			}
 		}
 		/**
