@@ -18,7 +18,7 @@ namespace NobleEngine
 	struct SystemBase
 	{
 	protected:
-		std::vector<std::thread> systemThreads;
+		std::vector<std::thread> workerThreads;
 	public:
 		/**
 		*Stores a weak pointer back to the application core.
@@ -47,10 +47,6 @@ namespace NobleEngine
 		{
 			return application.lock();
 		}
-		/**
-		*Called when binding the system.
-		*/
-		virtual void InitializeSystem() {};
 		/**
 		*Update is called every frame.
 		*/
@@ -89,16 +85,17 @@ namespace NobleEngine
 				else
 				{
 					int amountOfThreads = ceil(T::componentList.size() / maxComponentsPerThread)+1;
+					std::cout << "Amount required for " << T::componentList.size() << " components is " << amountOfThreads << " thread(s) with each thread handling " << maxComponentsPerThread << " components." << std::endl;
 					for (int i = 0; i < amountOfThreads; i++)
 					{
-						int buffer = maxComponentsPerThread * i;
-						//systemThreads.push_back(std::thread(&System::ThreadUpdate, maxComponentsPerThread, buffer, this));
+						int buffer = maxComponentsPerThread * i;						
+						workerThreads.emplace_back(std::thread(&System<T>::ThreadUpdate, this, maxComponentsPerThread, buffer));
 					}
 
-					for (int i = systemThreads.size(); i > 0; i--)
+					for (int i = workerThreads.size(); i > 0; i--)
 					{
-						systemThreads.at(i).join();
-						systemThreads.pop_back();
+						workerThreads.at(i).join();
+						workerThreads.pop_back();
 					}
 				}
 			}
@@ -108,7 +105,8 @@ namespace NobleEngine
 		*/
 		void ThreadUpdate(int amount, int buffer)
 		{
-			for (size_t co = buffer; co < buffer+amount; co++)
+			int maxCap = buffer + amount;
+			for (size_t co = buffer; co < maxCap; co++)
 			{
 				if (T::componentList.at(co))
 				{
@@ -133,16 +131,17 @@ namespace NobleEngine
 				else
 				{
 					int amountOfThreads = ceil(T::componentList.size() / maxComponentsPerThread)+1;
+					std::cout << "Amount required for " << T::componentList.size() << " components is " << amountOfThreads << " thread(s) with each thread handling " << maxComponentsPerThread << " components." << std::endl;
 					for (int i = 0; i < amountOfThreads; i++)
 					{
 						int buffer = maxComponentsPerThread * i;
-						//systemThreads.push_back(std::thread(&System<T>::ThreadRender, maxComponentsPerThread, buffer, this));
+						workerThreads.emplace_back(std::thread(&System<T>::ThreadRender, this, maxComponentsPerThread, buffer));
 					}
 
-					for (int i = systemThreads.size(); i > 0; i--)
+					for (int i = workerThreads.size(); i > 0; i--)
 					{
-						systemThreads.at(i).join();
-						systemThreads.pop_back();
+						workerThreads.at(i).join();
+						workerThreads.pop_back();
 					}
 				}
 			}
@@ -152,7 +151,10 @@ namespace NobleEngine
 		*/
 		void ThreadRender(int amount, int buffer)
 		{
-			for (size_t co = buffer; co < buffer + amount; co++)
+			std::cout << "Render Thread" << std::endl;
+
+			int maxCap = buffer + amount;
+			for (size_t co = buffer; co < maxCap; co++)
 			{
 				if (T::componentList.at(co))
 				{
@@ -161,7 +163,6 @@ namespace NobleEngine
 			}
 		}
 	public:
-		virtual void OnInitialize(std::shared_ptr<T> comp) {};
 		/**
 		*Inherited classes can implement this function with a parameter taking in a shared pointer of the type. Functionality can then be called on that pointer.
 		*/

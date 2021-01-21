@@ -210,8 +210,8 @@ namespace NobleEngine
 
 	void Application::BindCoreSystems()
 	{
-		BindSystem<TransformSystem>(true, true, false);
-		BindSystem<PhysicsBodySystem>(true, true, false);
+		BindSystem<TransformSystem>(false, true, false);
+		BindSystem<PhysicsBodySystem>(false, true, false);
 		BindSystem<CameraSystem>(false, true, false);
 		BindSystem<AudioListenerSystem>(false, true, false);
 		BindSystem<AudioSourceSystem>(false, true, false);
