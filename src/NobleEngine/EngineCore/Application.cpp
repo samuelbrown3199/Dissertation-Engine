@@ -107,6 +107,9 @@ namespace NobleEngine
 		while (loop)
 		{
 			frameStart = SDL_GetTicks();
+			double updateTime = 0;
+			double renderTime = 0;
+			double physicsTime = 0;
 
 			while (SDL_PollEvent(&e) != 0)
 			{
@@ -118,27 +121,25 @@ namespace NobleEngine
 			screen->UpdateScreenSize();
 			InputManager::GetMousePosition();
 
-			double updateTime;
+			updateStart = SDL_GetTicks();
 			for (size_t sys = 0; sys < systems.size(); sys++) //handles system updates
 			{
-				updateStart = SDL_GetTicks();
 				systems.at(sys)->Update();
-				updateTime = SDL_GetTicks() - updateStart;
 			}
+			updateTime = SDL_GetTicks() - updateStart;
 
 			physicsStart = SDL_GetTicks();
 			physicsWorld->StepSimulation(frameTime); //Update the physics world simulation.
-			double physicsTime = SDL_GetTicks() - physicsStart;
+			physicsTime = SDL_GetTicks() - physicsStart;
 
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-			double renderTime;
+			renderStart = SDL_GetTicks();
 			for (size_t sys = 0; sys < systems.size(); sys++) //handles system rendering
 			{
-				renderStart = SDL_GetTicks();
 				systems.at(sys)->Render();
-				renderTime = SDL_GetTicks() - renderStart;
 			}
+			renderTime = SDL_GetTicks() - renderStart;
 
 			SDL_GL_SwapWindow(screen->GetWindow());
 
@@ -250,8 +251,8 @@ namespace NobleEngine
 
 	void Application::BindCoreSystems()
 	{
-		BindSystem<TransformSystem>(false, true, false);
-		BindSystem<PhysicsBodySystem>(false, true, false);
+		BindSystem<TransformSystem>(true, true, false);
+		BindSystem<PhysicsBodySystem>(true, true, false);
 		BindSystem<CameraSystem>(false, true, false);
 		BindSystem<AudioListenerSystem>(false, true, false);
 		BindSystem<AudioSourceSystem>(false, true, false);
