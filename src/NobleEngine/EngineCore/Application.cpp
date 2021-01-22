@@ -104,6 +104,8 @@ namespace NobleEngine
 		int currentFrameCount = 0;
 		double avgFPS = 0;
 
+		std::thread physicsThread;
+
 		while (loop)
 		{
 			frameStart = SDL_GetTicks();
@@ -121,16 +123,14 @@ namespace NobleEngine
 			screen->UpdateScreenSize();
 			InputManager::GetMousePosition();
 
+			physicsThread = std::thread(&PhysicsWorld::StepSimulation, physicsWorld, frameTime); //Update the physics world simulation.
+
 			updateStart = SDL_GetTicks();
 			for (size_t sys = 0; sys < systems.size(); sys++) //handles system updates
 			{
 				systems.at(sys)->Update();
 			}
 			updateTime = SDL_GetTicks() - updateStart;
-
-			physicsStart = SDL_GetTicks();
-			physicsWorld->StepSimulation(frameTime); //Update the physics world simulation.
-			physicsTime = SDL_GetTicks() - physicsStart;
 
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -156,6 +156,10 @@ namespace NobleEngine
 			}
 			ResourceManager::UnloadUnusedResources();
 
+			physicsStart = SDL_GetTicks();
+			physicsThread.join();
+			physicsTime = SDL_GetTicks() - physicsStart;
+
 			frameTime = SDL_GetTicks() - frameStart;
 			fps = 1000.0f / frameTime;
 			deltaT = 1.0f / fps;
@@ -174,7 +178,7 @@ namespace NobleEngine
 				currentFrameCount = 0;
 			}
 
-			std::cout << "AVG FPS: " << avgFPS << "	Frame Time: " << frameTime << "	Update Time: " << updateTime << "	Render Time: " << renderTime << "	Physics Time: " << physicsTime << std::endl;
+			std::cout << "AVG FPS: " << avgFPS << "	Frame Time: " << frameTime << "	Update Time: " << updateTime << "	Render Time: " << renderTime << "	Physics thread join Time: " << physicsTime << std::endl;
 		}
 
 		physicsWorld->CleanupPhysicsWorld();
@@ -251,13 +255,13 @@ namespace NobleEngine
 
 	void Application::BindCoreSystems()
 	{
-		BindSystem<TransformSystem>(true, true, false);
-		BindSystem<PhysicsBodySystem>(true, true, false);
-		BindSystem<CameraSystem>(false, true, false);
-		BindSystem<AudioListenerSystem>(false, true, false);
-		BindSystem<AudioSourceSystem>(false, true, false);
-		BindSystem<LightSystem>(false, false, true);
-		BindSystem<MeshRendererSystem>(false, false, true);
+		BindSystem<TransformSystem>(true, false, 5000);
+		BindSystem<PhysicsBodySystem>(true, false, 5000);
+		BindSystem<CameraSystem>(true, false);
+		BindSystem<AudioListenerSystem>(true, false);
+		BindSystem<AudioSourceSystem>(true, false);
+		BindSystem<LightSystem>(false, true);
+		BindSystem<MeshRendererSystem>(false, true);
 	}
 
 	void Application::RemoveEntity(int ID)

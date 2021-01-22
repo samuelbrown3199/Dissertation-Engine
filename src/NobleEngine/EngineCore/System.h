@@ -51,6 +51,13 @@ namespace NobleEngine
 		*Determines how many components a thread should handle.
 		*/
 		int maxComponentsPerThread = 1024;
+
+		void SetThreadingUse(int componentsPerThread)
+		{
+			useThreading = true;
+			maxComponentsPerThread = componentsPerThread;
+		}
+
 		/**
 		*Returns the application as a shared pointer.
 		*/
@@ -203,10 +210,8 @@ namespace NobleEngine
 		/**
 		*Sets the system to use each feature, such as threading, update & rendering.
 		*/
-		void SetSystemUse(bool threading, bool update, bool render)
+		void SetSystemUse(bool update, bool render)
 		{
-			useThreading = threading;
-			//useThreading = false; //temp
 			useUpdate = update;
 			useRender = render;
 		}

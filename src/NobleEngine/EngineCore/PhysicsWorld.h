@@ -5,6 +5,7 @@
 #include <memory>
 
 #include <Bullet/btBulletDynamicsCommon.h>
+#include <Bullet/btBulletCollisionCommon.h>
 
 namespace NobleEngine
 {

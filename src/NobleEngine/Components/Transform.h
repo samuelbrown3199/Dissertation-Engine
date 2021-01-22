@@ -7,6 +7,7 @@
 #include <vector>
 
 #include "glm/glm.hpp"
+#include <Bullet/btBulletDynamicsCommon.h>
 
 #include "../EngineCore/Component.h"
 
@@ -24,6 +25,7 @@ namespace NobleEngine
 		*/
 		std::shared_ptr<PhysicsBody> pBody;
 		bool checkForPhysicsBody = false;
+		btTransform oldBodyPos;
 		/**
 		*Stores the parent transform of the object.
 		*/

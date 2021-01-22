@@ -36,6 +36,10 @@ namespace NobleEngine
 		}
 		else
 		{
+			if (tr->pBody->bodyTransform == tr->oldBodyPos)
+			{
+				return;
+			}
 			btScalar matrix[16];
 			tr->pBody->bodyTransform.getOpenGLMatrix(matrix);
 			tr->model = glm::mat4(1.0f);
@@ -47,6 +51,8 @@ namespace NobleEngine
 			{
 				tr->model *= tr->parent->model;
 			}
+
+			tr->oldBodyPos = tr->pBody->bodyTransform;
 		}
 	}
 }

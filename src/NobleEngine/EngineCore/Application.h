@@ -7,6 +7,7 @@
 #include <vector>
 #include <string>
 #include <exception>
+#include <thread>
 
 #include <SDL.h>
 #include <GL/glew.h>
@@ -76,7 +77,29 @@ namespace NobleEngine
 		*Binds the system to the engine core for use in game functionality. Only one of each system type can be bound at a time.
 		*/
 		template<typename T>
-		static void BindSystem(bool thread, bool update, bool render)
+		static void BindSystem(bool update, bool render)
+		{
+			std::shared_ptr<T> temp;
+			for (size_t sys = 0; sys < systems.size(); sys++)
+			{
+				temp = std::dynamic_pointer_cast<T>(systems.at(sys));
+				if (temp)
+				{
+					std::cout << "System is already bound!!" << std::endl;
+					return;
+				}
+			}
+
+			std::shared_ptr<T> system = std::make_shared<T>();
+			system->SetSystemUse(update, render);
+			system->application = self;
+			self.lock()->systems.push_back(system);
+		}
+		/**
+		*Binds the system to the engine core for use in game functionality. Only one of each system type can be bound at a time. This sets it up with threading.
+		*/
+		template<typename T>
+		static void BindSystem(bool update, bool render, int amountOfComponentsPerThread)
 		{
 			std::shared_ptr<T> temp;
 			for (size_t sys = 0; sys < systems.size(); sys++)
@@ -90,7 +113,8 @@ namespace NobleEngine
 			}
 
 			std::shared_ptr<T> system = std::make_shared<T>();
-			system->SetSystemUse(thread, update, render);
+			system->SetSystemUse(update, render);
+			system->SetThreadingUse(amountOfComponentsPerThread);
 			system->application = self;
 			self.lock()->systems.push_back(system);
 		}
