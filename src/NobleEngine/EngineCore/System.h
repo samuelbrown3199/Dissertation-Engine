@@ -9,6 +9,8 @@
 #include <thread>
 #include <mutex>
 
+#include "ThreadingManager.h"
+
 #define SetupComponentList(T) std::vector<std::shared_ptr<T>> Component<T>::componentList;
 
 namespace NobleEngine
@@ -29,7 +31,7 @@ namespace NobleEngine
 	protected:
 
 		SystemPerformanceStats performanceStats;
-		std::vector<std::thread> workerThreads;
+		std::vector<std::shared_ptr<std::thread>> workerThreads;
 	public:
 		/**
 		*Stores a weak pointer back to the application core.
@@ -117,12 +119,12 @@ namespace NobleEngine
 					for (int i = 0; i < amountOfThreads; i++)
 					{
 						int buffer = maxComponentsPerThread * i;						
-						workerThreads.emplace_back(std::thread(&System<T>::ThreadUpdate, this, maxComponentsPerThread, buffer));
+						workerThreads.emplace_back(ThreadingManager::CreateThread(&System<T>::ThreadUpdate, this, maxComponentsPerThread, buffer));
 					}
 
 					for (int i = workerThreads.size()-1; i >= 0; i--)
 					{
-						workerThreads.at(i).join();
+						ThreadingManager::JoinThread(workerThreads.at(i));
 						workerThreads.pop_back();
 					}
 				}
@@ -169,12 +171,12 @@ namespace NobleEngine
 					for (int i = 0; i < amountOfThreads; i++)
 					{
 						int buffer = maxComponentsPerThread * i;
-						workerThreads.emplace_back(std::thread(&System<T>::ThreadRender, this, maxComponentsPerThread, buffer));
+						workerThreads.emplace_back(ThreadingManager::CreateThread(&System<T>::ThreadRender, this, maxComponentsPerThread, buffer));
 					}
 
 					for (size_t i = workerThreads.size(); i > 0; i--)
 					{
-						workerThreads.at(i).join();
+						ThreadingManager::JoinThread(workerThreads.at(i));
 						workerThreads.pop_back();
 					}
 				}

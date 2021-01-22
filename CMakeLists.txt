@@ -26,6 +26,8 @@ add_library(NobleEngine
   src/NobleEngine/EngineCore/Application.cpp
   src/NobleEngine/EngineCore/Screen.h
   src/NobleEngine/EngineCore/Screen.cpp
+  src/NobleEngine/EngineCore/ThreadingManager.h
+  src/NobleEngine/EngineCore/ThreadingManager.cpp
   src/NobleEngine/EngineCore/ResourceManager.h
   src/NobleEngine/EngineCore/ResourceManager.cpp
   src/NobleEngine/EngineCore/InputManager.h

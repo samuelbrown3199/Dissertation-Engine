@@ -1,14 +1,11 @@
 #include "Application.h"
 
-#include <thread>
-
 #include "Screen.h"
-#include "../Components/Camera.h"
+#include "ThreadingManager.h"
 #include "ResourceManager.h"
 #include "PhysicsWorld.h"
 #include "System.h"
 #include "Entity.h"
-#include "../ResourceManagement/ShaderProgram.h"
 #include "InputManager.h"
 
 #include "../Systems/TransformSystem.h"
@@ -18,6 +15,10 @@
 #include "../Systems/AudioSourceSystem.h"
 #include "../Systems/AudioListenerSystem.h"
 #include "../Systems/LightSystem.h"
+
+#include "../Components/Camera.h"
+
+#include "../ResourceManagement/ShaderProgram.h"
 
 namespace NobleEngine
 {
@@ -63,6 +64,7 @@ namespace NobleEngine
 			alcDestroyContext(app->audioContext);
 			alcCloseDevice(app->audioDevice);
 		}
+		ThreadingManager::SetupMaxThreads();
 		app->resourceManager = std::make_shared<ResourceManager>();
 		app->physicsWorld = PhysicsWorld::CreatePhysicsWorld();
 
@@ -78,8 +80,6 @@ namespace NobleEngine
 		app->standardShader->BindInt("material.diffuseTexture", 0);
 		app->standardShader->BindInt("material.specularTexture", 1);
 		glUseProgram(0);
-
-		std::cout << std::thread::hardware_concurrency() << std::endl;
 
 		return app;
 	}
@@ -104,8 +104,6 @@ namespace NobleEngine
 		int currentFrameCount = 0;
 		double avgFPS = 0;
 
-		std::thread physicsThread;
-
 		while (loop)
 		{
 			frameStart = SDL_GetTicks();
@@ -123,7 +121,7 @@ namespace NobleEngine
 			screen->UpdateScreenSize();
 			InputManager::GetMousePosition();
 
-			physicsThread = std::thread(&PhysicsWorld::StepSimulation, physicsWorld, frameTime); //Update the physics world simulation.
+			std::shared_ptr<std::thread> physicsThread = ThreadingManager::CreateThread(&PhysicsWorld::StepSimulation, physicsWorld, frameTime); //Update the physics world simulation.
 
 			updateStart = SDL_GetTicks();
 			for (size_t sys = 0; sys < systems.size(); sys++) //handles system updates
@@ -157,7 +155,7 @@ namespace NobleEngine
 			ResourceManager::UnloadUnusedResources();
 
 			physicsStart = SDL_GetTicks();
-			physicsThread.join();
+			ThreadingManager::JoinThread(physicsThread);
 			physicsTime = SDL_GetTicks() - physicsStart;
 
 			frameTime = SDL_GetTicks() - frameStart;
