@@ -15,6 +15,7 @@ namespace NobleEngine
 		static std::vector<std::shared_ptr<std::thread>> threads;
 
 		static void SetupMaxThreads();
+		static void CleanupLooseThreads();
 
 		template<typename ... Args>
 		/**

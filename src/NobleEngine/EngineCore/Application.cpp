@@ -141,6 +141,10 @@ namespace NobleEngine
 
 			SDL_GL_SwapWindow(screen->GetWindow());
 
+			physicsStart = SDL_GetTicks();
+			ThreadingManager::JoinThread(physicsThread);
+			physicsTime = SDL_GetTicks() - physicsStart;
+
 			std::vector<std::shared_ptr<Entity>>::iterator deleter;
 			for (deleter = deletionEntities.end(); deleter != deletionEntities.begin(); deleter--)
 			{
@@ -152,11 +156,8 @@ namespace NobleEngine
 			{
 				systems.at(sys)->ClearUnneededComponents();
 			}
+			ThreadingManager::CleanupLooseThreads();
 			ResourceManager::UnloadUnusedResources();
-
-			physicsStart = SDL_GetTicks();
-			ThreadingManager::JoinThread(physicsThread);
-			physicsTime = SDL_GetTicks() - physicsStart;
 
 			frameTime = SDL_GetTicks() - frameStart;
 			fps = 1000.0f / frameTime;
