@@ -14,45 +14,48 @@ namespace NobleEngine
 			comp->pBody = GetApplication()->GetEntity(comp->entityID)->GetComponent<PhysicsBody>();
 			comp->checkForPhysicsBody = true;
 		}
-		GenerateModelMatrix(comp);
-	}
 
-	void TransformSystem::GenerateModelMatrix(std::shared_ptr<Transform> tr)
-	{
-		if (!tr->pBody)
+		if (!comp->pBody)
 		{
-			tr->model = glm::mat4(1.0f);
-
-			tr->model = glm::translate(tr->model, tr->position);
-			tr->model = glm::rotate(tr->model, glm::radians(tr->rotation.x), glm::vec3(1, 0, 0));
-			tr->model = glm::rotate(tr->model, glm::radians(tr->rotation.y), glm::vec3(0, 1, 0));
-			tr->model = glm::rotate(tr->model, glm::radians(tr->rotation.z), glm::vec3(0, 0, 1));
-			tr->model = glm::scale(tr->model, tr->scale);
-
-			if (tr->parent)
+			if (comp->position != comp->oldPosition && comp->rotation != comp->oldRotation && comp->scale != comp->oldScale)
 			{
-				tr->model = tr->model * tr->parent->model;
+				comp->model = glm::mat4(1.0f);
+
+				comp->model = glm::translate(comp->model, comp->position);
+				comp->model = glm::rotate(comp->model, glm::radians(comp->rotation.x), glm::vec3(1, 0, 0));
+				comp->model = glm::rotate(comp->model, glm::radians(comp->rotation.y), glm::vec3(0, 1, 0));
+				comp->model = glm::rotate(comp->model, glm::radians(comp->rotation.z), glm::vec3(0, 0, 1));
+				comp->model = glm::scale(comp->model, comp->scale);
+
+				if (comp->parent)
+				{
+					comp->model = comp->model * comp->parent->model;
+				}
+
+				comp->oldPosition = comp->position;
+				comp->oldRotation = comp->rotation;
+				comp->oldScale = comp->scale;
 			}
 		}
 		else
 		{
-			if (tr->pBody->bodyTransform == tr->oldBodyPos)
+			if (comp->pBody->bodyTransform == comp->oldBodyPos)
 			{
 				return;
 			}
 			btScalar matrix[16];
-			tr->pBody->bodyTransform.getOpenGLMatrix(matrix);
-			tr->model = glm::mat4(1.0f);
+			comp->pBody->bodyTransform.getOpenGLMatrix(matrix);
+			comp->model = glm::mat4(1.0f);
 
-			tr->model = glm::make_mat4(matrix);
-			tr->model = glm::scale(tr->model, tr->scale);
+			comp->model = glm::make_mat4(matrix);
+			comp->model = glm::scale(comp->model, comp->scale);
 
-			if (tr->parent)
+			if (comp->parent)
 			{
-				tr->model *= tr->parent->model;
+				comp->model *= comp->parent->model;
 			}
 
-			tr->oldBodyPos = tr->pBody->bodyTransform;
+			comp->oldBodyPos = comp->pBody->bodyTransform;
 		}
 	}
 }

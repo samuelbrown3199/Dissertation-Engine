@@ -31,7 +31,7 @@ int main()
 				std::shared_ptr<Entity> physicsTest = app->CreateEntity();
 				std::shared_ptr<Transform> tr = physicsTest->AddComponent<Transform>(glm::vec3(25 + (-15 * x) + rand() % 5, 20 + (15 * y) + rand() % 5, -30 + (-15 * z) + rand() % 5), glm::vec3(rand() % 360, rand() % 360, rand() % 360));
 				std::shared_ptr<MeshRenderer> pc = physicsTest->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));
-				physicsTest->AddComponent<PhysicsBody>(PhysicsBody::ColliderShape::box, 20);
+				//physicsTest->AddComponent<PhysicsBody>(PhysicsBody::ColliderShape::box, 20);
 			}
 		}
 	}

@@ -13,10 +13,9 @@ namespace NobleEngine
 	*/
 	struct TransformSystem : public System<Transform>
 	{
-		void OnUpdate(std::shared_ptr<Transform> comp);
 		/**
 		*Creates the model matrix of the passed in transform.
 		*/
-		void GenerateModelMatrix(std::shared_ptr<Transform> tr);
+		void OnUpdate(std::shared_ptr<Transform> comp);
 	};
 }

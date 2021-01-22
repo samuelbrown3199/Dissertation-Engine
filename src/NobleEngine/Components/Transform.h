@@ -34,14 +34,17 @@ namespace NobleEngine
 		*Contains the position of the transform. Defaults to the origin.
 		*/
 		glm::vec3 position;
+		glm::vec3 oldPosition;
 		/**
 		*Contains the rotation of the transform. Defaults with no rotation.
 		*/
 		glm::vec3 rotation;
+		glm::vec3 oldRotation;
 		/**
 		*Contains the scale of the transform. Defaults to a scale of 1 on each axis.
 		*/
 		glm::vec3 scale = glm::vec3(1, 1, 1);
+		glm::vec3 oldScale;
 		/**
 		*Contains the model matrix for use in rendering.
 		*/
