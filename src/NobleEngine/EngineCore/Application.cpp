@@ -121,7 +121,7 @@ namespace NobleEngine
 			screen->UpdateScreenSize();
 			InputManager::GetMousePosition();
 
-			std::shared_ptr<std::thread> physicsThread = ThreadingManager::CreateThread(&PhysicsWorld::StepSimulation, physicsWorld, frameTime); //Update the physics world simulation.
+			std::shared_ptr<std::thread> physicsThread = ThreadingManager::CreateThread(&PhysicsWorld::StepSimulation, physicsWorld, deltaT); //Update the physics world simulation.
 
 			updateStart = SDL_GetTicks();
 			for (size_t sys = 0; sys < systems.size(); sys++) //handles system updates
