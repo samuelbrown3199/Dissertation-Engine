@@ -9,6 +9,7 @@ namespace NobleEngine
 {
 	struct LightSystem : public System<Light>
 	{
+		void PreRender();
 		void OnRender(std::shared_ptr<Light> comp);
 	};
 }

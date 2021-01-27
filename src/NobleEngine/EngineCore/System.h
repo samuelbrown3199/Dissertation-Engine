@@ -2,6 +2,7 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 
+#include <iostream>
 #include <memory>
 #include <vector>
 #include <string>
@@ -106,6 +107,7 @@ namespace NobleEngine
 			if (useUpdate)
 			{
 				Uint32 updateStart = SDL_GetTicks();
+				PreUpdate();
 
 				if (!useThreading)
 				{
@@ -157,6 +159,7 @@ namespace NobleEngine
 			if (useRender)
 			{
 				Uint32 renderStart = SDL_GetTicks();
+				PreRender();
 
 				if (!useThreading)
 				{
@@ -202,6 +205,14 @@ namespace NobleEngine
 			}
 		}
 	public:
+		/**
+		*Function is called before update loops over every component.
+		*/
+		virtual void PreUpdate() {};
+		/**
+		*Function is called before render loops over every component.
+		*/
+		virtual void PreRender() {};
 		/**
 		*Inherited classes can implement this function with a parameter taking in a shared pointer of the type. Functionality can then be called on that pointer.
 		*/

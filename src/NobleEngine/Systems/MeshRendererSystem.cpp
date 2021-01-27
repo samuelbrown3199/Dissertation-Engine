@@ -31,6 +31,7 @@ namespace NobleEngine
 			comp->shader->BindModelMat(comp->transform->model);
 			comp->shader->BindProjectionMat(GetApplication()->screen->GenerateProjectionMatrix());
 			comp->shader->BindViewMat(GetApplication()->activeCam->viewMatrix);
+			//comp->shader->BindFloat("material.shininess", comp->material->shininess);
 		}
 		if (comp->model)
 		{

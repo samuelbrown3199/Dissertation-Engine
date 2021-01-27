@@ -3,6 +3,7 @@
 #define CAMERA_H_
 
 #include "../EngineCore/Component.h"
+#include "../Components/Transform.h"
 
 #include "glm/glm.hpp"
 
@@ -13,6 +14,10 @@ namespace NobleEngine
 	*/
 	struct Camera : public Component<Camera>
 	{
+		/**
+		*Stores the cameras entity transform component.
+		*/
+		std::shared_ptr<Transform> camTransform;
 		/**
 		*Stores the cameras view matrix.
 		*/

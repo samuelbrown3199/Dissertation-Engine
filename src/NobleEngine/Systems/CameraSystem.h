@@ -8,10 +8,9 @@ namespace NobleEngine
 	*/
 	struct CameraSystem : public System<Camera>
 	{
-		void OnUpdate(std::shared_ptr<Camera> comp);
 		/**
 		*Updates the camera view matrix.
 		*/
-		void UpdateCameraView(std::shared_ptr<Camera> cam);
+		void OnUpdate(std::shared_ptr<Camera> comp);
 	};
 }

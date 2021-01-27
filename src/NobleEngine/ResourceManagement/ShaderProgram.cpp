@@ -62,10 +62,22 @@ namespace NobleEngine
 		glUniform1i(intLocation, value);
 	}
 
+	void ShaderProgram::BindFloat(std::string location, float value)
+	{
+		GLint floatLocation = GetLocation(location);
+		glUniform1f(floatLocation, value);
+	}
+
 	void ShaderProgram::BindMat4(std::string location, glm::mat4 matrix)
 	{
 		GLint matrixLocation = GetLocation(location);
 		glUniformMatrix4fv(matrixLocation, 1, GL_FALSE, glm::value_ptr(matrix));
+	}
+
+	void ShaderProgram::BindVector3(std::string location, glm::vec3 vector)
+	{
+		GLint vectorLocation = GetLocation(location);
+		glUniform3f(vectorLocation, vector.x, vector.y, vector.z);
 	}
 
 	void ShaderProgram::BindModelMat(glm::mat4 matrix)

@@ -16,6 +16,7 @@ namespace NobleEngine
 		//after changing and adding variables make sure to update the load material function in the resource manager.
 
 		std::shared_ptr<Texture> diffuseTexture, specularTexture;
+		float shininess = 1;
 	};
 }
 

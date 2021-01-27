@@ -26,10 +26,6 @@ namespace NobleEngine
 		*/
 		std::shared_ptr<Transform> lightTransform;
 		/**
-		*Stores the lights ambient colour.
-		*/
-		glm::vec3 ambientColour;
-		/**
 		*Stores the lights diffuse colour.
 		*/
 		glm::vec3 diffuseColour;
@@ -64,7 +60,6 @@ namespace NobleEngine
 				lightTransform = GetEntity()->AddComponent<Transform>(glm::vec3(0,0,0));
 			}
 
-			ambientColour = glm::vec3(1, 1, 1);
 			diffuseColour = glm::vec3(1, 1, 1);
 			specularColour = glm::vec3(1, 1, 1);
 
