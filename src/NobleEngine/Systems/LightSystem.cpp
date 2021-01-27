@@ -23,7 +23,7 @@ namespace NobleEngine
 				ResourceManager::shaderPrograms.at(sha)->BindVector3("lights.direction", glm::vec3(-0.2f, -1.0f, -0.3f));
 				ResourceManager::shaderPrograms.at(sha)->BindVector3("lights.position", glm::vec3(0, 1, 0));
 				ResourceManager::shaderPrograms.at(sha)->BindVector3("lights.diffuseLight", glm::vec3(1.0, 0.0, 0.0));
-				ResourceManager::shaderPrograms.at(sha)->BindVector3("lights.specularLight", glm::vec3(1.0, 1.0, 1.0));
+				ResourceManager::shaderPrograms.at(sha)->BindVector3("lights.specularLight", glm::vec3(1.0, 0.0, 0.0));
 				ResourceManager::shaderPrograms.at(sha)->BindFloat("lights.constant", 1.0f);
 				ResourceManager::shaderPrograms.at(sha)->BindFloat("lights.linear", 0.09f);
 				ResourceManager::shaderPrograms.at(sha)->BindFloat("lights.quadratic", 0.032f);
