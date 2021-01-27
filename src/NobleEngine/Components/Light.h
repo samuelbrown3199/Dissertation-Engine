@@ -45,6 +45,10 @@ namespace NobleEngine
 		*Stores the lights quadratic value.
 		*/
 		float quadratic;
+		/**
+		*Stores the lights intensity value.
+		*/
+		float intensity;
 
 		/**
 		*Initializes a light with default settings.
@@ -66,6 +70,7 @@ namespace NobleEngine
 			constant = 1.0f;
 			linear = 0.09f;
 			quadratic = 0.032f;
+			intensity = 1;
 		}
 	};
 }

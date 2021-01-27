@@ -37,7 +37,7 @@ int main()
 	}
 
 	std::shared_ptr<Entity> floorEntity = app->CreateEntity();
-	std::shared_ptr<Transform> tr = floorEntity->AddComponent<Transform>(glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(1000, 1, 1000));
+	std::shared_ptr<Transform> tr = floorEntity->AddComponent<Transform>(glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(100, 1, 100));
 	floorEntity->AddComponent<PhysicsBody>(PhysicsBody::ColliderShape::box, 0);
 	std::shared_ptr<MeshRenderer> mr = floorEntity->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));
 
