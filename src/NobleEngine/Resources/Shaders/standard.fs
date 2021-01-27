@@ -79,6 +79,7 @@ void main()
     vec3 viewDir = normalize(u_ViewPos - i_FragPos);
 	//vec3 result = CalculateDirLight(lights, i_Normal, viewDir);
     vec3 result = CalculatePointLight(lights, i_Normal, i_FragPos, viewDir);
+    result = vec3(texture(material.diffuseTexture, i_TexCoord));
 
 	gl_FragColor = vec4(result, 1.0);
 }
