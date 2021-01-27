@@ -1,11 +1,13 @@
 #include "ResourceManager.h"
 
 #include "../ResourceManagement/Material.h"
+#include "../ResourceManagement/ShaderProgram.h"
 
 namespace NobleEngine
 {
 	std::vector<std::shared_ptr<Resource>> ResourceManager::resources;
 	std::vector<std::shared_ptr<Material>> ResourceManager::materials;
+	std::vector <std::shared_ptr<ShaderProgram>> ResourceManager::shaderPrograms;
 
 	std::shared_ptr<Material> ResourceManager::LoadMaterial(std::string diffusePath, std::string specularPath)
 	{
@@ -76,6 +78,14 @@ namespace NobleEngine
 			if (materials.at(ma).use_count() == 1)
 			{
 				materials.erase(materials.begin() + ma);
+			}
+		}
+
+		for (size_t sha = 0; sha < shaderPrograms.size(); sha++)
+		{
+			if (shaderPrograms.at(sha).use_count() == 1)
+			{
+				shaderPrograms.erase(shaderPrograms.begin() + sha);
 			}
 		}
 	}

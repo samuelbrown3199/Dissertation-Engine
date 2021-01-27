@@ -11,6 +11,7 @@
 namespace NobleEngine
 {
 	struct Material;
+	struct ShaderProgram;
 
 	/**
 	*Handles resource management. Stores, loads and unloads resources.
@@ -22,6 +23,7 @@ namespace NobleEngine
 		*/
 		static std::vector<std::shared_ptr<Resource>> resources;
 		static std::vector<std::shared_ptr<Material>> materials;
+		static std::vector <std::shared_ptr<ShaderProgram>> shaderPrograms;
 
 		/**
 		*Loads a resource of the passed type with the file directory.

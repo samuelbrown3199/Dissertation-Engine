@@ -39,7 +39,7 @@ namespace NobleEngine
 		}
 	};
 	/**
-	*Made up of several shader resources, these are used in rendering graphics within the engine.
+	*Made up of several shader resources, these are used in rendering graphics within the engine. 
 	*/
 	struct ShaderProgram
 	{
@@ -48,10 +48,11 @@ namespace NobleEngine
 
 		GLint modelMatrixLoc, projectionMatrixLoc, viewMatrixLoc;
 
+		std::weak_ptr<ShaderProgram> self;
 		std::vector<std::shared_ptr<ShaderLocation>> shaderLocations;
 
 	public:
-		ShaderProgram(std::weak_ptr<Application> app);
+		ShaderProgram(std::weak_ptr<Application> app, std::shared_ptr<ShaderProgram> selfPtr);
 		/**
 		*Gets a location from the list, or if it does not contain it creates and adds it to list.
 		*/
@@ -89,9 +90,9 @@ namespace NobleEngine
 		*/
 		void BindViewMat(glm::mat4 matrix);
 		/**
-		*Links the program for use in the engine.
+		*Links the program for use in the engine. Also responsible for setting up the uniform variables in the shader code. If this function isn't called then the shader program cannot be used.
 		*/
-		void LinkShaderProgram();
+		void LinkShaderProgram(std::shared_ptr<ShaderProgram> selfPtr);
 		/**
 		*Sets the currently used shader program to this.
 		*/

@@ -14,8 +14,17 @@ namespace NobleEngine
 	struct Material
 	{
 		//after changing and adding variables make sure to update the load material function in the resource manager.
-
-		std::shared_ptr<Texture> diffuseTexture, specularTexture;
+		/**
+		*Stores the diffuse texture of the material.
+		*/
+		std::shared_ptr<Texture> diffuseTexture;
+		/**
+		*Stores the specular texture of the material.
+		*/
+		std::shared_ptr<Texture> specularTexture;
+		/**
+		*Stores the shininess of the texture.
+		*/
 		float shininess = 1;
 	};
 }

@@ -42,7 +42,7 @@ vec3 CalculateDirLight(Light light, vec3 normal, vec3 viewDir)
 
     //float shadow = CalculateShadow(diff);
     //return (/*shadow */ (diffuse + specular) + ambient);
-    return diffuse /*+ specular*/ + ambient;
+    return (diffuse + specular) + ambient;
 }
 
 void main()

@@ -1,10 +1,11 @@
 #include "ShaderProgram.h"
 
 #include "../EngineCore/Application.h"
+#include "../EngineCore/ResourceManager.h"
 
 namespace NobleEngine
 {
-	ShaderProgram::ShaderProgram(std::weak_ptr<Application> app)
+	ShaderProgram::ShaderProgram(std::weak_ptr<Application> app, std::shared_ptr<ShaderProgram> selfPtr)
 	{
 		application = app;
 		programID = glCreateProgram();
@@ -93,8 +94,10 @@ namespace NobleEngine
 		glUniformMatrix4fv(viewMatrixLoc, 1, GL_FALSE, glm::value_ptr(matrix));
 	}
 
-	void ShaderProgram::LinkShaderProgram()
+	void ShaderProgram::LinkShaderProgram(std::shared_ptr<ShaderProgram> selfPtr)
 	{
+		self = selfPtr;
+
 		GLint success = 0;
 		glLinkProgram(programID);
 		glGetProgramiv(programID, GL_LINK_STATUS, &success);
@@ -115,12 +118,16 @@ namespace NobleEngine
 			glDeleteProgram(programID);
 			throw std::exception();
 		}
+		ResourceManager::shaderPrograms.push_back(self.lock());
 
 		glUseProgram(programID);
 
 		modelMatrixLoc = glGetUniformLocation(programID, "u_Model");
 		projectionMatrixLoc = glGetUniformLocation(programID, "u_Projection");
 		viewMatrixLoc = glGetUniformLocation(programID, "u_View");
+
+		BindInt("material.diffuseTexture", 0);
+		BindInt("material.specularTexture", 1);
 
 		glUseProgram(0);
 	}
