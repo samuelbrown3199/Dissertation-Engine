@@ -7,6 +7,7 @@
 #include "System.h"
 #include "Entity.h"
 #include "InputManager.h"
+#include "UI.h"
 
 #include "../Systems/TransformSystem.h"
 #include "../Systems/MeshRendererSystem.h"
@@ -76,6 +77,8 @@ namespace NobleEngine
 		app->standardShader->BindShader(fragmentShader, GL_FRAGMENT_SHADER);
 		app->standardShader->LinkShaderProgram(app->standardShader);
 
+		UIQuad::CreateUIQuad();
+
 		return app;
 	}
 
@@ -98,6 +101,8 @@ namespace NobleEngine
 		std::vector<int> framerateList;
 		int currentFrameCount = 0;
 		double avgFPS = 0;
+
+		UIRect* test = new UIRect();
 
 		while (loop)
 		{
@@ -126,6 +131,8 @@ namespace NobleEngine
 			updateTime = SDL_GetTicks() - updateStart;
 
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+			test->TempRender();
 
 			renderStart = SDL_GetTicks();
 			for (size_t sys = 0; sys < systems.size(); sys++) //handles system rendering

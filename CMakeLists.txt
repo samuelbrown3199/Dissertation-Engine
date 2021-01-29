@@ -34,7 +34,10 @@ add_library(NobleEngine
   src/NobleEngine/EngineCore/InputManager.cpp
   src/NobleEngine/EngineCore/PhysicsWorld.h
   src/NobleEngine/EngineCore/PhysicsWorld.cpp
+  src/NobleEngine/EngineCore/UI.h
+  src/NobleEngine/EngineCore/UI.cpp
   src/NobleEngine/EngineCore/Resource.h
+
   src/NobleEngine/ResourceManagement/Texture.h
   src/NobleEngine/ResourceManagement/Texture.cpp
   src/NobleEngine/ResourceManagement/AudioClip.h
