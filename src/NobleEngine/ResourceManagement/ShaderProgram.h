@@ -18,6 +18,14 @@ namespace NobleEngine
 	class Application;
 
 	/**
+	*Stores the engines built in shader programs.
+	*/
+	struct BuiltInShaders
+	{
+		static const GLchar* standardVertex;
+	};
+
+	/**
 	*Stores a shader location GLint. It is more optimal to store these rather than to find them every frame.
 	*/
 	struct ShaderLocation
@@ -52,7 +60,7 @@ namespace NobleEngine
 		std::vector<std::shared_ptr<ShaderLocation>> shaderLocations;
 
 	public:
-		ShaderProgram(std::weak_ptr<Application> app, std::shared_ptr<ShaderProgram> selfPtr);
+		ShaderProgram(std::weak_ptr<Application> app);
 		/**
 		*Gets a location from the list, or if it does not contain it creates and adds it to list.
 		*/
@@ -61,6 +69,10 @@ namespace NobleEngine
 		*Binds a shader resource to the shader program.
 		*/
 		void BindShader(std::shared_ptr<Shader> shader, GLenum shaderType);
+		/**
+		*Binds a shader source code string to the shader program.
+		*/
+		void BindShader(const GLchar* shaderSourceString, GLenum shaderType);
 		/**
 		*This function binds an integer to a uniform int in the shader.
 		*/

@@ -72,7 +72,7 @@ namespace NobleEngine
 		std::shared_ptr<Shader> vertexShader = app->GetResourceManager()->LoadResource<Shader>("Resources\\Shaders\\standard.vs");
 		std::shared_ptr<Shader> fragmentShader = app->GetResourceManager()->LoadResource<Shader>("Resources\\Shaders\\standard.fs");
 
-		app->standardShader = std::make_shared<ShaderProgram>(app, app->standardShader);
+		app->standardShader = std::make_shared<ShaderProgram>(app);
 		app->standardShader->BindShader(vertexShader, GL_VERTEX_SHADER);
 		app->standardShader->BindShader(fragmentShader, GL_FRAGMENT_SHADER);
 		app->standardShader->LinkShaderProgram(app->standardShader);
