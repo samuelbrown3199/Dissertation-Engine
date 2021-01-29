@@ -102,7 +102,7 @@ namespace NobleEngine
 		int currentFrameCount = 0;
 		double avgFPS = 0;
 
-		UIRect* test = new UIRect();
+		UIRect* test = new UIRect(glm::vec2(-0.75,-0.75), glm::vec2(0.5,0.5));
 
 		while (loop)
 		{

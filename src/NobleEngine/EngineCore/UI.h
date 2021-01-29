@@ -82,7 +82,7 @@ namespace NobleEngine
 
 			std::shared_ptr<Shader> vertexShader = ResourceManager::LoadResource<Shader>("Resources\\Shaders\\uiStandard.vs");
 			std::shared_ptr<Shader> fragmentShader = ResourceManager::LoadResource<Shader>("Resources\\Shaders\\uiStandard.fs");
-			uiShader = std::make_shared<ShaderProgram>(Application::self, uiShader);
+			uiShader = std::make_shared<ShaderProgram>(Application::self);
 			uiShader->BindShader(vertexShader, GL_VERTEX_SHADER);
 			uiShader->BindShader(fragmentShader, GL_FRAGMENT_SHADER);
 			uiShader->LinkShaderProgram(uiShader);
@@ -103,13 +103,26 @@ namespace NobleEngine
 
 		UIRect(glm::vec2 _screenPos, glm::vec2 _rectScale)
 		{
+			texture = ResourceManager::LoadResource<Texture>("Resources\\Textures\\test.png");
+
 			screenPosition = _screenPos;
 			rectScale = _rectScale;
+		}
+
+		glm::mat4 GetUIMatrix()
+		{
+			glm::mat4 uiMat(1.0f);
+
+			uiMat = glm::translate(uiMat, glm::vec3(screenPosition, 0.0));
+			uiMat = glm::scale(uiMat, glm::vec3(rectScale, 0.0));
+
+			return uiMat;
 		}
 
 		void TempRender()
 		{
 			UIQuad::uiShader->UseProgram();
+			UIQuad::uiShader->BindMat4("u_UIPos", GetUIMatrix());
 			UIQuad::uiShader->BindMat4("ortho", Screen::GenerateOrthographicMatrix());
 
 			if (texture)
