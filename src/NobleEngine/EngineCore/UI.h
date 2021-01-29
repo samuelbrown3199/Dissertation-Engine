@@ -123,7 +123,7 @@ namespace NobleEngine
 		{
 			UIQuad::uiShader->UseProgram();
 			UIQuad::uiShader->BindMat4("u_UIPos", GetUIMatrix());
-			UIQuad::uiShader->BindMat4("ortho", Screen::GenerateOrthographicMatrix());
+			UIQuad::uiShader->BindMat4("u_Ortho", glm::mat4(1.0f));
 
 			if (texture)
 			{
