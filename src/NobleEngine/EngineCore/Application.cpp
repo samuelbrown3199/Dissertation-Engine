@@ -91,7 +91,7 @@ namespace NobleEngine
 		glEnable(GL_DEPTH_TEST);
 		
 		glClearColor(0.0f, 0.45f, 0.45f, 1.0f);
-
+	
 		Uint32 frameStart, renderStart, updateStart, physicsStart;
 		double frameTime = 0;
 		double fps = 0;
