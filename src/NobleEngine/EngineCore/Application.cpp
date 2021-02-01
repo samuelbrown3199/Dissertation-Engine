@@ -15,6 +15,7 @@
 #include "../Systems/AudioSourceSystem.h"
 #include "../Systems/AudioListenerSystem.h"
 #include "../Systems/LightSystem.h"
+#include "../Systems/SpriteRendererSystem.h"
 
 #include "../Components/Camera.h"
 
@@ -256,6 +257,7 @@ namespace NobleEngine
 		BindSystem<AudioSourceSystem>(true, false);
 		BindSystem<LightSystem>(false, true);
 		BindSystem<MeshRendererSystem>(false, true);
+		BindSystem<SpriteRendererSystem>(false, true);
 	}
 
 	void Application::RemoveEntity(int ID)

@@ -14,6 +14,7 @@
 #include "Components/Light.h"
 #include "Components/MeshRenderer.h"
 #include "Components/PhysicsBody.h"
+#include "Components/SpriteRenderer.h"
 #include "Components/Transform.h"
 
 //resource headers.
