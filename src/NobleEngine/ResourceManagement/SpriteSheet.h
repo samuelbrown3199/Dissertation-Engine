@@ -4,6 +4,7 @@
 
 #include <memory>
 #include <vector>
+#include <iostream>
 
 #include "../EngineCore/Resource.h"
 #include "Texture.h"
@@ -16,8 +17,13 @@ namespace NobleEngine
 	struct Sprite
 	{
 		std::string spriteName;
-		int xPixelPos, yPixelPos;
+		float xPos, yPos;
 		int width, height;
+
+		Sprite(std::string _name)
+		{
+			spriteName = _name;
+		}
 	};
 
 	/**
@@ -29,7 +35,14 @@ namespace NobleEngine
 		std::vector<std::shared_ptr<Sprite>> sprites;
 
 		void OnLoad();
-		std::shared_ptr<Sprite> CreateSpriteLocation(std::string spriteName, int x, int y, int width, int height);
+		/**
+		*Returns a shared pointer to either an already existing sprite on the sheet, or creates a new sprite and returns that.
+		*/
+		std::shared_ptr<Sprite> GetSpriteLocation(std::string spriteName, int x, int y, int width, int height);
+		/**
+		*Returns an already existing sprite from the sheet with the same name.
+		*/
+		std::shared_ptr<Sprite> GetSpriteLocation(std::string spriteName);
 	};
 }
 
