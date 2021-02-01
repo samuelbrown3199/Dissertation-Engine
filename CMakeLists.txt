@@ -34,6 +34,7 @@ add_library(NobleEngine
   src/NobleEngine/EngineCore/InputManager.cpp
   src/NobleEngine/EngineCore/PhysicsWorld.h
   src/NobleEngine/EngineCore/PhysicsWorld.cpp
+
   src/NobleEngine/EngineCore/Resource.h
   src/NobleEngine/ResourceManagement/Texture.h
   src/NobleEngine/ResourceManagement/Texture.cpp
@@ -44,6 +45,8 @@ add_library(NobleEngine
   src/NobleEngine/ResourceManagement/Shader.h
   src/NobleEngine/ResourceManagement/ShaderProgram.h
   src/NobleEngine/ResourceManagement/ShaderProgram.cpp
+  src/NobleEngine/ResourceManagement/SpriteSheet.h
+  src/NobleEngine/ResourceManagement/SpriteSheet.cpp
 
   src/NobleEngine/EngineCore/Entity.h
   src/NobleEngine/EngineCore/Entity.cpp
@@ -77,6 +80,10 @@ add_library(NobleEngine
   src/NobleEngine/Components/Light.h
   src/NobleEngine/Systems/LightSystem.h
   src/NobleEngine/Systems/LightSystem.cpp
+
+  src/NobleEngine/Components/SpriteRenderer.h
+  src/NobleEngine/Systems/SpriteRendererSystem.h
+  src/NobleEngine/Systems/SpriteRendererSystem.cpp
 )
 target_link_libraries(NobleEngine SDL2 SDL2_ttf glew32 opengl32 openal32 Bullet3Collision Bullet3Common Bullet3Dynamics Bullet3Geometry BulletCollision BulletDynamics LinearMath)
 
