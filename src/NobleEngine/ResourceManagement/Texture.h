@@ -14,6 +14,8 @@ namespace NobleEngine
     struct Texture : public Resource
     {
         GLuint textureID;
+        int w = 0;
+        int h = 0;
 
         void OnLoad();
     };
