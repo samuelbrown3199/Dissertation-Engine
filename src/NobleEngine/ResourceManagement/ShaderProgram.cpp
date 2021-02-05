@@ -5,7 +5,6 @@
 
 namespace NobleEngine
 {
-
 	ShaderProgram::ShaderProgram(std::weak_ptr<Application> app)
 	{
 		application = app;
