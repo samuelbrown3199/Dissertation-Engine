@@ -20,19 +20,13 @@ namespace NobleEngine
 		if (!comp->shader)
 		{
 			comp->shader = Application::standardShader;
-			GetApplication()->standardShader->UseProgram();
-			GetApplication()->standardShader->BindModelMat(comp->transform->model);
-			GetApplication()->standardShader->BindProjectionMat(GetApplication()->screen->GenerateProjectionMatrix());
-			GetApplication()->standardShader->BindViewMat(GetApplication()->activeCam->viewMatrix);
 		}
-		else
-		{
-			comp->shader->UseProgram();
-			comp->shader->BindModelMat(comp->transform->model);
-			comp->shader->BindProjectionMat(GetApplication()->screen->GenerateProjectionMatrix());
-			comp->shader->BindViewMat(GetApplication()->activeCam->viewMatrix);
-			comp->shader->BindFloat("material.shininess", comp->material->shininess);
-		}
+
+		comp->shader->UseProgram();
+		comp->shader->BindModelMat(comp->transform->model);
+		comp->shader->BindProjectionMat(GetApplication()->screen->GenerateProjectionMatrix());
+		comp->shader->BindViewMat(GetApplication()->activeCam->viewMatrix);
+		comp->shader->BindFloat("material.shininess", comp->material->shininess);
 		if (comp->model)
 		{
 			glBindVertexArray(comp->model->vaoID);
