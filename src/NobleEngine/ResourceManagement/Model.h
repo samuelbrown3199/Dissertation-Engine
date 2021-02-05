@@ -9,6 +9,20 @@
 namespace NobleEngine
 {
 	/**
+	*Stores VAOs for primitive engine shapes.
+	*/
+	struct PrimativeShapes
+	{
+		/**
+		*Stores a quad model.
+		*/
+		static GLuint quadVAO;
+
+		static void SetupQuad();
+		static void SetupPrimitiveShapes();
+	};
+
+	/**
 	*Stores a model file that is loaded with the .obj format.
 	*/
 	struct Model : public Resource
@@ -16,10 +30,7 @@ namespace NobleEngine
 		GLuint vaoID;
 		size_t drawCount;
 
-		void OnLoad()
-		{
-			vaoID = buLoadModel(resourcePath, &drawCount);
-		}
+		void OnLoad();
 	};
 }
 

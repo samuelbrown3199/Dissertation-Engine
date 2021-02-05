@@ -40,6 +40,7 @@ add_library(NobleEngine
   src/NobleEngine/ResourceManagement/AudioClip.h
   src/NobleEngine/ResourceManagement/AudioClip.cpp
   src/NobleEngine/ResourceManagement/Model.h
+  src/NobleEngine/ResourceManagement/Model.cpp
   src/NobleEngine/ResourceManagement/Material.h
   src/NobleEngine/ResourceManagement/Shader.h
   src/NobleEngine/ResourceManagement/ShaderProgram.h

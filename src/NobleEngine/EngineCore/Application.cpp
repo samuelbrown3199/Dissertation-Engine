@@ -76,6 +76,8 @@ namespace NobleEngine
 		app->standardShader->BindShader(fragmentShader, GL_FRAGMENT_SHADER);
 		app->standardShader->LinkShaderProgram(app->standardShader);
 
+		PrimativeShapes::SetupPrimitiveShapes();
+
 		return app;
 	}
 
