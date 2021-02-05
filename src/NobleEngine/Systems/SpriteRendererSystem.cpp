@@ -10,7 +10,7 @@ namespace NobleEngine
 
 	void SpriteRendererSystem::OnRender(std::shared_ptr<SpriteRenderer> comp)
 	{
-		if (comp->sprite != comp->oldSprite)
+		/*if (comp->sprite != comp->oldSprite)
 		{
 			const GLfloat positions[] =
 			{
@@ -30,7 +30,7 @@ namespace NobleEngine
 				comp->sprite->xPos, comp->sprite->height,
 				comp->sprite->width, comp->sprite->height,
 				comp->sprite->width, comp->sprite->yPos
-			};*/
+			};
 			const GLfloat uvs[] =
 			{
 				0.0, 0.0,
@@ -84,11 +84,11 @@ namespace NobleEngine
 			glBindVertexArray(0);
 
 			comp->oldSprite = comp->sprite;
-		}
+		}*/
 
 		if (!comp->shader)
 		{
-			comp->shader = Application::standardShader;
+			comp->shader = Application::standardShader2D;
 		}
 
 		comp->shader->UseProgram();

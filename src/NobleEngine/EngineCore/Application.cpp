@@ -34,6 +34,7 @@ namespace NobleEngine
 	std::shared_ptr<PhysicsWorld> Application::physicsWorld;
 
 	std::shared_ptr<ShaderProgram> Application::standardShader;
+	std::shared_ptr<ShaderProgram> Application::standardShader2D;
 	std::shared_ptr<Camera> Application::activeCam;
 	std::shared_ptr<Screen> Application::screen;
 
@@ -71,11 +72,18 @@ namespace NobleEngine
 
 		std::shared_ptr<Shader> vertexShader = app->GetResourceManager()->LoadResource<Shader>("Resources\\Shaders\\standard.vs");
 		std::shared_ptr<Shader> fragmentShader = app->GetResourceManager()->LoadResource<Shader>("Resources\\Shaders\\standard.fs");
+		std::shared_ptr<Shader> vertexShader2D = app->GetResourceManager()->LoadResource<Shader>("Resources\\Shaders\\standard2D.vs");
+		std::shared_ptr<Shader> fragmentShader2D = app->GetResourceManager()->LoadResource<Shader>("Resources\\Shaders\\standard2D.fs");
 
 		app->standardShader = std::make_shared<ShaderProgram>(app);
 		app->standardShader->BindShader(vertexShader, GL_VERTEX_SHADER);
 		app->standardShader->BindShader(fragmentShader, GL_FRAGMENT_SHADER);
 		app->standardShader->LinkShaderProgram(app->standardShader);
+
+		app->standardShader2D = std::make_shared<ShaderProgram>(app);
+		app->standardShader2D->BindShader(vertexShader2D, GL_VERTEX_SHADER);
+		app->standardShader2D->BindShader(fragmentShader2D, GL_FRAGMENT_SHADER);
+		app->standardShader2D->LinkShaderProgram(app->standardShader2D);
 
 		PrimativeShapes::SetupPrimitiveShapes();
 

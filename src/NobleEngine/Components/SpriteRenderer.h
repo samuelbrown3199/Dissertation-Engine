@@ -28,13 +28,13 @@ namespace NobleEngine
 		void OnInitialize()
 		{
 			transform = GetEntity()->GetComponent<Transform>();
-			//rendererVAO = PrimativeShapes::quadVAO;
+			rendererVAO = PrimativeShapes::quadVAO;
 		}
 
 		void OnInitialize(std::string sheetLoc, std::string spriteName, int x, int y, int w, int h)
 		{
 			transform = GetEntity()->GetComponent<Transform>();
-			//rendererVAO = PrimativeShapes::quadVAO;
+			rendererVAO = PrimativeShapes::quadVAO;
 
 			sheet = ResourceManager::LoadResource<SpriteSheet>(sheetLoc);
 			sprite = sheet->GetSpriteLocation(spriteName, x, y, w, h);

@@ -46,6 +46,10 @@ namespace NobleEngine
 		*/
 		static std::shared_ptr<ShaderProgram> standardShader;
 		/**
+		*Stores the standard 2D shader program built into the engine.
+		*/
+		static std::shared_ptr<ShaderProgram> standardShader2D;
+		/**
 		*Initializes the systems within the engine.
 		*/
 		static std::shared_ptr<Application> InitializeEngine(std::string windowName, int windowWidth, int windowHeight);
