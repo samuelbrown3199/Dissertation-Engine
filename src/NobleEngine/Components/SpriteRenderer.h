@@ -5,6 +5,7 @@
 #include "../EngineCore/Component.h"
 
 #include "../ResourceManagement/SpriteSheet.h"
+#include "../ResourceManagement/Model.h"
 #include "../ResourceManagement/ShaderProgram.h"
 #include "../EngineCore/Entity.h"
 #include "../EngineCore/ResourceManager.h"
@@ -27,11 +28,13 @@ namespace NobleEngine
 		void OnInitialize()
 		{
 			transform = GetEntity()->GetComponent<Transform>();
+			//rendererVAO = PrimativeShapes::quadVAO;
 		}
 
 		void OnInitialize(std::string sheetLoc, std::string spriteName, int x, int y, int w, int h)
 		{
 			transform = GetEntity()->GetComponent<Transform>();
+			//rendererVAO = PrimativeShapes::quadVAO;
 
 			sheet = ResourceManager::LoadResource<SpriteSheet>(sheetLoc);
 			sprite = sheet->GetSpriteLocation(spriteName, x, y, w, h);

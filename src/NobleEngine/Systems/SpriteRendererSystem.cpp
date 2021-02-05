@@ -61,7 +61,10 @@ namespace NobleEngine
 			glBufferData(GL_ARRAY_BUFFER, sizeof(uvs), uvs, GL_STATIC_DRAW);
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-			glGenVertexArrays(1, &comp->rendererVAO);
+			if (!comp->rendererVAO)
+			{
+				glGenVertexArrays(1, &comp->rendererVAO);
+			}
 			if (!comp->rendererVAO)
 			{
 				throw std::exception();
@@ -86,18 +89,12 @@ namespace NobleEngine
 		if (!comp->shader)
 		{
 			comp->shader = Application::standardShader;
-			GetApplication()->standardShader->UseProgram();
-			GetApplication()->standardShader->BindModelMat(comp->transform->model);
-			GetApplication()->standardShader->BindProjectionMat(Application::screen->GenerateProjectionMatrix());
-			GetApplication()->standardShader->BindViewMat(Application::activeCam->viewMatrix);
 		}
-		else
-		{
-			comp->shader->UseProgram();
-			comp->shader->BindModelMat(comp->transform->model);
-			comp->shader->BindProjectionMat(Application::screen->GenerateProjectionMatrix());
-			comp->shader->BindViewMat(Application::activeCam->viewMatrix);
-		}
+
+		comp->shader->UseProgram();
+		comp->shader->BindModelMat(glm::mat4(1.0f));
+		comp->shader->BindProjectionMat(glm::mat4(1.0f));
+		comp->shader->BindViewMat(glm::mat4(1.0f));
 
 		glBindVertexArray(comp->rendererVAO);
 		glActiveTexture(GL_TEXTURE0);

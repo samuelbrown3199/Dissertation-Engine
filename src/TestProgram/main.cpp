@@ -35,15 +35,15 @@ int main()
 				physicsTest->AddComponent<PhysicsBody>(PhysicsBody::ColliderShape::box, 20);
 			}
 		}
-	}
+	}*/
 
 	std::shared_ptr<Entity> floorEntity = app->CreateEntity();
 	std::shared_ptr<Transform> tr = floorEntity->AddComponent<Transform>(glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(100, 1, 100));
 	floorEntity->AddComponent<PhysicsBody>(PhysicsBody::ColliderShape::box, 0);
-	std::shared_ptr<MeshRenderer> mr = floorEntity->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));*/
+	std::shared_ptr<MeshRenderer> mr = floorEntity->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));
 
 	std::shared_ptr<Entity> TwoDTest = app->CreateEntity();
-	TwoDTest->AddComponent<Transform>(glm::vec3(0, 5, 0), glm::vec3(0, 0, 0), glm::vec3(5, 5, 0));
+	TwoDTest->AddComponent<Transform>(glm::vec3(0, 0, -10), glm::vec3(0, 0, 0), glm::vec3(100, 100, 1));
 	TwoDTest->AddComponent<SpriteRenderer>(testSpriteSheet, "dirt", 32, 0, 32, 32);
 
 	//TRANSFORM PARENT TESTING
