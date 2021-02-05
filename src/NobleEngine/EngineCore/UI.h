@@ -113,8 +113,8 @@ namespace NobleEngine
 		{
 			glm::mat4 uiMat(1.0f);
 
-			uiMat = glm::translate(uiMat, glm::vec3(screenPosition, 0.0));
-			uiMat = glm::scale(uiMat, glm::vec3(rectScale, 0.0));
+			uiMat = glm::translate(uiMat, glm::vec3(screenPosition, -1.0));
+			uiMat = glm::scale(uiMat, glm::vec3(rectScale, 1.0));
 
 			return uiMat;
 		}

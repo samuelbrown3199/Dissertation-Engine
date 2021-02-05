@@ -20,8 +20,8 @@ int main()
 	std::shared_ptr<AudioClip> ac = app->GetResourceManager()->LoadResource<AudioClip>(testAudio);
 
 	int amount = 5;
-	/*std::cout << "Enter the amount of boxes cubed you want. E.G 10 = 1000 boxes.	";
-	std::cin >> amount;*/
+	std::cout << "Enter the amount of boxes cubed you want. E.G 10 = 1000 boxes.	";
+	std::cin >> amount;
 	for (int x = 0; x < amount; x++)
 	{
 		for (int z = 0; z < amount; z++)
@@ -37,7 +37,7 @@ int main()
 	}
 
 	std::shared_ptr<Entity> floorEntity = app->CreateEntity();
-	std::shared_ptr<Transform> tr = floorEntity->AddComponent<Transform>(glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(100, 1, 100));
+	std::shared_ptr<Transform> tr = floorEntity->AddComponent<Transform>(glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(1000, 1, 1000));
 	floorEntity->AddComponent<PhysicsBody>(PhysicsBody::ColliderShape::box, 0);
 	std::shared_ptr<MeshRenderer> mr = floorEntity->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));
 
