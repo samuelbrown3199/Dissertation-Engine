@@ -1,6 +1,7 @@
 #include "Application.h"
 
 #include "Screen.h"
+#include "PerformanceStats.h"
 #include "ThreadingManager.h"
 #include "ResourceManager.h"
 #include "PhysicsWorld.h"
@@ -35,6 +36,7 @@ namespace NobleEngine
 	std::shared_ptr<ShaderProgram> Application::standardShader;
 	std::shared_ptr<Camera> Application::activeCam;
 	std::shared_ptr<Screen> Application::screen;
+	PerformanceStats Application::performanceStats;
 
 	std::shared_ptr<Application> Application::InitializeEngine(std::string windowName, int windowWidth, int windowHeight)
 	{
@@ -91,22 +93,12 @@ namespace NobleEngine
 		
 		glClearColor(0.0f, 0.45f, 0.45f, 1.0f);
 
-		Uint32 frameStart, renderStart, updateStart, physicsStart;
-		double frameTime = 0;
-		double fps = 0;
-		double deltaT = 0;
-
-		const int avgFrameRateCount = 10;
-		std::vector<int> framerateList;
-		int currentFrameCount = 0;
-		double avgFPS = 0;
-
 		while (loop)
 		{
-			frameStart = SDL_GetTicks();
-			double updateTime = 0;
-			double renderTime = 0;
-			double physicsTime = 0;
+			performanceStats.frameStart = SDL_GetTicks();
+			performanceStats.updateTime = 0;
+			performanceStats.renderTime = 0;
+			performanceStats.physicsTime = 0;
 
 			while (SDL_PollEvent(&e) != 0)
 			{
@@ -118,29 +110,29 @@ namespace NobleEngine
 			screen->UpdateScreenSize();
 			InputManager::GetMousePosition();
 
-			std::shared_ptr<std::thread> physicsThread = ThreadingManager::CreateThread(&PhysicsWorld::StepSimulation, physicsWorld, deltaT); //Update the physics world simulation.
+			std::shared_ptr<std::thread> physicsThread = ThreadingManager::CreateThread(&PhysicsWorld::StepSimulation, physicsWorld, performanceStats.deltaT); //Update the physics world simulation.
 
-			updateStart = SDL_GetTicks();
+			performanceStats.updateStart = SDL_GetTicks();
 			for (size_t sys = 0; sys < systems.size(); sys++) //handles system updates
 			{
 				systems.at(sys)->Update();
 			}
-			updateTime = SDL_GetTicks() - updateStart;
+			performanceStats.updateTime = SDL_GetTicks() - performanceStats.updateStart;
 
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-			renderStart = SDL_GetTicks();
+			performanceStats.renderStart = SDL_GetTicks();
 			for (size_t sys = 0; sys < systems.size(); sys++) //handles system rendering
 			{
 				systems.at(sys)->Render();
 			}
-			renderTime = SDL_GetTicks() - renderStart;
+			performanceStats.renderTime = SDL_GetTicks() - performanceStats.renderStart;
 
 			SDL_GL_SwapWindow(screen->GetWindow());
 
-			physicsStart = SDL_GetTicks();
+			performanceStats.physicsStart = SDL_GetTicks();
 			ThreadingManager::JoinThread(physicsThread);
-			physicsTime = SDL_GetTicks() - physicsStart;
+			performanceStats.physicsTime = SDL_GetTicks() - performanceStats.physicsStart;
 
 			std::vector<std::shared_ptr<Entity>>::iterator deleter;
 			for (deleter = deletionEntities.end(); deleter != deletionEntities.begin(); deleter--)
@@ -156,25 +148,8 @@ namespace NobleEngine
 			ThreadingManager::CleanupLooseThreads();
 			ResourceManager::UnloadUnusedResources();
 
-			frameTime = SDL_GetTicks() - frameStart;
-			fps = 1000.0f / frameTime;
-			deltaT = 1.0f / fps;
-			framerateList.push_back(fps);
-			currentFrameCount++;
-
-			if (avgFrameRateCount == currentFrameCount)
-			{
-				avgFPS = 0;
-				for (int i = 0; i < framerateList.size(); i++)
-				{
-					avgFPS += framerateList.at(i);
-				}
-				framerateList.clear();
-				avgFPS /= avgFrameRateCount;
-				currentFrameCount = 0;
-			}
-
-			std::cout << "AVG FPS: " << avgFPS << "	Frame Time: " << frameTime << "	Update Time: " << updateTime << "	Render Time: " << renderTime << "	Physics thread join Time: " << physicsTime << std::endl;
+			performanceStats.UpdatePerformanceStats();
+			performanceStats.PrintOutPerformanceStats();
 		}
 
 		physicsWorld->CleanupPhysicsWorld();
