@@ -24,6 +24,8 @@ add_library(NobleEngine
   src/NobleEngine/EngineCore.h
   src/NobleEngine/EngineCore/Application.h
   src/NobleEngine/EngineCore/Application.cpp
+  src/NobleEngine/EngineCore/PerformanceStats.h
+  src/NobleEngine/EngineCore/PerformanceStats.cpp
   src/NobleEngine/EngineCore/Screen.h
   src/NobleEngine/EngineCore/Screen.cpp
   src/NobleEngine/EngineCore/ThreadingManager.h
@@ -40,6 +42,7 @@ add_library(NobleEngine
   src/NobleEngine/ResourceManagement/AudioClip.h
   src/NobleEngine/ResourceManagement/AudioClip.cpp
   src/NobleEngine/ResourceManagement/Model.h
+  src/NobleEngine/ResourceManagement/Model.cpp
   src/NobleEngine/ResourceManagement/Material.h
   src/NobleEngine/ResourceManagement/Shader.h
   src/NobleEngine/ResourceManagement/ShaderProgram.h

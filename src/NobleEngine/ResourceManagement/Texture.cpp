@@ -7,8 +7,6 @@ namespace NobleEngine
 {
     void Texture::OnLoad()
     {
-        int w = 0;
-        int h = 0;
         unsigned char* data = stbi_load(resourcePath.c_str(), &w, &h, NULL, 4);
         if (!data)
         {

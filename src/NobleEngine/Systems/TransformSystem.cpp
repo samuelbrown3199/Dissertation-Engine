@@ -17,7 +17,7 @@ namespace NobleEngine
 
 		if (!comp->pBody)
 		{
-			if (comp->position != comp->oldPosition && comp->rotation != comp->oldRotation && comp->scale != comp->oldScale)
+			if (comp->position != comp->oldPosition || comp->rotation != comp->oldRotation || comp->scale != comp->oldScale)
 			{
 				comp->model = glm::mat4(1.0f);
 
