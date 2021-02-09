@@ -9,6 +9,9 @@
 
 namespace NobleEngine
 {
+	/**
+	*Handles the threads within the engine. NEED TO LOOK INTO SEMAPHORES
+	*/
 	struct ThreadingManager
 	{
 		static int maxAmountOfThreads;
