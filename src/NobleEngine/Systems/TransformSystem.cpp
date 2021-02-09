@@ -63,7 +63,7 @@ namespace NobleEngine
 		}
 	}
 
-	void TransformSystem::FixRotation(float value)
+	void TransformSystem::FixRotation(float& value)
 	{
 		if (value > 360)
 		{
