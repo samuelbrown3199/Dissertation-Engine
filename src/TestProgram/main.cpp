@@ -41,6 +41,10 @@ int main()
 	floorEntity->AddComponent<PhysicsBody>(PhysicsBody::ColliderShape::box, 0);
 	std::shared_ptr<MeshRenderer> mr = floorEntity->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));
 
+	std::shared_ptr<Entity> testPointLight = app->CreateEntity();
+	testPointLight->AddComponent<Transform>(glm::vec3(0, 5, 0), glm::vec3(30, 90, 0));
+	testPointLight->AddComponent<Light>();
+
 	//TRANSFORM PARENT TESTING
 	/*std::shared_ptr<Entity> physicsTest = app->CreateEntity();
 	tr = physicsTest->AddComponent<Transform>(glm::vec3(0, 50, -30), glm::vec3(rand() % 360, rand() % 360, rand() % 360));
