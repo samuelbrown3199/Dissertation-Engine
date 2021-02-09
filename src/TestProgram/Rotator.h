@@ -10,7 +10,7 @@ using namespace NobleEngine;
 struct Rotator : public Component<Rotator>
 {
 	std::shared_ptr<Transform> transform;
-	float rotationRate = 1.0f;
+	float rotationRate = 0.25f;
 
 	void OnInitialize()
 	{

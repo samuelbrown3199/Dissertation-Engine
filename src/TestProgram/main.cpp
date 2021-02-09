@@ -42,7 +42,7 @@ int main()
 	std::shared_ptr<MeshRenderer> mr = floorEntity->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));
 
 	std::shared_ptr<Entity> testPointLight = app->CreateEntity();
-	testPointLight->AddComponent<Transform>(glm::vec3(0, 5, 0), glm::vec3(-30, -90, 0));
+	testPointLight->AddComponent<Transform>(glm::vec3(0, 5, 0), glm::vec3(0, -90, 0));
 	testPointLight->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));
 	testPointLight->AddComponent<Light>();
 	testPointLight->AddComponent<Rotator>();
