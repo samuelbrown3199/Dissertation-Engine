@@ -27,7 +27,7 @@ namespace NobleEngine
 				ResourceManager::shaderPrograms.at(sha)->BindFloat("lights.constant", 1.0f);
 				ResourceManager::shaderPrograms.at(sha)->BindFloat("lights.linear", 0.09f);
 				ResourceManager::shaderPrograms.at(sha)->BindFloat("lights.quadratic", 0.032f);
-				ResourceManager::shaderPrograms.at(sha)->BindFloat("lights.intensity", 1.0f);
+				ResourceManager::shaderPrograms.at(sha)->BindFloat("lights.intensity", 10.0f);
 
 				glUseProgram(0);
 			}

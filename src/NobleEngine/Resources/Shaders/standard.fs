@@ -44,8 +44,8 @@ vec3 CalculateDirLight(Light light, vec3 normal, vec3 viewDir)
 
     //combine results
     vec3 ambient = u_AmbientLight * vec3(texture(material.diffuseTexture, i_TexCoord)) * u_AmbientLightStrength;
-    vec3 diffuse = light.diffuseLight * diff * vec3(texture(material.diffuseTexture, i_TexCoord));
-    vec3 specular = light.specularLight * spec * vec3(texture(material.specularTexture, i_TexCoord));
+    vec3 diffuse = light.diffuseLight * diff * vec3(texture(material.diffuseTexture, i_TexCoord)) * light.intensity;
+    vec3 specular = light.specularLight * spec * vec3(texture(material.specularTexture, i_TexCoord)) * light.intensity;
 
     //float shadow = CalculateShadow(diff);
     //return (/*shadow */ (diffuse + specular) + ambient);
@@ -68,16 +68,16 @@ vec3 CalculatePointLight(Light light, vec3 normal, vec3 fragPos, vec3 viewDir)
     vec3 ambient  = u_AmbientLight  * vec3(texture(material.diffuseTexture, i_TexCoord)) * u_AmbientLightStrength;
     vec3 diffuse  = light.diffuseLight  * diff * vec3(texture(material.diffuseTexture, i_TexCoord));
     vec3 specular = light.specularLight * spec * vec3(texture(material.specularTexture, i_TexCoord));
-    diffuse  *= attenuation * 10;
-    specular *= attenuation;
+    diffuse  *= attenuation * light.intensity;
+    specular *= attenuation * light.intensity;
     return (ambient + diffuse + specular);
 }
 
 void main()
 {
     vec3 viewDir = normalize(u_ViewPos - i_FragPos);
-	//vec3 result = CalculateDirLight(lights, i_Normal, viewDir);
-    vec3 result = CalculatePointLight(lights, i_Normal, i_FragPos, viewDir);
+	vec3 result = CalculateDirLight(lights, i_Normal, viewDir);
+    //vec3 result = CalculatePointLight(lights, i_Normal, i_FragPos, viewDir);
 	//vec3 result = vec3(texture(material.diffuseTexture, i_TexCoord));
 
 	gl_FragColor = vec4(result, 1.0);
