@@ -4,7 +4,7 @@
 
 #include <NobleEngine/EngineCore.h>
 #include "FlyingCamSystem.h"
-
+#include "RotatorSystem.h"
 using namespace NobleEngine;
 int main()
 {
@@ -42,8 +42,10 @@ int main()
 	std::shared_ptr<MeshRenderer> mr = floorEntity->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));
 
 	std::shared_ptr<Entity> testPointLight = app->CreateEntity();
-	testPointLight->AddComponent<Transform>(glm::vec3(0, 5, 0), glm::vec3(30, 90, 0));
+	testPointLight->AddComponent<Transform>(glm::vec3(0, 5, 0), glm::vec3(-30, -90, 0));
+	testPointLight->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));
 	testPointLight->AddComponent<Light>();
+	testPointLight->AddComponent<Rotator>();
 
 	//TRANSFORM PARENT TESTING
 	/*std::shared_ptr<Entity> physicsTest = app->CreateEntity();
@@ -62,6 +64,7 @@ int main()
 	camera->AddComponent<FlyingCam>();
 
 	app->BindSystem<FlyingCamSystem>(true, false);
+	app->BindSystem<RotatorSystem>(true, false);
 	app->activeCam = cr;
 
 	app->MainLoop();

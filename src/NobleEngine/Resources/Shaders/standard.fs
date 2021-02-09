@@ -37,7 +37,7 @@ in mat4 i_ViewMat;
 
 vec3 CalculateDirLight(Light light, vec3 normal, vec3 viewDir)
 {
-    vec3 lightDir = normalize(light.direction - i_FragPos);
+    vec3 lightDir = normalize(-light.direction - i_FragPos);
     //diffuse shading
     float diff = max(dot(normal, lightDir), 0.0);
     //specular shading
@@ -78,7 +78,7 @@ vec3 CalculatePointLight(Light light, vec3 normal, vec3 fragPos, vec3 viewDir)
 void main()
 {
     vec3 viewDir = normalize(u_ViewPos - i_FragPos);
-	vec3 result(0.0,0.0,0.0);
+	vec3 result;
 	
 	if(lights.lightType == 0)
 	{

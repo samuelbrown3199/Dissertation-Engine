@@ -82,9 +82,14 @@ target_link_libraries(NobleEngine SDL2 SDL2_ttf glew32 opengl32 openal32 Bullet3
 
 add_executable(TestProgram
   src/TestProgram/main.cpp
+
   src/TestProgram/FlyingCam.h
   src/TestProgram/FlyingCamSystem.h
   src/TestProgram/FlyingCamSystem.cpp
+
+  src/TestProgram/Rotator.h
+  src/TestProgram/RotatorSystem.h
+  src/TestProgram/RotatorSystem.cpp
 )
 target_link_libraries(TestProgram NobleEngine)
 
