@@ -20,8 +20,8 @@ int main()
 	std::shared_ptr<AudioClip> ac = app->GetResourceManager()->LoadResource<AudioClip>(testAudio);
 
 	int amount = 5;
-	std::cout << "Enter the amount of boxes cubed you want. E.G 10 = 1000 boxes.	";
-	std::cin >> amount;
+	/*std::cout << "Enter the amount of boxes cubed you want. E.G 10 = 1000 boxes.	";
+	std::cin >> amount;*/
 	for (int x = 0; x < amount; x++)
 	{
 		for (int z = 0; z < amount; z++)

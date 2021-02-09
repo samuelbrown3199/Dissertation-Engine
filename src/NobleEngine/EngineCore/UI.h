@@ -23,22 +23,22 @@ namespace NobleEngine
 		{
 			const GLfloat positions[] =
 			{
-				-0.5f, 0.5f, 0.0f,
-				-0.5f, -0.5f, 0.0f,
-				0.5f, 0.5f, 0.0f,
-				-0.5f, -0.5f, 0.0f,
-				0.5f, -0.5f, 0.0f,
-				0.5f, 0.5f, 0.0f
+				-0.0f, 0.0f, 0.0f,
+				-0.0f, 1.0f, 0.0f,
+				1.0f, 1.0f, 0.0f,
+				1.0f, 1.0f, 0.0f,
+				1.0f, 0.0f, 0.0f,
+				0.0f, 0.0f, 0.0f
 			};
 
 			const GLfloat uvs[] =
 			{
 				0.0, 0.0,
 				0.0, 1.0,
-				1.0, 0.0,
-				0.0, 1.0,
 				1.0, 1.0,
-				1.0, 0.0
+				1.0, 1.0,
+				1.0, 0.0,
+				0.0, 0.0
 			};
 
 			GLuint positionsVBO = 0;
@@ -113,8 +113,8 @@ namespace NobleEngine
 		{
 			glm::mat4 uiMat(1.0f);
 
-			uiMat = glm::translate(uiMat, glm::vec3(screenPosition, -1.0));
-			uiMat = glm::scale(uiMat, glm::vec3(rectScale, 1.0));
+			uiMat = glm::translate(uiMat, glm::vec3(screenPosition, 0.0f));
+			uiMat = glm::scale(uiMat, glm::vec3(rectScale, 1.0f));
 
 			return uiMat;
 		}
@@ -123,7 +123,7 @@ namespace NobleEngine
 		{
 			UIQuad::uiShader->UseProgram();
 			UIQuad::uiShader->BindMat4("u_UIPos", GetUIMatrix());
-			UIQuad::uiShader->BindMat4("u_Ortho", glm::mat4(1.0f));
+			UIQuad::uiShader->BindMat4("u_Ortho", Screen::GenerateOrthographicMatrix());
 
 			if (texture)
 			{
