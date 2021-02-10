@@ -67,9 +67,9 @@ namespace NobleEngine
 	{
 		if (value > 360)
 		{
-			value = 0;
+			value = -360;
 		}
-		else if (value < 0)
+		else if (value < -360)
 		{
 			value = 360;
 		}
