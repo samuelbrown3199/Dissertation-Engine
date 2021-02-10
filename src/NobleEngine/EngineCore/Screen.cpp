@@ -59,7 +59,7 @@ namespace NobleEngine
 	glm::mat4 Screen::GenerateOrthographicMatrix()
 	{
 		//glm::mat4 orthoMatrix = glm::ortho(0.0f, (float)screenWidth, (float)screenHeight, 0.0f, nearPlane, farPlane);
-		glm::mat4 orthoMatrix = glm::ortho(0.0f, (float)screenWidth, (float)screenHeight, 0.0f, -1.0f, 1.0f);
+		glm::mat4 orthoMatrix = glm::ortho(0.0f, (float)screenWidth, (float)screenHeight, 0.0f, nearPlane, farPlane);
 		return orthoMatrix;
 	}
 }

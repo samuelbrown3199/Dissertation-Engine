@@ -40,11 +40,6 @@ int main()
 	floorEntity->AddComponent<PhysicsBody>(PhysicsBody::ColliderShape::box, 0);
 	std::shared_ptr<MeshRenderer> mr = floorEntity->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));
 
-
-	std::shared_ptr<Entity> TwoDTest = app->CreateEntity();
-	TwoDTest->AddComponent<Transform>(glm::vec3(0, 0, -10), glm::vec3(0, 0, 0));
-	TwoDTest->AddComponent<SpriteRenderer>(testSpriteSheet, "dirt", 32, 0, 32, 32);
-
 	std::shared_ptr<Entity> testPointLight = app->CreateEntity();
 	testPointLight->AddComponent<Transform>(glm::vec3(0, 5, 0), glm::vec3(0, -90, 0));
 	testPointLight->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));
