@@ -36,6 +36,7 @@ namespace NobleEngine
 		*Stores the engines performance stats.
 		*/
 		static PerformanceStats performanceStats;
+		/**
 		*Stores a weak pointer to itself.
 		*/
 		static std::weak_ptr<Application> self;

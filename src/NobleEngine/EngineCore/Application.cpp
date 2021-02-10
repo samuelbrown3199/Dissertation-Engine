@@ -80,6 +80,8 @@ namespace NobleEngine
 		app->standardShader->LinkShaderProgram(app->standardShader);
 
 		PrimativeShapes::SetupPrimitiveShapes();
+		
+		UIQuad::CreateUIQuad();
 
 		return app;
 	}
