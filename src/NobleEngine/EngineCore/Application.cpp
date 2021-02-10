@@ -8,6 +8,7 @@
 #include "System.h"
 #include "Entity.h"
 #include "InputManager.h"
+#include "UI.h"
 
 #include "../Systems/TransformSystem.h"
 #include "../Systems/MeshRendererSystem.h"
@@ -92,6 +93,18 @@ namespace NobleEngine
 		glEnable(GL_DEPTH_TEST);
 		
 		glClearColor(0.0f, 0.45f, 0.45f, 1.0f);
+		
+		Uint32 frameStart, renderStart, updateStart, physicsStart;
+		double frameTime = 0;
+		double fps = 0;
+		double deltaT = 0;
+
+		const int avgFrameRateCount = 10;
+		std::vector<int> framerateList;
+		int currentFrameCount = 0;
+		double avgFPS = 0;
+
+		UIRect* test = new UIRect(glm::vec2(500, 500), glm::vec2(20,20));
 
 		while (loop)
 		{
@@ -122,6 +135,10 @@ namespace NobleEngine
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 			performanceStats.renderStart = SDL_GetTicks();
+			test->TempRender();
+
+			renderStart = SDL_GetTicks();
+
 			for (size_t sys = 0; sys < systems.size(); sys++) //handles system rendering
 			{
 				systems.at(sys)->Render();

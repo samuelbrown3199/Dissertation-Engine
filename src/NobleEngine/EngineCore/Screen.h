@@ -1,3 +1,7 @@
+#pragma once
+#ifndef SCREEN_H_
+#define SCREEN_H_
+
 #include <iostream>
 #include <string>
 
@@ -17,29 +21,29 @@ namespace NobleEngine
 		/**
 		*Stores the screen Width.
 		*/
-		int screenWidth;
+		static int screenWidth;
 		/**
 		*Stores the screen height.
 		*/
-		int screenHeight;
+		static int screenHeight;
 		/**
 		*Stores a pointer to the application window.
 		*/
-		SDL_Window* window;
+		static SDL_Window* window;
 
 	public:
 		/**
 		*Stores the near plane clipping limit.
 		*/
-		float nearPlane = 0.1f;
+		static float nearPlane;
 		/**
 		*Stores the far plane clipping limit.
 		*/
-		float farPlane = 1000.0f;
+		static float farPlane;
 		/**
 		*Stores the field of view value.
 		*/
-		float fieldOfView = 90.0f;
+		static float fieldOfView;
 		/**
 		*Initializes a screen object.
 		*/
@@ -47,14 +51,28 @@ namespace NobleEngine
 		/**
 		*Returns the SDL window.
 		*/
-		SDL_Window* GetWindow();
+		static SDL_Window* GetWindow();
+		/**
+		*Returns the screen width.
+		*/
+		static int GetScreenWidth();
+		/**
+		*Returns the screen height.
+		*/
+		static int GetScreenHeight();
 		/**
 		*Updates the screen size and gl viewport.
 		*/
-		void UpdateScreenSize();
+		static void UpdateScreenSize();
 		/**
 		*Generates a projection matrix with the screen information.
 		*/
-		glm::mat4 GenerateProjectionMatrix();
+		static glm::mat4 GenerateProjectionMatrix();
+		/**
+		*Generates a orthographic matrix with the screen information.
+		*/
+		static glm::mat4 GenerateOrthographicMatrix();
 	};
 }
+
+#endif
