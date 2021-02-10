@@ -2,9 +2,9 @@
 
 namespace NobleEngine
 {
-	GLuint PrimativeShapes::quadVAO;
+	GLuint PrimitiveShapes::quadVAO;
 
-	void PrimativeShapes::SetupQuad()
+	void PrimitiveShapes::SetupQuad()
 	{
 		const GLfloat positions[] =
 		{
@@ -65,7 +65,7 @@ namespace NobleEngine
 
 		glBindVertexArray(0);
 	}
-	void PrimativeShapes::SetupPrimitiveShapes()
+	void PrimitiveShapes::SetupPrimitiveShapes()
 	{
 		SetupQuad();
 	}

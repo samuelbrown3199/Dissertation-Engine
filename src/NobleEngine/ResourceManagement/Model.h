@@ -11,7 +11,7 @@ namespace NobleEngine
 	/**
 	*Stores VAOs for primitive engine shapes.
 	*/
-	struct PrimativeShapes
+	struct PrimitiveShapes
 	{
 		/**
 		*Stores a quad model.

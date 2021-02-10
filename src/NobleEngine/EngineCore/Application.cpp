@@ -88,7 +88,7 @@ namespace NobleEngine
 		app->standardShader2D->BindShader(fragmentShader2D, GL_FRAGMENT_SHADER);
 		app->standardShader2D->LinkShaderProgram(app->standardShader2D);
 
-		PrimativeShapes::SetupPrimitiveShapes();
+		PrimitiveShapes::SetupPrimitiveShapes();
 		
 		UIQuad::CreateUIQuad();
 
