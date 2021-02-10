@@ -55,7 +55,7 @@ namespace NobleEngine
 		*/
 		void OnInitialize()
 		{
-			type = LightType::Point;
+			type = LightType::Directional;
 
 			lightTransform = GetEntity()->GetComponent<Transform>();
 			if (!lightTransform)

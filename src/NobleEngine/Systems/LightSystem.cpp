@@ -15,19 +15,33 @@ namespace NobleEngine
 			if (ResourceManager::shaderPrograms.at(sha))
 			{
 				ResourceManager::shaderPrograms.at(sha)->UseProgram();
-
 				ResourceManager::shaderPrograms.at(sha)->BindVector3("u_ViewPos", Application::activeCam->camTransform->position);
+
 				ResourceManager::shaderPrograms.at(sha)->BindVector3("u_AmbientLight", glm::vec3(1.0f, 1.0f, 1.0f));
 				ResourceManager::shaderPrograms.at(sha)->BindFloat("u_AmbientLightStrength", 0.1f);
 
-				ResourceManager::shaderPrograms.at(sha)->BindVector3("lights.direction", glm::vec3(-0.2f, -1.0f, -0.3f));
-				ResourceManager::shaderPrograms.at(sha)->BindVector3("lights.position", glm::vec3(0, 1, 0));
-				ResourceManager::shaderPrograms.at(sha)->BindVector3("lights.diffuseLight", glm::vec3(1.0, 0.0, 0.0));
-				ResourceManager::shaderPrograms.at(sha)->BindVector3("lights.specularLight", glm::vec3(1.0, 1.0, 1.0));
-				ResourceManager::shaderPrograms.at(sha)->BindFloat("lights.constant", 1.0f);
-				ResourceManager::shaderPrograms.at(sha)->BindFloat("lights.linear", 0.09f);
-				ResourceManager::shaderPrograms.at(sha)->BindFloat("lights.quadratic", 0.032f);
-				ResourceManager::shaderPrograms.at(sha)->BindFloat("lights.intensity", 1.0f);
+				for (int i = 0; i < Light::componentList.size(); i++)
+				{
+					ResourceManager::shaderPrograms.at(sha)->BindVector3("lights.direction", Light::componentList.at(i)->lightTransform->rotation);
+					ResourceManager::shaderPrograms.at(sha)->BindVector3("lights.position", Light::componentList.at(i)->lightTransform->position);
+
+					switch (Light::componentList.at(i)->type)
+					{
+					case Light::LightType::Directional:
+						ResourceManager::shaderPrograms.at(sha)->BindInt("lights.lightType", 0);
+						break;
+					case Light::LightType::Point:
+						ResourceManager::shaderPrograms.at(sha)->BindInt("lights.lightType", 1);
+						break;
+					}
+
+					ResourceManager::shaderPrograms.at(sha)->BindVector3("lights.diffuseLight", Light::componentList.at(i)->diffuseColour);
+					ResourceManager::shaderPrograms.at(sha)->BindVector3("lights.specularLight", Light::componentList.at(i)->specularColour);
+					ResourceManager::shaderPrograms.at(sha)->BindFloat("lights.constant", Light::componentList.at(i)->constant);
+					ResourceManager::shaderPrograms.at(sha)->BindFloat("lights.linear", Light::componentList.at(i)->linear);
+					ResourceManager::shaderPrograms.at(sha)->BindFloat("lights.quadratic", Light::componentList.at(i)->quadratic);
+					ResourceManager::shaderPrograms.at(sha)->BindFloat("lights.intensity", Light::componentList.at(i)->intensity);
+				}
 
 				glUseProgram(0);
 			}

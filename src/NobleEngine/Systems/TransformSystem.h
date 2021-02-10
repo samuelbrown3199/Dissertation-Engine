@@ -17,5 +17,6 @@ namespace NobleEngine
 		*Creates the model matrix of the passed in transform.
 		*/
 		void OnUpdate(std::shared_ptr<Transform> comp);
+		void FixRotation(float& value);
 	};
 }

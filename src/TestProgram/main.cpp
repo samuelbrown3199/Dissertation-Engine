@@ -4,7 +4,7 @@
 
 #include <NobleEngine/EngineCore.h>
 #include "FlyingCamSystem.h"
-
+#include "RotatorSystem.h"
 using namespace NobleEngine;
 int main()
 {
@@ -20,9 +20,7 @@ int main()
 
 	std::shared_ptr<AudioClip> ac = app->GetResourceManager()->LoadResource<AudioClip>(testAudio);
 
-	/*int amount = 10;
-	std::cout << "Enter the amount of boxes cubed you want. E.G 10 = 1000 boxes.	";
-	std::cin >> amount;
+	int amount = 5;
 	for (int x = 0; x < amount; x++)
 	{
 		for (int z = 0; z < amount; z++)
@@ -42,9 +40,16 @@ int main()
 	floorEntity->AddComponent<PhysicsBody>(PhysicsBody::ColliderShape::box, 0);
 	std::shared_ptr<MeshRenderer> mr = floorEntity->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));
 
+
 	std::shared_ptr<Entity> TwoDTest = app->CreateEntity();
 	TwoDTest->AddComponent<Transform>(glm::vec3(0, 0, -10), glm::vec3(0, 0, 0));
 	TwoDTest->AddComponent<SpriteRenderer>(testSpriteSheet, "dirt", 32, 0, 32, 32);
+
+	std::shared_ptr<Entity> testPointLight = app->CreateEntity();
+	testPointLight->AddComponent<Transform>(glm::vec3(0, 5, 0), glm::vec3(0, -90, 0));
+	testPointLight->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));
+	testPointLight->AddComponent<Light>();
+	testPointLight->AddComponent<Rotator>();
 
 	//TRANSFORM PARENT TESTING
 	/*std::shared_ptr<Entity> physicsTest = app->CreateEntity();
@@ -63,6 +68,7 @@ int main()
 	camera->AddComponent<FlyingCam>();
 
 	app->BindSystem<FlyingCamSystem>(true, false);
+	app->BindSystem<RotatorSystem>(true, false);
 	app->activeCam = cr;
 
 	app->MainLoop();

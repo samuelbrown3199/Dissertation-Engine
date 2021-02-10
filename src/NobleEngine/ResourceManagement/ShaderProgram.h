@@ -18,14 +18,6 @@ namespace NobleEngine
 	class Application;
 
 	/**
-	*Stores the engines built in shader programs.
-	*/
-	struct BuiltInShaders
-	{
-		static const GLchar* standardVertex;
-	};
-
-	/**
 	*Stores a shader location GLint. It is more optimal to store these rather than to find them every frame.
 	*/
 	struct ShaderLocation

@@ -17,6 +17,7 @@
 namespace NobleEngine
 {
 	struct Screen;
+	struct PerformanceStats;
 	struct ResourceManager;
 	struct PhysicsWorld;
 	struct SystemBase;
@@ -31,7 +32,10 @@ namespace NobleEngine
 	class Application
 	{
 	public:
-
+		/**
+		*Stores the engines performance stats.
+		*/
+		static PerformanceStats performanceStats;
 		static std::shared_ptr<Camera> activeCam;
 		/**
 		*Stores screen data.
