@@ -28,7 +28,7 @@ int main()
 			for (int y = 0; y < amount; y++)
 			{
 				std::shared_ptr<Entity> physicsTest = app->CreateEntity();
-				std::shared_ptr<Transform> tr = physicsTest->AddComponent<Transform>(glm::vec3(25 + (-15 * x) + rand() % 5, 20 + (15 * y) + rand() % 5, -30 + (-15 * z) + rand() % 5), glm::vec3(rand() % 360, rand() % 360, rand() % 360));
+				std::shared_ptr<Transform> tr = physicsTest->AddComponent<Transform>(glm::vec3(-50 + (15 * x) + rand() % 5, 20 + (15 * y) + rand() % 5, 50 + (-15 * z) + rand() % 5), glm::vec3(rand() % 360, rand() % 360, rand() % 360));
 				std::shared_ptr<MeshRenderer> pc = physicsTest->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));
 				physicsTest->AddComponent<PhysicsBody>(PhysicsBody::ColliderShape::box, 20);
 			}
@@ -36,7 +36,7 @@ int main()
 	}*/
 
 	std::shared_ptr<Entity> floorEntity = app->CreateEntity();
-	std::shared_ptr<Transform> tr = floorEntity->AddComponent<Transform>(glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(100, 1, 100));
+	std::shared_ptr<Transform> tr = floorEntity->AddComponent<Transform>(glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(1000, 1, 1000));
 	floorEntity->AddComponent<PhysicsBody>(PhysicsBody::ColliderShape::box, 0);
 	std::shared_ptr<MeshRenderer> mr = floorEntity->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));
 

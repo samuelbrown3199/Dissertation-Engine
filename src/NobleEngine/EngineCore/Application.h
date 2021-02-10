@@ -36,6 +36,10 @@ namespace NobleEngine
 		*Stores the engines performance stats.
 		*/
 		static PerformanceStats performanceStats;
+		/**
+		*Stores a weak pointer to itself.
+		*/
+		static std::weak_ptr<Application> self;
 		static std::shared_ptr<Camera> activeCam;
 		/**
 		*Stores screen data.
@@ -143,10 +147,6 @@ namespace NobleEngine
 		}
 
 	private:
-		/**
-		*Stores a weak pointer to itself.
-		*/
-		static std::weak_ptr<Application> self;
 		/**
 		*Stores a pointer to the current audio device.
 		*/

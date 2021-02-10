@@ -2,6 +2,14 @@
 
 namespace NobleEngine
 {
+	int Screen::screenWidth;
+	int Screen::screenHeight;
+	SDL_Window* Screen::window;
+
+	float Screen::nearPlane = 0.1f;
+	float Screen::farPlane = 1000.0f;
+	float Screen::fieldOfView = 90.0f;
+
 	Screen::Screen(int width, int height, float near, float far, std::string windowName)
 	{
 		screenWidth = width;
@@ -22,6 +30,16 @@ namespace NobleEngine
 		return window;
 	}
 
+	int Screen::GetScreenWidth()
+	{
+		return screenWidth;
+	}
+
+	int Screen::GetScreenHeight()
+	{
+		return screenHeight;
+	}
+
 	void Screen::UpdateScreenSize()
 	{
 		int w, h;
@@ -36,5 +54,12 @@ namespace NobleEngine
 	{
 		glm::mat4 projectionMatrix = glm::perspective(glm::radians(fieldOfView), (float)screenWidth / (float)screenHeight, nearPlane, farPlane);
 		return projectionMatrix;
+	}
+
+	glm::mat4 Screen::GenerateOrthographicMatrix()
+	{
+		//glm::mat4 orthoMatrix = glm::ortho(0.0f, (float)screenWidth, (float)screenHeight, 0.0f, nearPlane, farPlane);
+		glm::mat4 orthoMatrix = glm::ortho(0.0f, (float)screenWidth, (float)screenHeight, 0.0f, -1.0f, 1.0f);
+		return orthoMatrix;
 	}
 }
