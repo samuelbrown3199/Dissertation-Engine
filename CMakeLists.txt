@@ -52,6 +52,9 @@ add_library(NobleEngine
   src/NobleEngine/ResourceManagement/ShaderProgram.cpp
   src/NobleEngine/ResourceManagement/SpriteSheet.h
   src/NobleEngine/ResourceManagement/SpriteSheet.cpp
+  src/NobleEngine/ResourceManagement/Font.h
+  src/NobleEngine/ResourceManagement/Font.cpp
+
 
   src/NobleEngine/EngineCore/Entity.h
   src/NobleEngine/EngineCore/Entity.cpp
@@ -90,7 +93,7 @@ add_library(NobleEngine
   src/NobleEngine/Systems/SpriteRendererSystem.h
   src/NobleEngine/Systems/SpriteRendererSystem.cpp
 )
-target_link_libraries(NobleEngine SDL2 SDL2_ttf glew32 opengl32 openal32 Bullet3Collision Bullet3Common Bullet3Dynamics Bullet3Geometry BulletCollision BulletDynamics LinearMath)
+target_link_libraries(NobleEngine SDL2 SDL2_ttf glew32 opengl32 openal32 Bullet3Collision Bullet3Common Bullet3Dynamics Bullet3Geometry BulletCollision BulletDynamics LinearMath freetype)
 
 add_executable(TestProgram
   src/TestProgram/main.cpp

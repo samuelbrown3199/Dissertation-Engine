@@ -13,6 +13,8 @@
 #include <GL/glew.h>
 #include <AL/al.h>
 #include <AL/alc.h>
+#include <ft2build.h>
+#include FT_FREETYPE_H
 
 namespace NobleEngine
 {
@@ -45,6 +47,10 @@ namespace NobleEngine
 		*Stores screen data.
 		*/
 		static std::shared_ptr<Screen> screen;
+		/**
+		*Stores an initialized free type library.
+		*/
+		static FT_Library fontLibrary;
 		/**
 		*Stores a list of entities marked for deletion.
 		*/

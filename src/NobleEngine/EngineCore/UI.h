@@ -20,17 +20,14 @@ namespace NobleEngine
 		glm::vec2 screenPosition;
 		glm::vec2 rectScale;
 
-		std::shared_ptr<Texture> texture;
-
 		UIRect()
 		{
-			texture = ResourceManager::LoadResource<Texture>("Resources\\Textures\\test.png");
+			screenPosition = glm::vec2(0, 0);
+			rectScale = glm::vec2(0, 0);
 		}
 
 		UIRect(glm::vec2 _screenPos, glm::vec2 _rectScale)
 		{
-			texture = ResourceManager::LoadResource<Texture>("Resources\\Textures\\test.png");
-
 			screenPosition = _screenPos;
 			rectScale = _rectScale;
 		}
@@ -44,11 +41,19 @@ namespace NobleEngine
 
 			return uiMat;
 		}
+	};
+
+	struct UIElement
+	{
+		UIRect elementRect;
+		std::shared_ptr<Texture> texture;
+
+		virtual void OnRender();
 
 		void TempRender()
 		{
 			Application::standardShaderUI->UseProgram();
-			Application::standardShaderUI->BindMat4("u_UIPos", GetUIMatrix());
+			Application::standardShaderUI->BindMat4("u_UIPos", elementRect.GetUIMatrix());
 			Application::standardShaderUI->BindMat4("u_Ortho", Screen::GenerateOrthographicMatrix());
 
 			if (texture)

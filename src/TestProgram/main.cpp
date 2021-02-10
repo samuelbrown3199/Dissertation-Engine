@@ -16,9 +16,11 @@ int main()
 	std::string texLoc = "Resources\\Textures\\test.png";
 	std::string texLoc1 = "";
 	std::string testSpriteSheet = "Resources\\Textures\\testspritesheet.png";
+	std::string testFont = "Resources\\Fonts\\test.ttf";
 	std::string testAudio = "Resources\\Sound\\testsound.ogg";
 
 	std::shared_ptr<AudioClip> ac = app->GetResourceManager()->LoadResource<AudioClip>(testAudio);
+	std::shared_ptr<Font> font = ResourceManager::LoadResource<Font>(testFont);
 
 	int amount = 5;
 	for (int x = 0; x < amount; x++)

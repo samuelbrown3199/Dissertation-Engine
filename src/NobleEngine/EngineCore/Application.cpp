@@ -40,6 +40,7 @@ namespace NobleEngine
 	std::shared_ptr<ShaderProgram> Application::standardShaderUI;
 	std::shared_ptr<Camera> Application::activeCam;
 	std::shared_ptr<Screen> Application::screen;
+	FT_Library Application::fontLibrary;
 	PerformanceStats Application::performanceStats;
 
 	std::shared_ptr<Application> Application::InitializeEngine(std::string windowName, int windowWidth, int windowHeight)
@@ -69,6 +70,11 @@ namespace NobleEngine
 			std::cout << "Application failed to assign audio context!" << std::endl;
 			alcDestroyContext(app->audioContext);
 			alcCloseDevice(app->audioDevice);
+		}
+		if (FT_Init_FreeType(&app->fontLibrary))
+		{
+			std::cout << "Could not initialize FreeType Library!" << std::endl;
+			throw std::exception();
 		}
 		ThreadingManager::SetupMaxThreads();
 		app->resourceManager = std::make_shared<ResourceManager>();
@@ -121,8 +127,6 @@ namespace NobleEngine
 		int currentFrameCount = 0;
 		double avgFPS = 0;
 
-		UIRect* test = new UIRect(glm::vec2(0, 0), glm::vec2(0, 0),glm::vec2(100, 100));
-
 		while (loop)
 		{
 			performanceStats.frameStart = SDL_GetTicks();
@@ -152,7 +156,6 @@ namespace NobleEngine
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 			performanceStats.renderStart = SDL_GetTicks();
-			test->TempRender();
 
 			renderStart = SDL_GetTicks();
 

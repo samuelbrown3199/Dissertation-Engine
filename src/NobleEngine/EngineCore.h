@@ -19,6 +19,7 @@
 
 //resource headers.
 #include "ResourceManagement/AudioClip.h"
+#include "ResourceManagement/Font.h"
 #include "ResourceManagement/Material.h"
 #include "ResourceManagement/Model.h"
 #include "ResourceManagement/Shader.h"
