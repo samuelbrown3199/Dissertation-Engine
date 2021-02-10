@@ -33,7 +33,7 @@ int main()
 				physicsTest->AddComponent<PhysicsBody>(PhysicsBody::ColliderShape::box, 20);
 			}
 		}
-	}*/
+	}
 
 	std::shared_ptr<Entity> floorEntity = app->CreateEntity();
 	std::shared_ptr<Transform> tr = floorEntity->AddComponent<Transform>(glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(1000, 1, 1000));

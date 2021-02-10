@@ -92,9 +92,9 @@ namespace NobleEngine
 		}
 
 		comp->shader->UseProgram();
-		comp->shader->BindModelMat(glm::mat4(1.0f));
-		comp->shader->BindProjectionMat(glm::mat4(1.0f));
-		comp->shader->BindViewMat(glm::mat4(1.0f));
+		comp->shader->BindModelMat(comp->transform->model);
+		comp->shader->BindProjectionMat(Screen::GenerateOrthographicMatrix());
+		comp->shader->BindViewMat(Application::activeCam->viewMatrix);
 
 		glBindVertexArray(comp->rendererVAO);
 		glActiveTexture(GL_TEXTURE0);
