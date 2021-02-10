@@ -15,25 +15,10 @@
 
 namespace NobleEngine
 {
-	struct UIQuad
-	{
-		static GLuint quadVAO;
-		static std::shared_ptr<ShaderProgram> uiShader;
-
-		static void CreateUIQuad()
-		{
-			std::shared_ptr<Shader> vertexShader = ResourceManager::LoadResource<Shader>("Resources\\Shaders\\uiStandard.vs");
-			std::shared_ptr<Shader> fragmentShader = ResourceManager::LoadResource<Shader>("Resources\\Shaders\\uiStandard.fs");
-			uiShader = std::make_shared<ShaderProgram>(Application::self);
-			uiShader->BindShader(vertexShader, GL_VERTEX_SHADER);
-			uiShader->BindShader(fragmentShader, GL_FRAGMENT_SHADER);
-			uiShader->LinkShaderProgram(uiShader);
-		}
-	};
-
 	struct UIRect
 	{
 		glm::vec2 screenPosition;
+		glm::vec2 rectRotation;
 		glm::vec2 rectScale;
 
 		std::shared_ptr<Texture> texture;
@@ -48,6 +33,16 @@ namespace NobleEngine
 			texture = ResourceManager::LoadResource<Texture>("Resources\\Textures\\test.png");
 
 			screenPosition = _screenPos;
+			rectRotation = glm::vec2(0, 0);
+			rectScale = _rectScale;
+		}
+
+		UIRect(glm::vec2 _screenPos, glm::vec2 _rectRotation, glm::vec2 _rectScale)
+		{
+			texture = ResourceManager::LoadResource<Texture>("Resources\\Textures\\test.png");
+
+			screenPosition = _screenPos;
+			rectRotation = _rectRotation;
 			rectScale = _rectScale;
 		}
 
@@ -56,6 +51,8 @@ namespace NobleEngine
 			glm::mat4 uiMat(1.0f);
 
 			uiMat = glm::translate(uiMat, glm::vec3(screenPosition, -0.1f));
+			uiMat = glm::rotate(uiMat, glm::radians(rectRotation.x), glm::vec3(0, 0, 1));
+			uiMat = glm::rotate(uiMat, glm::radians(rectRotation.y), glm::vec3(0, 1, 0));
 			uiMat = glm::scale(uiMat, glm::vec3(rectScale, 1.0f));
 
 			return uiMat;
@@ -63,9 +60,9 @@ namespace NobleEngine
 
 		void TempRender()
 		{
-			UIQuad::uiShader->UseProgram();
-			UIQuad::uiShader->BindMat4("u_UIPos", GetUIMatrix());
-			UIQuad::uiShader->BindMat4("u_Ortho", Screen::GenerateOrthographicMatrix());
+			Application::standardShaderUI->UseProgram();
+			Application::standardShaderUI->BindMat4("u_UIPos", GetUIMatrix());
+			Application::standardShaderUI->BindMat4("u_Ortho", Screen::GenerateOrthographicMatrix());
 
 			if (texture)
 			{

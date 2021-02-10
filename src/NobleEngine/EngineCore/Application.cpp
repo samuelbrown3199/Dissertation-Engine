@@ -37,6 +37,7 @@ namespace NobleEngine
 
 	std::shared_ptr<ShaderProgram> Application::standardShader;
 	std::shared_ptr<ShaderProgram> Application::standardShader2D;
+	std::shared_ptr<ShaderProgram> Application::standardShaderUI;
 	std::shared_ptr<Camera> Application::activeCam;
 	std::shared_ptr<Screen> Application::screen;
 	PerformanceStats Application::performanceStats;
@@ -77,6 +78,8 @@ namespace NobleEngine
 		std::shared_ptr<Shader> fragmentShader = app->GetResourceManager()->LoadResource<Shader>("Resources\\Shaders\\standard.fs");
 		std::shared_ptr<Shader> vertexShader2D = app->GetResourceManager()->LoadResource<Shader>("Resources\\Shaders\\standard2D.vs");
 		std::shared_ptr<Shader> fragmentShader2D = app->GetResourceManager()->LoadResource<Shader>("Resources\\Shaders\\standard2D.fs");
+		std::shared_ptr<Shader> vertexShaderUI = app->GetResourceManager()->LoadResource<Shader>("Resources\\Shaders\\uiStandard.vs");
+		std::shared_ptr<Shader> fragmentShaderUI = app->GetResourceManager()->LoadResource<Shader>("Resources\\Shaders\\uiStandard.fs");
 
 		app->standardShader = std::make_shared<ShaderProgram>(app);
 		app->standardShader->BindShader(vertexShader, GL_VERTEX_SHADER);
@@ -88,9 +91,12 @@ namespace NobleEngine
 		app->standardShader2D->BindShader(fragmentShader2D, GL_FRAGMENT_SHADER);
 		app->standardShader2D->LinkShaderProgram(app->standardShader2D);
 
+		app->standardShaderUI = std::make_shared<ShaderProgram>(app);
+		app->standardShaderUI->BindShader(vertexShaderUI, GL_VERTEX_SHADER);
+		app->standardShaderUI->BindShader(fragmentShaderUI, GL_FRAGMENT_SHADER);
+		app->standardShaderUI->LinkShaderProgram(app->standardShaderUI);
+
 		PrimitiveShapes::SetupPrimitiveShapes();
-		
-		UIQuad::CreateUIQuad();
 
 		return app;
 	}
@@ -115,7 +121,7 @@ namespace NobleEngine
 		int currentFrameCount = 0;
 		double avgFPS = 0;
 
-		UIRect* test = new UIRect(glm::vec2(500, 500), glm::vec2(20,20));
+		UIRect* test = new UIRect(glm::vec2(500, 500), glm::vec2(50, 0),glm::vec2(100, 100));
 
 		while (loop)
 		{
