@@ -129,8 +129,11 @@ namespace NobleEngine
 		
 		glClearColor(0.0f, 0.45f, 0.45f, 1.0f);
 
-		std::shared_ptr<UILabel> textTest = std::make_shared<UILabel>();
-		textTest->text = "Test fontsssssss";
+		std::shared_ptr<UILabel> textTest = std::make_shared<UILabel>(glm::vec2(25.0f, 25.0f), glm::vec2(100, 50));
+		textTest->labelFont = ResourceManager::LoadResource<Font>("Resources\\Fonts\\test.ttf");
+		textTest->text = "This is sample text";
+
+		std::shared_ptr<UIBox> boxTest = std::make_shared<UIBox>(glm::vec2(25.0f, 25.0f), glm::vec2(500, 500), "Resources\\Textures\\testspritesheet.png", "Resources\\Textures\\test.png");
 
 		while (loop)
 		{
@@ -162,13 +165,14 @@ namespace NobleEngine
 
 			performanceStats.renderStart = SDL_GetTicks();
 
-			textTest->OnRender(0, 50, 1, glm::vec3(1, 0, 0));
-
 			for (size_t sys = 0; sys < systems.size(); sys++) //handles system rendering
 			{
 				systems.at(sys)->Render();
 			}
 			performanceStats.renderTime = SDL_GetTicks() - performanceStats.renderStart;
+
+			textTest->OnRender();
+			boxTest->OnRender();
 
 			SDL_GL_SwapWindow(screen->GetWindow());
 

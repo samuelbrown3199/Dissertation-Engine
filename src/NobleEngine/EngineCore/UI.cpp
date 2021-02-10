@@ -2,4 +2,97 @@
 
 namespace NobleEngine
 {
+	UIBox::UIBox(glm::vec2 screenPos, glm::vec2 scale)
+	{
+		elementRect = std::make_shared<UIRect>(screenPos, scale);
+	}
+	UIBox::UIBox(glm::vec2 screenPos, glm::vec2 scale, std::string baseTextureLoc)
+	{
+		elementRect = std::make_shared<UIRect>(screenPos, scale);
+		baseTexture = ResourceManager::LoadResource<Texture>(baseTextureLoc);
+	}
+	UIBox::UIBox(glm::vec2 screenPos, glm::vec2 scale, std::string baseTextureLoc, std::string hoverTextureLoc)
+	{
+		elementRect = std::make_shared<UIRect>(screenPos, scale);
+		baseTexture = ResourceManager::LoadResource<Texture>(baseTextureLoc);
+		hoverTexture = ResourceManager::LoadResource<Texture>(hoverTextureLoc);
+	}
+	void UIBox::OnRender()
+	{
+		Application::standardShaderUI->UseProgram();
+		Application::standardShaderUI->BindMat4("u_UIPos", elementRect->GetUIMatrix());
+		Application::standardShaderUI->BindMat4("u_Ortho", Screen::GenerateOrthographicMatrix());
+
+		glActiveTexture(0);
+		if (baseTexture)
+		{
+			glBindTexture(GL_TEXTURE_2D, baseTexture->textureID);
+		}
+		if (hoverTexture)
+		{
+			if (elementRect->IsMouseInRect())
+			{
+				glBindTexture(GL_TEXTURE_2D, hoverTexture->textureID);
+			}
+		}
+		glBindVertexArray(PrimitiveShapes::quadVAO);
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+		glBindVertexArray(0);
+		glUseProgram(0);
+	}
+
+
+	//---------------------------------------------------------------------------//
+
+	UILabel::UILabel(glm::vec2 screenPos, glm::vec2 scale)
+	{
+		elementRect = std::make_shared<UIRect>(screenPos, scale);
+	}
+	void UILabel::OnRender()
+	{
+		float x = elementRect->screenPosition.x;
+		float y = elementRect->screenPosition.y;
+
+		// activate corresponding render state	
+		Application::standardShaderText->UseProgram();
+		Application::standardShaderText->BindVector3("textColor", color);
+		Application::standardShaderText->BindMat4("projection", Screen::GenerateOrthographicMatrix());
+		glActiveTexture(GL_TEXTURE0);
+		glBindVertexArray(PrimitiveShapes::textQuadVAO);
+
+		// iterate through all characters
+		std::string::const_iterator c;
+		for (c = text.begin(); c != text.end(); c++)
+		{
+			Character ch = labelFont->characters[*c];
+
+			float xpos = x + ch.bearing.x * scale;
+			float ypos = y - (ch.size.y - ch.bearing.y) * scale;
+
+			float w = ch.size.x * scale;
+			float h = ch.size.y * scale;
+			// update VBO for each character
+			float vertices[6][4] = {
+				{ xpos,     ypos + h,   0.0f, 0.0f },
+				{ xpos,     ypos,       0.0f, 1.0f },
+				{ xpos + w, ypos,       1.0f, 1.0f },
+
+				{ xpos,     ypos + h,   0.0f, 0.0f },
+				{ xpos + w, ypos,       1.0f, 1.0f },
+				{ xpos + w, ypos + h,   1.0f, 0.0f }
+			};
+			// render glyph texture over quad
+			glBindTexture(GL_TEXTURE_2D, ch.textureID);
+			// update content of VBO memory
+			glBindBuffer(GL_ARRAY_BUFFER, PrimitiveShapes::textQuadVBO);
+			glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
+			glBindBuffer(GL_ARRAY_BUFFER, 0);
+			// render quad
+			glDrawArrays(GL_TRIANGLES, 0, 6);
+			// now advance cursors for next glyph (note that advance is number of 1/64 pixels)
+			x += (ch.advance >> 6)* scale; // bitshift by 6 to get value in pixels (2^6 = 64)
+		}
+		glBindVertexArray(0);
+		glBindTexture(GL_TEXTURE_2D, 0);
+	}
 }

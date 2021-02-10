@@ -18,7 +18,7 @@ namespace NobleEngine
 		*/
 		static GLuint quadVAO;
 		static GLuint textQuadVAO;
-		static GLuint textQuadPositionVBO, textQuadUVsVBO;
+		static GLuint textQuadVBO;
 
 		static void SetupQuad();
 		static void SetupTextQuad();
