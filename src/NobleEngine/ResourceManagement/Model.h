@@ -17,8 +17,11 @@ namespace NobleEngine
 		*Stores a quad model.
 		*/
 		static GLuint quadVAO;
+		static GLuint textQuadVAO;
+		static GLuint textQuadPositionVBO, textQuadUVsVBO;
 
 		static void SetupQuad();
+		static void SetupTextQuad();
 		static void SetupPrimitiveShapes();
 	};
 

@@ -68,6 +68,10 @@ namespace NobleEngine
 		*/
 		static std::shared_ptr<ShaderProgram> standardShaderUI;
 		/**
+		*Stores the standard text shader program built into the engine.
+		*/
+		static std::shared_ptr<ShaderProgram> standardShaderText;
+		/**
 		*Initializes the systems within the engine.
 		*/
 		static std::shared_ptr<Application> InitializeEngine(std::string windowName, int windowWidth, int windowHeight);

@@ -38,6 +38,8 @@ namespace NobleEngine
 	std::shared_ptr<ShaderProgram> Application::standardShader;
 	std::shared_ptr<ShaderProgram> Application::standardShader2D;
 	std::shared_ptr<ShaderProgram> Application::standardShaderUI;
+	std::shared_ptr<ShaderProgram> Application::standardShaderText;
+
 	std::shared_ptr<Camera> Application::activeCam;
 	std::shared_ptr<Screen> Application::screen;
 	FT_Library Application::fontLibrary;
@@ -86,6 +88,8 @@ namespace NobleEngine
 		std::shared_ptr<Shader> fragmentShader2D = app->GetResourceManager()->LoadResource<Shader>("Resources\\Shaders\\standard2D.fs");
 		std::shared_ptr<Shader> vertexShaderUI = app->GetResourceManager()->LoadResource<Shader>("Resources\\Shaders\\uiStandard.vs");
 		std::shared_ptr<Shader> fragmentShaderUI = app->GetResourceManager()->LoadResource<Shader>("Resources\\Shaders\\uiStandard.fs");
+		std::shared_ptr<Shader> vertexShaderText = app->GetResourceManager()->LoadResource<Shader>("Resources\\Shaders\\textStandard.vs");
+		std::shared_ptr<Shader> fragmentShaderText = app->GetResourceManager()->LoadResource<Shader>("Resources\\Shaders\\textStandard.fs");
 
 		app->standardShader = std::make_shared<ShaderProgram>(app);
 		app->standardShader->BindShader(vertexShader, GL_VERTEX_SHADER);
@@ -102,6 +106,11 @@ namespace NobleEngine
 		app->standardShaderUI->BindShader(fragmentShaderUI, GL_FRAGMENT_SHADER);
 		app->standardShaderUI->LinkShaderProgram(app->standardShaderUI);
 
+		app->standardShaderText = std::make_shared<ShaderProgram>(app);
+		app->standardShaderText->BindShader(vertexShaderText, GL_VERTEX_SHADER);
+		app->standardShaderText->BindShader(fragmentShaderText, GL_FRAGMENT_SHADER);
+		app->standardShaderText->LinkShaderProgram(app->standardShaderText);
+
 		PrimitiveShapes::SetupPrimitiveShapes();
 
 		return app;
@@ -112,20 +121,16 @@ namespace NobleEngine
 		BindCoreSystems();
 
 		SDL_Event e = { 0 };
+
 		glEnable(GL_CULL_FACE);
 		glEnable(GL_DEPTH_TEST);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		
 		glClearColor(0.0f, 0.45f, 0.45f, 1.0f);
-		
-		Uint32 frameStart, renderStart, updateStart, physicsStart;
-		double frameTime = 0;
-		double fps = 0;
-		double deltaT = 0;
 
-		const int avgFrameRateCount = 10;
-		std::vector<int> framerateList;
-		int currentFrameCount = 0;
-		double avgFPS = 0;
+		std::shared_ptr<UILabel> textTest = std::make_shared<UILabel>();
+		textTest->text = "Test fontsssssss";
 
 		while (loop)
 		{
@@ -157,7 +162,7 @@ namespace NobleEngine
 
 			performanceStats.renderStart = SDL_GetTicks();
 
-			renderStart = SDL_GetTicks();
+			textTest->OnRender(0, 50, 1, glm::vec3(1, 0, 0));
 
 			for (size_t sys = 0; sys < systems.size(); sys++) //handles system rendering
 			{
@@ -186,7 +191,6 @@ namespace NobleEngine
 			ResourceManager::UnloadUnusedResources();
 
 			performanceStats.UpdatePerformanceStats();
-			performanceStats.PrintOutPerformanceStats();
 		}
 
 		physicsWorld->CleanupPhysicsWorld();

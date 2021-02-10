@@ -3,6 +3,8 @@
 namespace NobleEngine
 {
 	GLuint PrimitiveShapes::quadVAO;
+	GLuint PrimitiveShapes::textQuadVAO;
+	GLuint PrimitiveShapes::textQuadPositionVBO, PrimitiveShapes::textQuadUVsVBO;
 
 	void PrimitiveShapes::SetupQuad()
 	{
@@ -65,9 +67,29 @@ namespace NobleEngine
 
 		glBindVertexArray(0);
 	}
+
+	void PrimitiveShapes::SetupTextQuad()
+	{
+		glGenVertexArrays(1, &textQuadVAO);
+		glGenBuffers(1, &textQuadPositionVBO);
+		glBindVertexArray(textQuadVAO);
+		glBindBuffer(GL_ARRAY_BUFFER, textQuadPositionVBO);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 2, NULL, GL_DYNAMIC_DRAW);
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), 0);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glGenBuffers(1, &textQuadUVsVBO);
+		glBindBuffer(GL_ARRAY_BUFFER, textQuadUVsVBO);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 2, NULL, GL_DYNAMIC_DRAW);
+		glEnableVertexAttribArray(1);
+		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), 0);
+		glBindVertexArray(0);
+	}
+
 	void PrimitiveShapes::SetupPrimitiveShapes()
 	{
 		SetupQuad();
+		SetupTextQuad();
 	}
 
 
