@@ -32,7 +32,7 @@ namespace NobleEngine
 			rtn->locationID = glGetUniformLocation(shaderProgram, location.c_str());
 			if (rtn->locationID == -1)
 			{
-				return nullptr;
+				std::cout << "Couldn't find location " << location << " in shader program " << shaderProgram << std::endl;
 			}
 
 			return rtn;
