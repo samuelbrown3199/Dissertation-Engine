@@ -20,29 +20,29 @@ void FlyingCamSystem::UpdateControls(std::shared_ptr<FlyingCam> cam)
 	std::shared_ptr<Camera> ca = GetApplication()->GetEntity(cam->entityID)->GetComponent<Camera>();
 	glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
 
-	if (InputManager::IfKeyDown(SDL_SCANCODE_W))
+	if (InputManager::GetKey(SDLK_w))
 	{
 		tr->position += cam->movementSpeed * ca->forward;
 	}
-	if (InputManager::IfKeyDown(SDL_SCANCODE_S))
+	if (InputManager::GetKey(SDLK_s))
 	{
 		tr->position -= cam->movementSpeed * ca->forward;
 	}
-	if (InputManager::IfKeyDown(SDL_SCANCODE_A))
+	if (InputManager::GetKey(SDLK_a))
 	{
 		glm::vec3 direction = glm::cross(ca->forward, up);
 		tr->position -= cam->movementSpeed * direction;
 	}
-	if (InputManager::IfKeyDown(SDL_SCANCODE_D))
+	if (InputManager::GetKey(SDLK_d))
 	{
 		glm::vec3 direction = glm::cross(ca->forward, up);
 		tr->position += cam->movementSpeed * direction;
 	}
-	if (InputManager::IfKeyDown(SDL_SCANCODE_SPACE))
+	if (InputManager::GetKey(SDLK_SPACE))
 	{
 		tr->position += cam->movementSpeed * up;
 	}
-	if (InputManager::IfKeyDown(SDL_SCANCODE_X))
+	if (InputManager::GetKey(SDLK_x))
 	{
 		tr->position -= cam->movementSpeed * up;
 	}

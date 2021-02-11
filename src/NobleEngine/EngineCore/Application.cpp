@@ -133,7 +133,7 @@ namespace NobleEngine
 		textTest->labelFont = ResourceManager::LoadResource<Font>("Resources\\Fonts\\test.ttf");
 		textTest->text = "This is sample text";
 		 
-		std::shared_ptr<UIBox> boxTest = std::make_shared<UIBox>(glm::vec2(25.0f, 25.0f), glm::vec2(50, 50), "Resources\\Textures\\testspritesheet.png");
+		std::shared_ptr<UIBox> boxTest = std::make_shared<UIBox>(glm::vec2(25.0f, 25.0f), glm::vec2(50, 50), "Resources\\Textures\\testspritesheet.png", "Resources\\Textures\\test.png");
 
 		while (loop)
 		{
@@ -145,6 +145,16 @@ namespace NobleEngine
 				{
 					loop = false;
 				}
+
+				if (e.type == SDL_KEYDOWN)
+				{
+					InputManager::downKeys.push_back(e.key.keysym.scancode);
+				}
+				else if (e.type == SDL_KEYUP)
+				{
+					InputManager::upKeys.push_back(e.key.keysym.scancode);
+				}
+
 			}
 			screen->UpdateScreenSize();
 			InputManager::GetMousePosition();
@@ -190,6 +200,7 @@ namespace NobleEngine
 			}
 			ThreadingManager::CleanupLooseThreads();
 			ResourceManager::UnloadUnusedResources();
+			InputManager::ClearFrameKeys();
 
 			performanceStats.UpdatePerformanceStats();
 		}
