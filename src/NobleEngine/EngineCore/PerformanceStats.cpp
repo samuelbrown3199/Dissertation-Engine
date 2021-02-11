@@ -8,6 +8,14 @@ namespace NobleEngine
 	double PerformanceStats::renderTime = 0;
 	double PerformanceStats::physicsTime = 0;
 
+	void PerformanceStats::ResetPerformanceStats()
+	{
+		frameStart = SDL_GetTicks();
+		updateTime = 0;
+		renderTime = 0;
+		physicsTime = 0;
+	}
+
 	void PerformanceStats::UpdatePerformanceStats()
 	{
 		frameTime = SDL_GetTicks() - frameStart;

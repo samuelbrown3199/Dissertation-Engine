@@ -137,10 +137,7 @@ namespace NobleEngine
 
 		while (loop)
 		{
-			performanceStats.frameStart = SDL_GetTicks();
-			performanceStats.updateTime = 0;
-			performanceStats.renderTime = 0;
-			performanceStats.physicsTime = 0;
+			performanceStats.ResetPerformanceStats();
 
 			while (SDL_PollEvent(&e) != 0)
 			{

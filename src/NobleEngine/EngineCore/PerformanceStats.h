@@ -25,6 +25,10 @@ namespace NobleEngine
 		int currentFrameCount = 0;
 
 		/**
+		*Resets the performance stats. Done every frame by the engine.
+		*/
+		void ResetPerformanceStats();
+		/**
 		*Updates the performance stats. Done every frame by the engine.
 		*/
 		void UpdatePerformanceStats();
