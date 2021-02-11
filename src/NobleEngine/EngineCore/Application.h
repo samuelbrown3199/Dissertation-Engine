@@ -33,7 +33,12 @@ namespace NobleEngine
 	*/
 	class Application
 	{
+
 	public:
+		/**
+		*Determines whether the main engine loop should run.
+		*/
+		static bool loop;
 		/**
 		*Stores the engines performance stats.
 		*/
@@ -173,10 +178,6 @@ namespace NobleEngine
 		*Stores the physics simulation world.
 		*/
 		static std::shared_ptr<PhysicsWorld> physicsWorld;
-		/**
-		*Determines whether the main engine loop should run.
-		*/
-		bool loop = true;
 		/**
 		*Stores systems for use within the game engine.
 		*/

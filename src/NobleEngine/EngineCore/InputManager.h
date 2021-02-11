@@ -21,9 +21,11 @@ namespace NobleEngine
 		static int mouseX, mouseY;
 		static std::vector<SDL_Scancode> downKeys, oldDownKeys;
 		static std::vector<SDL_Scancode> upKeys;
+		static std::vector<int> downMouseButtons, oldMouseButtons;
+		static std::vector<int> upMouseButtons;
 
-		InputManager();
-		~InputManager();
+		static void HandleGeneralInput();
+
 		/**
 		*Checks if a key is down. Uses SDL keycodes which can be found here: https://wiki.libsdl.org/SDL_Scancode
 		*/
@@ -39,7 +41,15 @@ namespace NobleEngine
 		/**
 		*Checks if a mouse button is down. Button 0 is left, 1 is right, 2 is middle.
 		*/
-		static bool IfMouseButtonDown(int button);
+		static bool GetMouseButton(int button);
+		/**
+		*Checks if the mouse button has been pressed this frame.
+		*/
+		static bool GetMouseButtonDown(int button);
+		/**
+		*Checks if the mouse button has been released this frame.
+		*/
+		static bool GetMouseButtonUp(int button);
 		/**
 		*Gets the mouse position and stores it in the mouse position variables.
 		*/
@@ -47,7 +57,7 @@ namespace NobleEngine
 		/**
 		*Clears the keys that are currently up and down.
 		*/
-		static void ClearFrameKeys();
+		static void ClearFrameInputs();
 	};
 }
 #endif

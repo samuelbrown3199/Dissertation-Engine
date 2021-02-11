@@ -46,11 +46,16 @@ void FlyingCamSystem::UpdateControls(std::shared_ptr<FlyingCam> cam)
 	{
 		tr->position -= cam->movementSpeed * up;
 	}
+
+	if (InputManager::GetMouseButtonDown(0))
+	{
+		std::cout << "Click!" << std::endl;
+	}
 }
 
 void FlyingCamSystem::UpdateCameraRotation(std::shared_ptr<FlyingCam> cam)
 {
-	if (InputManager::IfMouseButtonDown(0))
+	if (InputManager::GetMouseButton(0))
 	{
 		std::shared_ptr<Camera> ca = GetApplication()->GetEntity(cam->entityID)->GetComponent<Camera>();
 		cam->newMousePos = glm::vec2(InputManager::mouseX, InputManager::mouseY);

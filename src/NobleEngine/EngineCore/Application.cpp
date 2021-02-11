@@ -45,6 +45,8 @@ namespace NobleEngine
 	FT_Library Application::fontLibrary;
 	PerformanceStats Application::performanceStats;
 
+	bool Application::loop = true;
+
 	std::shared_ptr<Application> Application::InitializeEngine(std::string windowName, int windowWidth, int windowHeight)
 	{
 		std::shared_ptr<Application> app(new Application());
@@ -120,8 +122,6 @@ namespace NobleEngine
 	{
 		BindCoreSystems();
 
-		SDL_Event e = { 0 };
-
 		glEnable(GL_CULL_FACE);
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_BLEND);
@@ -139,25 +139,8 @@ namespace NobleEngine
 		{
 			performanceStats.ResetPerformanceStats();
 
-			while (SDL_PollEvent(&e) != 0)
-			{
-				if (e.type == SDL_QUIT)
-				{
-					loop = false;
-				}
-
-				if (e.type == SDL_KEYDOWN)
-				{
-					InputManager::downKeys.push_back(e.key.keysym.scancode);
-				}
-				else if (e.type == SDL_KEYUP)
-				{
-					InputManager::upKeys.push_back(e.key.keysym.scancode);
-				}
-
-			}
+			InputManager::HandleGeneralInput();
 			screen->UpdateScreenSize();
-			InputManager::GetMousePosition();
 
 			std::shared_ptr<std::thread> physicsThread = ThreadingManager::CreateThread(&PhysicsWorld::StepSimulation, physicsWorld, performanceStats.deltaT); //Update the physics world simulation.
 
@@ -200,7 +183,7 @@ namespace NobleEngine
 			}
 			ThreadingManager::CleanupLooseThreads();
 			ResourceManager::UnloadUnusedResources();
-			InputManager::ClearFrameKeys();
+			InputManager::ClearFrameInputs();
 
 			performanceStats.UpdatePerformanceStats();
 		}

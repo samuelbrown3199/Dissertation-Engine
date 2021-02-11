@@ -2,6 +2,8 @@
 
 #include <algorithm>
 
+#include "Application.h"
+
 namespace NobleEngine
 {
 	int InputManager::mouseX = 0;
@@ -9,16 +11,63 @@ namespace NobleEngine
 
 	std::vector<SDL_Scancode> InputManager::downKeys, InputManager::oldDownKeys;
 	std::vector<SDL_Scancode> InputManager::upKeys;
+	std::vector<int> InputManager::downMouseButtons, InputManager::oldMouseButtons;
+	std::vector<int> InputManager::upMouseButtons;
 
-	InputManager::InputManager()
+	void InputManager::HandleGeneralInput()
 	{
+		SDL_Event e = { 0 };
+
+		while (SDL_PollEvent(&e) != 0)
+		{
+			GetMousePosition();
+
+			if (e.type == SDL_QUIT)
+			{
+				Application::loop = false;
+			}
+
+			if (e.type == SDL_KEYDOWN)
+			{
+				downKeys.push_back(e.key.keysym.scancode);
+			}
+			else if (e.type == SDL_KEYUP)
+			{
+				upKeys.push_back(e.key.keysym.scancode);
+			}
+
+			if (e.type == SDL_MOUSEBUTTONDOWN)
+			{
+				if (SDL_GetMouseState(&mouseX, &mouseY) & SDL_BUTTON(SDL_BUTTON_LEFT))
+				{
+					downMouseButtons.push_back(0);
+				}
+				if (SDL_GetMouseState(&mouseX, &mouseY) & SDL_BUTTON(SDL_BUTTON_RIGHT))
+				{
+					downMouseButtons.push_back(1);
+				}
+				if (SDL_GetMouseState(&mouseX, &mouseY) & SDL_BUTTON(SDL_BUTTON_MIDDLE))
+				{
+					downMouseButtons.push_back(2);
+				}
+			}
+			else
+			{
+				if (SDL_GetMouseState(&mouseX, &mouseY) & SDL_BUTTON(SDL_BUTTON_LEFT))
+				{
+					upMouseButtons.push_back(0);
+				}
+				if (SDL_GetMouseState(&mouseX, &mouseY) & SDL_BUTTON(SDL_BUTTON_RIGHT))
+				{
+					upMouseButtons.push_back(1);
+				}
+				if (SDL_GetMouseState(&mouseX, &mouseY) & SDL_BUTTON(SDL_BUTTON_MIDDLE))
+				{
+					upMouseButtons.push_back(2);
+				}
+			}
+		}
 	}
-
-
-	InputManager::~InputManager()
-	{
-	}
-
 	bool InputManager::GetKey(SDL_Keycode key)
 	{
 		const Uint8* state = SDL_GetKeyboardState(NULL);
@@ -61,7 +110,7 @@ namespace NobleEngine
 		return false;
 	}
 
-	bool InputManager::IfMouseButtonDown(int button)
+	bool InputManager::GetMouseButton(int button)
 	{
 		if (button == 0)
 		{
@@ -88,22 +137,48 @@ namespace NobleEngine
 		return false;
 	}
 
+	bool InputManager::GetMouseButtonDown(int button)
+	{
+		for (int i = 0; i < downMouseButtons.size(); i++)
+		{
+			if (downMouseButtons.at(i) == button)
+			{
+				if (std::find(downMouseButtons.begin(), downMouseButtons.end(), button) == downMouseButtons.end())
+				{
+					return true;
+				}
+			}
+		}
+
+		false;
+	}
+
+	bool InputManager::GetMouseButtonUp(int button)
+	{
+		for (int i = 0; i < upMouseButtons.size(); i++)
+		{
+			if (upMouseButtons.at(i) == button)
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	void InputManager::GetMousePosition()
 	{
 		SDL_GetMouseState(&mouseX, &mouseY);
 	}
 
-	void InputManager::ClearFrameKeys()
+	void InputManager::ClearFrameInputs()
 	{
-		if (downKeys.size() != 0 || upKeys.size() != 0)
-		{
-			oldDownKeys = downKeys;
+		oldDownKeys = downKeys;
+		oldMouseButtons = downMouseButtons;
 
-			std::cout << "Down keys this frame " << downKeys.size() << std::endl;
-			std::cout << "Up keys this frame " << upKeys.size() << std::endl;
-
-			downKeys.clear();
-			upKeys.clear();
-		}
+		downKeys.clear();
+		upKeys.clear();
+		downMouseButtons.clear();
+		upMouseButtons.clear();
 	}
 }
