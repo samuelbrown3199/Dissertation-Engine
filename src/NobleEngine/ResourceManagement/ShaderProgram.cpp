@@ -22,8 +22,11 @@ namespace NobleEngine
 		}
 
 		std::shared_ptr<ShaderLocation> rtn = ShaderLocation::CreateLocation(programID, location);
-		shaderLocations.push_back(rtn);
-		return rtn->locationID;
+		if (rtn != nullptr)
+		{
+			shaderLocations.push_back(rtn);
+			return rtn->locationID;
+		}
 	}
 
 	void ShaderProgram::BindShader(std::shared_ptr<Shader> shader, GLenum shaderType)

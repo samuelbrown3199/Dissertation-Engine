@@ -132,8 +132,8 @@ namespace NobleEngine
 		std::shared_ptr<UILabel> textTest = std::make_shared<UILabel>(glm::vec2(25.0f, 25.0f), glm::vec2(100, 50));
 		textTest->labelFont = ResourceManager::LoadResource<Font>("Resources\\Fonts\\test.ttf");
 		textTest->text = "This is sample text";
-
-		std::shared_ptr<UIBox> boxTest = std::make_shared<UIBox>(glm::vec2(25.0f, 25.0f), glm::vec2(500, 500), "Resources\\Textures\\testspritesheet.png", "Resources\\Textures\\test.png");
+		 
+		std::shared_ptr<UIBox> boxTest = std::make_shared<UIBox>(glm::vec2(25.0f, 25.0f), glm::vec2(50, 50), "Resources\\Textures\\testspritesheet.png");
 
 		while (loop)
 		{
