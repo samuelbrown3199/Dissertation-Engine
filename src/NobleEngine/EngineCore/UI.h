@@ -67,6 +67,7 @@ namespace NobleEngine
 	{
 		std::shared_ptr<UIRect> elementRect;
 
+		virtual void OnUpdate() {};
 		virtual void OnRender() {};
 	};
 
@@ -88,10 +89,39 @@ namespace NobleEngine
 		*Initializes a UI box with a screen rect and a base texture and hover texture.
 		*/
 		UIBox(glm::vec2 screenPos, glm::vec2 scale, std::string baseTextureLoc, std::string hoverTextureLoc);
+
 		/**
 		*Renders a UI box onto the screen.
 		*/
 		void OnRender();
+	};
+
+	/**
+	*Stores the relevant information for a UI button. When clicked, it can call a function.
+	*/
+	struct UIButton : public UIElement
+	{
+	private:
+
+		bool pressed, oldPressed;
+
+	public:
+		std::shared_ptr<Texture> baseTexture, hoverTexture, clickedTexture;
+		/**
+		*Initializes a button with a screen position but no textures.
+		*/
+		UIButton(glm::vec2 screenPos, glm::vec2 scale);
+		/**
+		*Initializes a button with a screen position and textures.
+		*/
+		UIButton(glm::vec2 screenPos, glm::vec2 scale, std::string baseTextureLoc, std::string hoverTextureLoc, std::string clickedTextureLoc);
+
+		void OnUpdate();
+		/**
+		*Renders a UI button onto the screen.
+		*/
+		void OnRender();
+		bool GetPressed();
 	};
 
 	/**

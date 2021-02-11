@@ -46,11 +46,6 @@ void FlyingCamSystem::UpdateControls(std::shared_ptr<FlyingCam> cam)
 	{
 		tr->position -= cam->movementSpeed * up;
 	}
-
-	if (InputManager::GetMouseButtonDown(0))
-	{
-		std::cout << "Click!" << std::endl;
-	}
 }
 
 void FlyingCamSystem::UpdateCameraRotation(std::shared_ptr<FlyingCam> cam)

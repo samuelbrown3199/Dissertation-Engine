@@ -133,7 +133,8 @@ namespace NobleEngine
 		textTest->labelFont = ResourceManager::LoadResource<Font>("Resources\\Fonts\\test.ttf");
 		textTest->text = "This is sample text";
 		 
-		std::shared_ptr<UIBox> boxTest = std::make_shared<UIBox>(glm::vec2(25.0f, 25.0f), glm::vec2(50, 50), "Resources\\Textures\\testspritesheet.png", "Resources\\Textures\\test.png");
+		std::shared_ptr<UIBox> boxTest = std::make_shared<UIBox>(glm::vec2(25.0f, 25.0f), glm::vec2(50, 50), "Resources\\Textures\\testspritesheet.png");
+		std::shared_ptr<UIButton> buttonTest = std::make_shared<UIButton>(glm::vec2(80.0f, 25.0f), glm::vec2(50, 50), "Resources\\Textures\\testspritesheet.png", "Resources\\Textures\\test.png", "Resources\\Textures\\test2.png");
 
 		while (loop)
 		{
@@ -163,6 +164,13 @@ namespace NobleEngine
 
 			textTest->OnRender();
 			boxTest->OnRender();
+			buttonTest->OnUpdate();
+			buttonTest->OnRender();
+
+			if (buttonTest->GetPressed())
+			{
+				std::cout << "Button click!" << std::endl;
+			}
 
 			SDL_GL_SwapWindow(screen->GetWindow());
 

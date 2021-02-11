@@ -41,6 +41,72 @@ namespace NobleEngine
 		glUseProgram(0);
 	}
 
+	//---------------------------------------------------------------------------//
+
+	UIButton::UIButton(glm::vec2 screenPos, glm::vec2 scale)
+	{
+		elementRect = std::make_shared<UIRect>(screenPos, scale);
+	}
+	UIButton::UIButton(glm::vec2 screenPos, glm::vec2 scale, std::string baseTextureLoc, std::string hoverTextureLoc, std::string clickedTextureLoc)
+	{
+		elementRect = std::make_shared<UIRect>(screenPos, scale);
+		baseTexture = ResourceManager::LoadResource<Texture>(baseTextureLoc);
+		hoverTexture = ResourceManager::LoadResource<Texture>(hoverTextureLoc);
+		clickedTexture = ResourceManager::LoadResource<Texture>(clickedTextureLoc);
+	}
+
+	void UIButton::OnUpdate()
+	{
+		if (elementRect->IsMouseInRect())
+		{
+			if (InputManager::GetMouseButtonDown(0))
+			{
+				pressed = true;
+			}
+			else
+			{
+				pressed = false;
+			}
+		}
+
+		oldPressed = pressed;
+	}
+
+	void UIButton::OnRender()
+	{
+		Application::standardShaderUI->UseProgram();
+		Application::standardShaderUI->BindMat4("u_UIPos", elementRect->GetUIMatrix());
+		Application::standardShaderUI->BindMat4("u_Ortho", Screen::GenerateOrthographicMatrix());
+
+		glActiveTexture(0);
+		if (baseTexture)
+		{
+			glBindTexture(GL_TEXTURE_2D, baseTexture->textureID);
+		}
+		if (hoverTexture)
+		{
+			if (elementRect->IsMouseInRect())
+			{
+				if (InputManager::GetMouseButton(0))
+				{
+					glBindTexture(GL_TEXTURE_2D, clickedTexture->textureID);
+				}
+				else
+				{
+					glBindTexture(GL_TEXTURE_2D, hoverTexture->textureID);
+				}
+			}
+		}
+		glBindVertexArray(PrimitiveShapes::quadVAO);
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+		glBindVertexArray(0);
+		glUseProgram(0);
+	}
+
+	bool UIButton::GetPressed()
+	{
+		return pressed;
+	}
 
 	//---------------------------------------------------------------------------//
 
