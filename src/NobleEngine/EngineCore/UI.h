@@ -151,6 +151,50 @@ namespace NobleEngine
 		*/
 		void OnRender();
 	};
+
+
+
+
+
+
+
+	/**
+	*User written user interfaces can inherit from this class.
+	*/
+	struct UISystem
+	{
+		std::vector<std::shared_ptr<UIElement>> uiElements;
+
+		virtual void InitializeUI() {};
+		virtual void HandleEvents() {};
+
+		template<typename T>
+		/**
+		*Adds a UI element to the system without any parameters
+		*/
+		std::shared_ptr<T> AddUIElement()
+		{
+			std::shared_ptr<T> element = std::make_shared<T>();
+			uiElements.push_back(element);
+
+			return element;
+		}
+
+		template<typename T, typename ... Args>
+		/**
+		*Adds a UI element to the system with parameters
+		*/
+		std::shared_ptr<T> AddUIElement(Args&&... args)
+		{
+			std::shared_ptr<T> element = std::make_shared<T>(std::forward<Args>(args)...);
+			uiElements.push_back(element);
+
+			return element;
+		}
+
+		void Update();
+		void Render();
+	};
 }
 
 #endif

@@ -25,6 +25,7 @@ namespace NobleEngine
 	struct SystemBase;
 	struct Entity;
 	struct ShaderProgram;
+	struct UISystem;
 
 	struct Camera;
 
@@ -165,6 +166,16 @@ namespace NobleEngine
 			}
 		}
 
+		template<typename T>
+		static std::shared_ptr<T> BindUISystem()
+		{
+			std::shared_ptr<T> sys = std::make_shared<T>();
+			sys->InitializeUI();
+
+			uiSystems.push_back(sys);
+			return sys;
+		}
+
 	private:
 		/**
 		*Stores a pointer to the current audio device.
@@ -182,6 +193,10 @@ namespace NobleEngine
 		*Stores systems for use within the game engine.
 		*/
 		static std::vector<std::shared_ptr<SystemBase>> systems;
+		/**
+		*Stores all the user interface systems.
+		*/
+		static std::vector <std::shared_ptr<UISystem>> uiSystems;
 		/**
 		*Stores entities for use within the game engine.
 		*/

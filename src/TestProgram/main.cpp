@@ -5,6 +5,7 @@
 #include <NobleEngine/EngineCore.h>
 #include "FlyingCamSystem.h"
 #include "RotatorSystem.h"
+#include "TestUI.h"
 using namespace NobleEngine;
 int main()
 {
@@ -13,7 +14,7 @@ int main()
 	std::shared_ptr<Application> app = Application::InitializeEngine("Test Program", 1366, 768);
 
 	std::string modelLoc = "Resources\\Models\\cube.obj";
-	std::string texLoc = "Resources\\Textures\\wide.png";
+	std::string texLoc = "Resources\\Textures\\test.png";
 	std::string texLoc1 = "";
 	std::string testSpriteSheet = "Resources\\Textures\\testspritesheet.png";
 	std::string testFont = "Resources\\Fonts\\test.ttf";
@@ -46,7 +47,6 @@ int main()
 	testPointLight->AddComponent<Transform>(glm::vec3(0, 5, 0), glm::vec3(0, -90, 0));
 	testPointLight->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));
 	testPointLight->AddComponent<Light>();
-	testPointLight->AddComponent<Rotator>();
 
 	//TRANSFORM PARENT TESTING
 	/*std::shared_ptr<Entity> physicsTest = app->CreateEntity();
@@ -67,6 +67,8 @@ int main()
 	app->BindSystem<FlyingCamSystem>(true, false);
 	app->BindSystem<RotatorSystem>(true, false);
 	app->activeCam = cr;
+
+	app->BindUISystem<TestUI>();
 
 	app->MainLoop();
 

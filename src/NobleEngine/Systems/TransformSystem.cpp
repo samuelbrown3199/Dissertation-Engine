@@ -19,10 +19,6 @@ namespace NobleEngine
 		{
 			if (comp->position != comp->oldPosition || comp->rotation != comp->oldRotation || comp->scale != comp->oldScale)
 			{
-				FixRotation(comp->rotation.x);
-				FixRotation(comp->rotation.y);
-				FixRotation(comp->rotation.z);
-
 				comp->model = glm::mat4(1.0f);
 
 				comp->model = glm::translate(comp->model, comp->position);
@@ -60,18 +56,6 @@ namespace NobleEngine
 			}
 
 			comp->oldBodyPos = comp->pBody->bodyTransform;
-		}
-	}
-
-	void TransformSystem::FixRotation(float& value)
-	{
-		if (value > 360)
-		{
-			value = 0;
-		}
-		else if (value < 0)
-		{
-			value = 360;
 		}
 	}
 }

@@ -29,6 +29,7 @@ namespace NobleEngine
 
 	std::shared_ptr<ResourceManager> Application::resourceManager;
 	std::vector<std::shared_ptr<SystemBase>> Application::systems;
+	std::vector <std::shared_ptr<UISystem>> Application::uiSystems;
 
 	std::vector<std::shared_ptr<Entity>> Application::deletionEntities;
 	std::vector<std::shared_ptr<Entity>> Application::entities;
@@ -129,13 +130,6 @@ namespace NobleEngine
 		
 		glClearColor(0.0f, 0.45f, 0.45f, 1.0f);
 
-		std::shared_ptr<UILabel> textTest = std::make_shared<UILabel>(glm::vec2(25.0f, 25.0f), glm::vec2(100, 50));
-		textTest->labelFont = ResourceManager::LoadResource<Font>("Resources\\Fonts\\test.ttf");
-		textTest->text = "This is sample text";
-		 
-		std::shared_ptr<UIBox> boxTest = std::make_shared<UIBox>(glm::vec2(25.0f, 25.0f), glm::vec2(50, 50), "Resources\\Textures\\testspritesheet.png");
-		std::shared_ptr<UIButton> buttonTest = std::make_shared<UIButton>(glm::vec2(80.0f, 25.0f), glm::vec2(50, 50), "Resources\\Textures\\testspritesheet.png", "Resources\\Textures\\test.png", "Resources\\Textures\\test2.png");
-
 		while (loop)
 		{
 			performanceStats.ResetPerformanceStats();
@@ -150,28 +144,24 @@ namespace NobleEngine
 			{
 				systems.at(sys)->Update();
 			}
+			for (size_t sys = 0; sys < uiSystems.size(); sys++) //handles system updates
+			{
+				uiSystems.at(sys)->Update();
+				uiSystems.at(sys)->HandleEvents();
+			}
 			performanceStats.updateTime = SDL_GetTicks() - performanceStats.updateStart;
 
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 			performanceStats.renderStart = SDL_GetTicks();
-
 			for (size_t sys = 0; sys < systems.size(); sys++) //handles system rendering
 			{
 				systems.at(sys)->Render();
 			}
-			performanceStats.renderTime = SDL_GetTicks() - performanceStats.renderStart;
-
-			textTest->OnRender();
-			boxTest->OnRender();
-			buttonTest->OnUpdate();
-			buttonTest->OnRender();
-
-			if (buttonTest->ClickedOn())
+			for (size_t sys = 0; sys < uiSystems.size(); sys++) //handles system updates
 			{
-				std::cout << "Button click!" << std::endl;
+				uiSystems.at(sys)->Render();
 			}
-
+			performanceStats.renderTime = SDL_GetTicks() - performanceStats.renderStart;
 			SDL_GL_SwapWindow(screen->GetWindow());
 
 			performanceStats.physicsStart = SDL_GetTicks();

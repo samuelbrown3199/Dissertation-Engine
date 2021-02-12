@@ -105,6 +105,9 @@ add_executable(TestProgram
   src/TestProgram/Rotator.h
   src/TestProgram/RotatorSystem.h
   src/TestProgram/RotatorSystem.cpp
+
+  src/TestProgram/TestUI.h
+  src/TestProgram/TestUI.cpp
 )
 target_link_libraries(TestProgram NobleEngine)
 

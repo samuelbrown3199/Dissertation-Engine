@@ -122,7 +122,7 @@ namespace NobleEngine
 		// activate corresponding render state	
 		Application::standardShaderText->UseProgram();
 		Application::standardShaderText->BindVector3("textColor", color);
-		Application::standardShaderText->BindMat4("projection", Screen::GenerateOrthographicMatrix());
+		Application::standardShaderText->BindMat4("projection", /*Screen::GenerateOrthographicMatrix()*/glm::mat4(1.0f));
 		glActiveTexture(GL_TEXTURE0);
 		glBindVertexArray(PrimitiveShapes::textQuadVAO);
 
@@ -160,5 +160,26 @@ namespace NobleEngine
 		}
 		glBindVertexArray(0);
 		glBindTexture(GL_TEXTURE_2D, 0);
+	}
+
+
+
+
+
+	//---------------------------------------------------------------------------//
+
+	void UISystem::Update()
+	{
+		for (int i = 0; i < uiElements.size(); i++)
+		{
+			uiElements.at(i)->OnUpdate();
+		}
+	}
+	void UISystem::Render()
+	{
+		for (int i = 0; i < uiElements.size(); i++)
+		{
+			uiElements.at(i)->OnRender();
+		}
 	}
 }
