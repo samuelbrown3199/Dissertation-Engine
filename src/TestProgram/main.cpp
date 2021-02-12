@@ -13,7 +13,7 @@ int main()
 	std::shared_ptr<Application> app = Application::InitializeEngine("Test Program", 1366, 768);
 
 	std::string modelLoc = "Resources\\Models\\cube.obj";
-	std::string texLoc = "Resources\\Textures\\test.png";
+	std::string texLoc = "Resources\\Textures\\wide.png";
 	std::string texLoc1 = "";
 	std::string testSpriteSheet = "Resources\\Textures\\testspritesheet.png";
 	std::string testFont = "Resources\\Fonts\\test.ttf";
@@ -38,7 +38,7 @@ int main()
 	}
 
 	std::shared_ptr<Entity> floorEntity = app->CreateEntity();
-	std::shared_ptr<Transform> tr = floorEntity->AddComponent<Transform>(glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(1000, 1, 1000));
+	std::shared_ptr<Transform> tr = floorEntity->AddComponent<Transform>(glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(100, 1, 100));
 	floorEntity->AddComponent<PhysicsBody>(PhysicsBody::ColliderShape::box, 0);
 	std::shared_ptr<MeshRenderer> mr = floorEntity->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));
 

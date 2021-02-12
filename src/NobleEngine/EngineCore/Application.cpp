@@ -167,7 +167,7 @@ namespace NobleEngine
 			buttonTest->OnUpdate();
 			buttonTest->OnRender();
 
-			if (buttonTest->GetPressed())
+			if (buttonTest->ClickedOn())
 			{
 				std::cout << "Button click!" << std::endl;
 			}

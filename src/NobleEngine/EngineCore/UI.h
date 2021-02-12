@@ -19,6 +19,9 @@
 
 namespace NobleEngine
 {
+	/**
+	*Stores the screen position and scale for UI elements on the screen.
+	*/
 	struct UIRect
 	{
 		glm::vec2 screenPosition;
@@ -62,7 +65,9 @@ namespace NobleEngine
 			return false;
 		}
 	};
-
+	/**
+	*UI element types inherit from this base class.
+	*/
 	struct UIElement
 	{
 		std::shared_ptr<UIRect> elementRect;
@@ -103,7 +108,7 @@ namespace NobleEngine
 	{
 	private:
 
-		bool pressed, oldPressed;
+		bool pressed = false, oldPressed;
 
 	public:
 		std::shared_ptr<Texture> baseTexture, hoverTexture, clickedTexture;
@@ -116,12 +121,18 @@ namespace NobleEngine
 		*/
 		UIButton(glm::vec2 screenPos, glm::vec2 scale, std::string baseTextureLoc, std::string hoverTextureLoc, std::string clickedTextureLoc);
 
+		/**
+		*Determines whether the button is currently clicked on this frame.
+		*/
 		void OnUpdate();
 		/**
 		*Renders a UI button onto the screen.
 		*/
 		void OnRender();
-		bool GetPressed();
+		/**
+		*Returns whether the button is currently clicked on.
+		*/
+		bool ClickedOn();
 	};
 
 	/**

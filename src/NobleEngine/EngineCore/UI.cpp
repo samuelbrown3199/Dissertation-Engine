@@ -103,7 +103,7 @@ namespace NobleEngine
 		glUseProgram(0);
 	}
 
-	bool UIButton::GetPressed()
+	bool UIButton::ClickedOn()
 	{
 		return pressed;
 	}
