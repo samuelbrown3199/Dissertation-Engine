@@ -24,46 +24,26 @@ namespace NobleEngine
 	*/
 	struct UIRect
 	{
-		glm::vec2 screenPosition;
-		glm::vec2 rectScale;
+		/**
+		*Stores the position at the top left of the rect.
+		*/
+		glm::vec2 screenPosition = glm::vec2(0,0);
+		/**
+		*Stores how tall and wide the rect is from the origin point screenPosition.
+		*/
+		glm::vec2 rectScale = glm::vec2(0, 0);
 
-		UIRect()
-		{
-			screenPosition = glm::vec2(0, 0);
-			rectScale = glm::vec2(0, 0);
-		}
+		UIRect();
+		UIRect(glm::vec2 _screenPos, glm::vec2 _rectScale);
 
-		UIRect(glm::vec2 _screenPos, glm::vec2 _rectScale)
-		{
-			screenPosition = _screenPos;
-			rectScale = _rectScale;
-		}
-
-		glm::mat4 GetUIMatrix()
-		{
-			glm::mat4 uiMat(1.0f);
-
-			uiMat = glm::translate(uiMat, glm::vec3(screenPosition, 0.0f));
-			uiMat = glm::scale(uiMat, glm::vec3(rectScale, 1.0f));
-
-			return uiMat;
-		}
-
-		bool IsMouseInRect()
-		{
-			int xMousePos = InputManager::mouseX;
-			int yMousePos = InputManager::mouseY;
-
-			if (xMousePos >= screenPosition.x && xMousePos <= screenPosition.x + rectScale.x)
-			{
-				if (yMousePos >= screenPosition.y && yMousePos <= screenPosition.y + rectScale.y)
-				{
-					return true;
-				}
-			}
-
-			return false;
-		}
+		/**
+		*Returns the screen rect matrix.
+		*/
+		glm::mat4 GetUIMatrix();
+		/**
+		*Used to determine if the mouse is in the screen rect.
+		*/
+		bool IsMouseInRect();
 	};
 	/**
 	*UI element types inherit from this base class.
@@ -75,6 +55,9 @@ namespace NobleEngine
 		virtual void OnUpdate() {};
 		virtual void OnRender() {};
 	};
+
+
+
 
 	/**
 	*Stores the relevant information for a UI box.
@@ -108,7 +91,7 @@ namespace NobleEngine
 	{
 	private:
 
-		bool pressed = false, oldPressed;
+		bool pressed = false;
 
 	public:
 		std::shared_ptr<Texture> baseTexture, hoverTexture, clickedTexture;
@@ -136,7 +119,7 @@ namespace NobleEngine
 	};
 
 	/**
-	*Renders text onto the screen.
+	*Renders text onto the screen as a UI element.
 	*/
 	struct UILabel : public UIElement
 	{
@@ -155,18 +138,19 @@ namespace NobleEngine
 
 
 
-
-
-
 	/**
 	*User written user interfaces can inherit from this class.
 	*/
 	struct UISystem
 	{
+		/**
+		*Determines whether the UI system is active. When false, updates, event handling and rendering is disabled.
+		*/
+		bool active = true;
+		/**
+		*Stores all the UI system elements.
+		*/
 		std::vector<std::shared_ptr<UIElement>> uiElements;
-
-		virtual void InitializeUI() {};
-		virtual void HandleEvents() {};
 
 		template<typename T>
 		/**
@@ -192,7 +176,22 @@ namespace NobleEngine
 			return element;
 		}
 
+		/**
+		*This can be used to initialize required UI elements.
+		*/
+		virtual void InitializeUI() {};
+		/**
+		*This can be used to handle what happens when UI elements are interacted with.
+		*/
+		virtual void HandleEvents() {};
+
+		/**
+		*Updates all the UI elements.
+		*/
 		void Update();
+		/**
+		*Renders all the UI elements.
+		*/
 		void Render();
 	};
 }

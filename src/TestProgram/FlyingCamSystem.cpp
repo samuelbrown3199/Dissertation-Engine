@@ -22,20 +22,20 @@ void FlyingCamSystem::UpdateControls(std::shared_ptr<FlyingCam> cam)
 
 	if (InputManager::GetKey(SDLK_w))
 	{
-		tr->position += cam->movementSpeed * ca->forward;
+		tr->position += cam->movementSpeed * ca->camTransform->rotation;
 	}
 	if (InputManager::GetKey(SDLK_s))
 	{
-		tr->position -= cam->movementSpeed * ca->forward;
+		tr->position -= cam->movementSpeed * ca->camTransform->rotation;
 	}
 	if (InputManager::GetKey(SDLK_a))
 	{
-		glm::vec3 direction = glm::cross(ca->forward, up);
+		glm::vec3 direction = glm::cross(ca->camTransform->rotation, up);
 		tr->position -= cam->movementSpeed * direction;
 	}
 	if (InputManager::GetKey(SDLK_d))
 	{
-		glm::vec3 direction = glm::cross(ca->forward, up);
+		glm::vec3 direction = glm::cross(ca->camTransform->rotation, up);
 		tr->position += cam->movementSpeed * direction;
 	}
 	if (InputManager::GetKey(SDLK_SPACE))
@@ -82,7 +82,7 @@ void FlyingCamSystem::UpdateCameraRotation(std::shared_ptr<FlyingCam> cam)
 		front.x = cos(glm::radians(cam->yaw)) * cos(glm::radians(cam->pitch));
 		front.y = sin(glm::radians(cam->pitch));
 		front.z = sin(glm::radians(cam->yaw)) * cos(glm::radians(cam->pitch));
-		ca->forward = glm::normalize(front);
+		ca->camTransform->rotation = glm::normalize(front);
 	}
 	else
 	{

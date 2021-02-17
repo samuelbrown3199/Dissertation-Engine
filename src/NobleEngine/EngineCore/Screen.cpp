@@ -2,8 +2,8 @@
 
 namespace NobleEngine
 {
-	int Screen::screenWidth;
-	int Screen::screenHeight;
+	int Screen::screenWidth = 0;
+	int Screen::screenHeight = 0;
 	SDL_Window* Screen::window;
 
 	float Screen::nearPlane = 0.1f;

@@ -144,10 +144,13 @@ namespace NobleEngine
 			{
 				systems.at(sys)->Update();
 			}
-			for (size_t sys = 0; sys < uiSystems.size(); sys++) //handles system updates
+			for (size_t sys = 0; sys < uiSystems.size(); sys++) //handles UI system updates
 			{
-				uiSystems.at(sys)->Update();
-				uiSystems.at(sys)->HandleEvents();
+				if (uiSystems.at(sys)->active)
+				{
+					uiSystems.at(sys)->Update();
+					uiSystems.at(sys)->HandleEvents();
+				}
 			}
 			performanceStats.updateTime = SDL_GetTicks() - performanceStats.updateStart;
 
@@ -157,9 +160,12 @@ namespace NobleEngine
 			{
 				systems.at(sys)->Render();
 			}
-			for (size_t sys = 0; sys < uiSystems.size(); sys++) //handles system updates
+			for (size_t sys = 0; sys < uiSystems.size(); sys++) //handles UI system rendering
 			{
-				uiSystems.at(sys)->Render();
+				if (uiSystems.at(sys)->active)
+				{
+					uiSystems.at(sys)->Render();
+				}
 			}
 			performanceStats.renderTime = SDL_GetTicks() - performanceStats.renderStart;
 			SDL_GL_SwapWindow(screen->GetWindow());

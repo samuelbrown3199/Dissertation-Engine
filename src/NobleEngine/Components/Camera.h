@@ -15,6 +15,10 @@ namespace NobleEngine
 	struct Camera : public Component<Camera>
 	{
 		/**
+		*Determines whether this is the engines main camera.
+		*/
+		bool mainCamera = false;
+		/**
 		*Stores the cameras entity transform component.
 		*/
 		std::shared_ptr<Transform> camTransform;
@@ -22,7 +26,11 @@ namespace NobleEngine
 		*Stores the cameras view matrix.
 		*/
 		glm::mat4 viewMatrix;
-		glm::vec3 forward = glm::vec3(0.0f, 0.0f, -1.0f);
+
+		void OnInitialize(bool mainCam)
+		{
+			mainCamera = mainCam;
+		}
 	};
 }
 

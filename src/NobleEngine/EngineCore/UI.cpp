@@ -2,6 +2,47 @@
 
 namespace NobleEngine
 {
+	UIRect::UIRect()
+	{
+		screenPosition = glm::vec2(0, 0);
+		rectScale = glm::vec2(0, 0);
+	}
+
+	UIRect::UIRect(glm::vec2 _screenPos, glm::vec2 _rectScale)
+	{
+		screenPosition = _screenPos;
+		rectScale = _rectScale;
+	}
+
+	glm::mat4 UIRect::GetUIMatrix()
+	{
+		glm::mat4 uiMat(1.0f);
+
+		uiMat = glm::translate(uiMat, glm::vec3(screenPosition, 0.0f));
+		uiMat = glm::scale(uiMat, glm::vec3(rectScale, 1.0f));
+
+		return uiMat;
+	}
+
+	bool UIRect::IsMouseInRect()
+	{
+		int xMousePos = InputManager::mouseX;
+		int yMousePos = InputManager::mouseY;
+
+		if (xMousePos >= screenPosition.x && xMousePos <= screenPosition.x + rectScale.x)
+		{
+			if (yMousePos >= screenPosition.y && yMousePos <= screenPosition.y + rectScale.y)
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+
+	//---------------------------------------------------------------------------//
+
 	UIBox::UIBox(glm::vec2 screenPos, glm::vec2 scale)
 	{
 		elementRect = std::make_shared<UIRect>(screenPos, scale);
@@ -45,10 +86,13 @@ namespace NobleEngine
 
 	UIButton::UIButton(glm::vec2 screenPos, glm::vec2 scale)
 	{
+		pressed = false;
 		elementRect = std::make_shared<UIRect>(screenPos, scale);
 	}
 	UIButton::UIButton(glm::vec2 screenPos, glm::vec2 scale, std::string baseTextureLoc, std::string hoverTextureLoc, std::string clickedTextureLoc)
 	{
+		pressed = false;
+
 		elementRect = std::make_shared<UIRect>(screenPos, scale);
 		baseTexture = ResourceManager::LoadResource<Texture>(baseTextureLoc);
 		hoverTexture = ResourceManager::LoadResource<Texture>(hoverTextureLoc);
@@ -68,8 +112,6 @@ namespace NobleEngine
 				pressed = false;
 			}
 		}
-
-		oldPressed = pressed;
 	}
 
 	void UIButton::OnRender()

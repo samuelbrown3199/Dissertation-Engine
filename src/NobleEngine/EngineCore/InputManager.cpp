@@ -9,10 +9,10 @@ namespace NobleEngine
 	int InputManager::mouseX = 0;
 	int InputManager::mouseY = 0;
 
-	std::vector<SDL_Scancode> InputManager::downKeys, InputManager::oldDownKeys;
-	std::vector<SDL_Scancode> InputManager::upKeys;
-	std::vector<int> InputManager::downMouseButtons, InputManager::oldMouseButtons;
-	std::vector<int> InputManager::upMouseButtons;
+	std::vector<SDL_Scancode> InputManager::downKeys = std::vector<SDL_Scancode>(), InputManager::oldDownKeys = std::vector<SDL_Scancode>();
+	std::vector<SDL_Scancode> InputManager::upKeys = std::vector<SDL_Scancode>();
+	std::vector<int> InputManager::downMouseButtons = std::vector<int>(), InputManager::oldMouseButtons = std::vector<int>();
+	std::vector<int> InputManager::upMouseButtons = std::vector<int>();
 
 	void InputManager::HandleGeneralInput()
 	{

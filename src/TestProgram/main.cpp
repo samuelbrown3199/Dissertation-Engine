@@ -60,13 +60,12 @@ int main()
 	pc = parentTest->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));*/
 
 	std::shared_ptr<Entity> camera = app->CreateEntity();
-	camera->AddComponent<Transform>(glm::vec3(0, 5, 0));
-	std::shared_ptr<Camera> cr = camera->AddComponent<Camera>();
+	camera->AddComponent<Transform>(glm::vec3(0, 5, 0), glm::vec3(0,0,0));
+	std::shared_ptr<Camera> cr = camera->AddComponent<Camera>(true);
 	camera->AddComponent<FlyingCam>();
 
 	app->BindSystem<FlyingCamSystem>(true, false);
 	app->BindSystem<RotatorSystem>(true, false);
-	app->activeCam = cr;
 
 	app->BindUISystem<TestUI>();
 
