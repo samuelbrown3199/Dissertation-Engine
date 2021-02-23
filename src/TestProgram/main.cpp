@@ -39,14 +39,24 @@ int main()
 	}
 
 	std::shared_ptr<Entity> floorEntity = app->CreateEntity();
-	std::shared_ptr<Transform> tr = floorEntity->AddComponent<Transform>(glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(100, 1, 100));
+	std::shared_ptr<Transform> tr = floorEntity->AddComponent<Transform>(glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(1000, 1, 1000));
 	floorEntity->AddComponent<PhysicsBody>(PhysicsBody::ColliderShape::box, 0);
 	std::shared_ptr<MeshRenderer> mr = floorEntity->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));
 
 	std::shared_ptr<Entity> testPointLight = app->CreateEntity();
-	testPointLight->AddComponent<Transform>(glm::vec3(0, 5, 0), glm::vec3(0, -90, 0));
+	testPointLight->AddComponent<Transform>(glm::vec3(0, 5, -15), glm::vec3(0, -90, 0));
 	testPointLight->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));
-	testPointLight->AddComponent<Light>();
+	testPointLight->AddComponent<Light>(Light::LightType::Point);
+	
+	testPointLight = app->CreateEntity();
+	testPointLight->AddComponent<Transform>(glm::vec3(15, 5, 0));
+	testPointLight->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));
+	testPointLight->AddComponent<Light>(Light::LightType::Point);
+
+	testPointLight = app->CreateEntity();
+	testPointLight->AddComponent<Transform>(glm::vec3(0, 5, 15));
+	testPointLight->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));
+	testPointLight->AddComponent<Light>(Light::LightType::Point);
 
 	//TRANSFORM PARENT TESTING
 	/*std::shared_ptr<Entity> physicsTest = app->CreateEntity();
@@ -60,7 +70,7 @@ int main()
 	pc = parentTest->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));*/
 
 	std::shared_ptr<Entity> camera = app->CreateEntity();
-	camera->AddComponent<Transform>(glm::vec3(0, 5, 0), glm::vec3(0,0,0));
+	camera->AddComponent<Transform>(glm::vec3(0, 5, 0));
 	std::shared_ptr<Camera> cr = camera->AddComponent<Camera>(true);
 	camera->AddComponent<FlyingCam>();
 

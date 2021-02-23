@@ -72,6 +72,26 @@ namespace NobleEngine
 			quadratic = 0.032f;
 			intensity = 1;
 		}
+
+		void OnInitialize(LightType _type)
+		{
+			type = _type;
+
+			lightTransform = GetEntity()->GetComponent<Transform>();
+			if (!lightTransform)
+			{
+				std::cout << "No transform attached to light! Adding transform at position (0,0,0)." << std::endl;
+				lightTransform = GetEntity()->AddComponent<Transform>(glm::vec3(0, 0, 0));
+			}
+
+			diffuseColour = glm::vec3(1, 1, 1);
+			specularColour = glm::vec3(1, 1, 1);
+
+			constant = 1.0f;
+			linear = 0.09f;
+			quadratic = 0.032f;
+			intensity = 1;
+		}
 	};
 }
 
