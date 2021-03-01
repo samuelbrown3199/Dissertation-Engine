@@ -26,6 +26,7 @@ namespace NobleEngine
 	struct Entity;
 	struct ShaderProgram;
 	struct UISystem;
+	struct Scene;
 
 	struct Camera;
 
@@ -44,6 +45,10 @@ namespace NobleEngine
 		*Stores the engines performance stats.
 		*/
 		static PerformanceStats performanceStats;
+		/**
+		*Stores the currently active scene.
+		*/
+		static std::shared_ptr<Scene> activeScene;
 		/**
 		*Stores a weak pointer to itself.
 		*/
@@ -86,13 +91,17 @@ namespace NobleEngine
 		*/
 		void MainLoop();
 		/**
+		*Creates a scene and adds it to the application scene list.
+		*/
+		static std::shared_ptr<Scene> CreateScene();
+		/**
+		*Changes the scene to the scene at index.
+		*/
+		static void ChangeScene(int index);
+		/**
 		*Creates an entity with no tag.
 		*/
 		static std::shared_ptr<Entity> CreateEntity();
-		/**
-		*Creates an entity with the passed in tag.
-		*/
-		static std::shared_ptr<Entity> CreateEntity(std::string tag);
 		/**
 		*Returns an entity with the ID passed through the parameter;
 		*/
@@ -189,6 +198,10 @@ namespace NobleEngine
 		*Stores the physics simulation world.
 		*/
 		static std::shared_ptr<PhysicsWorld> physicsWorld;
+		/**
+		*Stores a list of all scenes added to the application.
+		*/
+		static std::vector<std::shared_ptr<Scene>> scenes;
 		/**
 		*Stores systems for use within the game engine.
 		*/

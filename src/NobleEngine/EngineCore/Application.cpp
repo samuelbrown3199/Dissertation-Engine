@@ -9,6 +9,7 @@
 #include "Entity.h"
 #include "InputManager.h"
 #include "UI.h"
+#include "Scene.h"
 
 #include "../Systems/TransformSystem.h"
 #include "../Systems/MeshRendererSystem.h"
@@ -35,6 +36,8 @@ namespace NobleEngine
 	std::vector<std::shared_ptr<Entity>> Application::entities;
 	std::vector<int> Application::availableIDs;
 	std::shared_ptr<PhysicsWorld> Application::physicsWorld;
+	std::shared_ptr<Scene> Application::activeScene;
+	std::vector<std::shared_ptr<Scene>> Application::scenes;
 
 	std::shared_ptr<ShaderProgram> Application::standardShader;
 	std::shared_ptr<ShaderProgram> Application::standardShader2D;
@@ -195,6 +198,29 @@ namespace NobleEngine
 		physicsWorld->CleanupPhysicsWorld();
 	}
 
+	std::shared_ptr<Scene> Application::CreateScene()
+	{
+		std::shared_ptr<Scene> newScene = std::make_shared<Scene>();
+		scenes.push_back(newScene);
+
+		return newScene;
+	}
+
+	void Application::ChangeScene(int index)
+	{
+		activeScene = scenes.at(index);
+
+		entities.clear();
+		uiSystems.clear();
+		for (int i = 0; i < systems.size(); i++)
+		{
+			systems.at(i)->ClearAllComponents();
+		}
+
+		entities = activeScene->sceneEntities;
+		uiSystems = activeScene->sceneInterfaces;
+	}
+
 	std::shared_ptr<Entity> Application::CreateEntity()
 	{
 		std::shared_ptr<Entity> en = std::make_shared<Entity>();
@@ -212,28 +238,6 @@ namespace NobleEngine
 		en->entityID = entities.size();
 		en->self = en;
 		entities.push_back(en);
-		return en;
-	}
-	std::shared_ptr<Entity> Application::CreateEntity(std::string tag)
-	{
-		std::shared_ptr<Entity> en = std::make_shared<Entity>();
-		if (availableIDs.size() > 0)
-		{
-			int id = availableIDs.at(0);
-			std::vector<int>::iterator it = availableIDs.begin();
-			availableIDs.erase(it);
-
-			en->entityID = id;
-			en->tag = tag;
-			en->self = en;
-			entities.at(id) = en;
-			return en;
-		}
-		en->entityID = entities.size();
-		en->tag = tag;
-		en->self = en;
-		entities.push_back(en);
-
 		return en;
 	}
 

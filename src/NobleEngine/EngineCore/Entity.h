@@ -20,10 +20,6 @@ namespace NobleEngine
 		*/
 		int entityID;
 		/**
-		*The entity's tag.
-		*/
-		std::string tag;
-		/**
 		*A weak pointer to this entity. Used for passing this into other functions.
 		*/
 		std::weak_ptr<Entity> self;
@@ -65,7 +61,7 @@ namespace NobleEngine
 			for (size_t i = 0; i < entityComponents.size(); i++)
 			{
 				comp = std::dynamic_pointer_cast<T>(entityComponents.at(i));
-				if(comp)
+				if (comp)
 				{
 					//delete component data
 					for (int i = 0; i < T::componentList.size(); i++)

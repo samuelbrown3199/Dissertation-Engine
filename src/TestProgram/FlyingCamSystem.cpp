@@ -4,6 +4,7 @@
 #include <NobleEngine/Components/Transform.h>
 #include <NobleEngine/EngineCore/Application.h>
 #include <NobleEngine/EngineCore/Entity.h>
+#include <NobleEngine/EngineCore/PerformanceStats.h>
 #include <NobleEngine/Components/Camera.h>
 
 SetupComponentList(FlyingCam);
@@ -45,6 +46,10 @@ void FlyingCamSystem::UpdateControls(std::shared_ptr<FlyingCam> cam)
 	if (InputManager::GetKey(SDLK_x))
 	{
 		tr->position -= cam->movementSpeed * up;
+	}
+	if (InputManager::GetKeyDown(SDLK_p))
+	{
+		PerformanceStats::PrintOutPerformanceStats();
 	}
 }
 

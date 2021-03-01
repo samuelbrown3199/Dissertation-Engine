@@ -82,6 +82,10 @@ namespace NobleEngine
 		*/
 		virtual void ClearUnneededComponents() {};
 		/**
+		*Used in the inherited System struct.
+		*/
+		virtual void ClearAllComponents() {};
+		/**
 		*Returns performance information from the system.
 		*/
 		SystemPerformanceStats GetPerformanceStats()
@@ -241,6 +245,13 @@ namespace NobleEngine
 					T::componentList.erase(T::componentList.begin() + co);
 				}
 			}
+		}
+		/**
+		*Clears all component data from the component list.
+		*/
+		void ClearAllComponents()
+		{
+			T::componentList.clear();
 		}
 	};
 }

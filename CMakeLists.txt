@@ -38,6 +38,8 @@ add_library(NobleEngine
   src/NobleEngine/EngineCore/PhysicsWorld.cpp
   src/NobleEngine/EngineCore/UI.h
   src/NobleEngine/EngineCore/UI.cpp
+  src/NobleEngine/EngineCore/Scene.h
+  src/NobleEngine/EngineCore/Scene.cpp
   src/NobleEngine/EngineCore/Resource.h
 
   src/NobleEngine/ResourceManagement/Texture.h

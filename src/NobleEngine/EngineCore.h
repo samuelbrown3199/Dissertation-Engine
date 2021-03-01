@@ -6,6 +6,7 @@
 #include "EngineCore/ResourceManager.h"
 #include "EngineCore/Entity.h"
 #include "EngineCore/UI.h"
+#include "EngineCore/Scene.h"
 
 //component headers
 #include "Components/AudioListener.h"
