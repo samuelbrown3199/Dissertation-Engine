@@ -23,7 +23,7 @@ int main()
 	std::shared_ptr<AudioClip> ac = app->GetResourceManager()->LoadResource<AudioClip>(testAudio);
 	std::shared_ptr<Font> font = ResourceManager::LoadResource<Font>(testFont);
 
-	std::shared_ptr<Scene> testScene = Application::CreateScene();
+	Application::activeScene->sceneEnvironment->directionalLight->direction = glm::vec3(0, 260, 0);
 
 	int amount = 5;
 	for (int x = 0; x < amount; x++)
@@ -47,15 +47,15 @@ int main()
 
 	std::shared_ptr<Entity> testPointLight = app->CreateEntity();
 	testPointLight->AddComponent<Transform>(glm::vec3(0, 5, -15), glm::vec3(0, -90, 0));
-	testPointLight->AddComponent<Light>(Light::LightType::Directional);
+	testPointLight->AddComponent<Light>();
 	
 	testPointLight = app->CreateEntity();
 	testPointLight->AddComponent<Transform>(glm::vec3(15, 5, 0));
-	testPointLight->AddComponent<Light>(Light::LightType::Point);
+	testPointLight->AddComponent<Light>();
 
 	testPointLight = app->CreateEntity();
 	testPointLight->AddComponent<Transform>(glm::vec3(0, 5, 15));
-	testPointLight->AddComponent<Light>(Light::LightType::Point);
+	testPointLight->AddComponent<Light>();
 
 	//TRANSFORM PARENT TESTING
 	/*std::shared_ptr<Entity> physicsTest = app->CreateEntity();

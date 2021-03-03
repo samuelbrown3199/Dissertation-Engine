@@ -8,8 +8,9 @@ namespace NobleEngine
 		rectScale = glm::vec2(0, 0);
 	}
 
-	UIRect::UIRect(glm::vec2 _screenPos, glm::vec2 _rectScale)
+	UIRect::UIRect(unsigned int _layer, glm::vec2 _screenPos, glm::vec2 _rectScale)
 	{
+		layer = _layer;
 		screenPosition = _screenPos;
 		rectScale = _rectScale;
 	}
@@ -43,18 +44,18 @@ namespace NobleEngine
 
 	//---------------------------------------------------------------------------//
 
-	UIBox::UIBox(glm::vec2 screenPos, glm::vec2 scale)
+	UIBox::UIBox(unsigned int layer, glm::vec2 screenPos, glm::vec2 scale)
 	{
-		elementRect = std::make_shared<UIRect>(screenPos, scale);
+		elementRect = std::make_shared<UIRect>(layer, screenPos, scale);
 	}
-	UIBox::UIBox(glm::vec2 screenPos, glm::vec2 scale, std::string baseTextureLoc)
+	UIBox::UIBox(unsigned int layer, glm::vec2 screenPos, glm::vec2 scale, std::string baseTextureLoc)
 	{
-		elementRect = std::make_shared<UIRect>(screenPos, scale);
+		elementRect = std::make_shared<UIRect>(layer, screenPos, scale);
 		baseTexture = ResourceManager::LoadResource<Texture>(baseTextureLoc);
 	}
-	UIBox::UIBox(glm::vec2 screenPos, glm::vec2 scale, std::string baseTextureLoc, std::string hoverTextureLoc)
+	UIBox::UIBox(unsigned int layer, glm::vec2 screenPos, glm::vec2 scale, std::string baseTextureLoc, std::string hoverTextureLoc)
 	{
-		elementRect = std::make_shared<UIRect>(screenPos, scale);
+		elementRect = std::make_shared<UIRect>(layer, screenPos, scale);
 		baseTexture = ResourceManager::LoadResource<Texture>(baseTextureLoc);
 		hoverTexture = ResourceManager::LoadResource<Texture>(hoverTextureLoc);
 	}
@@ -84,16 +85,16 @@ namespace NobleEngine
 
 	//---------------------------------------------------------------------------//
 
-	UIButton::UIButton(glm::vec2 screenPos, glm::vec2 scale)
+	UIButton::UIButton(unsigned int layer, glm::vec2 screenPos, glm::vec2 scale)
 	{
 		pressed = false;
-		elementRect = std::make_shared<UIRect>(screenPos, scale);
+		elementRect = std::make_shared<UIRect>(layer, screenPos, scale);
 	}
-	UIButton::UIButton(glm::vec2 screenPos, glm::vec2 scale, std::string baseTextureLoc, std::string hoverTextureLoc, std::string clickedTextureLoc)
+	UIButton::UIButton(unsigned int layer, glm::vec2 screenPos, glm::vec2 scale, std::string baseTextureLoc, std::string hoverTextureLoc, std::string clickedTextureLoc)
 	{
 		pressed = false;
 
-		elementRect = std::make_shared<UIRect>(screenPos, scale);
+		elementRect = std::make_shared<UIRect>(layer, screenPos, scale);
 		baseTexture = ResourceManager::LoadResource<Texture>(baseTextureLoc);
 		hoverTexture = ResourceManager::LoadResource<Texture>(hoverTextureLoc);
 		clickedTexture = ResourceManager::LoadResource<Texture>(clickedTextureLoc);
@@ -152,9 +153,9 @@ namespace NobleEngine
 
 	//---------------------------------------------------------------------------//
 
-	UILabel::UILabel(glm::vec2 screenPos, glm::vec2 scale)
+	UILabel::UILabel(unsigned int layer, glm::vec2 screenPos, glm::vec2 scale)
 	{
-		elementRect = std::make_shared<UIRect>(screenPos, scale);
+		elementRect = std::make_shared<UIRect>(layer, screenPos, scale);
 	}
 	void UILabel::OnRender()
 	{
@@ -176,7 +177,7 @@ namespace NobleEngine
 			Character ch = labelFont->characters[*c];
 
 			float xpos = x + ch.bearing.x * scale;
-			float ypos = y - (ch.size.y - ch.bearing.y) * scale;
+			float ypos = y + (ch.size.y - ch.bearing.y) * scale;
 
 			float w = ch.size.x * scale;
 			float h = ch.size.y * scale;
@@ -222,9 +223,15 @@ namespace NobleEngine
 	{
 		glDisable(GL_DEPTH_TEST);
 
-		for (int i = 0; i < uiElements.size(); i++)
+		for (int i = 0; i <= maxLayers; i++)
 		{
-			uiElements.at(i)->OnRender();
+			for (int j = 0; j < uiElements.size(); j++)
+			{
+				if (uiElements.at(j)->elementRect->layer == i)
+				{
+					uiElements.at(j)->OnRender();
+				}
+			}
 		}
 
 		glEnable(GL_DEPTH_TEST);

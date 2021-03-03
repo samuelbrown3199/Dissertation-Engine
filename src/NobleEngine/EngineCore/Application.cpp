@@ -117,6 +117,7 @@ namespace NobleEngine
 		app->standardShaderText->BindShader(fragmentShaderText, GL_FRAGMENT_SHADER);
 		app->standardShaderText->LinkShaderProgram(app->standardShaderText);
 
+		activeScene = CreateScene();
 		PrimitiveShapes::SetupPrimitiveShapes();
 
 		return app;

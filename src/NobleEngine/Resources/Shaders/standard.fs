@@ -1,11 +1,22 @@
 #version 330
 
-struct Light
+uniform vec3 u_AmbientLight;
+uniform float u_AmbientLightStrength;
+
+struct DirectionalLight
 {
     vec3 direction;
-    vec3 position;
 
-	int lightType;
+    vec3 diffuseLight;
+    vec3 specularLight;
+	
+    float intensity;
+};
+uniform DirectionalLight dirLight;
+
+struct PointLight
+{
+    vec3 position;
 
     vec3 diffuseLight;
     vec3 specularLight;
@@ -15,11 +26,8 @@ struct Light
     float quadratic;
     float intensity;
 };
-
 uniform int numberOfLights;
-uniform Light lights[20];
-uniform vec3 u_AmbientLight;
-uniform float u_AmbientLightStrength;
+uniform PointLight lights[20];
 
 struct Material
 {
@@ -42,7 +50,7 @@ vec3 CalculateAmbientLight()
 	return ambient;
 }
 
-vec3 CalculateDirLight(Light light, vec3 normal, vec3 viewDir)
+vec3 CalculateDirLight(DirectionalLight light, vec3 normal, vec3 viewDir)
 {
     vec3 lightDir = normalize(-light.direction - i_FragPos);
     //diffuse shading
@@ -61,7 +69,7 @@ vec3 CalculateDirLight(Light light, vec3 normal, vec3 viewDir)
     return (diffuse + specular);
 }
 
-vec3 CalculatePointLight(Light light, vec3 normal, vec3 fragPos, vec3 viewDir)
+vec3 CalculatePointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
 {
     vec3 lightDir = normalize(light.position - fragPos);
     // diffuse shading
@@ -85,17 +93,11 @@ void main()
 {
     vec3 viewDir = normalize(u_ViewPos - i_FragPos);
 	vec3 result = CalculateAmbientLight();
+	result += CalculateDirLight(dirLight, i_Normal, viewDir);
 	
 	for(int i = 0; i < numberOfLights; i++)
 	{	
-		if(lights[i].lightType == 0)
-		{
-			result += CalculateDirLight(lights[i], i_Normal, viewDir);
-		}
-		else
-		{
-			result += CalculatePointLight(lights[i], i_Normal, i_FragPos, viewDir);
-		}
+		result += CalculatePointLight(lights[i], i_Normal, i_FragPos, viewDir);
 	}
 
 	gl_FragColor = vec4(result, 1.0);

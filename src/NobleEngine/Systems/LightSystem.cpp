@@ -3,6 +3,7 @@
 #include "../Components/Camera.h"
 #include "../Components/Transform.h"
 #include "../EngineCore/ResourceManager.h"
+#include "../EngineCore/Scene.h"
 
 namespace NobleEngine
 {
@@ -10,44 +11,35 @@ namespace NobleEngine
 
 	void LightSystem::PreRender()
 	{
-		for (size_t sha = 0; sha < ResourceManager::shaderPrograms.size(); sha++)
+		Application::standardShader->UseProgram();
+
+		Application::standardShader->BindInt("numberOfLights", Light::componentList.size());
+		Application::standardShader->BindVector3("u_ViewPos", Application::activeCam->camTransform->position);
+
+		Application::standardShader->BindVector3("u_AmbientLight", Application::activeScene->sceneEnvironment->ambientLightColour);
+		Application::standardShader->BindFloat("u_AmbientLightStrength", Application::activeScene->sceneEnvironment->ambientLightStrength);
+
+		Application::standardShader->BindVector3("dirLight.direction", Application::activeScene->sceneEnvironment->directionalLight->direction);
+		Application::standardShader->BindVector3("dirLight.diffuseLight", Application::activeScene->sceneEnvironment->directionalLight->diffuseLightColour);
+		Application::standardShader->BindVector3("dirLight.specularLight", Application::activeScene->sceneEnvironment->directionalLight->specularLightColour);
+		Application::standardShader->BindFloat("dirLight.intensity", Application::activeScene->sceneEnvironment->directionalLight->intensity);
+
+		for (int i = 0; i < Light::componentList.size(); i++)
 		{
-			if (ResourceManager::shaderPrograms.at(sha))
-			{
-				ResourceManager::shaderPrograms.at(sha)->UseProgram();
-				ResourceManager::shaderPrograms.at(sha)->BindVector3("u_ViewPos", Application::activeCam->camTransform->position);
+			std::string location = "lights[" + std::to_string(i);
 
-				ResourceManager::shaderPrograms.at(sha)->BindVector3("u_AmbientLight", glm::vec3(1.0f, 1.0f, 1.0f));
-				ResourceManager::shaderPrograms.at(sha)->BindFloat("u_AmbientLightStrength", 0.1f);
+			Application::standardShader->BindVector3(location + "].direction", Light::componentList.at(i)->lightTransform->rotation);
+			Application::standardShader->BindVector3(location + "].position", Light::componentList.at(i)->lightTransform->position);
 
-				for (int i = 0; i < Light::componentList.size(); i++)
-				{
-					std::string location = "lights[" + std::to_string(i);
-
-					ResourceManager::shaderPrograms.at(sha)->BindVector3(location + "].direction", Light::componentList.at(i)->lightTransform->rotation);
-					ResourceManager::shaderPrograms.at(sha)->BindVector3(location + "].position", Light::componentList.at(i)->lightTransform->position);
-
-					switch (Light::componentList.at(i)->type)
-					{
-					case Light::LightType::Directional:
-						ResourceManager::shaderPrograms.at(sha)->BindInt(location + "].lightType", 0);
-						break;
-					case Light::LightType::Point:
-						ResourceManager::shaderPrograms.at(sha)->BindInt(location + "].lightType", 1);
-						break;
-					}
-
-					ResourceManager::shaderPrograms.at(sha)->BindVector3(location + "].diffuseLight", Light::componentList.at(i)->diffuseColour);
-					ResourceManager::shaderPrograms.at(sha)->BindVector3(location + "].specularLight", Light::componentList.at(i)->specularColour);
-					ResourceManager::shaderPrograms.at(sha)->BindFloat(location + "].constant", Light::componentList.at(i)->constant);
-					ResourceManager::shaderPrograms.at(sha)->BindFloat(location + "].linear", Light::componentList.at(i)->linear);
-					ResourceManager::shaderPrograms.at(sha)->BindFloat(location + "].quadratic", Light::componentList.at(i)->quadratic);
-					ResourceManager::shaderPrograms.at(sha)->BindFloat(location + "].intensity", Light::componentList.at(i)->intensity);
-				}
-
-				glUseProgram(0);
-			}
+			Application::standardShader->BindVector3(location + "].diffuseLight", Light::componentList.at(i)->diffuseColour);
+			Application::standardShader->BindVector3(location + "].specularLight", Light::componentList.at(i)->specularColour);
+			Application::standardShader->BindFloat(location + "].constant", Light::componentList.at(i)->constant);
+			Application::standardShader->BindFloat(location + "].linear", Light::componentList.at(i)->linear);
+			Application::standardShader->BindFloat(location + "].quadratic", Light::componentList.at(i)->quadratic);
+			Application::standardShader->BindFloat(location + "].intensity", Light::componentList.at(i)->intensity);
 		}
+
+		glUseProgram(0);
 	}
 
 	void LightSystem::OnRender(std::shared_ptr<Light> comp)
