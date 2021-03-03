@@ -164,7 +164,8 @@ namespace NobleEngine
 		// activate corresponding render state	
 		Application::standardShaderText->UseProgram();
 		Application::standardShaderText->BindVector3("textColor", color);
-		Application::standardShaderText->BindMat4("projection", /*Screen::GenerateOrthographicMatrix()*/glm::mat4(1.0f));
+		Application::standardShaderText->BindMat4("model", glm::mat4(1.0f));
+		Application::standardShaderText->BindMat4("projection", Screen::GenerateOrthographicMatrix());
 		glActiveTexture(GL_TEXTURE0);
 		glBindVertexArray(PrimitiveShapes::textQuadVAO);
 
@@ -181,13 +182,13 @@ namespace NobleEngine
 			float h = ch.size.y * scale;
 			// update VBO for each character
 			float vertices[6][4] = {
-				{ xpos,     ypos + h,   0.0f, 0.0f },
+				{ xpos,     ypos - h,   0.0f, 0.0f },
 				{ xpos,     ypos,       0.0f, 1.0f },
 				{ xpos + w, ypos,       1.0f, 1.0f },
 
-				{ xpos,     ypos + h,   0.0f, 0.0f },
+				{ xpos,     ypos - h,   0.0f, 0.0f },
 				{ xpos + w, ypos,       1.0f, 1.0f },
-				{ xpos + w, ypos + h,   1.0f, 0.0f }
+				{ xpos + w, ypos - h,   1.0f, 0.0f }
 			};
 			// render glyph texture over quad
 			glBindTexture(GL_TEXTURE_2D, ch.textureID);
@@ -219,9 +220,13 @@ namespace NobleEngine
 	}
 	void UISystem::Render()
 	{
+		glDisable(GL_DEPTH_TEST);
+
 		for (int i = 0; i < uiElements.size(); i++)
 		{
 			uiElements.at(i)->OnRender();
 		}
+
+		glEnable(GL_DEPTH_TEST);
 	}
 }

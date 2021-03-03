@@ -16,8 +16,8 @@ struct Light
     float intensity;
 };
 
-#define numberOfLights 3
-uniform Light lights[numberOfLights];
+uniform int numberOfLights;
+uniform Light lights[20];
 uniform vec3 u_AmbientLight;
 uniform float u_AmbientLightStrength;
 
