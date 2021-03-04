@@ -212,8 +212,57 @@ namespace NobleEngine
 	}
 
 
+	//---------------------------------------------------------------------------//
 
+	UIToggle::UIToggle(unsigned int layer, bool startingValue, std::string baseTextureLoc, std::string toggleTextureLoc, glm::vec2 screenPos, glm::vec2 rectScale, float labelScale, std::string labelText, glm::vec3 textColour, std::shared_ptr<Font> font)
+	{
+		toggle = startingValue;
+		elementRect = std::make_shared<UIRect>(layer, screenPos, rectScale);
+		baseTexture = ResourceManager::LoadResource<Texture>(baseTextureLoc);
+		toggledTexture = ResourceManager::LoadResource<Texture>(toggleTextureLoc);
 
+		glm::vec2 labelPos(screenPos.x + rectScale.x + 10, screenPos.y);
+		toggleLabel = std::make_shared<UILabel>(layer, labelPos, labelScale, labelText, textColour, font);
+	}
+
+	void UIToggle::OnUpdate()
+	{
+		if (elementRect->IsMouseInRect())
+		{
+			if (InputManager::GetMouseButtonDown(0))
+			{
+				toggle = !toggle;
+			}
+		}
+	}
+	void UIToggle::OnRender()
+	{
+		Application::standardShaderUI->UseProgram();
+		Application::standardShaderUI->BindMat4("u_UIPos", elementRect->GetUIMatrix());
+		Application::standardShaderUI->BindMat4("u_Ortho", Screen::GenerateOrthographicMatrix());
+
+		glActiveTexture(0);
+		if (!toggle)
+		{
+			if (baseTexture)
+			{
+				glBindTexture(GL_TEXTURE_2D, baseTexture->textureID);
+			}
+		}
+		else
+		{
+			if (toggledTexture)
+			{
+				glBindTexture(GL_TEXTURE_2D, toggledTexture->textureID);
+			}
+		}
+		glBindVertexArray(PrimitiveShapes::quadVAO);
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+		glBindVertexArray(0);
+		glUseProgram(0);
+
+		toggleLabel->OnRender();
+	}
 
 	//---------------------------------------------------------------------------//
 

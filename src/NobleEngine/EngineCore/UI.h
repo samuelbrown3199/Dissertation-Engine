@@ -138,6 +138,20 @@ namespace NobleEngine
 		*/
 		void OnRender();
 	};
+	/**
+	*Stores the relevant information for a toggle tick box.
+	*/
+	struct UIToggle : public UIElement
+	{
+		bool toggle = false;
+		std::shared_ptr<Texture> baseTexture, toggledTexture;
+		std::shared_ptr<UILabel> toggleLabel;
+
+		UIToggle(unsigned int layer, bool startingValue, std::string baseTextureLoc, std::string toggleTextureLoc, glm::vec2 screenPos, glm::vec2 rectScale, float labelScale, std::string labelText, glm::vec3 textColour, std::shared_ptr<Font> font);
+
+		void OnUpdate();
+		void OnRender();
+	};
 
 
 
