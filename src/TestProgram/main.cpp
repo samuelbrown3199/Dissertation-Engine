@@ -21,7 +21,6 @@ int main()
 	std::string testAudio = "Resources\\Sound\\testsound.ogg";
 
 	std::shared_ptr<AudioClip> ac = app->GetResourceManager()->LoadResource<AudioClip>(testAudio);
-	std::shared_ptr<Font> font = ResourceManager::LoadResource<Font>(testFont);
 
 	Application::activeScene->sceneEnvironment->directionalLight->direction = glm::vec3(0, 260, 0);
 

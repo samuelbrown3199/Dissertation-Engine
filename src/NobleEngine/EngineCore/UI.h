@@ -129,10 +129,10 @@ namespace NobleEngine
 	{
 		std::shared_ptr<Font> labelFont;
 		std::string text;
-		glm::vec3 color = glm::vec3(1.0f, 0.0f, 0.0f);
+		glm::vec3 colour = glm::vec3(1.0f, 0.0f, 0.0f);
 		float scale = 1.0f;
 
-		UILabel(unsigned int layer, glm::vec2 screenPos, glm::vec2 scale);
+		UILabel(unsigned int layer, glm::vec2 screenPos, glm::vec2 scale, std::string labelText, glm::vec3 textColour, std::shared_ptr<Font> font);
 		/**
 		*Renders the text onto the screen.
 		*/

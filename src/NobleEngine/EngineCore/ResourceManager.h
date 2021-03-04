@@ -11,6 +11,7 @@
 namespace NobleEngine
 {
 	struct Material;
+	struct Font;
 	struct ShaderProgram;
 
 	/**
@@ -53,7 +54,10 @@ namespace NobleEngine
 		*Creates a material using a diffuse texture and a specular texture.
 		*/
 		static std::shared_ptr<Material> LoadMaterial(std::string diffusePath, std::string specularPath);
-
+		/**
+		*Loads a font file with the set pixel size. This can be used to load a font multiple times with different font sizes.
+		*/
+		static std::shared_ptr<Font> LoadFont(std::string fontPath, int fontPixelSize);
 		/**
 		*Unloads resources whose use count is currently 1. This means that un-used resources are no longer kept in memory.
 		*/

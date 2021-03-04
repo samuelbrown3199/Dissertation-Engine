@@ -4,6 +4,11 @@
 
 namespace NobleEngine
 {
+	Font::Font(int pixelSize)
+	{
+		fontPixelSize = pixelSize;
+	}
+
 	void Font::OnLoad()
 	{
 		FT_Face font;

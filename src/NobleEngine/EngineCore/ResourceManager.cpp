@@ -1,6 +1,7 @@
 #include "ResourceManager.h"
 
 #include "../ResourceManagement/Material.h"
+#include "../ResourceManagement/Font.h"
 #include "../ResourceManagement/ShaderProgram.h"
 
 namespace NobleEngine
@@ -61,6 +62,31 @@ namespace NobleEngine
 		}
 		materials.push_back(mat);
 		return mat;
+	}
+
+
+	std::shared_ptr<Font> ResourceManager::LoadFont(std::string fontPath, int fontPixelSize)
+	{
+		for (size_t re = 0; re < resources.size(); re++)
+		{
+			if (resources.at(re)->resourcePath == fontPath)
+			{
+				std::shared_ptr<Font> resource = std::dynamic_pointer_cast<Font>(resources.at(re));
+				if (resource)
+				{
+					if (resource->fontPixelSize == fontPixelSize)
+					{
+						return resource;
+					}
+				}
+			}
+		}
+
+		std::shared_ptr<Font> newResource = std::make_shared<Font>(fontPixelSize);
+		newResource->resourcePath = fontPath;
+		newResource->OnLoad();
+		resources.push_back(newResource);
+		return newResource;
 	}
 
 	void ResourceManager::UnloadUnusedResources()

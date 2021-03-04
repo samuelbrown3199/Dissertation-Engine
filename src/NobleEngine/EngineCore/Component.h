@@ -31,6 +31,7 @@ namespace NobleEngine
 		{
 			return Application::GetEntity(entityID);
 		}
+		virtual void OnInitialize() {}
 		virtual ~ComponentBase() {}
 	};
 
