@@ -170,7 +170,7 @@ namespace NobleEngine
 		// activate corresponding render state	
 		Application::standardShaderText->UseProgram();
 		Application::standardShaderText->BindVector3("textColor", colour);
-		Application::standardShaderText->BindMat4("model", glm::mat4(1.0f));
+		Application::standardShaderText->BindMat4("model", glm::scale(glm::mat4(1.0f), glm::vec3(elementRect->rectScale, 1.0f)));
 		Application::standardShaderText->BindMat4("projection", Screen::GenerateOrthographicMatrix());
 		glActiveTexture(GL_TEXTURE0);
 		glBindVertexArray(PrimitiveShapes::textQuadVAO);
