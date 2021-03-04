@@ -153,18 +153,19 @@ namespace NobleEngine
 
 	//---------------------------------------------------------------------------//
 
-	UILabel::UILabel(unsigned int layer, glm::vec2 screenPos, glm::vec2 scale, std::string labelText, glm::vec3 textColour, std::shared_ptr<Font> font)
+	UILabel::UILabel(unsigned int layer, glm::vec2 screenPos, float labelScale, std::string labelText, glm::vec3 textColour, std::shared_ptr<Font> font)
 	{
-		elementRect = std::make_shared<UIRect>(layer, screenPos, scale);
+		elementRect = std::make_shared<UIRect>(layer, screenPos, glm::vec2(1.0, 1.0));
 		text = labelText;
 		colour = textColour;
+		scale = labelScale;
 
 		labelFont = font;
 	}
 	void UILabel::OnRender()
 	{
 		float x = elementRect->screenPosition.x;
-		float y = elementRect->screenPosition.y;
+		float y = elementRect->screenPosition.y + labelFont->fontPixelSize;
 
 		// activate corresponding render state	
 		Application::standardShaderText->UseProgram();
