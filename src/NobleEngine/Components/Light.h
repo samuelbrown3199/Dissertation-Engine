@@ -57,8 +57,8 @@ namespace NobleEngine
 			specularColour = glm::vec3(1, 1, 1);
 
 			constant = 1.0f;
-			linear = 0.09f;
-			quadratic = 0.032f;
+			linear = 0.045f;
+			quadratic = 0.0075f;
 			intensity = 1;
 		}
 	};

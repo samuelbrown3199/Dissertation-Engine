@@ -48,13 +48,13 @@ int main()
 	testPointLight->AddComponent<Transform>(glm::vec3(0, 5, -15), glm::vec3(0, -90, 0));
 	testPointLight->AddComponent<Light>();
 	
-	testPointLight = app->CreateEntity();
+	/*testPointLight = app->CreateEntity();
 	testPointLight->AddComponent<Transform>(glm::vec3(15, 5, 0));
 	testPointLight->AddComponent<Light>();
 
 	testPointLight = app->CreateEntity();
 	testPointLight->AddComponent<Transform>(glm::vec3(0, 5, 15));
-	testPointLight->AddComponent<Light>();
+	testPointLight->AddComponent<Light>();*/
 
 	//TRANSFORM PARENT TESTING
 	/*std::shared_ptr<Entity> physicsTest = app->CreateEntity();

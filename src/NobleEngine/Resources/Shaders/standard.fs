@@ -84,8 +84,8 @@ vec3 CalculatePointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewD
     // combine results
     vec3 diffuse  = light.diffuseLight  * diff * vec3(texture(material.diffuseTexture, i_TexCoord));
     vec3 specular = light.specularLight * spec * vec3(texture(material.specularTexture, i_TexCoord));
-    diffuse  *= attenuation * light.intensity;
-    specular *= attenuation * light.intensity;
+    diffuse  *= attenuation;
+    specular *= attenuation;
     return (diffuse + specular);
 }
 
