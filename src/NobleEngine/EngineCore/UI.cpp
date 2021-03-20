@@ -225,15 +225,12 @@ namespace NobleEngine
 
 	//---------------------------------------------------------------------------//
 
-	UIToggle::UIToggle(unsigned int layer, bool startingValue, std::string baseTextureLoc, std::string toggleTextureLoc, glm::vec2 screenPos, glm::vec2 rectScale, float labelScale, std::string labelText, glm::vec3 textColour, std::shared_ptr<Font> font)
+	UIToggle::UIToggle(unsigned int layer, bool startingValue, std::string baseTextureLoc, std::string toggleTextureLoc, glm::vec2 screenPos, glm::vec2 rectScale)
 	{
 		toggle = startingValue;
 		elementRect = std::make_shared<UIRect>(layer, screenPos, rectScale);
 		baseTexture = ResourceManager::LoadResource<Texture>(baseTextureLoc);
 		toggledTexture = ResourceManager::LoadResource<Texture>(toggleTextureLoc);
-
-		glm::vec2 labelPos(screenPos.x + rectScale.x + 10, screenPos.y);
-		toggleLabel = std::make_shared<UILabel>(layer, labelPos, labelScale, labelText, textColour, font);
 	}
 
 	void UIToggle::OnUpdate()
@@ -271,8 +268,6 @@ namespace NobleEngine
 		glDrawArrays(GL_TRIANGLES, 0, 6);
 		glBindVertexArray(0);
 		glUseProgram(0);
-
-		toggleLabel->OnRender();
 	}
 
 	//---------------------------------------------------------------------------//
@@ -295,8 +290,6 @@ namespace NobleEngine
 			{
 				if (uiElements.at(i)->elementRect->IsMouseInRect())
 				{
-					std::cout << "Mouse is in child element!!!" << std::endl;
-
 					canDrag = false;
 					break;
 				}
