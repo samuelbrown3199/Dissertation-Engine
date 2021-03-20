@@ -25,6 +25,10 @@ namespace NobleEngine
 	struct UIRect
 	{
 		/**
+		*Stores the parent UI rect.
+		*/
+		std::shared_ptr<UIRect> parentRect;
+		/**
 		*Stores the layer of the UI rect.
 		*/
 		unsigned int layer = 0;
@@ -61,8 +65,6 @@ namespace NobleEngine
 	};
 
 
-
-
 	/**
 	*Stores the relevant information for a UI box.
 	*/
@@ -87,7 +89,6 @@ namespace NobleEngine
 		*/
 		void OnRender();
 	};
-
 	/**
 	*Stores the relevant information for a UI button. When clicked, it can call a function.
 	*/
@@ -121,7 +122,6 @@ namespace NobleEngine
 		*/
 		bool ClickedOn();
 	};
-
 	/**
 	*Renders text onto the screen as a UI element.
 	*/
@@ -152,8 +152,73 @@ namespace NobleEngine
 		void OnUpdate();
 		void OnRender();
 	};
+	/**
+	*Stores a list of UI elements as keeps them together as a group.
+	*/
+	struct UIWindow : UIElement
+	{
 
+	private:
 
+		int maxLayers = 0;
+		std::shared_ptr<Texture> windowTexture;
+		bool currentlyDragged = false;
+
+	public:
+
+		/**
+		*Determines whether the window can be moved around the screen.
+		*/
+		bool draggable = false;
+		/**
+		*Stores all the UI window elements.
+		*/
+		std::vector<std::shared_ptr<UIElement>> uiElements;
+
+		/**
+		*Initializes the UI window with parameters.
+		*/
+		UIWindow(unsigned int layer, glm::vec2 screenPos, glm::vec2 scale, bool canDrag, std::string textureLoc);
+
+		template<typename T>
+		/**
+		*Adds a UI element to the window without any parameters
+		*/
+		std::shared_ptr<T> AddUIElement()
+		{
+			std::shared_ptr<T> element = std::make_shared<T>();
+			element->elementRect->parentRect = elementRect;
+			uiElements.push_back(element);
+
+			return element;
+		}
+		template<typename T, typename ... Args>
+		/**
+		*Adds a UI element to the window with parameters
+		*/
+		std::shared_ptr<T> AddUIElement(Args&&... args)
+		{
+			std::shared_ptr<T> element = std::make_shared<T>(std::forward<Args>(args)...);
+			element->elementRect->parentRect = elementRect;
+			uiElements.push_back(element);
+
+			if (element->elementRect->layer > maxLayers)
+			{
+				maxLayers = element->elementRect->layer;
+			}
+
+			return element;
+		}
+
+		/**
+		*Updates the UI window group
+		*/
+		void OnUpdate();
+		/**
+		*Renders the UI window group
+		*/
+		void OnRender();
+	};
 
 
 	/**

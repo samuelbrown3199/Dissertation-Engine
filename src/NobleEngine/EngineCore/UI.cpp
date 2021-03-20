@@ -19,7 +19,13 @@ namespace NobleEngine
 	{
 		glm::mat4 uiMat(1.0f);
 
-		uiMat = glm::translate(uiMat, glm::vec3(screenPosition, 0.0f));
+		glm::vec2 uiPosition = screenPosition;
+		if (parentRect)
+		{
+			uiPosition = parentRect->screenPosition + screenPosition;
+		}
+
+		uiMat = glm::translate(uiMat, glm::vec3(uiPosition, 0.0f));
 		uiMat = glm::scale(uiMat, glm::vec3(rectScale, 1.0f));
 
 		return uiMat;
@@ -30,9 +36,15 @@ namespace NobleEngine
 		int xMousePos = InputManager::mouseX;
 		int yMousePos = InputManager::mouseY;
 
-		if (xMousePos >= screenPosition.x && xMousePos <= screenPosition.x + rectScale.x)
+		glm::vec2 uiPosition = screenPosition;
+		if (parentRect)
 		{
-			if (yMousePos >= screenPosition.y && yMousePos <= screenPosition.y + rectScale.y)
+			uiPosition = parentRect->screenPosition + screenPosition;
+		}
+
+		if (xMousePos >= uiPosition.x && xMousePos <= uiPosition.x + rectScale.x)
+		{
+			if (yMousePos >= uiPosition.y && yMousePos <= uiPosition.y + rectScale.y)
 			{
 				return true;
 			}
@@ -40,7 +52,6 @@ namespace NobleEngine
 
 		return false;
 	}
-
 
 	//---------------------------------------------------------------------------//
 
@@ -262,6 +273,93 @@ namespace NobleEngine
 		glUseProgram(0);
 
 		toggleLabel->OnRender();
+	}
+
+	//---------------------------------------------------------------------------//
+
+	UIWindow::UIWindow(unsigned int layer, glm::vec2 screenPos, glm::vec2 scale, bool canDrag, std::string textureLoc)
+	{
+		maxLayers = 0;
+		draggable = canDrag;
+
+		elementRect = std::make_shared<UIRect>(layer, screenPos, scale);
+		windowTexture = ResourceManager::LoadResource<Texture>(textureLoc);
+	}
+
+	void UIWindow::OnUpdate()
+	{
+		if (draggable)
+		{
+			bool canDrag = true;
+			for (int i = 0; i < uiElements.size(); i++)
+			{
+				if (uiElements.at(i)->elementRect->IsMouseInRect())
+				{
+					std::cout << "Mouse is in child element!!!" << std::endl;
+
+					canDrag = false;
+					break;
+				}
+			}
+
+			if (canDrag)
+			{
+				if (!currentlyDragged)
+				{
+					if (elementRect->IsMouseInRect())
+					{
+						if (InputManager::GetMouseButton(0))
+						{
+							currentlyDragged = true;
+						}
+					}
+				}
+				else
+				{
+					elementRect->screenPosition = glm::vec2(InputManager::mouseX - (elementRect->rectScale.x / 2), InputManager::mouseY - (elementRect->rectScale.y / 2));
+					if (!InputManager::GetMouseButton(0))
+					{
+						currentlyDragged = false;
+					}
+				}
+			}
+		}
+
+		for (int i = 0; i < uiElements.size(); i++)
+		{
+			uiElements.at(i)->OnUpdate();
+		}
+	}
+	void UIWindow::OnRender()
+	{
+		glDisable(GL_DEPTH_TEST);
+
+		Application::standardShaderUI->UseProgram();
+		Application::standardShaderUI->BindMat4("u_UIPos", elementRect->GetUIMatrix());
+		Application::standardShaderUI->BindMat4("u_Ortho", Screen::GenerateOrthographicMatrix());
+
+		glActiveTexture(0);
+		if (windowTexture)
+		{
+			glBindTexture(GL_TEXTURE_2D, windowTexture->textureID);
+		}
+		glBindVertexArray(PrimitiveShapes::quadVAO);
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+		glBindVertexArray(0);
+		glUseProgram(0);
+
+		for (int i = 0; i <= maxLayers; i++)
+		{
+			for (int j = 0; j < uiElements.size(); j++)
+			{
+				if (uiElements.at(j)->elementRect->layer == i)
+				{
+					uiElements.at(j)->OnRender();
+				}
+			}
+		}
+
+		glEnable(GL_DEPTH_TEST);
 	}
 
 	//---------------------------------------------------------------------------//
