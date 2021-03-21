@@ -13,7 +13,7 @@ void TestUI::InitializeUI()
 		glm::vec2(25.0f, 75.0f), glm::vec2(25, 25), 1.0f, "Toggle Test", glm::vec3(1.0, 1.0, 1.0), font);
 		*/
 
-	sliderTest = AddUIElement<UISlider>(0, 50, 0, 100, glm::vec2(25, 80), glm::vec2(350, 25), "Resources\\Textures\\test.png", "Resources\\Textures\\testspritesheet.png");
+	sliderTest = AddUIElement<UISlider>(0, 50, 250, glm::vec2(25, 80), glm::vec2(350, 25), "Resources\\Textures\\test.png", "Resources\\Textures\\testspritesheet.png");
 	textTest = AddUIElement<UILabel>(1, glm::vec2(380, 80), 1.0f, "", glm::vec3(0.0, 0.0, 0.0), font);
 
 	/*std::shared_ptr<UIWindow> windowTest = AddUIElement<UIWindow>(1, glm::vec2(0, 0), glm::vec2(250, 250), true, "Resources\\Textures\\testspritesheet.png");
@@ -24,7 +24,7 @@ void TestUI::InitializeUI()
 void TestUI::HandleEvents()
 {
 	std::ostringstream ss;
-	ss << sliderTest->currentValue << " and max is " << sliderTest->maxValue;
+	ss << sliderTest->currentValue << " and percentage is " << sliderTest->currentPercentage;
 	std::string label(ss.str());
 	textTest->text = label;
 

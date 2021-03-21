@@ -272,13 +272,12 @@ namespace NobleEngine
 
 	//---------------------------------------------------------------------------//
 
-	UISlider::UISlider(unsigned int layer, float startingValue, float minimumValue, float maximumValue, glm::vec2 screenPos, glm::vec2 rectScale, std::string baseTextureLoc, std::string sliderHandleTexture)
+	UISlider::UISlider(unsigned int layer, float startingValue, float maximumValue, glm::vec2 screenPos, glm::vec2 rectScale, std::string baseTextureLoc, std::string sliderHandleTexture)
 	{
 		elementRect = std::make_shared<UIRect>(layer, screenPos, rectScale);
 		handleRect = std::make_shared<UIRect>(layer + 1, glm::vec2(screenPos.x, screenPos.y), glm::vec2(rectScale.y, rectScale.y));
 
 		currentValue = startingValue;
-		minValue = minimumValue;
 		maxValue = maximumValue;
 
 		sliderTexture = ResourceManager::LoadResource<Texture>(baseTextureLoc);
@@ -290,17 +289,8 @@ namespace NobleEngine
 		float minPos = elementRect->screenPosition.x;
 		float maxPos = elementRect->screenPosition.x + elementRect->rectScale.x - handleRect->rectScale.x;
 
-		float percentage = maxPos / (handleRect->screenPosition.x + (handleRect->rectScale.x / 2) / 100);
-		currentValue = maxValue * percentage;
-
-		if (handleRect->screenPosition.x < minPos)
-		{
-			handleRect->screenPosition.x = minPos;
-		}
-		if (handleRect->screenPosition.x + (handleRect->rectScale.x / 2) > elementRect->screenPosition.x + elementRect->rectScale.x)
-		{
-			handleRect->screenPosition.x = maxPos;
-		}
+		float percentageValue = ((minPos + maxPos) / 100);
+		currentPercentage = ((handleRect->screenPosition.x) / percentageValue) / 100;
 
 		if (!currentlyDragged)
 		{
@@ -319,16 +309,20 @@ namespace NobleEngine
 			{
 				currentlyDragged = false;
 			}
-
-			if (handleRect->screenPosition.x < minPos)
-			{
-				handleRect->screenPosition.x = minPos;
-			}
-			if (handleRect->screenPosition.x + (handleRect->rectScale.x / 2) > elementRect->screenPosition.x + elementRect->rectScale.x)
-			{
-				handleRect->screenPosition.x = maxPos;
-			}
 		}
+
+		if (handleRect->screenPosition.x <= minPos)
+		{
+			handleRect->screenPosition.x = minPos;
+			currentPercentage = 0;
+		}
+		if (handleRect->screenPosition.x + handleRect->rectScale.x >= elementRect->screenPosition.x + elementRect->rectScale.x)
+		{
+			handleRect->screenPosition.x = maxPos;
+			currentPercentage = 1;
+		}
+
+		currentValue = (maxValue * currentPercentage);
 	}
 	void UISlider::OnRender()
 	{
