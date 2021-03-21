@@ -146,7 +146,28 @@ namespace NobleEngine
 		bool toggle = false;
 		std::shared_ptr<Texture> baseTexture, toggledTexture;
 
-		UIToggle(unsigned int layer, bool startingValue, std::string baseTextureLoc, std::string toggleTextureLoc, glm::vec2 screenPos, glm::vec2 rectScale);
+		UIToggle(unsigned int layer, bool startingValue, glm::vec2 screenPos, glm::vec2 rectScale, std::string baseTextureLoc, std::string toggleTextureLoc);
+
+		void OnUpdate();
+		void OnRender();
+	};
+	/**
+	*Stores the relevant information for a slider.
+	*/
+	struct UISlider : public UIElement
+	{
+	private:
+
+		std::shared_ptr<Texture> sliderTexture, handleTexture;
+		std::shared_ptr<UIRect> handleRect;
+
+		bool currentlyDragged = false;
+
+	public:
+
+		float minValue = 0, maxValue = 0, currentValue = 0;
+
+		UISlider(unsigned int layer, float startingValue, float minValue, float maxValue, glm::vec2 screenPos, glm::vec2 rectScale, std::string baseTextureLoc, std::string sliderHandleTexture);
 
 		void OnUpdate();
 		void OnRender();
@@ -162,6 +183,7 @@ namespace NobleEngine
 		int maxLayers = 0;
 		std::shared_ptr<Texture> windowTexture;
 		bool currentlyDragged = false;
+		std::vector<std::shared_ptr<UIElement>> uiElements;
 
 	public:
 
@@ -169,10 +191,6 @@ namespace NobleEngine
 		*Determines whether the window can be moved around the screen.
 		*/
 		bool draggable = false;
-		/**
-		*Stores all the UI window elements.
-		*/
-		std::vector<std::shared_ptr<UIElement>> uiElements;
 
 		/**
 		*Initializes the UI window with parameters.

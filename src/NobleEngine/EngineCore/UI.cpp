@@ -225,7 +225,7 @@ namespace NobleEngine
 
 	//---------------------------------------------------------------------------//
 
-	UIToggle::UIToggle(unsigned int layer, bool startingValue, std::string baseTextureLoc, std::string toggleTextureLoc, glm::vec2 screenPos, glm::vec2 rectScale)
+	UIToggle::UIToggle(unsigned int layer, bool startingValue, glm::vec2 screenPos, glm::vec2 rectScale, std::string baseTextureLoc, std::string toggleTextureLoc)
 	{
 		toggle = startingValue;
 		elementRect = std::make_shared<UIRect>(layer, screenPos, rectScale);
@@ -268,6 +268,95 @@ namespace NobleEngine
 		glDrawArrays(GL_TRIANGLES, 0, 6);
 		glBindVertexArray(0);
 		glUseProgram(0);
+	}
+
+	//---------------------------------------------------------------------------//
+
+	UISlider::UISlider(unsigned int layer, float startingValue, float minimumValue, float maximumValue, glm::vec2 screenPos, glm::vec2 rectScale, std::string baseTextureLoc, std::string sliderHandleTexture)
+	{
+		elementRect = std::make_shared<UIRect>(layer, screenPos, rectScale);
+		handleRect = std::make_shared<UIRect>(layer + 1, glm::vec2(screenPos.x, screenPos.y), glm::vec2(rectScale.y, rectScale.y));
+
+		currentValue = startingValue;
+		minValue = minimumValue;
+		maxValue = maximumValue;
+
+		sliderTexture = ResourceManager::LoadResource<Texture>(baseTextureLoc);
+		handleTexture = ResourceManager::LoadResource<Texture>(sliderHandleTexture);
+	}
+
+	void UISlider::OnUpdate()
+	{
+		float minPos = elementRect->screenPosition.x;
+		float maxPos = elementRect->screenPosition.x + elementRect->rectScale.x - handleRect->rectScale.x;
+
+		float percentage = maxPos / (handleRect->screenPosition.x + (handleRect->rectScale.x / 2) / 100);
+		currentValue = maxValue * percentage;
+
+		if (handleRect->screenPosition.x < minPos)
+		{
+			handleRect->screenPosition.x = minPos;
+		}
+		if (handleRect->screenPosition.x + (handleRect->rectScale.x / 2) > elementRect->screenPosition.x + elementRect->rectScale.x)
+		{
+			handleRect->screenPosition.x = maxPos;
+		}
+
+		if (!currentlyDragged)
+		{
+			if (handleRect->IsMouseInRect() && elementRect->IsMouseInRect())
+			{
+				if (InputManager::GetMouseButton(0))
+				{
+					currentlyDragged = true;
+				}
+			}
+		}
+		else
+		{
+			handleRect->screenPosition.x = InputManager::mouseX - (handleRect->rectScale.x / 2);
+			if (!InputManager::GetMouseButton(0))
+			{
+				currentlyDragged = false;
+			}
+
+			if (handleRect->screenPosition.x < minPos)
+			{
+				handleRect->screenPosition.x = minPos;
+			}
+			if (handleRect->screenPosition.x + (handleRect->rectScale.x / 2) > elementRect->screenPosition.x + elementRect->rectScale.x)
+			{
+				handleRect->screenPosition.x = maxPos;
+			}
+		}
+	}
+	void UISlider::OnRender()
+	{
+		glDisable(GL_DEPTH_TEST);
+
+		Application::standardShaderUI->UseProgram();
+		Application::standardShaderUI->BindMat4("u_UIPos", elementRect->GetUIMatrix());
+		Application::standardShaderUI->BindMat4("u_Ortho", Screen::GenerateOrthographicMatrix());
+
+		glActiveTexture(0);
+		if (sliderTexture)
+		{
+			glBindTexture(GL_TEXTURE_2D, sliderTexture->textureID);
+		}
+		glBindVertexArray(PrimitiveShapes::quadVAO);
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+
+		Application::standardShaderUI->BindMat4("u_UIPos", handleRect->GetUIMatrix());
+		if (handleTexture)
+		{
+			glBindTexture(GL_TEXTURE_2D, handleTexture->textureID);
+		}
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+
+		glBindVertexArray(0);
+		glUseProgram(0);
+
+		glEnable(GL_DEPTH_TEST);
 	}
 
 	//---------------------------------------------------------------------------//
