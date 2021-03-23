@@ -44,9 +44,12 @@ int main()
 	floorEntity->AddComponent<PhysicsBody>(PhysicsBody::ColliderShape::box, 0);
 	std::shared_ptr<MeshRenderer> mr = floorEntity->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc, texLoc1));
 
-	std::shared_ptr<Entity> testPointLight = app->CreateEntity();
-	testPointLight->AddComponent<Transform>(glm::vec3(0, 5, -15), glm::vec3(0, -90, 0));
-	testPointLight->AddComponent<Light>();
+	for (int i = 0; i < 50; i++)
+	{
+		std::shared_ptr<Entity> testPointLight = app->CreateEntity();
+		testPointLight->AddComponent<Transform>(glm::vec3(5 + rand() % 500, 5, 5 + rand() % 500));
+		testPointLight->AddComponent<Light>();
+	}
 	
 	/*testPointLight = app->CreateEntity();
 	testPointLight->AddComponent<Transform>(glm::vec3(15, 5, 0));
@@ -55,6 +58,10 @@ int main()
 	testPointLight = app->CreateEntity();
 	testPointLight->AddComponent<Transform>(glm::vec3(0, 5, 15));
 	testPointLight->AddComponent<Light>();*/
+
+	std::shared_ptr<Entity> test2D = app->CreateEntity();
+	test2D->AddComponent<Transform>(glm::vec3(0, 15, 0));
+	test2D->AddComponent<SpriteRenderer>(testSpriteSheet);
 
 	//TRANSFORM PARENT TESTING
 	/*std::shared_ptr<Entity> physicsTest = app->CreateEntity();

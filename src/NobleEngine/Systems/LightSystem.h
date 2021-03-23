@@ -9,8 +9,15 @@ namespace NobleEngine
 {
 	struct LightSystem : public System<Light>
 	{
+		static bool SortByDistance(std::shared_ptr<Light>& light1, std::shared_ptr<Light>& light2);
+		/**
+		*Updates the lights distance value to the main camera.
+		*/
+		void OnUpdate(std::shared_ptr<Light> comp);
+		/**
+		*Binds the closest 20 lights to the shader.
+		*/
 		void PreRender();
-		void OnRender(std::shared_ptr<Light> comp);
 	};
 }
 

@@ -276,7 +276,7 @@ namespace NobleEngine
 		BindSystem<CameraSystem>(true, false);
 		BindSystem<AudioListenerSystem>(true, false);
 		BindSystem<AudioSourceSystem>(true, false);
-		BindSystem<LightSystem>(false, true);
+		BindSystem<LightSystem>(true, true);
 		BindSystem<MeshRendererSystem>(false, true);
 		BindSystem<SpriteRendererSystem>(false, true);
 	}

@@ -12,6 +12,7 @@ namespace NobleEngine
 {
 	struct Light : public Component<Light>
 	{
+		float distanceToCamera;
 		/**
 		*Stores the lights transform component.
 		*/
