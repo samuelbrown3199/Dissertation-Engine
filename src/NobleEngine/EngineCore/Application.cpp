@@ -242,6 +242,28 @@ namespace NobleEngine
 		return en;
 	}
 
+	std::shared_ptr<Entity> Application::CreateEntity(glm::vec3 position, glm::vec3 rotation, glm::vec3 scale)
+	{
+		std::shared_ptr<Entity> en = std::make_shared<Entity>();
+		if (availableIDs.size() > 0)
+		{
+			int id = availableIDs.at(0);
+			std::vector<int>::iterator it = availableIDs.begin();
+			availableIDs.erase(it);
+
+			en->entityID = id;
+			en->self = en;
+			en->AddComponent<Transform>(position, rotation, scale);
+			entities.at(id) = en;
+			return en;
+		}
+		en->entityID = entities.size();
+		en->self = en;
+		en->AddComponent<Transform>(position, rotation, scale);
+		entities.push_back(en);
+		return en;
+	}
+
 	std::shared_ptr<Entity> Application::GetEntity(int ID)
 	{
 		for (size_t en = 0; en < entities.size(); en++)

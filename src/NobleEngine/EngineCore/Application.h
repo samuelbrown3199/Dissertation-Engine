@@ -11,6 +11,7 @@
 
 #include <SDL.h>
 #include <GL/glew.h>
+#include <glm/glm.hpp>
 #include <AL/al.h>
 #include <AL/alc.h>
 #include <ft2build.h>
@@ -99,9 +100,13 @@ namespace NobleEngine
 		*/
 		static void ChangeScene(int index);
 		/**
-		*Creates an entity with no tag.
+		*Creates an empty entity.
 		*/
 		static std::shared_ptr<Entity> CreateEntity();
+		/**
+		*Creates an entity with a transform at the parameter position.
+		*/
+		static std::shared_ptr<Entity> CreateEntity(glm::vec3 position, glm::vec3 rotation, glm::vec3 scale);
 		/**
 		*Returns an entity with the ID passed through the parameter;
 		*/
