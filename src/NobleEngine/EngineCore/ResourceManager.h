@@ -29,11 +29,11 @@ namespace NobleEngine
 		*Loads a resource of the passed type with the file directory.
 		*/
 		template<typename T>
-		static std::shared_ptr<T> LoadResource(std::string fileDirectory)
+		static std::shared_ptr<T> LoadResource(std::string _fileDirectory)
 		{
 			for (size_t re = 0; re < resources.size(); re++)
 			{
-				if (resources.at(re)->resourcePath == fileDirectory)
+				if (resources.at(re)->resourcePath == _fileDirectory)
 				{
 					std::shared_ptr<T> resource = std::dynamic_pointer_cast<T>(resources.at(re));
 					if (resource)
@@ -44,7 +44,7 @@ namespace NobleEngine
 			}
 
 			std::shared_ptr<T> newResource = std::make_shared<T>();
-			newResource->resourcePath = fileDirectory;
+			newResource->resourcePath = _fileDirectory;
 			newResource->OnLoad();
 			resources.push_back(newResource);
 			return newResource;
@@ -52,15 +52,15 @@ namespace NobleEngine
 		/**
 		*Creates a material using a diffuse texture.
 		*/
-		static std::shared_ptr<Material> LoadMaterial(std::string diffusePath);
+		static std::shared_ptr<Material> LoadMaterial(std::string _diffusePath);
 		/**
 		*Creates a material using a diffuse texture and a specular texture.
 		*/
-		static std::shared_ptr<Material> LoadMaterial(std::string diffusePath, std::string specularPath);
+		static std::shared_ptr<Material> LoadMaterial(std::string _diffusePath, std::string _specularPath);
 		/**
 		*Loads a font file with the set pixel size. This can be used to load a font multiple times with different font sizes.
 		*/
-		static std::shared_ptr<Font> LoadFont(std::string fontPath, int fontPixelSize);
+		static std::shared_ptr<Font> LoadFont(std::string _fontPath, int _fontPixelSize);
 		/**
 		*Unloads resources whose use count is currently 1. This means that un-used resources are no longer kept in memory.
 		*/

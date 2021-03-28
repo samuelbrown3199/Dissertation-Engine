@@ -31,21 +31,21 @@ namespace NobleEngine
 			rendererVAO = PrimitiveShapes::quadVAO;
 		}
 
-		void OnInitialize(std::string sheetLoc)
+		void OnInitialize(std::string _sheetLoc)
 		{
 			transform = GetEntity()->GetComponent<Transform>();
 			rendererVAO = PrimitiveShapes::quadVAO;
 
-			sheet = ResourceManager::LoadResource<SpriteSheet>(sheetLoc);
+			sheet = ResourceManager::LoadResource<SpriteSheet>(_sheetLoc);
 		}
 
-		void OnInitialize(std::string sheetLoc, std::string spriteName, int x, int y, int w, int h)
+		void OnInitialize(std::string _sheetLoc, std::string _spriteName, int _x, int _y, int _w, int _h)
 		{
 			transform = GetEntity()->GetComponent<Transform>();
 			rendererVAO = PrimitiveShapes::quadVAO;
 
-			sheet = ResourceManager::LoadResource<SpriteSheet>(sheetLoc);
-			sprite = sheet->GetSpriteLocation(spriteName, x, y, w, h);
+			sheet = ResourceManager::LoadResource<SpriteSheet>(_sheetLoc);
+			sprite = sheet->GetSpriteLocation(_spriteName, _x, _y, _w, _h);
 		}
 	};
 }

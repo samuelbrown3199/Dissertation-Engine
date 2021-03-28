@@ -47,7 +47,7 @@ namespace NobleEngine
 		/**
 		*Initializes a screen object.
 		*/
-		Screen(int width, int height, float near, float far, std::string windowName);
+		Screen(int _width, int _height, float _near, float _far, std::string _windowName);
 		/**
 		*Returns the SDL window.
 		*/

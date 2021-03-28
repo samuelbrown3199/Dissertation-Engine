@@ -8,6 +8,6 @@ namespace NobleEngine
 	*/
 	struct PhysicsBodySystem : public System<PhysicsBody>
 	{
-		void OnUpdate(std::shared_ptr<PhysicsBody> comp);
+		void OnUpdate(std::shared_ptr<PhysicsBody> _comp);
 	};
 }

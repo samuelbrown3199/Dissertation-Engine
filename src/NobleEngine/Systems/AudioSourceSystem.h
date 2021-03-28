@@ -9,6 +9,6 @@ namespace NobleEngine
 	*/
 	struct AudioSourceSystem : public System<AudioSource>
 	{
-		void OnUpdate(std::shared_ptr<AudioSource> comp);
+		void OnUpdate(std::shared_ptr<AudioSource> _comp);
 	};
 }

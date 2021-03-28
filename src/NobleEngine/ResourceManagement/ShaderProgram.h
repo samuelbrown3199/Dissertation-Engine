@@ -25,11 +25,11 @@ namespace NobleEngine
 		std::string locationName;
 		GLint locationID;
 
-		static std::shared_ptr<ShaderLocation> CreateLocation(GLuint shaderProgram, std::string location)
+		static std::shared_ptr<ShaderLocation> CreateLocation(GLuint _shaderProgram, std::string _location)
 		{
 			std::shared_ptr<ShaderLocation> rtn = std::make_shared<ShaderLocation>();
-			rtn->locationName = location;
-			rtn->locationID = glGetUniformLocation(shaderProgram, location.c_str());
+			rtn->locationName = _location;
+			rtn->locationID = glGetUniformLocation(_shaderProgram, _location.c_str());
 			if (rtn->locationID == -1)
 			{
 				//std::cout << "Couldn't find location " << location << " in shader program " << shaderProgram << std::endl;
@@ -52,51 +52,51 @@ namespace NobleEngine
 		std::vector<std::shared_ptr<ShaderLocation>> shaderLocations;
 
 	public:
-		ShaderProgram(std::weak_ptr<Application> app);
+		ShaderProgram(std::weak_ptr<Application> _app);
 		/**
 		*Gets a location from the list, or if it does not contain it creates and adds it to list.
 		*/
-		GLint GetLocation(std::string location);
+		GLint GetLocation(std::string _location);
 		/**
 		*Binds a shader resource to the shader program.
 		*/
-		void BindShader(std::shared_ptr<Shader> shader, GLenum shaderType);
+		void BindShader(std::shared_ptr<Shader> _shader, GLenum _shaderType);
 		/**
 		*Binds a shader source code string to the shader program.
 		*/
-		void BindShader(const GLchar* shaderSourceString, GLenum shaderType);
+		void BindShader(const GLchar* _shaderSourceString, GLenum _shaderType);
 		/**
 		*This function binds an integer to a uniform int in the shader.
 		*/
-		void BindInt(std::string location, int value);
+		void BindInt(std::string _location, int _value);
 		/**
 		*This function binds an float to a uniform int in the shader.
 		*/
-		void BindFloat(std::string location, float value);
+		void BindFloat(std::string _location, float _value);
 		/**
 		*This function binds an matrix4 to a uniform matrix4 in the shader.
 		*/
-		void BindMat4(std::string location, glm::mat4 matrix);
+		void BindMat4(std::string _location, glm::mat4 _matrix);
 		/**
 		*This function binds an vec3 to a uniform vec3 in the shader.
 		*/
-		void BindVector3(std::string location, glm::vec3 vector);
+		void BindVector3(std::string _location, glm::vec3 _vector);
 		/**
 		*Binds the model matrix.
 		*/
-		void BindModelMat(glm::mat4 matrix);
+		void BindModelMat(glm::mat4 _matrix);
 		/**
 		*Binds the projection matrix.
 		*/
-		void BindProjectionMat(glm::mat4 matrix);
+		void BindProjectionMat(glm::mat4 _matrix);
 		/**
 		*Binds the view matrix.
 		*/
-		void BindViewMat(glm::mat4 matrix);
+		void BindViewMat(glm::mat4 _matrix);
 		/**
 		*Links the program for use in the engine. Also responsible for setting up the uniform variables in the shader code. If this function isn't called then the shader program cannot be used.
 		*/
-		void LinkShaderProgram(std::shared_ptr<ShaderProgram> selfPtr);
+		void LinkShaderProgram(std::shared_ptr<ShaderProgram> _selfPtr);
 		/**
 		*Sets the currently used shader program to this.
 		*/

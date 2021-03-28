@@ -38,7 +38,7 @@ namespace NobleEngine
 		/**
 		*Creates a font with a pixel size parameter.
 		*/
-		Font(int pixelSize);
+		Font(int _pixelSize);
 		/**
 		*Loads the font file.
 		*/

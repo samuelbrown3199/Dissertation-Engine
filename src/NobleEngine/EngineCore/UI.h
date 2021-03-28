@@ -74,15 +74,15 @@ namespace NobleEngine
 		/**
 		*Initializes a UI box with a screen rect.
 		*/
-		UIBox(unsigned int layer, glm::vec2 screenPos, glm::vec2 scale);
+		UIBox(unsigned int _layer, glm::vec2 _screenPos, glm::vec2 _scale);
 		/**
 		*Initializes a UI box with a screen rect and a base texture.
 		*/
-		UIBox(unsigned int layer, glm::vec2 screenPos, glm::vec2 scale, std::string baseTextureLoc);
+		UIBox(unsigned int _layer, glm::vec2 _screenPos, glm::vec2 _scale, std::string _baseTextureLoc);
 		/**
 		*Initializes a UI box with a screen rect and a base texture and hover texture.
 		*/
-		UIBox(unsigned int layer, glm::vec2 screenPos, glm::vec2 scale, std::string baseTextureLoc, std::string hoverTextureLoc);
+		UIBox(unsigned int _layer, glm::vec2 _screenPos, glm::vec2 _scale, std::string _baseTextureLoc, std::string _hoverTextureLoc);
 
 		/**
 		*Renders a UI box onto the screen.
@@ -103,11 +103,11 @@ namespace NobleEngine
 		/**
 		*Initializes a button with a screen position but no textures.
 		*/
-		UIButton(unsigned int layer, glm::vec2 screenPos, glm::vec2 scale);
+		UIButton(unsigned int _layer, glm::vec2 _screenPos, glm::vec2 _scale);
 		/**
 		*Initializes a button with a screen position and textures.
 		*/
-		UIButton(unsigned int layer, glm::vec2 screenPos, glm::vec2 scale, std::string baseTextureLoc, std::string hoverTextureLoc, std::string clickedTextureLoc);
+		UIButton(unsigned int _layer, glm::vec2 _screenPos, glm::vec2 _scale, std::string _baseTextureLoc, std::string _hoverTextureLoc, std::string _clickedTextureLoc);
 
 		/**
 		*Determines whether the button is currently clicked on this frame.
@@ -132,7 +132,7 @@ namespace NobleEngine
 		glm::vec3 colour = glm::vec3(1.0f, 0.0f, 0.0f);
 		float scale = 1.0f;
 
-		UILabel(unsigned int layer, glm::vec2 screenPos, float labelScale, std::string labelText, glm::vec3 textColour, std::shared_ptr<Font> font);
+		UILabel(unsigned int _layer, glm::vec2 _screenPos, float _labelScale, std::string _labelText, glm::vec3 _textColour, std::shared_ptr<Font> _font);
 		/**
 		*Renders the text onto the screen.
 		*/
@@ -146,7 +146,7 @@ namespace NobleEngine
 		bool toggle = false;
 		std::shared_ptr<Texture> baseTexture, toggledTexture;
 
-		UIToggle(unsigned int layer, bool startingValue, glm::vec2 screenPos, glm::vec2 rectScale, std::string baseTextureLoc, std::string toggleTextureLoc);
+		UIToggle(unsigned int _layer, bool _startingValue, glm::vec2 _screenPos, glm::vec2 _rectScale, std::string _baseTextureLoc, std::string _toggleTextureLoc);
 
 		void OnUpdate();
 		void OnRender();
@@ -168,7 +168,7 @@ namespace NobleEngine
 		float maxValue = 0, currentValue = 0;
 		float currentPercentage;
 
-		UISlider(unsigned int layer, float startingValue, float maxValue, glm::vec2 screenPos, glm::vec2 rectScale, std::string baseTextureLoc, std::string sliderHandleTexture);
+		UISlider(unsigned int _layer, float _startingValue, float _maxValue, glm::vec2 _screenPos, glm::vec2 _rectScale, std::string _baseTextureLoc, std::string _sliderHandleTexture);
 
 		void OnUpdate();
 		void OnRender();
@@ -196,7 +196,7 @@ namespace NobleEngine
 		/**
 		*Initializes the UI window with parameters.
 		*/
-		UIWindow(unsigned int layer, glm::vec2 screenPos, glm::vec2 scale, bool canDrag, std::string textureLoc);
+		UIWindow(unsigned int _layer, glm::vec2 _screenPos, glm::vec2 _scale, bool _canDrag, std::string _textureLoc);
 
 		template<typename T>
 		/**
@@ -214,9 +214,9 @@ namespace NobleEngine
 		/**
 		*Adds a UI element to the window with parameters
 		*/
-		std::shared_ptr<T> AddUIElement(Args&&... args)
+		std::shared_ptr<T> AddUIElement(Args&&... _args)
 		{
-			std::shared_ptr<T> element = std::make_shared<T>(std::forward<Args>(args)...);
+			std::shared_ptr<T> element = std::make_shared<T>(std::forward<Args>(_args)...);
 			element->elementRect->parentRect = elementRect;
 			uiElements.push_back(element);
 
@@ -278,9 +278,9 @@ namespace NobleEngine
 		/**
 		*Adds a UI element to the system with parameters
 		*/
-		std::shared_ptr<T> AddUIElement(Args&&... args)
+		std::shared_ptr<T> AddUIElement(Args&&... _args)
 		{
-			std::shared_ptr<T> element = std::make_shared<T>(std::forward<Args>(args)...);
+			std::shared_ptr<T> element = std::make_shared<T>(std::forward<Args>(_args)...);
 			uiElements.push_back(element);
 
 			if (element->elementRect->layer > maxLayers)

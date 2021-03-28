@@ -36,20 +36,20 @@ namespace NobleEngine
 		/**
 		*Initializes the mesh renderer with a model and a material. Shader will default to the standard shader.
 		*/
-		void OnInitialize(std::string modelDir, std::shared_ptr<Material> mat)
+		void OnInitialize(std::string _modelDir, std::shared_ptr<Material> _mat)
 		{
-			model = ResourceManager::LoadResource<Model>(modelDir);
-			material = mat;
+			model = ResourceManager::LoadResource<Model>(_modelDir);
+			material = _mat;
 			shader = Application::standardShader;
 		}
 		/**
 		*Initializes the mesh renderer with a model, material and a shader.
 		*/
-		void OnInitialize(std::string modelDir, std::shared_ptr<Material> mat, std::shared_ptr<ShaderProgram> sha)
+		void OnInitialize(std::string _modelDir, std::shared_ptr<Material> _mat, std::shared_ptr<ShaderProgram> _sha)
 		{
-			model = ResourceManager::LoadResource<Model>(modelDir);
-			material = mat;
-			shader = sha;
+			model = ResourceManager::LoadResource<Model>(_modelDir);
+			material = _mat;
+			shader = _sha;
 		}
 	};
 }

@@ -24,7 +24,7 @@ namespace NobleEngine
 		/**
 		*Loads an OGG file.
 		*/
-		void LoadOgg(const std::string& fileDirectory, std::vector<char>& buffer, ALenum& format, ALsizei& freq);
+		void LoadOgg(const std::string& _fileDirectory, std::vector<char>& _buffer, ALenum& _format, ALsizei& _freq);
 	};
 }
 

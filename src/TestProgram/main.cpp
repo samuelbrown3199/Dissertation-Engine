@@ -23,7 +23,7 @@ int main()
 
 	std::shared_ptr<AudioClip> ac = app->GetResourceManager()->LoadResource<AudioClip>(testAudio);
 
-	Application::activeScene->sceneEnvironment->directionalLight->direction = glm::vec3(0, 260, 0);
+	Application::activeScene->sceneEnvironment->directionalLight->direction = glm::vec3(0, -260, 0);
 
 	int amount = 5;
 	for (int x = 0; x < amount; x++)
@@ -40,22 +40,11 @@ int main()
 		}
 	}
 
-	std::shared_ptr<Entity> light = app->CreateEntity();
-	light->AddComponent<Transform>(glm::vec3(0, 5, 0));
-	light->AddComponent<Light>();
-
 	std::shared_ptr<Entity> floorEntity = app->CreateEntity();
-	std::shared_ptr<Transform> tr = floorEntity->AddComponent<Transform>(glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(1000, 1, 1000));
+	std::shared_ptr<Transform> tr = floorEntity->AddComponent<Transform>(glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(500, 1, 500));
 	floorEntity->AddComponent<PhysicsBody>(PhysicsBody::ColliderShape::box, 0);
 	std::shared_ptr<MeshRenderer> mr = floorEntity->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc));
 	
-	/*
-	std::shared_ptr<Entity> tankEntity = app->CreateEntity();
-	tr = tankEntity->AddComponent<Transform>(glm::vec3(75, 2, 0), glm::vec3(0, -30, 0), glm::vec3(10, 10, 10));
-	mr = tankEntity->AddComponent<MeshRenderer>(modelLoc2, app->GetResourceManager()->LoadMaterial(texLoc1));
-	mr->material->shininess = 0.1;
-	*/
-
 	std::shared_ptr<Entity> test2D = app->CreateEntity();
 	test2D->AddComponent<Transform>(glm::vec3(0, 15, 0));
 	test2D->AddComponent<SpriteRenderer>(testSpriteSheet);
@@ -68,7 +57,7 @@ int main()
 	app->BindSystem<FlyingCamSystem>(true, false);
 	app->BindSystem<RotatorSystem>(true, false);
 
-	app->BindUISystem<TestUI>();
+	app->BindUISystem<TestUI>()->active = false;
 
 	app->MainLoop();
 

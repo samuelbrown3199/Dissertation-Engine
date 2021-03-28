@@ -38,11 +38,11 @@ namespace NobleEngine
 		/**
 		*Returns a shared pointer to either an already existing sprite on the sheet, or creates a new sprite and returns that.
 		*/
-		std::shared_ptr<Sprite> GetSpriteLocation(std::string spriteName, int x, int y, int width, int height);
+		std::shared_ptr<Sprite> GetSpriteLocation(std::string _spriteName, int _x, int _y, int _width, int _height);
 		/**
 		*Returns an already existing sprite from the sheet with the same name.
 		*/
-		std::shared_ptr<Sprite> GetSpriteLocation(std::string spriteName);
+		std::shared_ptr<Sprite> GetSpriteLocation(std::string _spriteName);
 	};
 }
 

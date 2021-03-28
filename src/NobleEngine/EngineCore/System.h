@@ -57,10 +57,10 @@ namespace NobleEngine
 		/**
 		*Sets the amount of components a worker thread should handle, and enables system threading.
 		*/
-		void SetThreadingUse(int componentsPerThread)
+		void SetThreadingUse(int _componentsPerThread)
 		{
 			useThreading = true;
-			maxComponentsPerThread = componentsPerThread;
+			maxComponentsPerThread = _componentsPerThread;
 		}
 		/**
 		*Returns the application as a shared pointer.
@@ -142,10 +142,10 @@ namespace NobleEngine
 		/**
 		*Used to generate the functionality of a worker update thread.
 		*/
-		void ThreadUpdate(int amount, int buffer)
+		void ThreadUpdate(int _amount, int _buffer)
 		{
-			int maxCap = buffer + amount;
-			for (size_t co = buffer; co < maxCap; co++)
+			int maxCap = _buffer + _amount;
+			for (size_t co = _buffer; co < maxCap; co++)
 			{
 				if (co >= T::componentList.size())
 					continue;
@@ -195,10 +195,10 @@ namespace NobleEngine
 		/**
 		*Used to generate the functionality of a worker render thread.
 		*/
-		void ThreadRender(int amount, int buffer)
+		void ThreadRender(int _amount, int _buffer)
 		{
-			int maxCap = buffer + amount;
-			for (size_t co = buffer; co < maxCap; co++)
+			int maxCap = _buffer + _amount;
+			for (size_t co = _buffer; co < maxCap; co++)
 			{
 				if (co >= T::componentList.size())
 					continue;
@@ -220,18 +220,18 @@ namespace NobleEngine
 		/**
 		*Inherited classes can implement this function with a parameter taking in a shared pointer of the type. Functionality can then be called on that pointer.
 		*/
-		virtual void OnUpdate(std::shared_ptr<T> comp) {};
+		virtual void OnUpdate(std::shared_ptr<T> _comp) {};
 		/**
 		*Inherited classes can implement this function with a parameter taking in a shared pointer of the type. Functionality can then be called on that pointer.
 		*/
-		virtual void OnRender(std::shared_ptr<T> comp) {};
+		virtual void OnRender(std::shared_ptr<T> _comp) {};
 		/**
 		*Sets the system to use each feature, such as threading, update & rendering.
 		*/
-		void SetSystemUse(bool update, bool render)
+		void SetSystemUse(bool _update, bool _render)
 		{
-			useUpdate = update;
-			useRender = render;
+			useUpdate = _update;
+			useRender = _render;
 		}
 		/**
 		*Clears the list of component data that is marked for deletion. Handles the passed type through the template.

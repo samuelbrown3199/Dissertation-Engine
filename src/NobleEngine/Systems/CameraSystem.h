@@ -11,6 +11,6 @@ namespace NobleEngine
 		/**
 		*Updates the camera view matrix.
 		*/
-		void OnUpdate(std::shared_ptr<Camera> comp);
+		void OnUpdate(std::shared_ptr<Camera> _comp);
 	};
 }

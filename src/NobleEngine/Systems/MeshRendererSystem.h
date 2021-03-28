@@ -10,6 +10,6 @@ namespace NobleEngine
 	*/
 	struct MeshRendererSystem : public System<MeshRenderer>
 	{
-		void OnRender(std::shared_ptr<MeshRenderer> comp);
+		void OnRender(std::shared_ptr<MeshRenderer> _comp);
 	};
 }

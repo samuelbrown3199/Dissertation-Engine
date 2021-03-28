@@ -9,7 +9,7 @@ namespace NobleEngine
 {
 	struct SpriteRendererSystem : public System<SpriteRenderer>
 	{
-		void OnRender(std::shared_ptr<SpriteRenderer> comp);
+		void OnRender(std::shared_ptr<SpriteRenderer> _comp);
 	};
 }
 

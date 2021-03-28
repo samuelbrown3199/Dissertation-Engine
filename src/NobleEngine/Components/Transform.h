@@ -59,26 +59,26 @@ namespace NobleEngine
 		/**
 		*Initializes the Tranform component with the passed paramaters. Initializes a position, rotation and a scale.
 		*/
-		void OnInitialize(glm::vec3 pos, glm::vec3 rot, glm::vec3 sca)
+		void OnInitialize(glm::vec3 _pos, glm::vec3 _rot, glm::vec3 _sca)
 		{
-			position = pos;
-			rotation = rot;
-			scale = sca;
+			position = _pos;
+			rotation = _rot;
+			scale = _sca;
 		}
 		/**
 		*Initializes the Tranform component with the passed paramaters. Initializes a position, rotation.
 		*/
-		void OnInitialize(glm::vec3 pos, glm::vec3 rot)
+		void OnInitialize(glm::vec3 _pos, glm::vec3 _rot)
 		{
-			position = pos;
-			rotation = rot;
+			position = _pos;
+			rotation = _rot;
 		}
 		/**
 		*Initializes the Tranform component with the passed paramaters. Initializes a position.
 		*/
-		void OnInitialize(glm::vec3 pos)
+		void OnInitialize(glm::vec3 _pos)
 		{
-			position = pos;
+			position = _pos;
 		}
 	};
 }

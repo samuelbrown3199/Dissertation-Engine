@@ -31,7 +31,7 @@ namespace NobleEngine
 		/**
 		*Used to initialize a camera component. Parameter mainCam is used to detemine whether this is the active cam that the engine will use in rendering.
 		*/
-		void OnInitialize(bool mainCam)
+		void OnInitialize(bool _mainCam)
 		{
 			camTransform = GetEntity()->GetComponent<Transform>();
 
@@ -40,7 +40,7 @@ namespace NobleEngine
 				camTransform->rotation = glm::vec3(0, 0, -1.0f);
 			}
 
-			mainCamera = mainCam;
+			mainCamera = _mainCam;
 		}
 	};
 }

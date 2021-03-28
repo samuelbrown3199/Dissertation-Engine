@@ -85,7 +85,7 @@ namespace NobleEngine
 		/**
 		*Initializes the systems within the engine.
 		*/
-		static std::shared_ptr<Application> InitializeEngine(std::string windowName, int windowWidth, int windowHeight);
+		static std::shared_ptr<Application> InitializeEngine(std::string _windowName, int _windowWidth, int _windowHeight);
 		/**
 		*Starts and manages the main engine loop.
 		*/
@@ -105,7 +105,7 @@ namespace NobleEngine
 		/**
 		*Returns an entity with the ID passed through the parameter;
 		*/
-		static std::shared_ptr<Entity> GetEntity(int ID);
+		static std::shared_ptr<Entity> GetEntity(int _ID);
 		/**
 		*Returns the resource manager.
 		*/
@@ -118,7 +118,7 @@ namespace NobleEngine
 		*Binds the system to the engine core for use in game functionality. Only one of each system type can be bound at a time.
 		*/
 		template<typename T>
-		static void BindSystem(bool update, bool render)
+		static void BindSystem(bool _update, bool _render)
 		{
 			std::shared_ptr<T> temp;
 			for (size_t sys = 0; sys < systems.size(); sys++)
@@ -132,7 +132,7 @@ namespace NobleEngine
 			}
 
 			std::shared_ptr<T> system = std::make_shared<T>();
-			system->SetSystemUse(update, render);
+			system->SetSystemUse(_update, _render);
 			system->application = self;
 			self.lock()->systems.push_back(system);
 		}
@@ -140,7 +140,7 @@ namespace NobleEngine
 		*Binds the system to the engine core for use in game functionality. Only one of each system type can be bound at a time. This sets it up with threading.
 		*/
 		template<typename T>
-		static void BindSystem(bool update, bool render, int amountOfComponentsPerThread)
+		static void BindSystem(bool _update, bool _render, int _amountOfComponentsPerThread)
 		{
 			std::shared_ptr<T> temp;
 			for (size_t sys = 0; sys < systems.size(); sys++)
@@ -154,8 +154,8 @@ namespace NobleEngine
 			}
 
 			std::shared_ptr<T> system = std::make_shared<T>();
-			system->SetSystemUse(update, render);
-			system->SetThreadingUse(amountOfComponentsPerThread);
+			system->SetSystemUse(_update, _render);
+			system->SetThreadingUse(_amountOfComponentsPerThread);
 			system->application = self;
 			self.lock()->systems.push_back(system);
 		}
@@ -229,7 +229,7 @@ namespace NobleEngine
 		/**
 		*Removes an entity with the passed ID parameter.
 		*/
-		void RemoveEntity(int ID);
+		void RemoveEntity(int _ID);
 	};
 }
 

@@ -41,11 +41,11 @@ namespace NobleEngine
 		*Adds the component to the entity with the passed template type and automatically adds it to the component type list. This also returns a shared pointer of the component.
 		*/
 		template <typename T, typename ... Args>
-		std::shared_ptr<T> AddComponent(Args&&... args)
+		std::shared_ptr<T> AddComponent(Args&&... _args)
 		{
 			std::shared_ptr<T> component = std::make_shared<T>();
 			component->entityID = entityID;
-			component->OnInitialize(std::forward<Args>(args)...);
+			component->OnInitialize(std::forward<Args>(_args)...);
 			entityComponents.push_back(component);
 			T::componentList.push_back(component);
 

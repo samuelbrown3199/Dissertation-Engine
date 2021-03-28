@@ -59,28 +59,28 @@ namespace NobleEngine
 		/**
 		*Initializes an audio source. Creates it with an audio clip.
 		*/
-		void OnInitialize(std::string audioClipLocation)
+		void OnInitialize(std::string _audioClipLocation)
 		{
-			clip = ResourceManager::LoadResource<AudioClip>(audioClipLocation);
+			clip = ResourceManager::LoadResource<AudioClip>(_audioClipLocation);
 		}
 		/**
 		*Initializes an audio source. Creates it with an audio clip and whether you want it to play.
 		*/
-		void OnInitialize(std::string audioClipLocation, bool playOnStart)
+		void OnInitialize(std::string _audioClipLocation, bool _playOnStart)
 		{
-			clip = ResourceManager::LoadResource<AudioClip>(audioClipLocation);
-			play = playOnStart;
+			clip = ResourceManager::LoadResource<AudioClip>(_audioClipLocation);
+			play = _playOnStart;
 		}
 		/**
 		*Initializes an audio source. Creates it with an audio clip, whether you want it to play, volume, pitch and loop.
 		*/
-		void OnInitialize(std::string audioClipLocation, bool playOnStart, float volume, float pitchValue, bool looping)
+		void OnInitialize(std::string _audioClipLocation, bool _playOnStart, float _volume, float _pitchValue, bool _looping)
 		{
-			clip = ResourceManager::LoadResource<AudioClip>(audioClipLocation);
-			play = playOnStart;
-			gain = volume;
-			pitch = pitchValue;
-			loop = looping;
+			clip = ResourceManager::LoadResource<AudioClip>(_audioClipLocation);
+			play = _playOnStart;
+			gain = _volume;
+			pitch = _pitchValue;
+			loop = _looping;
 		}
 	};
 }

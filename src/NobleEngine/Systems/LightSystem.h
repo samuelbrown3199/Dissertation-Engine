@@ -19,7 +19,7 @@ namespace NobleEngine
 		/**
 		*Updates the lights distance value to the main camera.
 		*/
-		void OnUpdate(std::shared_ptr<Light> comp);
+		void OnUpdate(std::shared_ptr<Light> _comp);
 		/**
 		*Binds the closest 20 lights to the shader.
 		*/

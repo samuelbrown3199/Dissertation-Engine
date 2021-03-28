@@ -35,19 +35,19 @@ namespace NobleEngine
 		/**
 		*Adds a collider to the list of all colliders.
 		*/
-		void AddCollider(btCollisionShape* shape);
+		void AddCollider(btCollisionShape* _shape);
 		/**
 		*Adds a rigidbody to the physics world.
 		*/
-		void AddRigidbody(btRigidBody* body);
+		void AddRigidbody(btRigidBody* _body);
 		/**
 		*Removes a rigidbody from the physics world.
 		*/
-		void RemoveRigidbody(btRigidBody* body);
+		void RemoveRigidbody(btRigidBody* _body);
 		/**
 		*Steps the physics simulation by the amount.
 		*/
-		void StepSimulation(double amount);
+		void StepSimulation(double _amount);
 	};
 }
 

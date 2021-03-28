@@ -29,19 +29,19 @@ namespace NobleEngine
 		/**
 		*Checks if a key is down. Uses SDL keycodes which can be found here: https://wiki.libsdl.org/SDL_Scancode
 		*/
-		static bool GetKey(SDL_Keycode key);
+		static bool GetKey(SDL_Keycode _key);
 		/**
 		*Checks if the key was pressed this frame.
 		*/
-		static bool GetKeyDown(SDL_Keycode key);
+		static bool GetKeyDown(SDL_Keycode _key);
 		/**
 		*Checks if the key was released this frame.
 		*/
-		static bool GetKeyUp(SDL_Keycode key);
+		static bool GetKeyUp(SDL_Keycode _key);
 		/**
 		*Checks if a mouse button is down. Button 0 is left, 1 is right, 2 is middle.
 		*/
-		static bool GetMouseButton(int button);
+		static bool GetMouseButton(int _button);
 		/**
 		*Checks if the mouse button has been pressed this frame.
 		*/
