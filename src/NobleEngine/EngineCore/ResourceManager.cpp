@@ -7,47 +7,92 @@
 namespace NobleEngine
 {
 	std::vector<std::shared_ptr<Resource>> ResourceManager::resources;
-	std::vector<std::shared_ptr<Material>> ResourceManager::materials;
 	std::vector <std::shared_ptr<ShaderProgram>> ResourceManager::shaderPrograms;
+
+	std::shared_ptr<Material> ResourceManager::LoadMaterial(std::string diffusePath)
+	{
+		for (size_t ma = 0; ma < resources.size(); ma++)
+		{
+			//will need to add checking other variables of materials match later on.
+			bool diffuseMatch = false;
+			std::shared_ptr<Material> matToCheck = std::dynamic_pointer_cast<Material>(resources.at(ma));
+
+			if (matToCheck)
+			{
+				if (diffusePath != "")
+				{
+					if (matToCheck->diffuseTexture)
+					{
+						if (matToCheck->diffuseTexture->resourcePath == diffusePath)
+						{
+							diffuseMatch = true;
+						}
+					}
+				}
+				else
+				{
+					diffuseMatch = true;
+				}
+	
+				if (diffuseMatch)
+				{
+					return matToCheck;
+				}
+			}
+		}
+
+		std::shared_ptr<Material> mat = std::make_shared<Material>();
+		if (diffusePath != "")
+		{
+			mat->diffuseTexture = LoadResource<Texture>(diffusePath);
+		}
+
+		return mat;
+	}
 
 	std::shared_ptr<Material> ResourceManager::LoadMaterial(std::string diffusePath, std::string specularPath)
 	{
-		for (size_t ma = 0; ma < materials.size(); ma++)
+		for (size_t ma = 0; ma < resources.size(); ma++)
 		{
 			//will need to add checking other variables of materials match later on.
 			bool diffuseMatch = false, specularMatch = false;
-			if (diffusePath != "")
-			{
-				if (materials.at(ma)->diffuseTexture)
-				{
-					if (materials.at(ma)->diffuseTexture->resourcePath == diffusePath)
-					{
-						diffuseMatch = true;
-					}
-				}
-			}
-			else
-			{
-				diffuseMatch = true;
-			}
-			if (specularPath != "")
-			{
-				if (materials.at(ma)->specularTexture)
-				{
-					if (materials.at(ma)->specularTexture->resourcePath == specularPath)
-					{
-						specularMatch = true;
-					}
-				}
-			}
-			else
-			{
-				specularMatch = true;
-			}
+			std::shared_ptr<Material> matToCheck = std::dynamic_pointer_cast<Material>(resources.at(ma));
 
-			if (diffuseMatch && specularMatch)
+			if (matToCheck)
 			{
-				return materials.at(ma);
+				if (diffusePath != "")
+				{
+					if (matToCheck->diffuseTexture)
+					{
+						if (matToCheck->diffuseTexture->resourcePath == diffusePath)
+						{
+							diffuseMatch = true;
+						}
+					}
+				}
+				else
+				{
+					diffuseMatch = true;
+				}
+				if (specularPath != "")
+				{
+					if (matToCheck->specularTexture)
+					{
+						if (matToCheck->specularTexture->resourcePath == specularPath)
+						{
+							specularMatch = true;
+						}
+					}
+				}
+				else
+				{
+					specularMatch = true;
+				}
+
+				if (diffuseMatch && specularMatch)
+				{
+					return matToCheck;
+				}
 			}
 		}
 
@@ -60,7 +105,7 @@ namespace NobleEngine
 		{
 			mat->specularTexture = LoadResource<Texture>(specularPath);
 		}
-		materials.push_back(mat);
+		resources.push_back(mat);
 		return mat;
 	}
 
@@ -96,14 +141,6 @@ namespace NobleEngine
 			if (resources.at(re).use_count() == 1)
 			{
 				resources.erase(resources.begin() + re);
-			}
-		}
-
-		for (size_t ma = 0; ma < materials.size(); ma++)
-		{
-			if (materials.at(ma).use_count() == 1)
-			{
-				materials.erase(materials.begin() + ma);
 			}
 		}
 

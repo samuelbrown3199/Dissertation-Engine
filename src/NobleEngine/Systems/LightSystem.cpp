@@ -28,8 +28,6 @@ namespace NobleEngine
 
 	void LightSystem::PreRender()
 	{
-		std::vector<std::shared_ptr<Light>> closestLights;
-
 		Application::standardShader->UseProgram();
 		Application::standardShader->BindVector3("u_ViewPos", Application::activeCam->camTransform->position);
 
@@ -41,28 +39,34 @@ namespace NobleEngine
 		Application::standardShader->BindVector3("dirLight.specularLight", Application::activeScene->sceneEnvironment->directionalLight->specularLightColour);
 		Application::standardShader->BindFloat("dirLight.intensity", Application::activeScene->sceneEnvironment->directionalLight->intensity);
 
-		for (int i = 0; i < Light::componentList.size(); i++)
+		if (Application::activeCam->camTransform->position != oldPos)
 		{
-			if (i < 20)
+			closestLights.clear();
+
+			for (int i = 0; i < Light::componentList.size(); i++)
 			{
-				closestLights.push_back(Light::componentList.at(i));
-				std::sort(closestLights.begin(), closestLights.end(), SortByDistance);
-			}
-			else
-			{
-				for (int j = 0; j < closestLights.size(); j++)
+				if (i < 20)
 				{
-					if (Light::componentList.at(i)->distanceToCamera < closestLights.at(j)->distanceToCamera)
+					closestLights.push_back(Light::componentList.at(i));
+					std::sort(closestLights.begin(), closestLights.end(), SortByDistance);
+				}
+				else
+				{
+					for (int j = 0; j < closestLights.size(); j++)
 					{
-						closestLights.pop_back();
-						closestLights.push_back(Light::componentList.at(i));
-						std::sort(closestLights.begin(), closestLights.end(), SortByDistance);
-						break;
+						if (Light::componentList.at(i)->distanceToCamera < closestLights.at(j)->distanceToCamera)
+						{
+							closestLights.pop_back();
+							closestLights.push_back(Light::componentList.at(i));
+							std::sort(closestLights.begin(), closestLights.end(), SortByDistance);
+							break;
+						}
 					}
 				}
 			}
-		}
 
+			oldPos = Application::activeCam->camTransform->position;
+		}
 		Application::standardShader->BindInt("numberOfLights", closestLights.size());
 		for (int i = 0; i < closestLights.size(); i++)
 		{

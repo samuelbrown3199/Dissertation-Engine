@@ -31,15 +31,24 @@ namespace NobleEngine
 		{
 			glBindVertexArray(comp->model->vaoID);
 		}
+		glActiveTexture(GL_TEXTURE0);
 		if (comp->material->diffuseTexture)
 		{
-			glActiveTexture(GL_TEXTURE0);
 			glBindTexture(GL_TEXTURE_2D, comp->material->diffuseTexture->textureID);
 		}
+		else
+		{
+			glBindTexture(GL_TEXTURE_2D, 0);
+		}
+
+		glActiveTexture(GL_TEXTURE1);
 		if (comp->material->specularTexture)
 		{
-			glActiveTexture(GL_TEXTURE1);
 			glBindTexture(GL_TEXTURE_2D, comp->material->specularTexture->textureID);
+		}
+		else
+		{
+			glBindTexture(GL_TEXTURE_2D, 0);
 		}
 
 		glDrawArrays(GL_TRIANGLES, 0, comp->model->drawCount);

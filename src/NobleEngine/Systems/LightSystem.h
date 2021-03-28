@@ -9,6 +9,12 @@ namespace NobleEngine
 {
 	struct LightSystem : public System<Light>
 	{
+	private:
+
+		std::vector<std::shared_ptr<Light>> closestLights;
+		glm::vec3 oldPos;
+
+	public:
 		static bool SortByDistance(std::shared_ptr<Light>& light1, std::shared_ptr<Light>& light2);
 		/**
 		*Updates the lights distance value to the main camera.

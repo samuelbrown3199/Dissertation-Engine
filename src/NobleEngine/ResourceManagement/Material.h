@@ -11,7 +11,7 @@ namespace NobleEngine
 	/**
 	*Stores the visual properties of a mesh renderer.
 	*/
-	struct Material
+	struct Material : public Resource
 	{
 		//after changing and adding variables make sure to update the load material function in the resource manager.
 		/**

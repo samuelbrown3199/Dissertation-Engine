@@ -23,7 +23,6 @@ namespace NobleEngine
 		*Stores all loaded resources.
 		*/
 		static std::vector<std::shared_ptr<Resource>> resources;
-		static std::vector<std::shared_ptr<Material>> materials;
 		static std::vector <std::shared_ptr<ShaderProgram>> shaderPrograms;
 
 		/**
@@ -50,6 +49,10 @@ namespace NobleEngine
 			resources.push_back(newResource);
 			return newResource;
 		}
+		/**
+		*Creates a material using a diffuse texture.
+		*/
+		static std::shared_ptr<Material> LoadMaterial(std::string diffusePath);
 		/**
 		*Creates a material using a diffuse texture and a specular texture.
 		*/
