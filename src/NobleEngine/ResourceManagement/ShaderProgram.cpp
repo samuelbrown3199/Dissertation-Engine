@@ -3,6 +3,8 @@
 #include "../EngineCore/Application.h"
 #include "../EngineCore/ResourceManager.h"
 
+#include <algorithm>
+
 namespace NobleEngine
 {
 	ShaderProgram::ShaderProgram(std::weak_ptr<Application> app)
@@ -11,18 +13,29 @@ namespace NobleEngine
 		programID = glCreateProgram();
 	}
 
+	bool ShaderProgram::SortByPriority(std::shared_ptr<ShaderLocation>& _loc1, std::shared_ptr<ShaderLocation>& _loc2)
+	{
+		return _loc1->priority > _loc2->priority;
+	}
+
 	GLint ShaderProgram::GetLocation(std::string location)
 	{
 		for (size_t i = 0; i < shaderLocations.size(); i++)
 		{
 			if (shaderLocations.at(i)->locationName == location)
 			{
+				if (i != 0)
+				{
+					shaderLocations.at(i)->priority++;
+					std::sort(shaderLocations.begin(), shaderLocations.end(), SortByPriority);
+				}
 				return shaderLocations.at(i)->locationID;
 			}
 		}
 
 		std::shared_ptr<ShaderLocation> rtn = ShaderLocation::CreateLocation(programID, location);
 		shaderLocations.push_back(rtn);
+
 		return rtn->locationID;
 	}
 

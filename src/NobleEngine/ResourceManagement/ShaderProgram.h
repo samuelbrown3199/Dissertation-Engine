@@ -24,12 +24,14 @@ namespace NobleEngine
 	{
 		std::string locationName;
 		GLint locationID;
+		unsigned int priority;
 
 		static std::shared_ptr<ShaderLocation> CreateLocation(GLuint _shaderProgram, std::string _location)
 		{
 			std::shared_ptr<ShaderLocation> rtn = std::make_shared<ShaderLocation>();
 			rtn->locationName = _location;
 			rtn->locationID = glGetUniformLocation(_shaderProgram, _location.c_str());
+			rtn->priority = 0;
 			if (rtn->locationID == -1)
 			{
 				//std::cout << "Couldn't find location " << location << " in shader program " << shaderProgram << std::endl;
@@ -50,6 +52,8 @@ namespace NobleEngine
 
 		std::weak_ptr<ShaderProgram> self;
 		std::vector<std::shared_ptr<ShaderLocation>> shaderLocations;
+
+		static bool SortByPriority(std::shared_ptr<ShaderLocation>& _loc1, std::shared_ptr<ShaderLocation>& _loc2);
 
 	public:
 		ShaderProgram(std::weak_ptr<Application> _app);

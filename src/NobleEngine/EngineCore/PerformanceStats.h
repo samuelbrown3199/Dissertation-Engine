@@ -20,7 +20,7 @@ namespace NobleEngine
 		double fps = 0;
 		double deltaT = 0;
 
-		const int avgFrameRateCount = 10;
+		const int avgFrameRateCount = 60;
 		std::vector<int> framerateList;
 		int currentFrameCount = 0;
 

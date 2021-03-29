@@ -25,14 +25,14 @@ int main()
 
 	Application::activeScene->sceneEnvironment->directionalLight->direction = glm::vec3(0, -260, 0);
 
-	int amount = 5;
+	int amount = 15;
 	for (int x = 0; x < amount; x++)
 	{
 		for (int z = 0; z < amount; z++)
 		{
 			for (int y = 0; y < amount; y++)
 			{
-				std::shared_ptr<Entity> physicsTest = app->CreateEntity(glm::vec3(-50 + (15 * x) + rand() % 5, 20 + (15 * y) + rand() % 5, 50 + (-15 * z) + rand() % 5), glm::vec3(rand() % 360, rand() % 360, rand() % 360), glm::vec3(1,1,1));
+				std::shared_ptr<Entity> physicsTest = app->CreateEntity(glm::vec3(25 + (-15 * x) + rand() % 5, 50 + (15 * y) + rand() % 5, -30 + (-15 * z) + rand() % 5), glm::vec3(rand() % 360, rand() % 360, rand() % 360), glm::vec3(1,1,1));
 				std::shared_ptr<MeshRenderer> pc = physicsTest->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc));
 				physicsTest->AddComponent<PhysicsBody>(PhysicsBody::ColliderShape::box, 20);
 			}
@@ -43,10 +43,6 @@ int main()
 	std::shared_ptr<Transform> tr = floorEntity->AddComponent<Transform>(glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(500, 1, 500));
 	floorEntity->AddComponent<PhysicsBody>(PhysicsBody::ColliderShape::box, 0);
 	std::shared_ptr<MeshRenderer> mr = floorEntity->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc));
-	
-	std::shared_ptr<Entity> test2D = app->CreateEntity();
-	test2D->AddComponent<Transform>(glm::vec3(0, 15, 0));
-	test2D->AddComponent<SpriteRenderer>(testSpriteSheet);
 
 	std::shared_ptr<Entity> camera = app->CreateEntity();
 	camera->AddComponent<Transform>(glm::vec3(0, 5, 0));

@@ -120,14 +120,14 @@ namespace NobleEngine
 		activeScene = CreateScene();
 		PrimitiveShapes::SetupPrimitiveShapes();
 
+		app->BindCoreSystems();
+
 		return app;
 	}
 
 	void Application::MainLoop()
 	{
-		BindCoreSystems();
-
-		//glEnable(GL_CULL_FACE);
+		glEnable(GL_CULL_FACE);
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -194,6 +194,7 @@ namespace NobleEngine
 			InputManager::ClearFrameInputs();
 
 			performanceStats.UpdatePerformanceStats();
+			performanceStats.PrintOutPerformanceStats();
 		}
 
 		physicsWorld->CleanupPhysicsWorld();
@@ -293,8 +294,8 @@ namespace NobleEngine
 
 	void Application::BindCoreSystems()
 	{
-		BindSystem<TransformSystem>(true, false, 5000);
-		BindSystem<PhysicsBodySystem>(true, false, 5000);
+		BindSystem<TransformSystem>(true, false);
+		BindSystem<PhysicsBodySystem>(true, false);
 		BindSystem<CameraSystem>(true, false);
 		BindSystem<AudioListenerSystem>(true, false);
 		BindSystem<AudioSourceSystem>(true, false);
