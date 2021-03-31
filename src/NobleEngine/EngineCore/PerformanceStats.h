@@ -16,9 +16,8 @@ namespace NobleEngine
 		friend class NobleEngine::Application;
 
 	private:
-		Uint32 frameStart, renderStart, updateStart, physicsStart;
+		Uint32 frameStart, preUpdateStart, renderStart, updateStart, physicsStart, cleanupStart;
 		double fps = 0;
-		double deltaT = 0;
 
 		const int avgFrameRateCount = 60;
 		std::vector<int> framerateList;
@@ -34,11 +33,15 @@ namespace NobleEngine
 		void UpdatePerformanceStats();
 
 	public:
+		static double deltaT;
+
 		static double avgFPS;
 		static double frameTime;
+		static double preUpdateTime;
 		static double updateTime;
 		static double renderTime;
 		static double physicsTime;
+		static double cleanupTime;
 
 		/**
 		*Prints out perfomance information for the current frame.

@@ -131,17 +131,19 @@ namespace NobleEngine
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		SDL_GL_SetSwapInterval(0);
 		
 		glClearColor(0.0f, 0.45f, 0.45f, 1.0f);
 
 		while (loop)
 		{
 			performanceStats.ResetPerformanceStats();
-
+			performanceStats.preUpdateStart = SDL_GetTicks();
 			InputManager::HandleGeneralInput();
 			screen->UpdateScreenSize();
 
 			std::shared_ptr<std::thread> physicsThread = ThreadingManager::CreateThread(&PhysicsWorld::StepSimulation, physicsWorld, performanceStats.deltaT); //Update the physics world simulation.
+			performanceStats.preUpdateTime = SDL_GetTicks() - performanceStats.preUpdateStart;
 
 			performanceStats.updateStart = SDL_GetTicks();
 			for (size_t sys = 0; sys < systems.size(); sys++) //handles system updates
@@ -158,8 +160,8 @@ namespace NobleEngine
 			}
 			performanceStats.updateTime = SDL_GetTicks() - performanceStats.updateStart;
 
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			performanceStats.renderStart = SDL_GetTicks();
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			for (size_t sys = 0; sys < systems.size(); sys++) //handles system rendering
 			{
 				systems.at(sys)->Render();
@@ -171,13 +173,14 @@ namespace NobleEngine
 					uiSystems.at(sys)->Render();
 				}
 			}
-			performanceStats.renderTime = SDL_GetTicks() - performanceStats.renderStart;
 			SDL_GL_SwapWindow(screen->GetWindow());
+			performanceStats.renderTime = SDL_GetTicks() - performanceStats.renderStart;
 
 			performanceStats.physicsStart = SDL_GetTicks();
 			ThreadingManager::JoinThread(physicsThread);
 			performanceStats.physicsTime = SDL_GetTicks() - performanceStats.physicsStart;
 
+			performanceStats.cleanupStart = SDL_GetTicks();
 			std::vector<std::shared_ptr<Entity>>::iterator deleter;
 			for (deleter = deletionEntities.end(); deleter != deletionEntities.begin(); deleter--)
 			{
@@ -192,9 +195,18 @@ namespace NobleEngine
 			ThreadingManager::CleanupLooseThreads();
 			ResourceManager::UnloadUnusedResources();
 			InputManager::ClearFrameInputs();
+			performanceStats.cleanupTime = SDL_GetTicks() - performanceStats.cleanupStart;
 
 			performanceStats.UpdatePerformanceStats();
 			performanceStats.PrintOutPerformanceStats();
+
+			/*SystemPerformanceStats transformSystem = systems.at(0)->GetPerformanceStats();
+			SystemPerformanceStats physicsSystem = systems.at(1)->GetPerformanceStats();
+			SystemPerformanceStats meshSystem = systems.at(6)->GetPerformanceStats();
+
+			std::cout << "Transform System | Update Time: " << transformSystem.updateTime << " for " << transformSystem.componentListSize << " components." << std::endl;
+			std::cout << "Physics System | Update Time: " << physicsSystem.updateTime << " for " << physicsSystem.componentListSize << " components." << std::endl;
+			std::cout << "Mesh Renderer System | Render Time: " << meshSystem.renderTime << " for " << meshSystem.componentListSize << " components." << std::endl;*/
 		}
 
 		physicsWorld->CleanupPhysicsWorld();

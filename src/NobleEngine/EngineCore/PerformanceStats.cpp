@@ -2,18 +2,23 @@
 
 namespace NobleEngine
 {
+	double PerformanceStats::deltaT = 0;
 	double PerformanceStats::avgFPS = 0;
 	double PerformanceStats::frameTime = 0;
+	double PerformanceStats::preUpdateTime = 0;
 	double PerformanceStats::updateTime = 0;
 	double PerformanceStats::renderTime = 0;
 	double PerformanceStats::physicsTime = 0;
+	double PerformanceStats::cleanupTime = 0;
 
 	void PerformanceStats::ResetPerformanceStats()
 	{
 		frameStart = SDL_GetTicks();
+		preUpdateStart = 0;
 		updateTime = 0;
 		renderTime = 0;
 		physicsTime = 0;
+		cleanupTime = 0;
 	}
 
 	void PerformanceStats::UpdatePerformanceStats()
@@ -39,6 +44,6 @@ namespace NobleEngine
 
 	void PerformanceStats::PrintOutPerformanceStats()
 	{
-		std::cout << "AVG FPS: " << avgFPS << "	Frame Time: " << frameTime << "	Update Time: " << updateTime << "	Render Time: " << renderTime << "	Physics thread join Time: " << physicsTime << std::endl;
+		std::cout << "AVG FPS: " << avgFPS << " | Frame Time: " << frameTime << " | Pre Update Time: " << preUpdateTime <<" | Update Time: " << updateTime << " | Render Time: " << renderTime << " | Physics thread join Time: " << physicsTime << " | Cleanup Time: " << cleanupTime << std::endl;
 	}
 }
