@@ -77,6 +77,7 @@ namespace NobleEngine
 		Application::standardShaderUI->BindMat4("u_Ortho", Screen::GenerateOrthographicMatrix());
 
 		glActiveTexture(0);
+		glBindTexture(GL_TEXTURE_2D, 0);
 		if (baseTexture)
 		{
 			glBindTexture(GL_TEXTURE_2D, baseTexture->textureID);
@@ -133,6 +134,7 @@ namespace NobleEngine
 		Application::standardShaderUI->BindMat4("u_Ortho", Screen::GenerateOrthographicMatrix());
 
 		glActiveTexture(0);
+		glBindTexture(GL_TEXTURE_2D, 0);
 		if (baseTexture)
 		{
 			glBindTexture(GL_TEXTURE_2D, baseTexture->textureID);
@@ -250,6 +252,7 @@ namespace NobleEngine
 		Application::standardShaderUI->BindMat4("u_Ortho", Screen::GenerateOrthographicMatrix());
 
 		glActiveTexture(0);
+		glBindTexture(GL_TEXTURE_2D, 0);
 		if (!toggle)
 		{
 			if (baseTexture)
@@ -333,6 +336,7 @@ namespace NobleEngine
 		Application::standardShaderUI->BindMat4("u_Ortho", Screen::GenerateOrthographicMatrix());
 
 		glActiveTexture(0);
+		glBindTexture(GL_TEXTURE_2D, 0);
 		if (sliderTexture)
 		{
 			glBindTexture(GL_TEXTURE_2D, sliderTexture->textureID);
@@ -415,6 +419,7 @@ namespace NobleEngine
 		Application::standardShaderUI->BindMat4("u_Ortho", Screen::GenerateOrthographicMatrix());
 
 		glActiveTexture(0);
+		glBindTexture(GL_TEXTURE_2D, 0);
 		if (windowTexture)
 		{
 			glBindTexture(GL_TEXTURE_2D, windowTexture->textureID);

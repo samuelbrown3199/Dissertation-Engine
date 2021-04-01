@@ -198,7 +198,7 @@ namespace NobleEngine
 			performanceStats.cleanupTime = SDL_GetTicks() - performanceStats.cleanupStart;
 
 			performanceStats.UpdatePerformanceStats();
-			performanceStats.PrintOutPerformanceStats();
+			//performanceStats.PrintOutPerformanceStats();
 
 			/*SystemPerformanceStats transformSystem = systems.at(0)->GetPerformanceStats();
 			SystemPerformanceStats physicsSystem = systems.at(1)->GetPerformanceStats();
