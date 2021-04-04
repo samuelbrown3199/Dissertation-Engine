@@ -82,7 +82,6 @@ namespace NobleEngine
 			Application::standardShader->BindFloat(location + "].quadratic", closestLights.at(i)->quadratic);
 			Application::standardShader->BindFloat(location + "].intensity", closestLights.at(i)->intensity);
 		}
-
 		glUseProgram(0);
 	}
 }

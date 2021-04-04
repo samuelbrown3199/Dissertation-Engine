@@ -26,7 +26,7 @@ namespace NobleEngine
 		comp->shader->BindModelMat(comp->transform->model);
 		comp->shader->BindProjectionMat(GetApplication()->screen->GenerateProjectionMatrix());
 		comp->shader->BindViewMat(GetApplication()->activeCam->viewMatrix);
-		comp->shader->BindFloat("material.shininess", comp->material->shininess); //this line slows down the render time quite a bit, needs to be optimized.
+		comp->shader->BindFloat("material.shininess", comp->material->shininess); //This line of code gives error 1282
 
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, 0);
