@@ -33,6 +33,7 @@ namespace NobleEngine
 			if (rtn->locationID == -1)
 			{
 				//std::cout << "Couldn't find location " << location << " in shader program " << shaderProgram << std::endl;
+				//return a null ptr here and dont add to the locations list.
 			}
 
 			return rtn;

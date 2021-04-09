@@ -76,7 +76,7 @@ namespace NobleEngine
 		Application::standardShaderUI->BindMat4("u_UIPos", elementRect->GetUIMatrix());
 		Application::standardShaderUI->BindMat4("u_Ortho", Screen::GenerateOrthographicMatrix());
 
-		glActiveTexture(0);
+		glActiveTexture(GL_TEXTURE0);
 		if (baseTexture)
 		{
 			glBindTexture(GL_TEXTURE_2D, baseTexture->textureID);
@@ -92,6 +92,12 @@ namespace NobleEngine
 		glDrawArrays(GL_TRIANGLES, 0, 6);
 		glBindVertexArray(0);
 		glUseProgram(0);
+
+		GLenum errorCode = glGetError();
+		if (errorCode != GL_NO_ERROR)
+		{
+			std::cout << "OpenGL Error in Box Rendering!! Error Code: " << errorCode << std::endl;
+		}
 	}
 
 	//---------------------------------------------------------------------------//
@@ -132,7 +138,7 @@ namespace NobleEngine
 		Application::standardShaderUI->BindMat4("u_UIPos", elementRect->GetUIMatrix());
 		Application::standardShaderUI->BindMat4("u_Ortho", Screen::GenerateOrthographicMatrix());
 
-		glActiveTexture(0);
+		glActiveTexture(GL_TEXTURE0);
 		if (baseTexture)
 		{
 			glBindTexture(GL_TEXTURE_2D, baseTexture->textureID);
@@ -155,6 +161,11 @@ namespace NobleEngine
 		glDrawArrays(GL_TRIANGLES, 0, 6);
 		glBindVertexArray(0);
 		glUseProgram(0);
+
+		if (glGetError() != GL_NO_ERROR)
+		{
+			std::cout << "OpenGL Error in Button Rendering!!" << std::endl;
+		}
 	}
 
 	bool UIButton::ClickedOn()
@@ -220,6 +231,12 @@ namespace NobleEngine
 		}
 		glBindVertexArray(0);
 		glBindTexture(GL_TEXTURE_2D, 0);
+
+		GLenum errorCode = glGetError();
+		if (errorCode != GL_NO_ERROR)
+		{
+			std::cout << "OpenGL Error in Label Rendering!! Error Code: " << errorCode << std::endl;
+		}
 	}
 
 
@@ -249,7 +266,7 @@ namespace NobleEngine
 		Application::standardShaderUI->BindMat4("u_UIPos", elementRect->GetUIMatrix());
 		Application::standardShaderUI->BindMat4("u_Ortho", Screen::GenerateOrthographicMatrix());
 
-		glActiveTexture(0);
+		glActiveTexture(GL_TEXTURE0);
 		if (!toggle)
 		{
 			if (baseTexture)
@@ -268,6 +285,12 @@ namespace NobleEngine
 		glDrawArrays(GL_TRIANGLES, 0, 6);
 		glBindVertexArray(0);
 		glUseProgram(0);
+
+		GLenum errorCode = glGetError();
+		if (errorCode != GL_NO_ERROR)
+		{
+			std::cout << "OpenGL Error in Toggle Rendering!! Error Code: " << errorCode << std::endl;
+		}
 	}
 
 	//---------------------------------------------------------------------------//
@@ -326,13 +349,11 @@ namespace NobleEngine
 	}
 	void UISlider::OnRender()
 	{
-		glDisable(GL_DEPTH_TEST);
-
 		Application::standardShaderUI->UseProgram();
 		Application::standardShaderUI->BindMat4("u_UIPos", elementRect->GetUIMatrix());
 		Application::standardShaderUI->BindMat4("u_Ortho", Screen::GenerateOrthographicMatrix());
 
-		glActiveTexture(0);
+		glActiveTexture(GL_TEXTURE0);
 		if (sliderTexture)
 		{
 			glBindTexture(GL_TEXTURE_2D, sliderTexture->textureID);
@@ -350,7 +371,11 @@ namespace NobleEngine
 		glBindVertexArray(0);
 		glUseProgram(0);
 
-		glEnable(GL_DEPTH_TEST);
+		GLenum errorCode = glGetError();
+		if (errorCode != GL_NO_ERROR)
+		{
+			std::cout << "OpenGL Error in Slider Rendering!! Error Code: " << errorCode << std::endl;
+		}
 	}
 
 	//---------------------------------------------------------------------------//
@@ -408,13 +433,11 @@ namespace NobleEngine
 	}
 	void UIWindow::OnRender()
 	{
-		glDisable(GL_DEPTH_TEST);
-
 		Application::standardShaderUI->UseProgram();
 		Application::standardShaderUI->BindMat4("u_UIPos", elementRect->GetUIMatrix());
 		Application::standardShaderUI->BindMat4("u_Ortho", Screen::GenerateOrthographicMatrix());
 
-		glActiveTexture(0);
+		glActiveTexture(GL_TEXTURE0);
 		if (windowTexture)
 		{
 			glBindTexture(GL_TEXTURE_2D, windowTexture->textureID);
@@ -435,7 +458,11 @@ namespace NobleEngine
 			}
 		}
 
-		glEnable(GL_DEPTH_TEST);
+		GLenum errorCode = glGetError();
+		if (errorCode != GL_NO_ERROR)
+		{
+			std::cout << "OpenGL Error in Window Rendering!! Error Code: " << errorCode << std::endl;
+		}
 	}
 
 	//---------------------------------------------------------------------------//
@@ -460,6 +487,10 @@ namespace NobleEngine
 					uiElements.at(j)->OnRender();
 				}
 			}
+		}
+		if (glGetError() != GL_NO_ERROR)
+		{
+			std::cout << "OpenGL Error in UI Rendering!!" << std::endl;
 		}
 
 		glEnable(GL_DEPTH_TEST);

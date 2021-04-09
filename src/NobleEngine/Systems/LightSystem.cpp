@@ -66,23 +66,23 @@ namespace NobleEngine
 			}
 
 			oldPos = Application::activeCam->camTransform->position;
+
+			Application::standardShader->BindInt("numberOfLights", closestLights.size());
+			for (int i = 0; i < closestLights.size(); i++)
+			{
+				std::string location = "lights[" + std::to_string(i);
+
+				Application::standardShader->BindVector3(location + "].direction", closestLights.at(i)->lightTransform->rotation);
+				Application::standardShader->BindVector3(location + "].position", closestLights.at(i)->lightTransform->position);
+
+				Application::standardShader->BindVector3(location + "].diffuseLight", closestLights.at(i)->diffuseColour);
+				Application::standardShader->BindVector3(location + "].specularLight", closestLights.at(i)->specularColour);
+				Application::standardShader->BindFloat(location + "].constant", closestLights.at(i)->constant);
+				Application::standardShader->BindFloat(location + "].linear", closestLights.at(i)->linear);
+				Application::standardShader->BindFloat(location + "].quadratic", closestLights.at(i)->quadratic);
+				Application::standardShader->BindFloat(location + "].intensity", closestLights.at(i)->intensity);
+			}
 		}
-		Application::standardShader->BindInt("numberOfLights", closestLights.size());
-		for (int i = 0; i < closestLights.size(); i++)
-		{
-			std::string location = "lights[" + std::to_string(i);
-
-			Application::standardShader->BindVector3(location + "].direction", closestLights.at(i)->lightTransform->rotation);
-			Application::standardShader->BindVector3(location + "].position", closestLights.at(i)->lightTransform->position);
-
-			Application::standardShader->BindVector3(location + "].diffuseLight", closestLights.at(i)->diffuseColour);
-			Application::standardShader->BindVector3(location + "].specularLight", closestLights.at(i)->specularColour);
-			Application::standardShader->BindFloat(location + "].constant", closestLights.at(i)->constant);
-			Application::standardShader->BindFloat(location + "].linear", closestLights.at(i)->linear);
-			Application::standardShader->BindFloat(location + "].quadratic", closestLights.at(i)->quadratic);
-			Application::standardShader->BindFloat(location + "].intensity", closestLights.at(i)->intensity);
-		}
-
 		glUseProgram(0);
 	}
 }

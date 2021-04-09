@@ -166,7 +166,7 @@ namespace NobleEngine
 	public:
 
 		float maxValue = 0, currentValue = 0;
-		float currentPercentage;
+		float currentPercentage = 0;
 
 		UISlider(unsigned int _layer, float _startingValue, float _maxValue, glm::vec2 _screenPos, glm::vec2 _rectScale, std::string _baseTextureLoc, std::string _sliderHandleTexture);
 
