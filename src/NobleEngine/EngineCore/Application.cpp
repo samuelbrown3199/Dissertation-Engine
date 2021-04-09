@@ -129,8 +129,8 @@ namespace NobleEngine
 	{
 		glEnable(GL_CULL_FACE);
 		glEnable(GL_DEPTH_TEST);
-		//glEnable(GL_BLEND);
-		//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		SDL_GL_SetSwapInterval(0);
 		
 		glClearColor(0.0f, 0.45f, 0.45f, 1.0f);
@@ -195,18 +195,11 @@ namespace NobleEngine
 			ThreadingManager::CleanupLooseThreads();
 			ResourceManager::UnloadUnusedResources();
 			InputManager::ClearFrameInputs();
+			//SDL_Delay(32);
 			performanceStats.cleanupTime = SDL_GetTicks() - performanceStats.cleanupStart;
 
 			performanceStats.UpdatePerformanceStats();
-			//performanceStats.PrintOutPerformanceStats();
-
-			/*SystemPerformanceStats transformSystem = systems.at(0)->GetPerformanceStats();
-			SystemPerformanceStats physicsSystem = systems.at(1)->GetPerformanceStats();
-			SystemPerformanceStats meshSystem = systems.at(6)->GetPerformanceStats();
-
-			std::cout << "Transform System | Update Time: " << transformSystem.updateTime << " for " << transformSystem.componentListSize << " components." << std::endl;
-			std::cout << "Physics System | Update Time: " << physicsSystem.updateTime << " for " << physicsSystem.componentListSize << " components." << std::endl;
-			std::cout << "Mesh Renderer System | Render Time: " << meshSystem.renderTime << " for " << meshSystem.componentListSize << " components." << std::endl;*/
+			performanceStats.PrintOutPerformanceStats();
 		}
 
 		physicsWorld->CleanupPhysicsWorld();

@@ -13,22 +13,12 @@ namespace NobleEngine
 		programID = glCreateProgram();
 	}
 
-	bool ShaderProgram::SortByPriority(std::shared_ptr<ShaderLocation>& _loc1, std::shared_ptr<ShaderLocation>& _loc2)
-	{
-		return _loc1->priority > _loc2->priority;
-	}
-
 	GLint ShaderProgram::GetLocation(std::string location)
 	{
 		for (size_t i = 0; i < shaderLocations.size(); i++)
 		{
 			if (shaderLocations.at(i)->locationName == location)
 			{
-				if (i != 0)
-				{
-					shaderLocations.at(i)->priority++;
-					std::sort(shaderLocations.begin(), shaderLocations.end(), SortByPriority);
-				}
 				return shaderLocations.at(i)->locationID;
 			}
 		}
@@ -103,11 +93,11 @@ namespace NobleEngine
 		GLint intLocation = GetLocation(location);
 		glUniform1i(intLocation, value);
 
-		GLenum errorCode = glGetError();
+		/*GLenum errorCode = glGetError();
 		if (errorCode != GL_NO_ERROR)
 		{
 			std::cout << "OpenGL Error in Shader Int Getting!! Error Code: " << errorCode << " | Shader Loc " << location << " " << intLocation << std::endl;
-		}
+		}*/
 	}
 
 	void ShaderProgram::BindFloat(std::string location, float value)
@@ -115,11 +105,11 @@ namespace NobleEngine
 		GLint floatLocation = GetLocation(location);
 		glUniform1f(floatLocation, value);
 
-		GLenum errorCode = glGetError();
+		/*GLenum errorCode = glGetError();
 		if (errorCode != GL_NO_ERROR)
 		{
 			std::cout << "OpenGL Error in Shader Float Getting!! Error Code: " << errorCode << " | Shader Loc " << location << " " << floatLocation << std::endl;
-		}
+		}*/
 	}
 
 	void ShaderProgram::BindMat4(std::string location, glm::mat4 matrix)
@@ -127,11 +117,11 @@ namespace NobleEngine
 		GLint matrixLocation = GetLocation(location);
 		glUniformMatrix4fv(matrixLocation, 1, GL_FALSE, glm::value_ptr(matrix));
 
-		GLenum errorCode = glGetError();
+		/*GLenum errorCode = glGetError();
 		if (errorCode != GL_NO_ERROR)
 		{
 			std::cout << "OpenGL Error in Shader Matrix Getting!! Error Code: " << errorCode << " | Shader Loc " << location << " " << matrixLocation << std::endl;
-		}
+		}*/
 	}
 
 	void ShaderProgram::BindVector3(std::string location, glm::vec3 vector)
@@ -139,11 +129,11 @@ namespace NobleEngine
 		GLint vectorLocation = GetLocation(location);
 		glUniform3f(vectorLocation, vector.x, vector.y, vector.z);
 
-		GLenum errorCode = glGetError();
+		/*GLenum errorCode = glGetError();
 		if (errorCode != GL_NO_ERROR)
 		{
 			std::cout << "OpenGL Error in Shader Vector3 Getting!! Error Code: " << errorCode << " | Shader Loc " << location << " " << vectorLocation << std::endl;
-		}
+		}*/
 	}
 
 	void ShaderProgram::BindModelMat(glm::mat4 matrix)

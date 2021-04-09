@@ -25,7 +25,7 @@ int main()
 
 	Application::activeScene->sceneEnvironment->directionalLight->direction = glm::vec3(0, -260, 0);
 
-	int amount = 15;
+	int amount = 22;
 	for (int x = 0; x < amount; x++)
 	{
 		for (int z = 0; z < amount; z++)
@@ -34,7 +34,7 @@ int main()
 			{
 				std::shared_ptr<Entity> physicsTest = app->CreateEntity(glm::vec3(25 + (-15 * x) + rand() % 5, 50 + (15 * y) + rand() % 5, -30 + (-15 * z) + rand() % 5), glm::vec3(rand() % 360, rand() % 360, rand() % 360), glm::vec3(1,1,1));
 				std::shared_ptr<MeshRenderer> pc = physicsTest->AddComponent<MeshRenderer>(modelLoc, app->GetResourceManager()->LoadMaterial(texLoc));
-				physicsTest->AddComponent<PhysicsBody>(PhysicsBody::ColliderShape::box, 20);
+				//physicsTest->AddComponent<PhysicsBody>(PhysicsBody::ColliderShape::box, 20);
 			}
 		}
 	}
