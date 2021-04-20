@@ -3,6 +3,7 @@
 #define PHYSICSWORLD_H_
 
 #include <memory>
+#include <mutex>
 
 #include <Bullet/btBulletDynamicsCommon.h>
 #include <Bullet/btBulletCollisionCommon.h>
@@ -15,6 +16,9 @@ namespace NobleEngine
 	struct PhysicsWorld
 	{
 	private:
+
+		std::mutex physicsMutex;
+
 		btDefaultCollisionConfiguration* collisionConfiguration;
 		btCollisionDispatcher* dispatcher;
 		btBroadphaseInterface* overlappingPairCache;

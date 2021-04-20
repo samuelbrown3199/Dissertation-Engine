@@ -31,14 +31,20 @@ namespace NobleEngine
 	}
 	void PhysicsWorld::AddRigidbody(btRigidBody* body)
 	{
+		physicsMutex.lock();
 		dynamicWorld->addRigidBody(body);
+		physicsMutex.unlock();
 	}
 	void PhysicsWorld::RemoveRigidbody(btRigidBody* body)
 	{
+		physicsMutex.lock();
 		dynamicWorld->removeRigidBody(body);
+		physicsMutex.unlock();
 	}
 	void PhysicsWorld::StepSimulation(double amount)
 	{
+		physicsMutex.lock();
 		dynamicWorld->stepSimulation(amount);
+		physicsMutex.unlock();
 	}
 }

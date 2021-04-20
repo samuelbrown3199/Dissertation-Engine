@@ -22,32 +22,32 @@ namespace NobleEngine
 			comp->shader = Application::standardShader;
 		}
 
-		comp->shader->UseProgram();
-		comp->shader->BindModelMat(comp->transform->model);
-		comp->shader->BindProjectionMat(GetApplication()->screen->GenerateProjectionMatrix());
-		comp->shader->BindViewMat(GetApplication()->activeCam->viewMatrix);
-		comp->shader->BindFloat("material.shininess", comp->material->shininess); //This line of code gives error 1282
-
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, 0);
-		if (comp->material->diffuseTexture)
-		{
-			glBindTexture(GL_TEXTURE_2D, comp->material->diffuseTexture->textureID);
-		}
-
-		glActiveTexture(GL_TEXTURE1);
-		glBindTexture(GL_TEXTURE_2D, 0);
-		if (comp->material->specularTexture)
-		{
-			glBindTexture(GL_TEXTURE_2D, comp->material->specularTexture->textureID);
-		}
 
 		if (comp->model)
 		{
+			comp->shader->UseProgram();
+			comp->shader->BindModelMat(comp->transform->model);
+			comp->shader->BindProjectionMat(GetApplication()->screen->GenerateProjectionMatrix());
+			comp->shader->BindViewMat(GetApplication()->activeCam->viewMatrix);
+			comp->shader->BindFloat("material.shininess", comp->material->shininess);
+
+			glActiveTexture(GL_TEXTURE0);
+			glBindTexture(GL_TEXTURE_2D, 0);
+			if (comp->material->diffuseTexture)
+			{
+				glBindTexture(GL_TEXTURE_2D, comp->material->diffuseTexture->textureID);
+			}
+
+			glActiveTexture(GL_TEXTURE1);
+			glBindTexture(GL_TEXTURE_2D, 0);
+			if (comp->material->specularTexture)
+			{
+				glBindTexture(GL_TEXTURE_2D, comp->material->specularTexture->textureID);
+			}
 			glBindVertexArray(comp->model->vaoID);
 			glDrawArrays(GL_TRIANGLES, 0, comp->model->drawCount);
+			glBindVertexArray(0);
+			glUseProgram(0);
 		}
-		glBindVertexArray(0);
-		glUseProgram(0);
 	}
 }
