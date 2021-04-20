@@ -132,7 +132,6 @@ namespace NobleEngine
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		SDL_GL_SetSwapInterval(0);
-		
 		glClearColor(0.0f, 0.45f, 0.45f, 1.0f);
 
 		while (loop)
@@ -173,7 +172,7 @@ namespace NobleEngine
 					uiSystems.at(sys)->Render();
 				}
 			}
-			SDL_GL_SwapWindow(screen->GetWindow());
+			Screen::SwapWindow();
 			performanceStats.renderTime = SDL_GetTicks() - performanceStats.renderStart;
 
 			performanceStats.physicsStart = SDL_GetTicks();
@@ -195,11 +194,10 @@ namespace NobleEngine
 			ThreadingManager::CleanupLooseThreads();
 			ResourceManager::UnloadUnusedResources();
 			InputManager::ClearFrameInputs();
-			//SDL_Delay(32);
 			performanceStats.cleanupTime = SDL_GetTicks() - performanceStats.cleanupStart;
 
 			performanceStats.UpdatePerformanceStats();
-			performanceStats.PrintOutPerformanceStats();
+			//performanceStats.PrintOutPerformanceStats();
 		}
 
 		physicsWorld->CleanupPhysicsWorld();

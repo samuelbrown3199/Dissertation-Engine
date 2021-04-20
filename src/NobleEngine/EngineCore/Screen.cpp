@@ -5,6 +5,7 @@ namespace NobleEngine
 	int Screen::screenWidth = 0;
 	int Screen::screenHeight = 0;
 	SDL_Window* Screen::window;
+	SDL_GLContext Screen::glContext;
 
 	float Screen::nearPlane = 0.1f;
 	float Screen::farPlane = 1000.0f;
@@ -18,11 +19,16 @@ namespace NobleEngine
 		farPlane = far;
 
 		window = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screenWidth, screenHeight, SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
-		if (!SDL_GL_CreateContext(window))
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
+		
+		glContext = SDL_GL_CreateContext(window);
+		/*if (!SDL_GL_CreateContext(window))
 		{
 			std::cout << "Screen failed to create window!" << std::endl;
 			throw std::exception();
-		}
+		}*/
 	}
 
 	SDL_Window* Screen::GetWindow()
@@ -60,5 +66,10 @@ namespace NobleEngine
 	{
 		glm::mat4 orthoMatrix = glm::ortho(0.0f, (float)screenWidth, (float)screenHeight, 0.0f, 0.0f, farPlane);
 		return orthoMatrix;
+	}
+
+	void Screen::SwapWindow()
+	{
+		SDL_GL_SwapWindow(window);
 	}
 }

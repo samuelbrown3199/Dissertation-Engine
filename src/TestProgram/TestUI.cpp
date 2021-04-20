@@ -19,13 +19,13 @@ void TestUI::InitializeUI()
 
 void TestUI::HandleEvents()
 {
-	/*std::ostringstream ss;
+	std::ostringstream ss;
 	ss << sliderTest->currentValue << " and percentage is " << sliderTest->currentPercentage;
 	std::string label(ss.str());
-	textTest->text = label;*/
+	textTest->text = label;
 
-	/*if (buttonTest->ClickedOn())
+	if (buttonTest->ClickedOn())
 	{
 		std::cout << "Clicked!" << std::endl;
-	}*/
+	}
 }

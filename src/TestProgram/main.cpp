@@ -52,7 +52,7 @@ int main()
 	app->BindSystem<FlyingCamSystem>(true, false);
 	app->BindSystem<RotatorSystem>(true, false);
 
-	app->BindUISystem<TestUI>();
+	app->BindUISystem<TestUI>()->active = false;
 
 	app->MainLoop();
 

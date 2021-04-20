@@ -30,6 +30,10 @@ namespace NobleEngine
 		*Stores a pointer to the application window.
 		*/
 		static SDL_Window* window;
+		/**
+		*Stores the OpenGL context.
+		*/
+		static SDL_GLContext glContext;
 
 	public:
 		/**
@@ -72,6 +76,8 @@ namespace NobleEngine
 		*Generates a orthographic matrix with the screen information.
 		*/
 		static glm::mat4 GenerateOrthographicMatrix();
+
+		static void SwapWindow();
 	};
 }
 
