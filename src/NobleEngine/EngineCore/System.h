@@ -14,6 +14,10 @@
 
 #define SetupComponentList(T) std::vector<std::shared_ptr<T>> Component<T>::componentList;
 
+/*#define SetupComponentList(T) \
+  template <typename U> \
+  std::vector<std::shared_ptr<T>> Component<U>::componentList; \*/
+
 namespace NobleEngine
 {
 	class Application;

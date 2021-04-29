@@ -2,6 +2,7 @@
 
 #include "FlyingCamSystem.h"
 #include "SpawnerSystem.h"
+#include "DeleterSystem.h"
 
 using namespace NobleEngine;
 int main()
@@ -22,10 +23,12 @@ int main()
 	std::shared_ptr<Entity> camera = app->CreateEntity();
 	camera->AddComponent<Transform>(glm::vec3(0, 5, 0));
 	camera->AddComponent<FlyingCam>();
+	camera->AddComponent<AudioListener>();
 	std::shared_ptr<Camera> cr = camera->AddComponent<Camera>(true);
 
 	app->BindSystem<FlyingCamSystem>(true, false);
 	app->BindSystem<SpawnerSystem>(true, false);
+	app->BindSystem<DeleterSystem>(true, false);
 
 	app->MainLoop();
 	return 0;

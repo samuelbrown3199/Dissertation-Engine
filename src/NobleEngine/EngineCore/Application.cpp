@@ -172,7 +172,7 @@ namespace NobleEngine
 					uiSystems.at(sys)->Render();
 				}
 			}
-			Screen::SwapWindow();
+			Screen::SwapWindow(); //this line occasionally causes render ms to jump to 10x the average.
 			performanceStats.renderTime = SDL_GetTicks() - performanceStats.renderStart;
 
 			performanceStats.physicsStart = SDL_GetTicks();
@@ -180,13 +180,11 @@ namespace NobleEngine
 			performanceStats.physicsTime = SDL_GetTicks() - performanceStats.physicsStart;
 
 			performanceStats.cleanupStart = SDL_GetTicks();
-			std::vector<std::shared_ptr<Entity>>::iterator deleter;
-			for (deleter = deletionEntities.end(); deleter != deletionEntities.begin(); deleter--)
+			for (int i = 0; i < deletionEntities.size(); i++)
 			{
-				std::shared_ptr<Entity> entity = *deleter;
-				deletionEntities.pop_back();
-				RemoveEntity(entity->entityID);
+				RemoveEntity(deletionEntities.at(i)->entityID);
 			}
+			deletionEntities.clear();
 			for (size_t sys = 0; sys < systems.size(); sys++) //handles system cleanup
 			{
 				systems.at(sys)->ClearUnneededComponents();
@@ -197,7 +195,7 @@ namespace NobleEngine
 			performanceStats.cleanupTime = SDL_GetTicks() - performanceStats.cleanupStart;
 
 			performanceStats.UpdatePerformanceStats();
-			//performanceStats.PrintOutPerformanceStats();
+			performanceStats.PrintOutPerformanceStats();
 		}
 
 		physicsWorld->CleanupPhysicsWorld();

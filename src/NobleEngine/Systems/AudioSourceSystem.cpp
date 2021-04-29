@@ -16,10 +16,17 @@ namespace NobleEngine
 		}
 
 		ALenum state;
-		alGetSourcei(comp->sourceID, AL_SOURCE_STATE, &state);
-
+		if (comp->sourceID)
+		{
+			alGetSourcei(comp->sourceID, AL_SOURCE_STATE, &state);
+		}
 		if (comp->play)
 		{
+			if (!comp->sourceID)
+			{
+				alGenSources(1, &comp->sourceID);
+			}
+
 			if (comp->sourceTransform)
 			{
 				alSource3f(comp->sourceID, AL_POSITION, comp->sourceTransform->position.x, comp->sourceTransform->position.y, comp->sourceTransform->position.z);
@@ -48,6 +55,7 @@ namespace NobleEngine
 			if (state != AL_PLAYING)
 			{
 				alSourceStop(comp->sourceID);
+				alDeleteSources(1, &comp->sourceID);
 			}
 		}
 	}

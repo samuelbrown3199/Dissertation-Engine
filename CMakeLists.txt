@@ -6,7 +6,6 @@ include_directories(
 )
 
 if(MSVC)
-
 	set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
 	set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO} /MT")
 	set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MT")
@@ -123,6 +122,10 @@ add_executable(TechDemo
   src/TechDemo/Spawner.h
   src/TechDemo/SpawnerSystem.h
   src/TechDemo/SpawnerSystem.cpp
+
+  src/TechDemo/Deleter.h
+  src/TechDemo/DeleterSystem.h
+  src/TechDemo/DeleterSystem.cpp
 )
 
 target_link_libraries(TechDemo NobleEngine)
