@@ -1,5 +1,6 @@
 #include <NobleEngine/EngineCore.h>
 
+#include "TechDemoUI.h"
 #include "FlyingCamSystem.h"
 #include "SpawnerSystem.h"
 #include "DeleterSystem.h"

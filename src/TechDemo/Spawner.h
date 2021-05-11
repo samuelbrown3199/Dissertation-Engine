@@ -7,7 +7,7 @@ struct Spawner : public Component<Spawner>
 {
 	std::shared_ptr<Transform> spawnerTransform;
 
-	float framesToSpawn = 3;
+	float framesToSpawn = 10;
 	float currentFramesSinceLastSpawn = 0;
 
 	void OnInitialize()

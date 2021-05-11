@@ -3,6 +3,6 @@
 using namespace NobleEngine;
 struct Deleter : public Component<Deleter>
 {
-	int framesToDelete = 1000;
+	int framesToDelete = 7000;
 	int framesSinceCreation = 0;
 };

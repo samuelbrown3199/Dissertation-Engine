@@ -115,6 +115,9 @@ target_link_libraries(TestProgram NobleEngine)
 add_executable(TechDemo
   src/TechDemo/main.cpp
 
+  src/TechDemo/TechDemoUI.h
+  src/TechDemo/TechDemoUI.cpp
+
   src/TechDemo/FlyingCam.h
   src/TechDemo/FlyingCamSystem.h
   src/TechDemo/FlyingCamSystem.cpp

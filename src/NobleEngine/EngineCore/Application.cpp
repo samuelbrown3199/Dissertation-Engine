@@ -180,18 +180,22 @@ namespace NobleEngine
 			performanceStats.physicsTime = SDL_GetTicks() - performanceStats.physicsStart;
 
 			performanceStats.cleanupStart = SDL_GetTicks();
-			for (int i = 0; i < deletionEntities.size(); i++)
+			if (deletionEntities.size() > 0)
 			{
-				RemoveEntity(deletionEntities.at(i)->entityID);
-			}
-			deletionEntities.clear();
-			for (size_t sys = 0; sys < systems.size(); sys++) //handles system cleanup
-			{
-				systems.at(sys)->ClearUnneededComponents();
+				for (int i = 0; i < deletionEntities.size(); i++)
+				{
+					RemoveEntity(deletionEntities.at(i)->entityID);
+				}
+				deletionEntities.clear();
+				for (size_t sys = 0; sys < systems.size(); sys++) //handles system cleanup
+				{
+					systems.at(sys)->ClearUnneededComponents();
+				}
 			}
 			ThreadingManager::CleanupLooseThreads();
 			ResourceManager::UnloadUnusedResources();
 			InputManager::ClearFrameInputs();
+			//SDL_Delay(40);
 			performanceStats.cleanupTime = SDL_GetTicks() - performanceStats.cleanupStart;
 
 			performanceStats.UpdatePerformanceStats();
