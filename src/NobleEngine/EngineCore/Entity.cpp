@@ -11,6 +11,6 @@ namespace NobleEngine
 
 	void Entity::Destroy()
 	{
-		Application::deletionEntities.push_back(self.lock());
+ 		Application::deletionEntities.push_back(self.lock());
 	}
 }

@@ -7,6 +7,8 @@ namespace NobleEngine
 {
 	SetupComponentList(Transform);
 
+	//std::vector<std::shared_ptr<Transform>> Component<Transform>::componentList;
+
 	void TransformSystem::OnUpdate(std::shared_ptr<Transform> comp)
 	{
 		if (!comp->checkForPhysicsBody)

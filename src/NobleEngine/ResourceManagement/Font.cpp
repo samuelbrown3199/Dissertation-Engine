@@ -50,7 +50,7 @@ namespace NobleEngine
 				texture,
 				glm::ivec2(font->glyph->bitmap.width, font->glyph->bitmap.rows),
 				glm::ivec2(font->glyph->bitmap_left, font->glyph->bitmap_top),
-				font->glyph->advance.x
+				(unsigned int)font->glyph->advance.x
 			};
 			characters.insert(std::pair<char, Character>(c, character));
 		}
