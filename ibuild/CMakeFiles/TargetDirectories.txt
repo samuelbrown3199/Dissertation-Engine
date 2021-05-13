@@ -1,5 +1,0 @@
-C:/Users/samue/Desktop/GamesDevelopment/Projects/Noble/ibuild/CMakeFiles/rebuild_cache.dir
-C:/Users/samue/Desktop/GamesDevelopment/Projects/Noble/ibuild/CMakeFiles/NobleEngine.dir
-C:/Users/samue/Desktop/GamesDevelopment/Projects/Noble/ibuild/CMakeFiles/TestProgram.dir
-C:/Users/samue/Desktop/GamesDevelopment/Projects/Noble/ibuild/CMakeFiles/TechDemo.dir
-C:/Users/samue/Desktop/GamesDevelopment/Projects/Noble/ibuild/CMakeFiles/edit_cache.dir
